@@ -881,6 +881,15 @@ int main(int argc, char *argv[]) { // argc, argv: [Stack 영역] 함수 매개�
 
         <div class="callout-box warning" style="margin-top: 14px;">
           <div class="callout-title">🚨 교수님 09/23 강의 녹음 직접 출제 예고 6대 실습 C 코드 완벽 분석</div>
+          <div class="callout-box audio" style="margin: 8px 0 10px 0;">
+            <div class="audio-quote-header">
+              <span class="audio-quote-badge">🎙️ 교수님 강의 육성 녹음본 (09/23 실습 중 직접 출제 예고)</span>
+              <span class="audio-quote-time">수업 녹음본 발언 원문</span>
+            </div>
+            <p class="audio-quote-text">
+              "자, 이 코드 한번 보세요. <code>fork()</code>를 했을 때 자식이 전역 변수 <code>value</code>를 20으로 바꿨잖아요? 그러면 부모가 출력하는 <code>value</code>는 과연 몇일까요? <b>이거 시험 문제로 낼 수 있죠!</b> 자식은 자기 메모리만 바꾸고 끝나는 거고, 부모는 자기 주소 공간이 그대로 유지되니까 <b>부모의 value는 그대로 5가 나옵니다.</b> 메모리가 완전히 독립적으로 복제된다는 이 원리를 꼭 기억하세요!"
+            </p>
+          </div>
           교수님께서 09/23 강의에서 직접 한 줄씩 설명하시며 <b>"이거 결과값이 어떻게 될지 시험 문제로 낼 수 있죠!"</b>라고 강조하신 6가지 C 코드 전체와 실행 결과입니다.
         </div>
 
@@ -1245,14 +1254,25 @@ int main() {
 
         <!-- 5주차 강의 교수님 실험 & 세그멘테이션 폴트 분석 박스 -->
         <div class="callout-box warning" style="margin-top: 14px;">
-          <div class="callout-title">🚨 [5주차 교수님 녹음 14:27~15:04 직접 강조] 소비자(Consumer) 연속 접근 시 Segmentation fault 발생 원인!</div>
-          교수님 말씀: <i>"컨슈머에서 적어놓은 걸 한번 읽었잖아요. 그 다음 또 읽으면 어떻게 돼요? 그 다음 포인터 가리키는 곳은 아무것도 없기 때문에 세그멘테이션 폴트(Segmentation fault)가 날 수밖에 없다!"</i><br><br>
-          • <b>발생 메커니즘</b>:
+          <div class="callout-title">🚨 [출제 1순위] 공유 메모리 생산자 출력 특성 &amp; 소비자 연속 접근 시 Segmentation fault 발생 원인</div>
+
+          <div class="callout-box audio" style="margin: 8px 0 10px 0;">
+            <div class="audio-quote-header">
+              <span class="audio-quote-badge">🎙️ 교수님 강의 육성 녹음본 (생산자 무출력 &amp; 소비자 세그폴트 분석)</span>
+              <span class="audio-quote-time">타임스탬프 [07:24~07:34, 13:54~14:44]</span>
+            </div>
+            <p class="audio-quote-text">
+              "시간을 조금 드릴 테니까 한 번... 프로듀서 입장이니까 그냥 쓰기만 하는 거죠. Hello Shared Memory 이렇게 쓰기만 하는 거니까 <b>실행한다고 해서 이제 아무것도 없죠. 그쵸?</b> GCC 했을 때 프로듀서 하면 뭐 쓰기만 한 거기 때문에 아무것도 안 나타나요...<br><br>
+              그러면 또 실험을 하게 되면 이 때는 이제 <b>세그멘트 폴트(Segmentation fault) 나오죠. 왜냐면 이제 더 이상 없잖아.</b> 한번 이제 버퍼에서 지금 적어 놓은 거를 컨스멜에서 한 번 읽었잖아요. 그 다음은 어떻게 돼요? <b>그 다음 없죠. 그 다음 포인터 가리키는 곳은 이제 아무것도 없기 때문에, 그 다음 갔기 때문에 없죠. 그쵸? 없기 때문에 이제 세그멘트 폴트가 날 수밖에 없다.</b> 여기까지 확인하시고 캡처 결과 화면하고 코딩한 거 올려주시면 됩니다."
+            </p>
+          </div>
+
+          • <b>교수님 육성 기반 핵심 발생 메커니즘</b>:
           <ol style="margin: 6px 0 0 18px; padding-left: 0; line-height: 1.7;">
-            <li>생산자(Producer)는 4096B 버퍼 앞부분에 <code>"HelloWorld!"</code>만 기록하고 정상 종료합니다. (터미널 출력 없음)</li>
-            <li>소비자(Consumer)가 1회 실행되면 <code>"HelloWorld!"</code>를 정상 출력하고 <code>shm_unlink("OS")</code>로 공유 메모리 링크를 해제합니다.</li>
-            <li>만약 소비자가 버퍼 끝을 넘어 계속 포인터를 증가시키며 읽거나, 이미 <code>shm_unlink</code>로 제거되었거나 매핑되지 않은 메모리 주소(Unmapped Memory / Invalid Address)에 접근하게 되면, <b>CPU의 MMU와 운영체제 커널이 잘못된 메모리 접근을 감지하여 즉시 <code>SIGSEGV</code> 시그널을 발송</b>합니다.</li>
-            <li>그 결과 터미널에 <b style="color: var(--tag-danger-ink);"><code>Segmentation fault (core dumped)</code></b> 오류가 출력되며 프로세스가 강제 종료됩니다.</li>
+            <li><b>생산자(Producer)의 터미널 출력 없음</b>: 4096B 공유 메모리 버퍼 앞부분에 <code>"HelloWorld!"</code> 문자열을 메모리 쓰기만 하고 화면(stdout)에는 아무것도 출력하지 않고 정상 종료합니다.</li>
+            <li><b>소비자(Consumer)의 1회차 정상 동작</b>: 공유 메모리를 열고 <code>"HelloWorld!"</code>를 터미널에 정상 출력한 뒤 <code>shm_unlink("OS")</code>로 객체 링크를 해제합니다.</li>
+            <li><b>연속 접근/초과 접근 시 세그멘테이션 폴트 발생</b>: 이미 <code>shm_unlink</code>로 해제되었거나 매핑 범위를 벗어난 무효한 메모리 주소(Unmapped Memory / Invalid Address)에 포인터가 접근하는 순간, <b>CPU의 MMU와 운영체제 커널이 잘못된 메모리 침범을 감지하여 <code>SIGSEGV</code> 시그널을 즉시 발송</b>합니다.</li>
+            <li>그 결과 화면에 <b style="color: var(--tag-danger-ink);"><code>Segmentation fault (core dumped)</code></b> 오류가 출력되며 프로세스가 강제 중단됩니다.</li>
           </ol>
         </div>
 
@@ -1342,6 +1362,17 @@ int main(void) {
           </div>
         </div>
 
+        <div class="callout-box audio" style="margin: 12px 0 14px 0;">
+          <div class="audio-quote-header">
+            <span class="audio-quote-badge">🎙️ 교수님 강의 육성 녹음본 (파이프의 로컬 한계 &amp; 네트워크 소켓의 필요성)</span>
+            <span class="audio-quote-time">타임스탬프 [17:06~17:31, 25:36~26:31]</span>
+          </div>
+          <p class="audio-quote-text">
+            "파이프에서는... 파이프는 네트워크 상으로 쓸 수 있는데 안 보셔요. 그래서 이제 네트워크에서 사용하는 거는 이제 소켓이죠. 왜냐하면 지금 이 파이프가 통신한다는 것은 <b>컴퓨터 내부에서만 움직이는 거예요.</b> 컴퓨터가 이렇게 여러 대 있어, 여러 대 있어서 컴퓨터 간에 통신을 한다? <b>그거는 파이프 갖고는 안 된다는 거죠.</b> 지금 계속 컴퓨터 한 대에서 여러 개의 프로세스가 진행이 될 때를 얘기하는 거예요.<br><br>
+            IPC가 컴퓨터 내부에서 움직인다라고 한다면 사실 파이프에 해당되는 것은 네트워크에서는 그렇게 안 쓰죠. 포트라고 쓰죠. 외부에서 컴퓨터마다 독립적으로 있을 때 밖에서 이렇게 파이프로 연결을 사실 못하잖아요. 컴퓨터를 고유하게 구별하기 위해 IP address로 구별하고, 파이프 대신 네트워크 상의 포트(Port)라고 하죠. 그래서 네트워크 상으로는 <b>IP address와 포트, 이 두 가지를 합쳐서 사실은 소켓(Socket)</b>이라고 정의를 하죠."
+          </p>
+        </div>
+
         <div class="concept-card-header" style="margin-top: 24px;">
           <div class="concept-card-title">3. 네트워크 클라이언트-서버 통신: 소켓(Socket) &amp; 원격 프로시저 호출(RPC)</div>
           <span class="badge badge-blue">소켓 3종 &amp; RPC 스텁 &amp; 마셜링</span>
@@ -1349,6 +1380,17 @@ int main(void) {
         <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 10px;">
           • 파이프와 POSIX 공유 메모리는 <b>컴퓨터 1대 내부(로컬) 통신 전용</b>입니다. 반면 네트워크로 떨어진 여러 컴퓨터의 프로세스 간 통신에는 <b>소켓(Socket)</b>과 <b>RPC</b>를 사용합니다.
         </p>
+
+        <div class="callout-box audio" style="margin: 10px 0 14px 0;">
+          <div class="audio-quote-header">
+            <span class="audio-quote-badge">🎙️ 교수님 강의 육성 녹음본 (소켓 3종 '등기 우편' 비유 &amp; RPC 마셜링)</span>
+            <span class="audio-quote-time">타임스탬프 [28:52~29:38, 30:19~32:08]</span>
+          </div>
+          <p class="audio-quote-text">
+            "자바를 보면 소켓 3가지 다른 타입이 있다. 첫 번째 소켓 클래스는 이제 TCP, 그리고 두 번째는 UDP, 그다음에 이제 멀티캐스트 소켓이 있다. 우리 통신 때 배웠잖아. <b>TCP는 데이터 보내고 받았을 때 '이 받았다는 걸 갖다가 증명', 이게 한 등기 우편 같은 거예요.</b> 그리고 데이터그램 소켓(DatagramSocket) 같은 경우는 그런 게 아니에요. 그냥 막 보내는 거야. 커넥션리스(Connectionless)한 거지. 그냥 막 보내고. 그다음에 멀티캐스트 소켓은 여러 사람한테 보낼 수 있는데 특정인한테, 내가 지정한 사람한테 보낸다라는 거죠. 이게 좀 다르죠.<br><br>
+            그다음에 RPC 같은 경우는 별도 원격 제어를 위한 어떤 코딩 없이 다른 네트워크에 있는 컴퓨터 공간의 함수나 프로시저를 실행할 수 있게 하는 통신 기술이다... 함수를 호출하려고 그러면 어떤 함수가 있는지를 알아야 하잖아요. 그거를 RPC 시스템에서는 클라이언트 측에 있는 <b>스텁(Stub)</b>으로 제공을 해줘요. 그리고 펑션콜 하려면 형식을 맞춰야 할 거 아니야. 인티저 형이냐 스트링 형이냐... 굉장히 문법이 있을 텐데 그런 <b>파라미터들의 법칙을 맞추는 걸 마셜링(Marshalling)</b>이라고, 마셜링 한 번에 다 하거든요. 메시지 파라미터를 처음에 보낼 때도 마셜링해서 보내고 서버에서 받아서 처리합니다."
+          </p>
+        </div>
 
         <table class="concept-table">
           <thead>
@@ -1405,6 +1447,16 @@ int main(void) {
           • <b>스레드(Thread)의 정의</b>: <b>경량 프로세스 (Lightweight Process, LWP)</b>이자, 프로세스 내부에서 <b>CPU 스케줄링과 실행이 이루어지는 가장 작은 기본/최소 단위(Basic Unit of CPU Utilization)</b>입니다.<br>
           • <b>식별자 비교</b>: 프로세스가 <b>PID</b>로 식별된다면, 스레드는 <b>TID (Thread ID)</b>로 식별되며, 각 스레드는 고유한 <b>PC(Program Counter), Register Set, Stack</b>을 가집니다.
         </p>
+
+        <div class="callout-box audio" style="margin: 10px 0 14px 0;">
+          <div class="audio-quote-header">
+            <span class="audio-quote-badge">🎙️ 교수님 강의 육성 녹음본 (오늘 특별히 하나를 뽑는다면: 스레드 메모리 공유 도해)</span>
+            <span class="audio-quote-time">타임스탬프 [47:06~47:44]</span>
+          </div>
+          <p class="audio-quote-text">
+            "오늘 만약에 특별히 이제 하나를 뽑는다면 <b>이 그림을 잘 봐야지.</b> 하나의 프로세스라면 옛날의 프로세스는 스레드 하나고 코드, 데이터, 파일, 레지스터, PC, 스택이 다 같이 이뤄졌다면, 지금의 스레드 같은 경우는 <b>코드, 데이터, 파일은 공통적으로 갖고 있고 각각의 스레드는 레지스터, 스택, PC 뭐 이런 것들...</b> 멀티 스레드를 가진 하나의 프로세스로 이뤄졌다라고 얘기를 할 수 있다면서 이 그림을 조금, <b>제가 봤을 때 이 그림 제일 중요한 거죠.</b>"
+          </p>
+        </div>
 
         <!-- 단일 스레드 vs 멀티스레드 프로세스 비교 도해 (SVG) -->
         <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-bottom: 14px;">
@@ -1464,7 +1516,17 @@ int main(void) {
 
         <!-- 5주차 교수님 강조 면접 & 주관식 1순위: 프로세스 vs 스레드 5대 비교표 -->
         <div class="callout-box info" style="margin-top: 14px;">
-          <div class="callout-title">💼 [5주차 교수님 녹음 47:57~48:27 직접 강조] "면접에서 프로세스와 스레드의 차이가 뭐냐고 물어봤을 때 빠지지 않고 나온다!"</div>
+          <div class="callout-title">💼 [면접 &amp; 기말 단골] "프로세스와 스레드의 차이가 뭐냐?" 5대 핵심 비교</div>
+
+          <div class="callout-box audio" style="margin: 8px 0 10px 0;">
+            <div class="audio-quote-header">
+              <span class="audio-quote-badge">🎙️ 교수님 강의 육성 녹음본 (면접 단골 질문 강조)</span>
+              <span class="audio-quote-time">타임스탬프 [47:57~48:27]</span>
+            </div>
+            <p class="audio-quote-text">
+              "스레드에서 사실 제일 중요한 부분... <b>진짜 많이 물어봐요. 이제 면접으로 프로세스에 대해서 한번 물어봤을 때 '둘이 차이가 뭐냐?' 이런 것도 빠지지 않고 나오는 것 같아요.</b> 스레드까지 좀 하면 프로세스와 스레드의 차이를 좀 아실 수 있을 것 같고, 그다음에 각각 용어들이 좀 많이 나오는데 그런 것만 좀 잘 익히시면 됩니다."
+            </p>
+          </div>
           <table class="concept-table" style="margin-top: 8px;">
             <thead>
               <tr>
@@ -1542,7 +1604,17 @@ int main(void) {
               <div style="margin: 6px 0; padding: 8px 12px; background: var(--bg-surface-elevated); border-radius: 4px; font-family: var(--font-mono); font-weight: 700; color: var(--accent);">
                 Speedup ≤ 1 / ( S + (1 - S) / N )
               </div>
-              • <b>[5주차 교수님 직접 강의 수치 예시]</b>: 순차(직렬) 작업 비율이 <b>25% (<code>S = 0.25</code>)</b>일 때:<br>
+              <div class="callout-box audio" style="margin: 8px 0 10px 0;">
+                <div class="audio-quote-header">
+                  <span class="audio-quote-badge">🎙️ 교수님 강의 육성 녹음본 (암달의 법칙 수치 계산 &amp; 직렬 50%의 한계)</span>
+                  <span class="audio-quote-time">타임스탬프 [44:19~45:53]</span>
+                </div>
+                <p class="audio-quote-text">
+                  "지금 여길 보시면 코어가 2개고 0.25 정도... 항상 연속성을 띄어야 해요. 요 일 끝나고 그 다음 일 끝나고... 그렇게 순차적으로 해야 할 일이 25%다(S = 0.25). 그 나머지는 병렬로 돌아갔다 치면 <b>N이 2일 때는 1.6배, 그리고 N이 4일 때는 2.28배가 빠르더라.</b> 근데 예상을 했을 때는 코어가 2개면 2배 빨라야 할 것 같고 4개면 4배 빨라야 할 거라고 생각을 했는데 그렇지 않다라는 거예요...<br><br>
+                  만약에 <b>연속성이 50%다, 계속 시스템 자체가 이 일 끝나야지 그 다음 가고 하는 시리얼(Serial)적인 일이다... 그러면 사실은 더 효율이 떨어진다는 거예요. 스피드가 떨어진다는 거예요.</b> 좀 반 정도 차지하게 되면 거의 비슷하게 가는 거죠. 예상했던 것보다는 코어가 많으면 많을수록 그렇게 스피드가 높진 않다는 거예요. 그래서 암달의 법칙으로 '코어가 많으면 좋느냐?' 이런 공식을 하나 세웠다라는 거죠."
+                </p>
+              </div>
+              • <b>[5주차 교수님 직접 강의 수치 예시 풀이]</b>: 순차(직렬) 작업 비율이 <b>25% (<code>S = 0.25</code>)</b>일 때:<br>
               &nbsp;&nbsp;1) <b>코어가 2개(<code>N = 2</code>)인 경우</b>: <code>1 / (0.25 + 0.75 / 2) = 1 / 0.625 = </code><b style="color: var(--accent);">1.6배 속도 향상</b> (2배가 아님!)<br>
               &nbsp;&nbsp;2) <b>코어가 4개(<code>N = 4</code>)인 경우</b>: <code>1 / (0.25 + 0.75 / 4) = 1 / 0.4375 ≈ </code><b style="color: var(--accent);">2.28배 속도 향상</b> (4배가 아님!)<br>
               • <b>핵심 결론</b>: 만약 직렬 비율이 50%(<code>S = 0.5</code>)라면 코어를 아무리 무한대(<code>N → ∞</code>)로 늘려도 최대 속도 향상은 <b><code>1 / 0.5 = 2배</code>로 수렴</b>하여 성능 개선 한계에 부딪힘!</td>

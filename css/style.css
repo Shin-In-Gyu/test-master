@@ -748,6 +748,55 @@ p, div, span, li, button, input, select, textarea {
   color: var(--ink-secondary);
 }
 
+.callout-box.audio {
+  background-color: var(--bg-surface-elevated);
+  border-left: 4px solid var(--accent-purple);
+  border-top: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin: 12px 0;
+  line-height: 1.65;
+}
+
+.audio-quote-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.audio-quote-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  font-size: 13.5px;
+  color: var(--accent-purple);
+}
+
+.audio-quote-time {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-muted);
+  background: var(--bg-base);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.audio-quote-text {
+  font-size: 13.5px;
+  color: var(--ink-secondary);
+  font-style: italic;
+  margin: 0;
+  line-height: 1.7;
+}
+
 .callout-title {
   font-weight: 800;
   font-size: 16px;
