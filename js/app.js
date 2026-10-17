@@ -21,6 +21,11 @@ let currentFontSize = 16;
 // 1. 앱 초기화
 // ========================================================
 document.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("dossier_theme") || "light";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+  const themeBtn = document.getElementById("themeBtn");
+  if (themeBtn) themeBtn.textContent = savedTheme === "dark" ? "DARK" : "LIGHT";
+
   const sel = document.getElementById("subjectSelect");
   if (sel && sel.value && sel.value !== "__add__") {
     currentSubject = sel.value;
@@ -762,10 +767,12 @@ function changeFontSize(delta) {
 }
 
 function toggleTheme() {
-  const current = document.documentElement.getAttribute("data-theme") || "dark";
+  const current = document.documentElement.getAttribute("data-theme") || "light";
   const next = current === "dark" ? "light" : "dark";
   document.documentElement.setAttribute("data-theme", next);
-  document.getElementById("themeBtn").textContent = next === "dark" ? "DARK" : "LIGHT";
+  const themeBtn = document.getElementById("themeBtn");
+  if (themeBtn) themeBtn.textContent = next === "dark" ? "DARK" : "LIGHT";
+  localStorage.setItem("dossier_theme", next);
 }
 
 function showToast(msg) {
