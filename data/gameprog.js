@@ -1069,6 +1069,341 @@ window.EXAM_DATABASE.gameprog = {
           explanation: "채점 기준: 1) 누른 순간은 1회만 감지되어 손을 뗐다 누르기 전까지 중복 실행되지 않음을 설명 (5점), 2) 누르고 있는 동안은 매 프레임 연속 감지되어 누르는 동안 지속 실행됨을 설명 (5점)."
         }
       ]
+    },
+
+    // [회차 3] Unity 2D 물리 엔진 & 충돌 매트릭스 심화 모의고사 (15문항)
+    {
+      id: "gp_exam3",
+      name: "제3회 Unity 2D 물리 엔진 & 충돌 매트릭스 심화 모의고사",
+      tag: "객관식 5 + 단답 7 + 코드계산 3 (총 15문항 100점)",
+      desc: "2D Rigidbody BodyType(Dynamic/Kinematic/Static), Collider2D IsTrigger, OnCollision2D vs OnTrigger2D, FixedUpdate 물리 주기, Raycast 바닥 감지, ForceMode2D, Freeze Rotation",
+      questions: [
+        // [객관식 5문항: 각 6점 = 30점]
+        {
+          id: 1, type: "choice", score: 6, origin: "Rigidbody2D Body Type",
+          text: "Rigidbody2D 컴포넌트의 3가지 Body Type(Dynamic, Kinematic, Static) 중, 중력이나 다른 물리적 힘(Force)에는 일체 영향을 받지 않고 오직 스크립트 코드의 속도(velocity)나 위치 변경에 의해서만 움직이는 타입은?",
+          options: [
+            "A. Dynamic",
+            "B. Kinematic",
+            "C. Static",
+            "D. Sleep"
+          ],
+          answer: "B",
+          answers: ["B", "b", "2"],
+          explanation: "Kinematic 바디는 중력과 외부 물리 충돌력에 영향을 받지 않고 오직 스크립트의 코드 이동으로만 제어되는 물리 타입으로, 움직이는 발판이나 엘리베이터에 주로 사용됩니다."
+        },
+        {
+          id: 2, type: "choice", score: 6, origin: "물리 충돌(Collision) 필수 조건",
+          text: "두 개의 2D 게임 오브젝트가 서로 물리적으로 부딪혀 튕겨 나가는 실제 반발 충돌(Collision)을 발생시키기 위한 조건으로 가장 올바른 것은?",
+          options: [
+            "A. 양쪽 오브젝트 모두 Collider2D가 부착되어 있어야 하며, 최소 한쪽에는 Rigidbody2D가 있어야 하고 양쪽 모두 Is Trigger가 꺼져(체크 해제) 있어야 한다.",
+            "B. 양쪽 모두 Is Trigger가 반드시 켜져 있어야 물리 반발력이 발생한다.",
+            "C. Rigidbody2D만 있으면 Collider2D가 전혀 없어도 물리 충돌이 감지된다.",
+            "D. 충돌하는 양쪽 오브젝트 모두 반드시 Rigidbody2D의 Body Type이 Static이어야 한다."
+          ],
+          answer: "A",
+          answers: ["A", "a", "1"],
+          explanation: "물리적 반발 충돌을 일으키려면 양쪽 모두 Collider2D가 있어야 하고, Is Trigger가 해제되어 있어야 하며, 최소 한쪽 오브젝트는 물리 시뮬레이션을 수행하는 Rigidbody2D를 가지고 있어야 합니다."
+        },
+        {
+          id: 3, type: "choice", score: 6, origin: "충돌 이벤트 함수 매개변수",
+          text: "물리 충돌 이벤트인 OnCollisionEnter2D와 트리거 진입 이벤트인 OnTriggerEnter2D의 매개변수 타입으로 올바르게 짝지어진 것은?",
+          options: [
+            "A. OnCollisionEnter2D(Collider2D), OnTriggerEnter2D(Collision2D)",
+            "B. OnCollisionEnter2D(Collision2D), OnTriggerEnter2D(Collider2D)",
+            "C. OnCollisionEnter2D(GameObject), OnTriggerEnter2D(Transform)",
+            "D. OnCollisionEnter2D(Rigidbody2D), OnTriggerEnter2D(Rigidbody2D)"
+          ],
+          answer: "B",
+          answers: ["B", "b", "2"],
+          explanation: "OnCollisionEnter2D는 접촉 지점과 상대 속도 등 물리 충돌 정보를 담은 Collision2D 매개변수를 받고, OnTriggerEnter2D는 접촉한 상대방 충돌체 영역 자체인 Collider2D 매개변수를 받습니다."
+        },
+        {
+          id: 4, type: "choice", score: 6, origin: "물리 연산 주기 (FixedUpdate)",
+          text: "Rigidbody2D에 AddForce를 가하거나 물리 이동을 제어할 때 Update() 대신 FixedUpdate()에서 수행해야 하는 주된 이유는?",
+          options: [
+            "A. FixedUpdate()는 모니터 주사율과 그래픽 카드 성능에 따라 실행 주기가 가변적이기 때문에",
+            "B. 물리 엔진은 화면 프레임과 독립된 고정 시간 간격(Fixed Timestep)으로 연산되므로, 불규칙한 프레임에 의한 물리 연산 왜곡을 방지하기 위해",
+            "C. Update()에서는 Rigidbody2D 컴포넌트의 멤버 변수에 접근할 수 없기 때문에",
+            "D. FixedUpdate()가 실행 속도가 Update()보다 항상 10배 이상 빠르기 때문에"
+          ],
+          answer: "B",
+          answers: ["B", "b", "2"],
+          explanation: "물리 시뮬레이션은 고정된 시간 간격(Fixed Timestep, 기본 0.02초)으로 동작하므로, 프레임률 변동에 영향받지 않는 FixedUpdate()에서 물리 연산을 수행해야 안정적인 물리 시뮬레이션이 보장됩니다."
+        },
+        {
+          id: 5, type: "choice", score: 6, origin: "2D 회전 고정 (Freeze Rotation)",
+          text: "2D 플랫폼 게임에서 캐릭터가 지면이나 모서리와 부딪혔을 때 원치 않게 Z축으로 회전하여 팽이처럼 넘어지는 현상을 막기 위해 Rigidbody2D의 Constraints 옵션에서 설정해야 하는 것은?",
+          options: [
+            "A. Freeze Position X",
+            "B. Freeze Position Y",
+            "C. Freeze Rotation Z",
+            "D. Gravity Scale 0"
+          ],
+          answer: "C",
+          answers: ["C", "c", "3"],
+          explanation: "2D 물리 평면에서 회전축은 화면을 뚫고 나오는 Z축입니다. Constraints의 Freeze Rotation Z를 체크하면 캐릭터가 충돌 시 넘어지지 않고 꼿꼿이 서 있게 유지됩니다."
+        },
+
+        // [단답형 7문항: 각 6점 = 42점]
+        {
+          id: 6, type: "short", score: 6, origin: "AddForce 충격 모드",
+          text: "Rigidbody2D.AddForce() 메서드를 호출할 때 폭발이나 점프처럼 '질량에 기반하여 순간적인 단발성 충격량(Impulse)'을 즉시 가하고자 할 때 두 번째 인자로 전달하는 ForceMode2D의 열거형 값은?",
+          placeholder: "열거형 값 입력 (예: ForceMode2D.Impulse 또는 Impulse)",
+          answers: ["Impulse", "ForceMode2D.Impulse", "impulse"],
+          explanation: "AddForce(force, ForceMode2D.Impulse)는 시간에 걸쳐 서서히 밀어내는 연속적 Force와 달리 순간적인 강한 힘(충격량)을 가할 때 사용됩니다."
+        },
+        {
+          id: 7, type: "short", score: 6, origin: "카메라 추적 실행 함수",
+          text: "씬에 배치된 메인 카메라가 플레이어를 부드럽게 추적할 때, Update()에서 처리된 플레이어의 이동과 애니메이션 연산이 모두 완전히 종료된 직후에 카메라 위치를 갱신하기 위해 주로 사용하는 MonoBehaviour 생명주기 함수는?",
+          placeholder: "함수명 입력 (예: LateUpdate)",
+          answers: ["LateUpdate", "LateUpdate()", "lateupdate"],
+          explanation: "LateUpdate()는 한 프레임의 모든 Update() 실행이 완료된 후 호출되므로, 이동 오브젝트를 따라다니는 카메라 추적 로직에 최적입니다."
+        },
+        {
+          id: 8, type: "short", score: 6, origin: "2D 레이캐스트 (Raycast)",
+          text: "플레이어의 발밑에서 아래 방향으로 가상의 광선을 쏘아 지면(Ground)과의 접촉 여부를 검사하여 점프 가능 여부를 판단할 때 사용하는 Physics2D 클래스의 핵심 정적 메서드는?",
+          placeholder: "메서드명 입력 (예: Physics2D.Raycast)",
+          answers: ["Physics2D.Raycast", "Raycast", "Physics2D.Raycast()", "raycast"],
+          explanation: "Physics2D.Raycast(시작위치, 방향, 거리, 레이어마스크)는 직선 광선을 투사하여 충돌한 콜라이더 정보를 RaycastHit2D로 반환합니다."
+        },
+        {
+          id: 9, type: "short", score: 6, origin: "선택적 레이어 마스크",
+          text: "Physics2D.Raycast 또는 충돌 판정 시 특정 레이어(예: 지면 레이어)에 속한 오브젝트들만 선택적으로 필터링하여 감지하기 위해 사용하는 Unity 내장 구조체/타입의 명칭은?",
+          placeholder: "타입 명칭 입력 (예: LayerMask)",
+          answers: ["LayerMask", "layermask", "레이어마스크"],
+          explanation: "LayerMask는 32비트 정수 비트마스크로 특정 레이어들의 조합을 정의하여 Raycast나 물리 쿼리의 감지 대상을 필터링합니다."
+        },
+        {
+          id: 10, type: "short", score: 6, origin: "오브젝트 파괴 API",
+          text: "C# 스크립트 실행 도중 수명이 다한 총알이나 사망한 적 캐릭터 GameObject를 씬과 메모리에서 안전하게 파괴(제거)할 때 호출하는 Unity 내장 정적 함수는?",
+          placeholder: "함수명 입력 (예: Destroy)",
+          answers: ["Destroy", "Destroy()", "destroy"],
+          explanation: "Destroy(gameObject) 또는 일정 시간 지연 후 파괴하는 Destroy(gameObject, delay) 함수를 사용하여 객체를 정리합니다."
+        },
+        {
+          id: 11, type: "short", score: 6, origin: "Inspector 변수 노출 애트리뷰트",
+          text: "객체지향 캡슐화 원칙에 따라 private으로 선언된 변수를 외부 다른 스크립트에는 감추면서도, Unity 에디터의 Inspector 창에서는 값을 직접 확인하고 편집할 수 있도록 변수 위에 붙이는 C# 애트리뷰트는?",
+          placeholder: "애트리뷰트 입력 (예: [SerializeField])",
+          answers: ["[SerializeField]", "SerializeField", "[serializefield]"],
+          explanation: "[SerializeField] 애트리뷰트를 붙이면 private 접근 제한자를 유지하면서도 유니티 직렬화 시스템을 통해 인스펙터에 노출됩니다."
+        },
+        {
+          id: 12, type: "short", score: 6, origin: "벡터 간 직선 거리 계산",
+          text: "2차원 평면에서 플레이어 위치와 몬스터 위치 사이의 직선 거리(유클리드 거리)를 스칼라(float) 값으로 계산해주는 Vector2 클래스의 정적 메서드는?",
+          placeholder: "메서드명 입력 (예: Vector2.Distance)",
+          answers: ["Vector2.Distance", "Vector2.Distance()", "Distance", "distance"],
+          explanation: "Vector2.Distance(posA, posB)는 두 벡터의 차의 크기(magnitude)를 계산하여 직선 거리를 반환합니다."
+        },
+
+        // [코드 계산 및 서술 3문항: 총 28점]
+        {
+          id: 13, type: "calc", score: 9, origin: "C# 반복문과 조건문 continue",
+          text: "다음 C# 코드가 실행된 후 최종 sum 변수에 저장되는 정수 값은 얼마인가?\n\nint sum = 0;\nfor (int i = 1; i <= 5; i++)\n{\n    if (i % 2 == 0) continue;\n    sum += i;\n}",
+          placeholder: "정수 숫자 입력",
+          answers: ["9"],
+          explanation: "i가 짝수(2, 4)일 때는 continue로 인해 sum에 더해지지 않습니다. 따라서 홀수인 1, 3, 5만 더해지므로 1 + 3 + 5 = 9입니다."
+        },
+        {
+          id: 14, type: "calc", score: 9, origin: "2D 벡터 덧셈 및 이동 계산",
+          text: "어떤 오브젝트의 현재 위치가 pos = (2, 5)이고, 이동 방향 벡터가 dir = (1, 0), 이동 속도가 speed = 4f일 때, 2초가 지난 후의 위치 finalPos = pos + dir * speed * 2f 의 최종 X 좌표값은 얼마인가?",
+          placeholder: "숫자만 입력",
+          answers: ["10", "10.0"],
+          explanation: "X 좌표 = 2 + (1 * 4 * 2) = 2 + 8 = 10입니다. (Y 좌표는 5 그대로 유지)"
+        },
+        {
+          id: 15, type: "essay", score: 10, origin: "Collider2D Is Trigger의 원리와 활용",
+          text: "Collider2D 컴포넌트의 <b>'Is Trigger' 속성을 체크(활성화)했을 때 나타나는 물리적 거동의 변화</b>를 설명하고, 게임 내에서 이를 활용하는 <b>대표적인 실전 사례 2가지</b>를 서술하시오.",
+          sampleAnswer: "Is Trigger를 활성화하면 물리 엔진의 고체 반발력(충돌 저항)이 사라져 다른 오브젝트가 물리적 방해 없이 자유롭게 통과할 수 있게 되며, 통과하는 순간 OnTriggerEnter2D 등의 트리거 이벤트 함수만 실행됩니다.\n활용 사례로는 1) 플레이어가 접촉했을 때 습득하고 사라지는 코인/포션 등 아이템 습득 영역, 2) 다음 맵으로 이동하거나 세이브포인트를 활성화하는 포탈/체크포인트 진입 감지 영역이 있습니다.",
+          explanation: "채점 기준: 1) 물리 반발력 없이 통과하며 충돌 이벤트(OnTriggerEnter2D)만 발생시킴을 설명 (5점), 2) 아이템 습득, 포탈, 위험 지대 등 실전 사례 2가지 제시 (5점)."
+        }
+      ]
+    },
+
+    // [회차 4] 게임프로그래밍 중간고사 전범위 파이널 실전 모의고사 (20문항)
+    {
+      id: "gp_exam4",
+      name: "제4회 게임프로그래밍 중간고사 전범위 파이널 실전 모의고사",
+      tag: "전범위 20문항 (객관식 5 + 단답 10 + 계산 3 + 서술 2 / 100점)",
+      desc: "Unity 생명주기 전수, Prefab과 동적 인스턴스화(Instantiate), New Input System, UI Canvas, Animator 파라미터, C# 클래스·상속, 싱글톤 패턴, 프레임 독립성 종합",
+      questions: [
+        // [객관식 5문항: 각 5점 = 25점]
+        {
+          id: 1, type: "choice", score: 5, origin: "Unity 생명주기 실행 순서",
+          text: "씬이 시작되어 게임 오브젝트가 활성화되고 매 프레임 업데이트될 때, Unity MonoBehaviour 이벤트 함수들의 실행 순서로 올바른 것은?",
+          options: [
+            "A. Awake → Start → OnEnable → Update → FixedUpdate",
+            "B. Awake → OnEnable → Start → FixedUpdate → Update → LateUpdate",
+            "C. Start → Awake → OnEnable → LateUpdate → Update",
+            "D. OnEnable → Awake → Start → Update → FixedUpdate"
+          ],
+          answer: "B",
+          answers: ["B", "b", "2"],
+          explanation: "가장 먼저 Awake()가 호출되고, 오브젝트가 활성화될 때 OnEnable(), 첫 프레임 시작 전 Start(), 물리 연산 주기마다 FixedUpdate(), 매 화면 프레임 Update(), 모든 Update 종료 후 LateUpdate() 순으로 실행됩니다."
+        },
+        {
+          id: 2, type: "choice", score: 5, origin: "UI Canvas Render Mode",
+          text: "Unity UI Canvas의 3가지 Render Mode 중, 씬에 있는 카메라의 위치나 회전과 무관하게 항상 플레이어 모니터 화면 최상단 2D 평면에 고정되어 체력바, 스코어보드 등 일반적인 HUD에 가장 널리 쓰이는 모드는?",
+          options: [
+            "A. Screen Space - Overlay",
+            "B. Screen Space - Camera",
+            "C. World Space",
+            "D. Perspective Space"
+          ],
+          answer: "A",
+          answers: ["A", "a", "1"],
+          explanation: "Screen Space - Overlay 모드는 카메라 없이도 화면의 최상단 레이어에 UI를 고정 렌더링하므로 해상도에 맞춰 항상 일정하게 HUD를 표시할 수 있습니다."
+        },
+        {
+          id: 3, type: "choice", score: 5, origin: "Animator 전이(Transition) 속성",
+          text: "Animator Controller의 Transition 설정에서 현재 재생 중인 애니메이션 클립이 끝까지 다 끝날 때까지 기다리지 않고, 조건(Condition)이 참이 되는 즉시 다음 애니메이션으로 즉각 전이되도록 하려면 해제(체크 해제)해야 하는 옵션은?",
+          options: [
+            "A. Fixed Duration",
+            "B. Has Exit Time",
+            "C. Transition Duration",
+            "D. Can Transition To Self"
+          ],
+          answer: "B",
+          answers: ["B", "b", "2"],
+          explanation: "Has Exit Time이 켜져 있으면 애니메이션의 특정 재생 비율이 끝날 때까지 전이가 지연됩니다. 피격이나 점프처럼 즉각 반응해야 하는 전이에서는 Has Exit Time을 체크 해제해야 합니다."
+        },
+        {
+          id: 4, type: "choice", score: 5, origin: "객체지향 핵심 개념: 상속",
+          text: "C#에서 MonoBehaviour와 같은 기본 클래스의 모든 멤버 변수와 메서드를 물려받아 새로운 자식 컴포넌트 클래스를 정의하고 기능을 확장하는 객체지향 프로그래밍 핵심 개념은?",
+          options: [
+            "A. 캡슐화 (Encapsulation)",
+            "B. 상속 (Inheritance)",
+            "C. 추상화 (Abstraction)",
+            "D. 직렬화 (Serialization)"
+          ],
+          answer: "B",
+          answers: ["B", "b", "2"],
+          explanation: "기존 클래스의 필드와 메서드를 물려받아 코드를 재사용하고 기능을 확장하는 객체지향의 원리는 '상속(Inheritance)'입니다."
+        },
+        {
+          id: 5, type: "choice", score: 5, origin: "프리팹(Prefab) 개념",
+          text: "Unity에서 미리 설정된 GameObject와 부착된 모든 컴포넌트, 속성 값을 에셋 파일(.prefab) 형태로 저장하여 씬에 언제든지 동일한 구조로 복제 생성할 수 있도록 만든 템플릿 에셋을 무엇이라 하는가?",
+          options: [
+            "A. Package",
+            "B. Prefab",
+            "C. Material",
+            "D. Mesh"
+          ],
+          answer: "B",
+          answers: ["B", "b", "2"],
+          explanation: "프리팹(Prefab)은 재사용 가능한 게임 오브젝트 템플릿으로, 씬에 동적으로 인스턴스를 생성하거나 원본 속성을 일괄 수정할 때 필수적으로 사용됩니다."
+        },
+
+        // [단답형 10문항: 각 5점 = 50점]
+        {
+          id: 6, type: "short", score: 5, origin: "동적 오브젝트 생성 함수",
+          text: "총알 발사나 몬스터 스폰 시 미리 만들어둔 프리팹 에셋을 런타임에 복제하여 씬에 동적으로 생성할 때 사용하는 Unity의 내장 정적 함수는?",
+          placeholder: "함수명 입력 (예: Instantiate)",
+          answers: ["Instantiate", "Instantiate()", "instantiate"],
+          explanation: "Instantiate(prefab, position, rotation) 함수를 사용하여 프리팹 에셋을 실시간으로 씬에 인스턴스화합니다."
+        },
+        {
+          id: 7, type: "short", score: 5, origin: "싱글톤 디자인 패턴",
+          text: "게임 전체에서 오직 단 하나의 인스턴스만 존재하도록 보장하고, 어디서나 GameManager.Instance 형태로 전역 접근을 가능하게 만드는 대표적인 소프트웨어 디자인 패턴의 명칭은?",
+          placeholder: "패턴 명칭 입력 (예: 싱글톤 또는 Singleton)",
+          answers: ["싱글톤", "singleton", "싱글톤 패턴", "Singleton pattern"],
+          explanation: "싱글톤(Singleton) 패턴은 게임 매니저, 오디오 매니저처럼 유일해야 하는 관리자 객체를 구현할 때 가장 널리 사용됩니다."
+        },
+        {
+          id: 8, type: "short", score: 5, origin: "씬 전환 시 오브젝트 유지",
+          text: "SceneManager.LoadScene()으로 새로운 씬을 로드할 때 이전 씬의 오브젝트들이 파괴되는 것을 방지하고 다음 씬에서도 파괴되지 않고 유지되도록 등록하는 Unity 함수는?",
+          placeholder: "함수명 입력 (예: DontDestroyOnLoad)",
+          answers: ["DontDestroyOnLoad", "DontDestroyOnLoad()", "dontdestroyonload"],
+          explanation: "DontDestroyOnLoad(gameObject)를 호출하면 해당 오브젝트는 씬이 전환되어도 언로드되지 않고 전역 유지됩니다."
+        },
+        {
+          id: 9, type: "short", score: 5, origin: "게임 일시정지 프로퍼티",
+          text: "게임을 일시정지(Pause)시키거나 슬로우 모션 연출을 주기 위해 인게임 시간의 흐름 배율을 조절하는 Unity의 정적 프로퍼티는? (일시정지 시 0으로 설정)",
+          placeholder: "프로퍼티 입력 (예: Time.timeScale)",
+          answers: ["Time.timeScale", "timeScale", "timescale"],
+          explanation: "Time.timeScale을 0으로 설정하면 시간이 멈추며 Update의 Time.deltaTime이 0이 되고 FixedUpdate가 호출되지 않습니다."
+        },
+        {
+          id: 10, type: "short", score: 5, origin: "New Input System 액션 콜백 단계",
+          text: "Unity의 New Input System에서 플레이어의 버튼 입력이 완전히 성립(실행)되었을 때 호출되는 콜백 단계의 영문 명칭은? (Started, ?, Canceled)",
+          placeholder: "콜백 단계 명칭 (예: performed)",
+          answers: ["performed", "Performed"],
+          explanation: "Input Action의 생명주기는 Started(입력 감지 시작) → Performed(조건 달성/실행) → Canceled(입력 중단/손 뗌)로 구성됩니다."
+        },
+        {
+          id: 11, type: "short", score: 5, origin: "Animator 트리거 파라미터",
+          text: "Animator Controller의 4대 파라미터(Float, Int, Bool, ?) 중 공격이나 점프처럼 한 번 활성화되면 전이가 일어난 후 자동으로 false로 꺼지는 단발성 파라미터 타입은?",
+          placeholder: "타입 명칭 입력 (예: Trigger)",
+          answers: ["Trigger", "trigger", "트리거"],
+          explanation: "Trigger 파라미터는 단발성 이벤트 전이를 위한 불리언 플래그로 전이가 소비되면 자동으로 리셋됩니다."
+        },
+        {
+          id: 12, type: "short", score: 5, origin: "가드 조건(Guard Clauses)",
+          text: "함수의 시작 부분에서 특정 조건이 충족되지 않으면 즉시 return하여 중첩된 복잡한 if-else 들여쓰기를 제거하고 가독성을 높이는 코딩 리팩토링 기법을 무엇이라 부르는가?",
+          placeholder: "기법 명칭 (예: 가드 조건 또는 Guard Clauses)",
+          answers: ["가드 조건", "guard clause", "가드 절", "보호 구문", "guard clauses"],
+          explanation: "가드 절(Guard Clause)은 예외적인 상황이나 미충족 조건을 함수 초반에 걸러내어 조기 반환(early return)하는 리팩토링 기법입니다."
+        },
+        {
+          id: 13, type: "short", score: 5, origin: "2D 스프라이트 렌더 순서",
+          text: "SpriteRenderer 컴포넌트에서 같은 Z축 위치에 겹쳐 있는 2D 스프라이트들 간에 어떤 그림을 더 앞쪽에 그릴지 렌더링 우선순위를 지정하는 정수 속성의 이름은?",
+          placeholder: "속성명 입력 (예: Order in Layer)",
+          answers: ["Order in Layer", "order in layer", "orderinlayer", "OrderInLayer"],
+          explanation: "Order in Layer 수치가 클수록 화면의 더 앞쪽에 렌더링됩니다."
+        },
+        {
+          id: 14, type: "short", score: 5, origin: "메서드 재정의 키워드",
+          text: "부모 클래스에서 virtual로 선언된 가상 메서드를 자식 클래스에서 재정의하여 커스텀 동작을 구현할 때 메서드 선언부에 지정하는 C# 키워드는?",
+          placeholder: "키워드 입력 (예: override)",
+          answers: ["override", "오버라이드"],
+          explanation: "부모의 가상 메서드를 자식이 재정의할 때는 override 키워드를 명시합니다."
+        },
+        {
+          id: 15, type: "short", score: 5, origin: "UI 버튼 클릭 이벤트",
+          text: "Unity UI Button 컴포넌트에서 사용자가 버튼을 클릭했을 때 호출할 스크립트 함수를 등록하는 UnityEvent 프로퍼티의 이름은?",
+          placeholder: "프로퍼티 이름 (예: onClick)",
+          answers: ["onClick", "onclick", "OnClick"],
+          explanation: "Button 컴포넌트의 onClick 이벤트 목록에 게임 오브젝트와 메서드를 연결하여 클릭 시 실행을 트리거합니다."
+        },
+
+        // [계산 3문항: 각 5점 = 15점]
+        {
+          id: 16, type: "calc", score: 5, origin: "초당 프레임 수와 Update 호출 횟수",
+          text: "어떤 모바일 기기에서 게임이 60 FPS(초당 60프레임)로 안정적으로 구동되고 있을 때, 활성화된 스크립트의 Update() 함수가 1초 동안 실행되는 총 횟수는 몇 회인가?",
+          placeholder: "숫자만 입력",
+          answers: ["60", "60회"],
+          explanation: "Update() 함수는 화면 프레임마다 1회씩 호출되므로 60 FPS에서는 1초에 정확히 60회 실행됩니다."
+        },
+        {
+          id: 17, type: "calc", score: 5, origin: "C# 삼항 조건 연산자",
+          text: "다음 C# 코드 실행 후 result 문자열에 저장되는 최종 값은 무엇인가?\n\nint hp = 0;\nstring result = (hp > 0) ? \"ALIVE\" : \"GAME OVER\";",
+          placeholder: "출력 문자열 입력 (예: GAME OVER)",
+          answers: ["GAME OVER", "game over", "\"GAME OVER\""],
+          explanation: "hp가 0이므로 조건식 (hp > 0)은 false가 됩니다. 따라서 삼항 연산자의 콜론(:) 뒤에 있는 \"GAME OVER\"가 대입됩니다."
+        },
+        {
+          id: 18, type: "calc", score: 5, origin: "C# List 원소 개수 추적",
+          text: "다음 C# 코드 실행 후 scores 리스트의 최종 요소 개수(Count)는 얼마인가?\n\nList<int> scores = new List<int>() { 10, 20, 30 };\nscores.Add(40);\nscores.Remove(20);",
+          placeholder: "숫자만 입력",
+          answers: ["3"],
+          explanation: "초기 요소 3개(10, 20, 30)에서 Add(40)으로 4개가 되었다가 Remove(20)으로 1개가 제거되므로 최종 개수는 3개입니다."
+        },
+
+        // [서술형 2문항: 각 5점 = 10점]
+        {
+          id: 19, type: "essay", score: 5, origin: "Transform 이동 vs Rigidbody 물리 이동 차이",
+          text: "Unity에서 게임 오브젝트를 이동시킬 때 'transform.position'을 직접 변경하는 방식과 'Rigidbody2D.velocity' 또는 'AddForce'를 사용하는 물리 기반 방식의 차이점을, <b>벽 뚫림(터널링) 및 물리 충돌 판정 관점</b>에서 서술하시오.",
+          sampleAnswer: "transform.position을 직접 수정하는 방식은 오브젝트를 목표 좌표로 순간 이동(텔레포트)시키는 방식이므로, 빠른 속도로 이동할 때 Collider가 부착된 벽이나 바닥을 그대로 뚫고 지나가는 터널링 현상이 발생할 수 있습니다.\n반면 Rigidbody2D.velocity나 AddForce를 사용하는 방식은 물리 엔진의 시뮬레이션 파이프라인 안에서 충돌 감지(연속 충돌 검사 등)와 질량, 마찰력을 종합 계산하며 이동하므로 벽에 부딪혔을 때 정상적으로 멈추거나 튕겨 나가는 정확한 물리 상호작용이 보장됩니다.",
+          explanation: "채점 기준: 1) Transform 직접 변경 시 물리 연산을 건너뛰어 벽을 뚫는 터널링 발생 가능성 서술 (2.5점), 2) Rigidbody 이동 시 물리 엔진 파이프라인을 거쳐 정확한 충돌 감지와 반발력이 계산됨을 서술 (2.5점)."
+        },
+        {
+          id: 20, type: "essay", score: 5, origin: "Time.timeScale과 unscaledDeltaTime",
+          text: "게임을 일시정지하기 위해 'Time.timeScale = 0f;'를 실행했을 때, Update()와 FixedUpdate() 함수의 실행 여부 차이를 설명하고, 일시정지 상태에서도 정지 화면의 UI 애니메이션이나 일시정지 메뉴 타이머를 정상 작동시키기 위해 사용해야 하는 시간 변수(Time 프로퍼티)의 명칭을 쓰시오.",
+          sampleAnswer: "Time.timeScale = 0이 되면 물리 연산 주기가 정지하므로 FixedUpdate()는 전혀 호출되지 않지만, 화면 렌더링 프레임은 계속 돌아가므로 Update() 함수는 계속 호출됩니다. 단, Update 내에서 Time.deltaTime은 0이 됩니다.\n따라서 일시정지 중에도 UI 애니메이션이나 메뉴 타이머를 정상 동작시키려면 timeScale의 배율 영향을 받지 않는 'Time.unscaledDeltaTime'(또는 Time.unscaledTime)을 사용해야 합니다.",
+          explanation: "채점 기준: 1) FixedUpdate는 정지되지만 Update는 계속 호출된다는 점 및 Time.deltaTime=0이 됨을 설명 (2.5점), 2) timeScale의 영향을 받지 않는 변수인 Time.unscaledDeltaTime을 명시 (2.5점)."
+        }
+      ]
     }
   ]
 };
+

@@ -660,6 +660,191 @@ window.EXAM_DATABASE.crossplatform = {
           explanation: "교안 7주차 19페이지 실습 상세조건: number Button backgroundColor: #2f2f2f, operatorButton: #F5A623, utilityButton: #555"
         }
       ]
+    },
+
+    // [회차 3] React Hook & 컴포넌트 라이프사이클 심화 모의고사 (10문항)
+    {
+      id: "cp_exam3",
+      name: "제3회 React Hook & 컴포넌트 라이프사이클 심화 모의고사 (10문항)",
+      tag: "All 주관식 10문항 (100점)",
+      questions: [
+        {
+          id: 1, type: "short", score: 10, origin: "7주차 교안 p.5: useEffect 의존성 배열",
+          text: "리액트의 useEffect Hook에서 두 번째 인자인 의존성 배열(Dependency Array)에 빈 배열(<code>[]</code>)을 전달했을 때 effect 함수가 실행되는 시점은 언제인가?",
+          placeholder: "실행 시점 입력 (예: 마운트 시 1회)",
+          answers: ["마운트 시 1회", "마운트 시 1회만", "마운트 시", "컴포넌트 마운트 시 1회", "최초 렌더링 시 1회", "마운트", "최초 렌더링"],
+          explanation: "<b>정답: 마운트 시 1회 (최초 렌더링 완료 직후 1회만 실행)</b><br>의존성 배열을 생략하면 매 렌더링마다 실행되고, 빈 배열 []을 넘기면 컴포넌트가 처음 화면에 나타나는 마운트(Mount) 시점에 단 한 번만 실행됩니다."
+        },
+        {
+          id: 2, type: "essay", score: 10, origin: "7주차 교안 p.7: useEffect 클린업(Cleanup) 함수",
+          text: "useEffect 내부에서 함수를 반환(<code>return () => { ... }</code>)하는 <b>클린업(Cleanup) 함수</b>의 주된 목적과 이 함수가 실제로 실행되는 <b>2가지 시점</b>을 서술하시오.",
+          placeholder: "클린업 함수의 목적과 실행되는 2가지 시점을 서술하세요.",
+          rubric: "1. 타이머 해제(clearInterval), 이벤트 리스너 제거, 구독 해제 등 메모리 누수 방지 목적 명시 (4점)\n2. 컴포넌트가 화면에서 사라지는 언마운트(Unmount) 시점 명시 (3점)\n3. 의존성 값이 바뀌어 다음 effect 함수가 실행되기 직전 시점 명시 (3점)",
+          sampleAnswer: "목적: 컴포넌트 언마운트 시 타이머 해제(clearInterval), 이벤트 리스너 제거, 네트워크 구독 취소 등을 수행하여 메모리 누수(Memory Leak)를 방지하는 정리 작업을 수행한다.\n실행 시점: 1) 컴포넌트가 언마운트(Unmount)되어 화면에서 제거될 때, 2) 의존성 배열의 값이 변경되어 다음 effect가 실행되기 바로 직전.",
+          explanation: "클린업 함수는 메모리 누수를 막기 위한 필수적인 정리 루틴이며, 언마운트 시점뿐 아니라 의존성 변경으로 새 effect가 돌기 직전에도 이전 effect를 정리하기 위해 실행됩니다."
+        },
+        {
+          id: 3, type: "short", score: 10, origin: "7주차 교안 p.4: useState 함수형 업데이트",
+          text: "useState 상태 변경 시 비동기 일괄 처리(Batching)로 인한 값 덮어쓰기 오류를 방지하고 최신 이전 상태값을 보장받기 위해 사용하는 빈칸 (A)의 함수형 업데이트 코드를 작성하시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>const [count, setCount] = useState(0);\n\nconst handleIncrement = () => {\n    setCount((A) => (A) + 1);\n};</pre>",
+          placeholder: "콜백 매개변수 표현 (예: prev, prevCount, prev => prev + 1)",
+          answers: ["prev", "prevCount", "prev => prev + 1", "(prev) => prev + 1", "count => count + 1"],
+          explanation: "<b>정답: prev (또는 prevCount)</b><br>setState에 값을 직접 넘기지 않고 콜백 함수 <code>prev => prev + 1</code>를 넘기는 함수형 업데이트를 사용하면 항상 가장 최신의 상태값을 기반으로 안전하게 갱신됩니다."
+        },
+        {
+          id: 4, type: "essay", score: 10, origin: "7주차 교안 p.10: useMemo vs useCallback 차이",
+          text: "React의 성능 최적화 Hook인 <b>useMemo</b>와 <b>useCallback</b>의 <b>공통적인 목적</b>을 적고, 두 Hook이 <b>캐싱(메모이제이션)하는 대상의 결정적 차이점</b>을 비교 설명하시오.",
+          placeholder: "공통 목적과 캐싱 대상의 차이점을 서술하세요.",
+          rubric: "1. 공통 목적: 불필요한 재계산/재생성을 방지하는 메모이제이션(성능 최적화) 명시 (3점)\n2. useMemo 캐싱 대상: 함수의 '연산 결과값(리턴값)'을 캐싱함을 명시 (3.5점)\n3. useCallback 캐싱 대상: '함수 인스턴스(함수 자체)'를 캐싱하여 자식 컴포넌트의 불필요한 리렌더링을 방지함을 명시 (3.5점)",
+          sampleAnswer: "공통 목적: 의존성 배열의 값이 변경되지 않는 한 이전 결과를 재사용하여 불필요한 연산과 리렌더링을 방지하는 메모이제이션 최적화 Hook이다.\n차이점: useMemo는 복잡한 함수의 '연산 결과값(반환값)'을 캐싱하여 재계산을 방지하고, useCallback은 '함수 인스턴스 자체'를 캐싱하여 컴포넌트가 리렌더링될 때 동일한 함수 참조를 유지함으로써 자식 컴포넌트의 불필요한 리렌더링을 방지한다.",
+          explanation: "useMemo는 값(Value)을, useCallback은 함수(Function) 참조를 캐싱한다는 점이 핵심입니다."
+        },
+        {
+          id: 5, type: "short", score: 10, origin: "7주차 교안 p.12: Custom Hook 네이밍 규칙",
+          text: "개발자가 직접 비즈니스 로직을 분리하여 재사용하기 위해 만드는 <b>사용자 정의 Hook(Custom Hook)</b>의 함수 이름 맨 앞에 React 규칙상 반드시 붙여야 하는 표준 접두어(Prefix)는 무엇인가?",
+          placeholder: "접두어 입력 (예: use)",
+          answers: ["use", "use-", "useXxx"],
+          explanation: "<b>정답: use</b><br>React의 린터와 엔진은 'use'로 시작하는 함수(예: useCounter, useAuth)만을 커스텀 훅으로 인식하고 Hook 호출 규칙을 강제 검증합니다."
+        },
+        {
+          id: 6, type: "short", score: 10, origin: "5주차 교안 p.14: Modal 컴포넌트 속성",
+          text: "리액트 네이티브의 Modal 컴포넌트에서 모달 창의 화면 표시 여부를 제어하는 필수 boolean 속성 (1)과, 안드로이드 기기의 물리적 뒤로가기 버튼을 눌렀을 때 호출되는 필수 콜백 함수 속성 (2)의 이름을 순서대로 쓰시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;Modal\n    (1)={isModalVisible}\n    (2)={() =&gt; setIsModalVisible(false)}\n    animationType=\"slide\"\n&gt;</pre>",
+          placeholder: "순서대로 입력 (예: visible, onRequestClose)",
+          answers: ["visible, onRequestClose", "visible,onRequestClose", "visible, onrequestclose"],
+          explanation: "<b>정답: visible, onRequestClose</b><br>Modal은 화면 표시 여부를 결정하는 visible={boolean}과 안드로이드 하드웨어 뒤로가기 처리를 위한 onRequestClose={callback}이 필수 속성입니다."
+        },
+        {
+          id: 7, type: "essay", score: 10, origin: "7주차 교안 p.4: 상태 불변성(Immutability)",
+          text: "리액트에서 배열이나 객체 상태를 변경할 때 <code>items.push(newItem)</code>과 같이 기존 객체를 직접 수정하지 않고 <code>setItems([...items, newItem])</code>처럼 <b>새로운 객체로 복사하여 상태를 갱신(불변성 유지)해야 하는 이유</b>를 렌더링 감지 원리 관점에서 서술하시오.",
+          placeholder: "얕은 비교와 리렌더링 감지 메커니즘을 서술하세요.",
+          rubric: "1. 리액트는 상태 변경 여부를 참조 주소값(Shallow Compare, 얕은 비교)으로 감지함을 명시 (5점)\n2. 직접 수정 시 메모리 주소가 동일하여 변경을 감지하지 못하고 화면 리렌더링이 일어나지 않음을 명시 (5점)",
+          sampleAnswer: "리액트는 성능 최적화를 위해 상태 객체의 내부 속성을 깊게 비교하지 않고, 객체의 메모리 참조 주소값만 비교하는 '얕은 비교(Shallow Compare)'를 수행합니다.\n따라서 items.push()처럼 기존 배열을 직접 변경하면 내부 데이터는 바뀌어도 메모리 주소는 동일하므로 리액트는 상태가 바뀌지 않았다고 판단하여 화면을 리렌더링하지 않습니다. 스프레드 연산자([...items, newItem])로 새로운 배열 참조를 생성해야 리액트가 변경을 감지하고 정상적으로 리렌더링을 수행합니다.",
+          explanation: "불변성(Immutability) 유지는 리액트의 참조 주소 기반 얕은 비교 메커니즘에서 화면 리렌더링을 트리거하기 위한 핵심 규칙입니다."
+        },
+        {
+          id: 8, type: "short", score: 10, origin: "6주차 교안 p.7: Platform.select 구문",
+          text: "운영체제에 따라 다른 스타일 수치를 적용하고자 한다. iOS에서는 상단 여백을 20, 안드로이드에서는 0을 적용하기 위해 빈칸에 들어갈 리액트 네이티브 API 코드를 완성하시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>import { StyleSheet, Platform } from 'react-native';\n\nconst styles = StyleSheet.create({\n    container: {\n        marginTop: (빈칸)({\n            ios: 20,\n            android: 0,\n        }),\n    },\n});</pre>",
+          placeholder: "API 코드 입력 (예: Platform.select)",
+          answers: ["Platform.select", "Platform.select()", "platform.select"],
+          explanation: "<b>정답: Platform.select</b><br>Platform.select({ ios: ..., android: ... }) 메서드를 활용하면 플랫폼별로 객체 키를 매핑하여 깔끔하게 분기 처리할 수 있습니다."
+        },
+        {
+          id: 9, type: "short", score: 10, origin: "6주차 교안 p.12: useWindowDimensions Hook",
+          text: "Dimensions.get('window')와 달리, 화면 회전(가로/세로 모드)이나 분할 화면 등으로 화면 크기가 변경될 때 이벤트 리스너를 수동 등록하지 않아도 컴포넌트 안에서 <b>자동으로 최신 너비와 높이를 반영하여 리렌더링해주는 리액트 네이티브 내장 Hook</b>의 이름은?",
+          placeholder: "Hook 이름 입력 (예: useWindowDimensions)",
+          answers: ["useWindowDimensions", "useWindowDimensions()"],
+          explanation: "<b>정답: useWindowDimensions</b><br>useWindowDimensions Hook은 화면의 width, height, scale, fontScale을 반환하며 화면 크기 변경 시 컴포넌트를 자동으로 리렌더링해 줍니다."
+        },
+        {
+          id: 10, type: "short", score: 10, origin: "6주차 교안 p.15: KeyboardAvoidingView",
+          text: "가상 키보드가 활성화되었을 때 입력창(TextInput)이 키보드에 가려지지 않도록 화면을 자동으로 밀어 올려주는 리액트 네이티브 내장 컴포넌트 (1)의 이름과, iOS 환경에서 가장 보편적으로 권장되는 behavior 속성값 (2)를 순서대로 쓰시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;(1) behavior=\"(2)\" style={{ flex: 1 }}&gt;\n    &lt;TextInput placeholder=\"메시지 입력\" /&gt;\n&lt;/(1)&gt;</pre>",
+          placeholder: "순서대로 입력 (예: KeyboardAvoidingView, padding)",
+          answers: [
+            "KeyboardAvoidingView, padding",
+            "KeyboardAvoidingView,padding",
+            "KeyboardAvoidingView, 'padding'",
+            "KeyboardAvoidingView, \"padding\""
+          ],
+          explanation: "<b>정답: KeyboardAvoidingView, padding</b><br>KeyboardAvoidingView 컴포넌트는 키보드가 화면을 가리지 않도록 위치를 조정해주며, iOS에서는 behavior='padding' 속성이 가장 자연스럽게 동작합니다."
+        }
+      ]
+    },
+
+    // [회차 4] 중간고사 전범위 파이널 실전 모의고사 (10문항)
+    {
+      id: "cp_exam4",
+      name: "제4회 중간고사 전범위 파이널 실전 모의고사 (10문항)",
+      tag: "All 주관식 10문항 (100점)",
+      questions: [
+        {
+          id: 1, type: "short", score: 10, origin: "2주차 교안 p.32: App.js 모듈 내보내기",
+          text: "리액트 네이티브 프로젝트의 루트 파일인 App.js에서 정의한 함수형 컴포넌트를 Metro 번들러와 네이티브 런타임이 진입점으로 읽어들일 수 있도록 내보내는 자바스크립트 표준 키워드 2단어를 쓰시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>(빈칸) function App() {\n    return &lt;View&gt;&lt;Text&gt;Hello Expo&lt;/Text&gt;&lt;/View&gt;;\n}</pre>",
+          placeholder: "2단어 입력 (예: export default)",
+          answers: ["export default", "export default "],
+          explanation: "<b>정답: export default</b><br>App.js의 메인 컴포넌트는 export default 구문을 통해 기본 내보내기되어야 런타임 진입점으로 등록됩니다."
+        },
+        {
+          id: 2, type: "essay", score: 10, origin: "4주차 교안 p.3: Props vs State 완벽 비교",
+          text: "리액트 및 리액트 네이티브에서 컴포넌트의 데이터를 다루는 <b>Props</b>와 <b>State</b>의 차이점을 <b>1) 데이터의 소유 및 전달 주체</b>, <b>2) 컴포넌트 내부에서의 값 수정 가능 여부(가변성)</b>, <b>3) 변경 시 리렌더링 발생 여부</b>의 3가지 관점에서 비교 서술하시오.",
+          placeholder: "Props와 State의 3대 차이점을 서술하세요.",
+          rubric: "1. 소유/전달: Props는 부모가 자식에게 전달, State는 컴포넌트 내부에서 자체 생성/관리 명시 (3점)\n2. 가변성: Props는 읽기 전용(불변), State는 setState를 통해 컴포넌트 내부에서 변경 가능 명시 (3.5점)\n3. 리렌더링: Props 변경(부모 전달 시) 및 State 변경 시 해당 컴포넌트 리렌더링 트리거 명시 (3.5점)",
+          sampleAnswer: "1. 데이터 소유/전달: Props는 부모 컴포넌트가 자식 컴포넌트에게 전달하는 외부 데이터이며, State는 컴포넌트 내부에서 직접 선언하고 관리하는 자체 데이터이다.\n2. 가변성: Props는 자식 컴포넌트 입장에서 읽기 전용(Read-only, 불변)이므로 직접 수정할 수 없고, State는 setState 함수를 통해 컴포넌트 내부에서 능동적으로 값을 수정할 수 있다.\n3. 리렌더링: State가 변경되거나 부모로부터 새로운 Props를 전달받으면 컴포넌트의 화면(UI)이 자동으로 리렌더링된다.",
+          explanation: "Props는 외부에서 주입되는 읽기 전용 데이터, State는 내부에서 능동적으로 관리하고 화면 갱신을 주도하는 가변 데이터입니다."
+        },
+        {
+          id: 3, type: "short", score: 10, origin: "3주차 교안 p.4: StyleSheet.create 장점",
+          text: "인라인 스타일(<code>style={{ ... }}</code>) 대신 <code>StyleSheet.create({ ... })</code>를 사용하는 가장 핵심적인 성능상 이점은 매 렌더링마다 새로운 자바스크립트 객체를 생성하지 않고, 스타일 객체를 등록하여 네이티브 브릿지(Bridge)로 전달할 때 무엇(정수형 식별자)으로 참조를 전달하기 때문인가?",
+          placeholder: "이점 키워드 입력 (예: ID 참조, 캐싱, 객체 재사용)",
+          answers: ["ID", "ID 참조", "id", "캐싱", "스타일 ID", "객체 재사용"],
+          explanation: "<b>정답: ID (또는 ID 참조, 캐싱)</b><br>StyleSheet.create는 정의된 스타일에 고유 정수 ID를 부여하고 캐싱하여 네이티브 브릿지로 객체 전체가 아닌 ID 참조만 전달하므로 메모리와 통신 비용을 대폭 절감합니다."
+        },
+        {
+          id: 4, type: "short", score: 10, origin: "3주차 교안 p.12: alignSelf 속성",
+          text: "Flexbox 레이아웃에서 부모 컨테이너에 지정된 <code>alignItems</code> 교차축 정렬 설정을 무시하고, <b>특정 단일 자식 컴포넌트 혼자서만 다른 정렬(예: center, flex-end)을 지정</b>하고자 할 때 해당 자식의 스타일에 부여하는 속성은 무엇인가?",
+          placeholder: "속성명 입력 (예: alignSelf)",
+          answers: ["alignSelf", "align-self"],
+          explanation: "<b>정답: alignSelf</b><br>alignItems는 부모가 모든 자식의 교차축 정렬을 결정하지만, 특정 자식에서 alignSelf를 선언하면 부모의 설정을 덮어쓰고 개별 정렬을 적용할 수 있습니다."
+        },
+        {
+          id: 5, type: "essay", score: 10, origin: "4주차 교안 p.14: 제어 컴포넌트(Controlled Component)",
+          text: "리액트 네이티브의 TextInput에서 사용자가 키보드로 글자를 입력할 때 리액트의 상태(State)와 완벽히 동기화되는 <b>제어 컴포넌트(Controlled Component)</b>를 구성하는 메커니즘을 <code>value</code>와 <code>onChangeText</code> 속성의 상호작용 관점에서 서술하시오.",
+          placeholder: "value와 onChangeText의 동작 상호작용을 서술하세요.",
+          rubric: "1. TextInput의 value 속성에 state 변수를 바인딩하여 단일 진실 공급원(Single Source of Truth)을 유지함을 명시 (5점)\n2. 키보드 입력 발생 시 onChangeText 콜백이 실행되어 setState로 상태를 갱신하고, 변경된 상태가 다시 value로 반영되는 단방향 흐름을 명시 (5점)",
+          sampleAnswer: "제어 컴포넌트는 TextInput의 value 속성에 컴포넌트의 State 값을 직접 연결(바인딩)하여 화면에 표시되는 텍스트를 리액트 상태로 완벽히 통제하는 패턴입니다.\n사용자가 키보드를 타이핑하면 TextInput의 onChangeText 이벤트 콜백이 호출되어 입력된 최신 문자열을 매개변수로 받아 setState 함수를 실행합니다. 상태가 갱신되면 컴포넌트가 리렌더링되면서 갱신된 state 값이 다시 TextInput의 value로 반영되는 선순환 단방향 데이터 흐름을 갖습니다.",
+          explanation: "value={text}와 onChangeText={setText}의 유기적 결합을 통해 React State가 입력 필드의 단일 진실 공급원이 됩니다."
+        },
+        {
+          id: 6, type: "short", score: 10, origin: "7주차 실습 교안 p.19: 계산기 상세조건 스포",
+          text: "7주차 계산기 실습 교안의 상세조건에서 명시된 <b>연산자 버튼(+, -, ×, ÷)의 배경색(backgroundColor) Hex 코드</b> (1)과 <b>결과 출력 텍스트의 글자 크기(fontSize)</b> (2)를 순서대로 쓰시오.",
+          placeholder: "순서대로 입력 (예: #F5A623, 84)",
+          answers: [
+            "#F5A623, 84",
+            "#f5a623, 84",
+            "#F5A623,84",
+            "#f5a623,84"
+          ],
+          explanation: "<b>정답: #F5A623, 84</b><br>교안 7주차 19페이지 계산기 실습 상세조건: operatorButton backgroundColor: #F5A623, resultText fontSize: 84, numberButton backgroundColor: #2f2f2f, utilityButton: #555"
+        },
+        {
+          id: 7, type: "short", score: 10, origin: "4주차 교안 p.5: 스타일 상속 유일 컴포넌트",
+          text: "일반적인 리액트 네이티브 컴포넌트들은 웹 CSS와 달리 부모의 스타일을 자식에게 상속하지 않는다. 하지만 컴포넌트 내부에 동일한 컴포넌트를 <b>중첩(Nesting)했을 때 예외적으로 글자 폰트, 색상 등의 스타일을 자식에게 상속해주는 유일한 내장 컴포넌트</b>의 이름은?",
+          placeholder: "컴포넌트 이름 입력 (예: Text)",
+          answers: ["Text", "<Text>", "<Text></Text>"],
+          explanation: "<b>정답: Text</b><br>리액트 네이티브에서는 원칙적으로 스타일 상속이 지원되지 않으나, &lt;Text&gt; 태그 내부에 또 다른 &lt;Text&gt;를 중첩한 경우에 한하여 폰트 계열 및 색상 스타일이 부모로부터 상속됩니다."
+        },
+        {
+          id: 8, type: "essay", score: 10, origin: "교수님 출제스포: A × B 곱셈기 컴포넌트 작성",
+          text: "두 개의 TextInput에 각각 숫자 A와 숫자 B를 입력받고, Button을 클릭했을 때 두 수의 곱(A × B)을 계산하여 Text 컴포넌트에 출력하는 리액트 네이티브 컴포넌트 코드를 작성하시오.<br>(단, useState를 사용하여 상태를 선언하고 곱셈 계산 로직을 포함할 것)",
+          placeholder: "함수형 컴포넌트 전체 또는 핵심 상태 선언 및 계산 로직을 작성하세요.",
+          rubric: "1. useState를 활용하여 두 입력값(numA, numB)과 결과값(result) 상태 선언 (3점)\n2. 버튼 클릭 핸들러에서 parseFloat 또는 Number()로 형변환 후 곱셈 수행 및 결과 상태 갱신 (4점)\n3. TextInput 2개와 Button(onPress), Text(결과 출력)를 JSX로 정상 구성 (3점)",
+          sampleAnswer: "import React, { useState } from 'react';\nimport { View, TextInput, Button, Text } from 'react-native';\n\nexport default function Multiplier() {\n    const [numA, setNumA] = useState('');\n    const [numB, setNumB] = useState('');\n    const [result, setResult] = useState(0);\n\n    const handleMultiply = () => {\n        const a = parseFloat(numA) || 0;\n        const b = parseFloat(numB) || 0;\n        setResult(a * b);\n    };\n\n    return (\n        <View style={{ padding: 20 }}>\n            <TextInput value={numA} onChangeText={setNumA} keyboardType=\"numeric\" placeholder=\"숫자 A\" />\n            <TextInput value={numB} onChangeText={setNumB} keyboardType=\"numeric\" placeholder=\"숫자 B\" />\n            <Button title=\"곱하기 계산\" onPress={handleMultiply} />\n            <Text style={{ fontSize: 24, marginTop: 10 }}>결과: {result}</Text>\n        </View>\n    );\n}",
+          explanation: "교수님이 총정리에서 직접 스포한 곱셈기 문제입니다. 문자열로 들어오는 TextInput의 값을 숫자로 변환(parseFloat/Number)하여 곱한 뒤 상태에 저장하는 로직이 핵심입니다."
+        },
+        {
+          id: 9, type: "short", score: 10, origin: "5주차 교안 p.11: FlatList 구분선 속성",
+          text: "FlatList 컴포넌트에서 아이템 항목들 사이에 가로 경계선(Divider)을 깔끔하게 렌더링하기 위해 컴포넌트 또는 JSX 함수를 전달받는 FlatList의 내장 속성(Prop) 이름은?",
+          placeholder: "속성명 입력 (예: ItemSeparatorComponent)",
+          answers: ["ItemSeparatorComponent", "itemSeparatorComponent"],
+          explanation: "<b>정답: ItemSeparatorComponent</b><br>ItemSeparatorComponent={Divider}를 전달하면 아이템과 아이템 사이에만 구분선 컴포넌트를 삽입해주며, 맨 처음 항목 위나 맨 마지막 항목 밑에는 렌더링되지 않아 유용합니다."
+        },
+        {
+          id: 10, type: "short", score: 10, origin: "5주차 교안 p.12: ActivityIndicator 속성",
+          text: "데이터 로딩 상태를 시각적으로 보여주는 리액트 네이티브의 로딩 스피너 컴포넌트 (1)의 이름과, 스피너의 크기를 크게 설정하기 위해 <code>size</code> 속성에 전달하는 문자열 값 (2)를 순서대로 쓰시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;(1) (2)=\"large\" color=\"#0000ff\" /&gt;</pre>",
+          placeholder: "순서대로 입력 (예: ActivityIndicator, size)",
+          answers: [
+            "ActivityIndicator, size",
+            "ActivityIndicator,size",
+            "ActivityIndicator, large"
+          ],
+          explanation: "<b>정답: ActivityIndicator, size</b><br>ActivityIndicator 컴포넌트는 앱 로딩 중 원형 스피너를 보여주며, size 속성에 'small' 또는 'large'를 전달하여 크기를 지정할 수 있습니다."
+        }
+      ]
     }
   ]
 };
+

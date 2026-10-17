@@ -405,17 +405,28 @@ function renderCurrentExam() {
       `;
     }
 
-    if (q.rubric && q.rubric.length > 0) {
-      html += `
-        <div style="font-weight: 800; font-size: 14px; margin-top: 10px; color: var(--tag-gold);">교수님 채점 기준표 (루브릭):</div>
-        <table class="rubric-table">
-          <thead><tr><th>평가 항목 (Criteria)</th><th style="width: 100px;">배점</th></tr></thead>
-          <tbody>
-      `;
-      q.rubric.forEach(r => {
-        html += `<tr><td>${r.criteria}</td><td><b>${r.points}</b></td></tr>`;
-      });
-      html += `</tbody></table>`;
+    if (q.rubric) {
+      if (Array.isArray(q.rubric) && q.rubric.length > 0) {
+        html += `
+          <div style="font-weight: 800; font-size: 14px; margin-top: 10px; color: var(--tag-gold);">교수님 채점 기준표 (루브릭):</div>
+          <table class="rubric-table">
+            <thead><tr><th>평가 항목 (Criteria)</th><th style="width: 120px;">배점 / 기준</th></tr></thead>
+            <tbody>
+        `;
+        q.rubric.forEach(r => {
+          const itemText = r.criteria || r.item || "";
+          const pointsText = r.points || r.desc || "";
+          html += `<tr><td>${itemText}</td><td><b>${pointsText}</b></td></tr>`;
+        });
+        html += `</tbody></table>`;
+      } else if (typeof q.rubric === "string" && q.rubric.trim().length > 0) {
+        html += `
+          <div style="font-weight: 800; font-size: 14px; margin-top: 10px; color: var(--tag-gold);">교수님 채점 기준표 (루브릭):</div>
+          <div style="margin-top: 6px; padding: 10px 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-size: 14px; line-height: 1.6; white-space: pre-wrap; color: var(--ink);">
+            ${q.rubric}
+          </div>
+        `;
+      }
     }
 
     html += `</div></div>`;
