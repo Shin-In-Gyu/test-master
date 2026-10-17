@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>EXAM MASTER DOSSIER — 대학 시험 완벽대비 전공 기밀 총정리 & 실전 모의고사</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<!-- Core Design System Stylesheet -->
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Top Navigation -->
+<nav class="navbar">
+  <div class="nav-container">
+    <!-- Brand Title -->
+    <div class="brand-box" onclick="location.reload()">
+      <div class="brand-code">DOSSIER</div>
+      <div>
+        <h1 class="brand-title">EXAM MASTER <span class="badge badge-accent">ARCHIVE</span></h1>
+        <div class="brand-sub">대학 시험 전용 개념 총정리 & 실전 모의고사 평가 시스템</div>
+      </div>
+    </div>
+
+    <!-- Mode Switcher -->
+    <div class="mode-switcher">
+      <button class="mode-btn active" id="modeBtnConcept" onclick="switchMainMode('concept')">
+        <span>개념 총정리</span>
+      </button>
+      <button class="mode-btn" id="modeBtnExam" onclick="switchMainMode('exam')">
+        <span>실전 모의고사</span>
+      </button>
+    </div>
+
+    <!-- Controls -->
+    <div class="nav-controls">
+      <!-- Subject Dropdown -->
+      <select id="subjectSelect" class="subject-select" onchange="changeSubject(this.value)">
+        <option value="crossplatform" selected>크로스플랫폼 프로그래밍 (정종수 교수 / 주관식 10선 & 전범위)</option>
+        <option value="gameprog">게임프로그래밍 (김영호 교수 / Unity & C#)</option>
+        <option value="security">정보보호개론 (박정수 교수)</option>
+        <option value="os">운영체제 (녹음본 19대 유형 · 실전 24문항 & 파이널 10선)</option>
+        <option value="network">컴퓨터네트워크 (프로토콜/서브넷)</option>
+        <option value="__add__">+ 새 과목 추가 / 가이드...</option>
+      </select>
+
+      <!-- 7-min Open Book Timer -->
+      <div class="timer-pill" title="오픈북 7분 실전 타이머">
+        <span class="timer-tag">TIMER</span>
+        <span id="timerDisplay" class="timer-val">07:00</span>
+        <button class="timer-btn" onclick="toggleTimer()" id="timerToggleBtn">시작</button>
+        <button class="timer-btn" onclick="resetTimer()">리셋</button>
+      </div>
+
+      <!-- Self Test Masking Toggle -->
+      <button class="icon-btn" id="quizModeBtn" onclick="toggleQuizMode()" title="정답을 가려 실전 자가 테스트 진행">
+        <span id="quizBtnLabel">자가 테스트</span>
+      </button>
+
+      <!-- Font Size Controls -->
+      <button class="icon-btn" onclick="changeFontSize(-1)" title="글자 축소">A-</button>
+      <button class="icon-btn" onclick="changeFontSize(1)" title="글자 확대">A+</button>
+
+      <!-- Print / PDF -->
+      <button class="icon-btn" onclick="window.print()" title="A4 치트시트 인쇄 또는 PDF 저장">인쇄</button>
+
+      <!-- Theme Toggle -->
+      <button class="icon-btn" onclick="toggleTheme()" id="themeBtn">DARK</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Wrapper -->
+<main class="main-wrapper">
+
+  <!-- Live Search Bar -->
+  <section class="search-section">
+    <div class="search-wrapper">
+      <span class="search-label">SEARCH</span>
+      <input type="text" id="globalSearchInput" class="search-input" placeholder="전체 검색: 키워드 입력 (예: GetComponent, Time.deltaTime, Gravity Scale, Is Trigger, Instantiate, fork, PCB, DES...)" oninput="handleGlobalSearch(this.value)">
+      <button id="searchClearBtn" class="search-clear" onclick="clearSearch()">CLEAR</button>
+    </div>
+  </section>
+
+  <!-- VIEW 1: Concept Summary -->
+  <div id="conceptViewSection" class="concept-view">
+    <nav class="filter-bar" id="conceptFilterBar"></nav>
+    <div id="conceptContainer"></div>
+  </div>
+
+  <!-- VIEW 2: Mock Exam -->
+  <div id="examViewSection" class="exam-view" style="display: none;">
+    <div class="exam-tabs" id="examTabsContainer"></div>
+
+    <!-- Score & Progress Dossier -->
+    <div class="progress-card">
+      <div>
+        <div class="progress-score-label">Current Score</div>
+        <div class="score-display">
+          <span class="score-num" id="currentScoreDisplay">0</span>
+          <span class="score-max">/ 100점</span>
+        </div>
+      </div>
+      <div style="flex: 1; max-width: 440px;">
+        <div class="progress-info" style="display:flex; justify-content:space-between; margin-bottom: 6px; font-size: 14px; color: var(--text-secondary);">
+          <span>풀이 완료: <b id="answeredCountDisplay">0</b> / <span id="totalQuestionsDisplay">13</span>문항</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progressBarFill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Question Cards Container -->
+    <div id="questionsContainer"></div>
+  </div>
+
+</main>
+
+<!-- Sticky Bottom Bar (Mock Exam Mode) -->
+<div class="bottom-bar" id="bottomBar" style="display: none;">
+  <div class="bottom-container">
+    <div style="font-size: 14px; color: var(--text-secondary);">
+      단답형은 답안 입력 후 [Enter]를 누르면 즉시 채점되며, 객관식은 보기 클릭 시 즉시 채점됩니다.
+    </div>
+    <div style="display: flex; gap: 10px;">
+      <button class="btn btn-outline" onclick="resetCurrentExam()">현재 회차 초기화</button>
+      <button class="btn btn-outline" onclick="toggleAllSolutions()">정답·해설 전체 토글</button>
+      <button class="btn btn-primary" onclick="gradeAllQuestions()">전체 일괄 채점</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Dialog -->
+<div class="modal-overlay" id="addSubjectModal" onclick="closeModal()">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <h3 class="modal-title">+ 새 과목 추가 및 확장 가이드</h3>
+    <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+      이 시스템은 다른 과목(자료구조, 알고리즘, 데이터베이스 등)을 무제한 확장할 수 있도록 <b>모듈형 데이터베이스 아키텍처</b>로 설계되어 있습니다.<br>
+      <code>data/</code> 폴더에 새 과목 자바스크립트 파일(예: <code>data/database.js</code>)을 생성하고 <code>index.html</code> 하단에 <code>&lt;script src="data/database.js"&gt;&lt;/script&gt;</code>만 추가하면 드롭다운과 탭이 자동 생성됩니다.
+    </p>
+
+    <div style="font-weight: 700; font-size: 14px; color: var(--accent); margin-bottom: 8px;">1. 새 과목 데이터 작성 규격 (data/database.js):</div>
+    <div class="code-block">
+window.CONCEPT_DATABASE = window.CONCEPT_DATABASE || {};
+window.EXAM_DATABASE = window.EXAM_DATABASE || {};
+
+// 개념 총정리 데이터
+window.CONCEPT_DATABASE.db = {
+  id: "db",
+  title: "데이터베이스",
+  filterChips: [{ id: "all", label: "전체보기" }, { id: "rel", label: "관계대수" }],
+  html: `&lt;section id="rel" class="concept-section"&gt;...&lt;/section&gt;`
+};
+
+// 모의고사 데이터 (객관식, 단답형, 계산형, 서술형 지원)
+window.EXAM_DATABASE.db = {
+  title: "데이터베이스",
+  maxScore: 100,
+  exams: [{
+    id: "exam1",
+    name: "제1회 데이터베이스 모의고사",
+    tag: "객관식 + 단답 + 서술",
+    questions: [
+      { id: 1, type: "short", score: 5, origin: "1장 ACID", text: "트랜잭션의 4대 특성 중 ...", answers: ["원자성", "Atomicity"] }
+    ]
+  }]
+};
+    </div>
+
+    <button class="btn btn-primary" style="width: 100%; margin-top: 16px;" onclick="closeModal()">확인 완료</button>
+  </div>
+</div>
+
+<!-- Toast Notice -->
+<div id="toast"></div>
+
+<!-- Footer -->
+<footer class="dossier-footer">
+  <div class="footer-inner">
+    <div class="footer-title">EXAM MASTER DOSSIER</div>
+    <div class="footer-desc">전공 시험 대비 기밀 치트시트 & 실전 모의고사 평가 시스템</div>
+  </div>
+</footer>
+
+<!-- Subject Data Modules -->
+<script src="data/gameprog.js"></script>
+<script src="data/security.js"></script>
+<script src="data/os.js"></script>
+<script src="data/network.js"></script>
+<script src="data/crossplatform.js"></script>
+
+<!-- Integrated Application Engine -->
+<script src="js/app.js"></script>
+</body>
+</html>
