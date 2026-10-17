@@ -163,64 +163,106 @@ window.CONCEPT_DATABASE.os = {
     <section id="os-sched" class="concept-section">
       <div class="section-banner danger-banner">
         <div class="section-banner-title">
-          <span>📊 CPU 스케줄링 계산 공식 & 간트 차트 작성법 (교수님 50% 감점 경고 파트)</span>
+          <span>📊 CPU 스케줄링 계산 공식 &amp; 간트 차트 작성법 (교수님 50% 감점 경고 파트)</span>
         </div>
         <span style="font-size: 11.5px; opacity: 0.9;">"간트 차트 없으면 답 맞아도 50%만 인정합니다"</span>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">📐 스케줄링 3대 핵심 시간 지표 및 공식</div>
+        <div class="concept-card-header">
+          <div class="concept-card-title">📐 스케줄링 5대 핵심 평가 기준(Criteria) 및 계산 공식</div>
+          <div>
+            <span class="badge badge-danger">시험 100% 출제</span>
+            <span class="badge badge-amber">공식 암기 필수</span>
+          </div>
+        </div>
         <table class="concept-table">
           <thead>
             <tr>
-              <th style="width: 180px;">지표 (Metric)</th>
-              <th>정의 및 핵심 공식</th>
-              <th style="width: 100px;">목표</th>
+              <th style="width: 190px;">평가 지표 (Metric)</th>
+              <th>정의 및 핵심 계산 공식</th>
+              <th style="width: 120px;">최적화 방향</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><b>완료 시간 (Completion Time)</b></td>
-              <td>프로세스가 CPU 실행을 완전히 마치고 종료된 시점 (간트 차트 우측 끝 시각)</td>
-              <td>-</td>
+              <td><b>1) CPU 이용률<br>(CPU Utilization)</b></td>
+              <td>전체 시간 중 CPU가 쉬지 않고(Idle 상태 없이) 실제 작업을 수행한 시간의 비율 (실제 시스템에서는 보통 40% ~ 90% 범위 유지)</td>
+              <td><b style="color: var(--tag-green-ink);">최대화 (Max)</b></td>
             </tr>
             <tr>
-              <td><b>반환 시간 (Turnaround Time)</b></td>
-              <td><code>반환 시간 = 완료 시간 (Completion) - 도착 시간 (Arrival)</code></td>
-              <td>최소화 (Min)</td>
+              <td><b>2) 처리량<br>(Throughput)</b></td>
+              <td>단위 시간당 실행을 완전히 완료(Terminated)한 프로세스의 개수 (긴 작업은 시간당 1개, 짧은 트랜잭션은 초당 수십 개)</td>
+              <td><b style="color: var(--tag-green-ink);">최대화 (Max)</b></td>
             </tr>
             <tr>
-              <td><b>대기 시간 (Waiting Time)</b></td>
-              <td><code>대기 시간 = 반환 시간 (Turnaround) - 실행 시간 (CPU Burst)</code><br>또는 간트 차트 상에서 프로세스가 레디 큐에서 순수하게 기다린 시간들의 누적합</td>
-              <td>최소화 (Min)</td>
+              <td><b>3) 반환 시간<br>(Turnaround Time)</b></td>
+              <td>프로세스가 준비 큐에 <b>도착한 시점부터 실행을 완전히 마치고 종료될 때까지 걸린 총 시간</b><br>
+              <code>반환 시간 (TT) = 완료 시간 (Completion Time) - 도착 시간 (Arrival Time)</code><br>
+              <code>반환 시간 (TT) = 대기 시간 (Waiting Time) + 총 실행 시간 (CPU Burst + I/O)</code></td>
+              <td><b style="color: var(--tag-danger-ink);">최소화 (Min)</b></td>
             </tr>
             <tr>
-              <td><b>평균 대기 시간 (AWT)</b></td>
-              <td><code>AWT = (P1 대기시간 + P2 대기시간 + ... + Pn 대기시간) / n</code></td>
-              <td>최소화 (Min)</td>
+              <td><b>4) 대기 시간<br>(Waiting Time)</b></td>
+              <td>프로세스가 <b>준비 큐(Ready Queue)에서 CPU를 할당받기 위해 순수하게 기다린 시간들의 총합</b><br>
+              <code>대기 시간 (WT) = 반환 시간 (Turnaround Time) - 실행 시간 (CPU Burst Time)</code><br>
+              • 비선점형: <code>시작 시간 - 도착 시간</code><br>
+              • 선점형(SRTF, RR): <code>(첫 시작 - 도착) + Σ(재실행 시작 시점 - 직전 선점 중단 시점)</code></td>
+              <td><b style="color: var(--tag-danger-ink);">최소화 (Min)</b></td>
+            </tr>
+            <tr>
+              <td><b>5) 응답 시간<br>(Response Time)</b></td>
+              <td>대화형(시분할) 시스템에서 요청을 제출한 후 <b>첫 번째 응답(출력 시작)이 나올 때까지 걸리는 시간</b> (출력 장치 속도가 아닌 첫 반응 시작까지의 시간)</td>
+              <td><b style="color: var(--tag-danger-ink);">최소화 (Min)</b></td>
             </tr>
           </tbody>
         </table>
 
         <div class="callout-box warning" style="margin-top: 14px;">
-          <b>🚨 교수님 시험 채점 가이드라인 (7주차 녹음 직전 언급):</b><br>
-          1. <b>간트 차트(Gantt Chart) 그리기 필수</b>: 문제 풀이 시 간트 차트 직사각형을 그리고 각 프로세스 블록 아래에 시간 눈금(0, 3, 6, 24 등)을 반드시 표시할 것.<br>
-          2. <b>부분점수 정책</b>: "답만 맞고 간트 차트가 없으면 50% 감점, 별도 기준 없으면 부분점수는 반반(50%)"
+          <div class="callout-title">🚨 교수님 시험 채점 가이드라인 (7주차 녹음 직전 언급 — 필독!)</div>
+          1. <b>간트 차트(Gantt Chart) 그리기 필수</b>: 스케줄링 계산 문제 풀이 시 반드시 간트 차트 막대를 그리고, 각 프로세스 이름(<code>P1</code>, <code>P2</code>...)과 아래쪽 <b>경계 시각 눈금(0, 3, 6, 24 등)</b>을 정확히 기입해야 합니다.<br>
+          2. <b>부분점수 정책</b>: "답만 맞고 간트 차트가 없으면 <b>50% 감점</b>합니다. 또한 서술형 문제(예: 기아 현상과 에이징)에서 별도 배점 기준이 없으면 두 항목이 반반(50%씩) 들어갑니다."<br>
+          3. <b>도착 시간(Arrival Time) 함정 주의</b>: 문제에서 "모두 0초에 도착"인지, 각 프로세스마다 <b>도착 시간이 0, 1, 2, 3초로 다른지</b> 반드시 먼저 확인하고 도착 시간을 빼주어야 합니다!
         </div>
 
-        <div class="concept-card-title" style="margin-top: 18px;">📈 다음 CPU 버스트 시간 예측 (지수 이동평균 공식)</div>
+        <div class="concept-card-title" style="margin-top: 18px;">📈 다음 CPU 버스트 시간 예측 (지수 이동평균 공식 — Exponential Averaging)</div>
         <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
-          SJF 스케줄링에서 프로세스의 다음 CPU 버스트 시간을 과거 실제 측정치와 이전 예측치를 가중합하여 추정하는 공식:
+          SJF(최단 작업 우선) 스케줄링에서는 다음 CPU 버스트의 정확한 길이를 미리 알 수 없으므로, 과거의 실제 버스트 측정 시간(<code>t<sub>n</sub></code>)과 이전 예측값(<code>τ<sub>n</sub></code>)의 지수 이동평균으로 다음 CPU 버스트(<code>τ<sub>n+1</sub></code>)를 추정합니다.
         </p>
-        <div style="padding: 12px; background: var(--bg-surface-elevated); border: 1px solid var(--border-color); border-radius: 6px; font-family: var(--font-mono); font-size: 14.5px; color: var(--accent); font-weight: 700;">
-          τ<sub>n+1</sub> = α · t<sub>n</sub> + (1 - α) · τ<sub>n</sub>
+        <div style="padding: 12px; background: var(--bg-surface-elevated); border: 1px solid var(--border-color); border-radius: 6px; font-family: var(--font-mono); font-size: 15px; color: var(--accent); font-weight: 700;">
+          τ<sub>n+1</sub> = α · t<sub>n</sub> + (1 - α) · τ<sub>n</sub> &nbsp;&nbsp;(단, 0 ≤ α ≤ 1)
         </div>
-        <ul style="margin: 8px 0 0 18px; font-size: 13px; color: var(--text-secondary); line-height: 1.7;">
-          <li><b>t<sub>n</sub></b>: 가장 최근 실제 측정한 n번째 CPU 버스트 시간</li>
-          <li><b>τ<sub>n</sub></b>: n번째 CPU 버스트에 대한 이전 예측값</li>
-          <li><b>α</b>: 가중치 ($0 \le \alpha \le 1$, 보통 α = 0.5 적용)</li>
-          <li><b>계산 예시</b>: α = 0.5, t<sub>n</sub> = 6, τ<sub>n</sub> = 10 이면 τ<sub>n+1</sub> = (0.5 × 6) + (0.5 × 10) = <b>8 ms</b></li>
-        </ul>
+        <table class="concept-table" style="margin-top: 10px;">
+          <thead>
+            <tr>
+              <th style="width: 140px;">기호 / 조건</th>
+              <th>의미 및 가중치(<code>α</code>)에 따른 동작 특성</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b><code>t<sub>n</sub></code> (실제 측정치)</b></td>
+              <td>가장 최근인 <code>n</code>번째에 실제로 CPU를 사용한 버스트 시간 (최근의 실제 역사)</td>
+            </tr>
+            <tr>
+              <td><b><code>τ<sub>n</sub></code> (이전 예측치)</b></td>
+              <td>과거 <code>n</code>번째 CPU 버스트에 대해 예측했었던 추정치 (과거의 누적 역사)</td>
+            </tr>
+            <tr>
+              <td><b><code>α = 0</code> 일 때</b></td>
+              <td><code>τ<sub>n+1</sub> = τ<sub>n</sub></code> → <b>최근의 실제 측정 기록(<code>t<sub>n</sub></code>)은 전혀 반영하지 않고</b>, 초기 예측값만 영구 유지함</td>
+            </tr>
+            <tr>
+              <td><b><code>α = 1</code> 일 때</b></td>
+              <td><code>τ<sub>n+1</sub> = t<sub>n</sub></code> → 과거 예측치는 모두 무시하고 <b>오직 가장 최근의 실제 CPU 버스트 시간(<code>t<sub>n</sub></code>)만 100% 반영</b>함</td>
+            </tr>
+            <tr>
+              <td><b><code>α = 0.5</code> (표준)</b></td>
+              <td>최근 실제 측정치와 과거 누적 예측치를 <b>동일한 비중(50% : 50%)</b>으로 반영함<br>
+              • <b>계산 예제</b>: <code>α = 0.5, τ<sub>0</sub> = 10, t<sub>0</sub> = 6</code> 일 때 <code>τ<sub>1</sub> = (0.5 × 6) + (0.5 × 10) = 3 + 5 =</code> <b>8 ms</b></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
@@ -228,46 +270,171 @@ window.CONCEPT_DATABASE.os = {
     <section id="os-ch1" class="concept-section">
       <div class="section-banner">
         <div class="section-banner-title">
-          <span>🖥️ 1장: 운영체제의 개념, 듀얼 모드 & 폰노이만 구조</span>
+          <span>🖥️ 1장: 운영체제 개요, 하드웨어 구조, 캐시·지역성 &amp; 듀얼 모드</span>
         </div>
-        <span class="badge badge-blue">컴퓨터 시스템 구성 & 보호</span>
+        <span class="badge badge-blue">1장 교안 전수 반영</span>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">1. 컴퓨터 시스템의 4대 구성 요소</div>
+        <div class="concept-card-header">
+          <div class="concept-card-title">1. 컴퓨터 하드웨어 구조: CPU · 코어 · 시스템 버스 · 명령어</div>
+          <span class="badge badge-blue">기본 개념 &amp; 용어 구분</span>
+        </div>
         <table class="concept-table">
-          <thead><tr><th>구성 요소</th><th>역할 및 특징</th></tr></thead>
+          <thead>
+            <tr>
+              <th style="width: 190px;">구분</th>
+              <th>핵심 정의 및 시험 포인트</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td><b>하드웨어 (Hardware)</b></td><td>기본 계산 자원 제공 (CPU, 메모리, I/O 디바이스)</td></tr>
-            <tr><td><b>운영체제 (Operating System)</b></td><td>다양한 응용 프로그램 간 하드웨어 자원 배분 및 입출력 제어 총괄 (커널)</td></tr>
-            <tr><td><b>응용 프로그램 (Application)</b></td><td>사용자의 컴퓨팅 문제 해결을 위해 자원 사용 (웹브라우저, 컴파일러, DB 등)</td></tr>
-            <tr><td><b>사용자 (Users)</b></td><td>사람, 기계, 다른 컴퓨터</td></tr>
+            <tr>
+              <td><b>CPU vs 프로세서 vs 코어</b></td>
+              <td>• <b>CPU (Central Processing Unit)</b>: 명령어를 인출(Fetch)·해석(Decode)·실행(Execute)하는 중앙처리장치<br>
+              • <b>코어 (Core)</b>: CPU 칩 내부에서 실제로 명령어를 읽고 연산을 수행하는 기본 연산 유닛 (ALU + 제어장치 + 레지스터 세트)<br>
+              • <b>멀티코어 프로세서 (Multicore Processor)</b>: 하나의 물리적 프로세서 칩(소켓) 안에 2개 이상의 코어를 집적한 구조 (듀얼/쿼드/옥타코어)</td>
+            </tr>
+            <tr>
+              <td><b>다중 처리기 시스템<br>(Multiprocessor System)</b></td>
+              <td>• <b>비대칭형 다중 처리 (Asymmetric Multiprocessing)</b>: 주종(Master-Slave) 관계. 마스터 프로세서가 OS를 실행하며 슬레이브 프로세서들에게 작업을 할당<br>
+              • <b>대칭형 다중 처리 (SMP: Symmetric Multiprocessing)</b>: <b>현대 OS의 표준!</b> 모든 프로세서(코어)가 동등한 대등 관계로 각자 OS 루틴을 수행하며 메인 메모리와 I/O 버스를 공유 (단, 각 코어는 <b>독자적인 레지스터와 L1/L2 캐시</b> 보유)</td>
+            </tr>
+            <tr>
+              <td><b>시스템 버스 3대장<br>(System Bus)</b></td>
+              <td>CPU, 메인 메모리, I/O 장치 간에 정보를 전송하는 통로:<br>
+              1) <b>데이터 버스 (Data Bus)</b>: CPU와 메모리/입출력 장치 사이에 실제 데이터와 명령어를 전달 (<b>양방향</b>)<br>
+              2) <b>주소 버스 (Address Bus)</b>: CPU가 읽거나 쓸 메모리 번지(주소)나 I/O 포트 번호를 지정 (<b>단방향: CPU → 메모리/I/O</b>)<br>
+              3) <b>제어 버스 (Control Bus)</b>: 읽기(Read)/쓰기(Write) 신호, 인터럽트 요청/승인, 클럭 등 제어 신호 전달 (<b>양방향</b>)</td>
+            </tr>
+            <tr>
+              <td><b>기계어 명령어 구조<br>(Instruction Format)</b></td>
+              <td>• <b>명령어 = 연산 부호(OPcode) + 피연산자(Operand, 데이터 또는 주소)</b><br>
+              • <b style="color: var(--tag-danger-ink);">시험 공식</b>: 연산 부호(OPcode)가 <b><code>n</code> 비트</b>이면 최대 <b><code>2<sup>n</sup></code>개</b>의 서로 다른 연산(명령어 종류)을 표현 가능 (예: 4비트면 <code>2<sup>4</sup> = 16</code>개 연산, 8비트면 <code>2<sup>8</sup> = 256</code>개 연산)</td>
+            </tr>
           </tbody>
         </table>
 
-        <div class="concept-card-title" style="margin-top: 18px;">2. 듀얼 모드 연산 (Dual-Mode Operation) & 하드웨어 보호</div>
-        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
-          잘못된 프로그램이 다른 프로그램이나 운영체제 자체를 파괴하지 못하도록 하드웨어적으로 실행 모드를 분리합니다.
-        </p>
+        <div class="concept-card-header" style="margin-top: 22px;">
+          <div class="concept-card-title">2. 레지스터 분류 &amp; 메모리 계층 구조 · 캐시 지역성(Locality)</div>
+          <span class="badge badge-amber">객관식·단답형 단골</span>
+        </div>
         <table class="concept-table">
-          <thead><tr><th>구분</th><th>사용자 모드 (User Mode)</th><th>커널 모드 (Kernel / Supervisor Mode)</th></tr></thead>
+          <thead>
+            <tr>
+              <th style="width: 190px;">레지스터 분류</th>
+              <th>포함 레지스터 및 상세 역할</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td><b>Mode Bit</b></td><td><b>1</b></td><td><b>0</b></td></tr>
-            <tr><td><b>실행 주체</b></td><td>일반 사용자 응용 프로그램</td><td>운영체제 핵심 커널 코드</td></tr>
-            <tr><td><b>명령 실행 범위</b></td><td>비특권 명령(Non-privileged)만 가능</td><td>모든 하드웨어 제어 및 <b>특권 명령(Privileged)</b> 가능</td></tr>
-            <tr><td><b>특권 명령 예시</b></td><td>직접 I/O 접근 불가, 타이머 조작 불가</td><td>타이머 설정, 인터럽트 활성/비활성화, I/O 직접 제어, 메모리 맵 변경</td></tr>
-            <tr><td><b>모드 전환 통로</b></td><td colspan="2">사용자 프로그램이 커널 자원을 요청할 때는 오직 <b>시스템 호출(System Call)</b> 또는 <b>인터럽트(Trap)</b>를 통해서만 커널 모드(0)로 진입 가능</td></tr>
+            <tr>
+              <td><b>사용자 가시 레지스터<br>(User-Visible Registers)</b></td>
+              <td>기계어나 어셈블리어 프로그래머가 직접 참조하여 데이터나 주소를 저장할 수 있는 레지스터 (범용 레지스터, 데이터 레지스터, 주소 레지스터: 인덱스/세그먼트/스택 포인터 SP)</td>
+            </tr>
+            <tr>
+              <td><b>사용자 불가시 레지스터<br>(제어 및 상태 레지스터)</b></td>
+              <td>CPU 제어 장치가 명령어 실행을 제어하고 OS가 시스템 상태를 관리하기 위해 사용하는 레지스터 (사용자 임의 수정 불가):<br>
+              • <b>PC (Program Counter, 프로그램 카운터)</b>: <b>다음에 인출(Fetch)할 명령어의 메모리 주소</b> 저장<br>
+              • <b>IR (Instruction Register, 명령어 레지스터)</b>: 방금 메모리에서 인출해 온 <b>현재 실행 중인 명령어</b> 저장<br>
+              • <b>MAR (Memory Address Register)</b>: 읽거나 쓸 메모리 주소를 주소 버스로 내보내기 전 임시 저장<br>
+              • <b>MBR / MDR (Memory Buffer Register)</b>: 메모리에서 읽혀진 데이터나 메모리에 쓸 데이터를 임시 저장<br>
+              • <b>PSW (Program Status Word, 상태 레지스터)</b>: 연산 결과 플래그(조건 코드: 부호, 영, 캐리, 오버플로우) 및 인터럽트/모드 비트 저장</td>
+            </tr>
           </tbody>
         </table>
 
-        <div class="concept-card-title" style="margin-top: 18px;">3. 멀티프로그래밍 vs 시분할 시스템</div>
+        <div class="callout-box info" style="margin-top: 12px;">
+          <div class="callout-title">📌 메모리 계층 구조와 캐시 메모리(Cache) · 참조의 지역성(Locality of Reference)</div>
+          • <b>속도순 (빠름 → 느림)</b>: <b>레지스터(Register) → 캐시(Cache, SRAM) → 메인 메모리(DRAM) → 보조기억장치(SSD → HDD → 광디스크/자기테이프)</b> (위로 갈수록 속도가 빠르고 비트당 가격 비쌈, 용량 작음 / 메인 메모리까지는 휘발성, SSD 이하 비휘발성)<br>
+          • <b>캐시 적중(Cache Hit) vs 캐시 실패(Cache Miss)</b>: CPU가 찾는 데이터가 캐시에 있으면 <b>Hit</b>(초고속 접근), 없으면 <b>Miss</b>(메인 메모리에서 해당 데이터를 포함한 블록/라인 단위로 캐시에 복사해 옴).<br>
+          • <b style="color: var(--tag-danger-ink);">참조의 지역성(Locality) 2대 원리 (필수 구분!)</b>:<br>
+          &nbsp;&nbsp;1) <b>시간적 지역성 (Temporal Locality)</b>: <b>최근에 참조된 메모리 주소(변수/명령어)가 가까운 미래에 다시 참조될 가능성이 높다</b>는 성질 (예: <code>for</code>, <code>while</code> <b>반복문 루프 제어 변수 <code>i</code></b>, 누적 합계 변수 <code>sum</code>).<br>
+          &nbsp;&nbsp;2) <b>공간적 지역성 (Spatial Locality)</b>: <b>현재 참조된 메모리 주소와 인접한(가까운) 주소의 데이터가 곧이어 참조될 가능성이 높다</b>는 성질 (예: <b>배열 <code>arr[0], arr[1], arr[2]</code> 순차 접근</b>, 순차적 명령어 실행).<br>
+          • <b>캐시 블록 크기 트레이드오프</b>: 블록 크기가 커지면 공간적 지역성 활용도는 높아지나, 지나치게 크면 캐시에 들어갈 블록 개수가 줄고 불필요한 데이터 전송 시간이 길어져 오히려 적중률이 떨어질 수 있음.
+        </div>
+
+        <div class="concept-card-header" style="margin-top: 22px;">
+          <div class="concept-card-title">3. 컴퓨터 시스템의 발전 역사 &amp; 운영체제 형태 비교</div>
+          <span class="badge badge-blue">역사적 흐름 정리</span>
+        </div>
         <table class="concept-table">
-          <thead><tr><th>개념</th><th>멀티프로그래밍 (Multiprogramming)</th><th>시분할 시스템 (Time-Sharing / Multitasking)</th></tr></thead>
+          <thead>
+            <tr>
+              <th style="width: 195px;">시스템 형태</th>
+              <th>핵심 동작 원리 및 특징</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td><b>주요 목적</b></td><td><b>CPU 이용률(Utilization) 극대화</b> (CPU가 쉬지 않게 함)</td><td><b>응답 시간(Response Time) 최소화</b> (사용자와 상호작용)</td></tr>
-            <tr><td><b>동작 원리</b></td><td>한 프로세스가 I/O 대기에 들어가면 다른 프로세스로 CPU 전환</td><td>매우 짧은 시간(타임 퀀텀) 단위로 작업을 번갈아 실행하여 동시 실행 착각 유도</td></tr>
+            <tr>
+              <td><b>1) 에니악(ENIAC) vs<br>폰 노이만 구조</b></td>
+              <td>• <b>하드와이어링(Hard-wiring, 에니악)</b>: 전선 플러그를 직접 꽂아 회로를 구성 (다른 계산을 하려면 배선을 새로 해야 함)<br>
+              • <b>폰 노이만 구조 (Program-Stored, 프로그램 내장 방식)</b>: <b>프로그램(명령어)과 데이터를 모두 메인 메모리(RAM)에 함께 저장</b>하고 CPU가 순차적으로 인출하여 실행하는 현대 컴퓨터의 표준 구조</td>
+            </tr>
+            <tr>
+              <td><b>2) 일괄 처리 시스템<br>(Batch Processing)</b></td>
+              <td>사용자 상호작용 없이 유사한 작업(천공카드 등)을 한데 모아 한꺼번에 순차 처리. 작업 준비 시간 절약했으나 응답 시간이 매우 길고 I/O 동안 CPU가 유휴(Idle) 상태로 노는 단점 존재</td>
+            </tr>
+            <tr>
+              <td><b>3) 다중 프로그래밍<br>(Multiprogramming)</b></td>
+              <td>메모리에 여러 프로그램을 동시에 적재해 두고, 실행 중인 작업이 <b>I/O 대기에 들어가면 즉시 다른 작업으로 CPU를 전환</b>.<br>
+              • 핵심 목표: <b>CPU 이용률(CPU Utilization) 극대화</b> (CPU가 절대 쉬지 않게 함)</td>
+            </tr>
+            <tr>
+              <td><b>4) 시분할 시스템<br>(Time-Sharing / Multitasking)</b></td>
+              <td>다중 프로그래밍의 논리적 확장. CPU 시간을 아주 짧은 시간 조각(<b>Time Slice / Time Quantum</b>)으로 나누어 여러 사용자의 작업을 빠르게 번갈아 실행.<br>
+              • 핵심 목표: <b>사용자 응답 시간(Response Time) 최소화</b> 및 대화형(Interactive) 컴퓨팅 제공</td>
+            </tr>
+            <tr>
+              <td><b>5) 분산·클라이언트/서버·<br>P2P·클라우드·가상화</b></td>
+              <td>• <b>분산 시스템(Distributed)</b>: 물리적으로 분리된 이기종 컴퓨터들을 네트워크로 묶어 자원 공유 및 신뢰성/속도 향상<br>
+              • <b>클라이언트-서버 vs P2P(Peer-to-Peer)</b>: 중앙 서버가 요청을 처리하는 구조 vs 모든 노드가 클라이언트이자 서버 역할을 동등하게 수행하는 구조<br>
+              • <b>가상화(Virtualization)</b>: 단일 물리 하드웨어 위에 <b>VMM(Virtual Machine Monitor, 하이퍼바이저)</b>을 두어 여러 게스트 OS(가상머신)를 동시에 독립 실행</td>
+            </tr>
           </tbody>
         </table>
+
+        <div class="concept-card-header" style="margin-top: 22px;">
+          <div class="concept-card-title">4. 커널 · 시스템 콜 · 인터럽트 · DMA · 듀얼 모드 (Dual-Mode Operation)</div>
+          <span class="badge badge-danger">1장 핵심 출제 포인트</span>
+        </div>
+        <table class="concept-table">
+          <thead>
+            <tr>
+              <th style="width: 170px;">구분</th>
+              <th>사용자 모드 (User Mode)</th>
+              <th>커널 모드 (Kernel / Supervisor / Monitor Mode)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>하드웨어 Mode Bit</b></td>
+              <td><b style="color: var(--accent); font-size: 15px;">1</b></td>
+              <td><b style="color: var(--tag-danger-ink); font-size: 15px;">0</b></td>
+            </tr>
+            <tr>
+              <td><b>실행 주체</b></td>
+              <td>일반 사용자 응용 프로그램 (프로세스)</td>
+              <td>운영체제의 핵심인 <b>커널 (Kernel: 메모리에 상주하는 OS 핵심 부분)</b></td>
+            </tr>
+            <tr>
+              <td><b>특권 명령(Privileged)<br>실행 가능 여부</b></td>
+              <td><b>절대 불가</b> (사용자 모드에서 특권 명령 실행 시도 시 하드웨어가 불법 명령으로 간주하여 OS로 Trap 발생)</td>
+              <td><b>모든 명령어 및 특권 명령 실행 가능</b><br>(I/O 직접 제어, 타이머 설정, 인터럽트 활성/비활성화, 모드 비트 변경, 메모리 보호 레지스터 설정)</td>
+            </tr>
+            <tr>
+              <td><b>모드 전환 흐름</b></td>
+              <td colspan="2">사용자 프로그램 실행(Mode=1) → <b>시스템 콜(System Call) 또는 인터럽트 발생</b> → 하드웨어가 Mode Bit를 <b>1 → 0</b>으로 전환 후 커널 진입 → 커널 작업 완료 후 복귀 시 Mode Bit를 <b>0 → 1</b>로 복원</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout-box warning" style="margin-top: 12px;">
+          <div class="callout-title">⚡ 인터럽트(Interrupt) vs 트랩(Trap) vs 시스템 콜 &amp; DMA 핵심 정리</div>
+          • <b>하드웨어 인터럽트(Interrupt)</b>: 입출력 장치 컨트롤러나 타이머 등 하드웨어가 작업 완료/이벤트를 알리기 위해 시스템 버스를 통해 CPU에 보내는 비동기 신호.<br>
+          &nbsp;&nbsp;→ CPU는 현재 명령어 실행을 마친 뒤 <b>현재 PC(프로그램 카운터)와 레지스터 상태를 저장</b>하고, <b>인터럽트 벡터(Interrupt Vector: 서비스 루틴 주소 배열)</b>를 참조하여 해당 <b>ISR(Interrupt Service Routine, 인터럽트 핸들러)</b>로 점프하여 처리함.<br>
+          • <b>트랩(Trap / Exception, 소프트웨어 인터럽트)</b>: 0으로 나누기, 잘못된 메모리 접근 등 <b>오류(Exception)</b>나 사용자 프로그램의 <b>시스템 콜(System Call) 요청</b>에 의해 발생하는 소프트웨어적 인터럽트.<br>
+          • <b>타이머(Timer)</b>: 특정 프로세스가 무한 루프에 빠져 CPU를 독점하는 것을 막기 위해 지정된 시간이 흐르면 <b>타이머 인터럽트</b>를 발생시켜 OS가 제어권을 회수하게 하는 하드웨어 보호 장치.<br>
+          • <b>DMA (Direct Memory Access, 직접 메모리 접근)</b>: 고속 I/O 장치에서 대량 데이터를 전송할 때 CPU가 매 바이트마다 개입하는 오버헤드를 없애기 위해, <b>DMA 제어기가 CPU 개입 없이 디바이스 버퍼와 메인 메모리 간에 블록(Block) 단위로 데이터를 직접 전송</b>하고, <b>전체 블록 전송이 완료되었을 때만 CPU에 단 1번 인터럽트</b>를 보내는 방식!
+        </div>
       </div>
     </section>
 
@@ -275,23 +442,52 @@ window.CONCEPT_DATABASE.os = {
     <section id="os-ch2" class="concept-section">
       <div class="section-banner">
         <div class="section-banner-title">
-          <span>⚙️ 2장: 프로세스 상태 전이도(Diagram of Process State), 메모리 구조 & PCB</span>
+          <span>⚙️ 2장: 프로세스 상태 전이도(Diagram of Process State), 메모리 구조, PCB &amp; 문맥 교환</span>
         </div>
         <span class="badge badge-danger">시험 출제 확정 핵심 파트</span>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">1. 프로세스의 메모리 4대 구조 (Memory Layout of C Program)</div>
+        <div class="concept-card-header">
+          <div class="concept-card-title">1. 프로그램 vs 프로세스 &amp; C 프로그램 메모리 5대 영역</div>
+          <span class="badge badge-blue">메모리 레이아웃 &amp; 코드 매핑</span>
+        </div>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 10px;">
+          • <b>프로그램(Program)</b>: 디스크에 저장된 실행 파일 형태의 명령어 리스트로, 아직 메모리에 올라오지 않은 <b>수동적 존재(Passive Entity)</b>.<br>
+          • <b>프로세스(Process)</b>: 메모리에 적재되어 현재 실행 중인 프로그램으로, 다음 실행할 명령어를 가리키는 PC와 자원 집합을 가진 <b>능동적 존재(Active Entity)</b>. 즉, <b><code>프로세스 = 프로그램(메모리 주소 공간) + PCB</code></b>입니다.
+        </p>
         <table class="concept-table">
-          <thead><tr><th>영역 (Section)</th><th>저장 내용</th><th>크기 결정 시점</th></tr></thead>
+          <thead><tr><th style="width: 190px;">영역 (Section)</th><th>저장 내용 및 특징</th><th style="width: 150px;">주소 위치 &amp; 크기</th></tr></thead>
           <tbody>
-            <tr><td><b>텍스트 / 코드 (Text)</b></td><td>실행 가능한 기계어 명령어 코드</td><td>컴파일 시점 고정</td></tr>
-            <tr><td><b>데이터 (Data)</b></td><td>초기화된 전역 변수 및 정적(static) 변수</td><td>컴파일 시점 고정</td></tr>
-            <tr><td><b>BSS (Block Started by Symbol)</b></td><td>초기화되지 않은 전역 변수 (0으로 자동 초기화)</td><td>컴파일 시점 고정</td></tr>
-            <tr><td><b>힙 (Heap)</b></td><td>프로그래머가 런타임에 동적으로 할당하는 메모리 (malloc, new) (낮은 주소 → 높은 주소)</td><td>동적 팽창 (런타임)</td></tr>
-            <tr><td><b>스택 (Stack)</b></td><td>함수 호출 시 생성되는 매개변수, 지역변수, 복귀주소 (높은 주소 → 낮은 주소)</td><td>동적 팽창 (런타임)</td></tr>
+            <tr><td><b>텍스트 / 코드 (Text / Code)</b></td><td>CPU가 실행할 기계어 명령어 코드 (읽기 전용 Read-only)</td><td>가장 낮은 주소 (고정 크기)</td></tr>
+            <tr><td><b>데이터 (Data)</b></td><td><b>초기화된(Initialized) 전역 변수</b> 및 정적(<code>static</code>) 변수 (프로그램 시작 시 생성, 종료 시 소멸)</td><td>Text 위 (고정 크기)</td></tr>
+            <tr><td><b>BSS (Block Started by Symbol)</b></td><td><b>초기화되지 않은(Uninitialized) 전역 변수</b> 및 <code>static</code> 변수 (런타임 시작 시 0으로 자동 초기화)</td><td>Data 위 (고정 크기)</td></tr>
+            <tr><td><b>힙 (Heap)</b></td><td>프로그래머가 런타임 중에 <code>malloc()</code>, <code>calloc()</code>, <code>new</code>로 <b>동적 할당</b>하는 메모리 (<code>free()</code>로 해제)</td><td>동적 확장 (<b>낮은 주소 → 높은 주소 ↑</b>)</td></tr>
+            <tr><td><b>스택 (Stack)</b></td><td>함수 호출 시 생성되는 임시 데이터: <b>지역 변수(Local Variables), 함수 매개변수(Parameters), 복귀 주소(Return Address)</b></td><td>가장 높은 주소에서 동적 확장 (<b>높은 주소 → 낮은 주소 ↓</b>)</td></tr>
           </tbody>
         </table>
+
+        <div style="margin-top: 12px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color);">
+          <div style="font-weight: 700; color: var(--accent); margin-bottom: 6px;">💻 [교안 실습 코드] C 프로그램 변수별 메모리 적재 영역 완벽 매핑</div>
+          <pre class="code-block" style="margin: 0;">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int x;               // [BSS 영역] 초기화되지 않은 전역 변수
+int y = 15;          // [Data 영역] 초기화된 전역 변수
+
+int main(int argc, char *argv[]) { // argc, argv: [Stack 영역] 함수 매개변수
+    int *values;     // values 포인터 변수 자체는 [Stack 영역]의 지역 변수
+    int i;           // i: [Stack 영역]의 지역 변수
+
+    // malloc()이 할당한 20바이트 공간 자체는 [Heap 영역]에 생성됨!
+    values = (int *)malloc(sizeof(int) * 5);
+
+    for (i = 0; i &lt; 5; i++)
+        values[i] = i; // 기계어 실행 코드는 [Text(Code) 영역]에 저장됨
+
+    return 0;
+}</pre>
+        </div>
 
         <div class="concept-card-header" style="margin-top: 24px;">
           <div class="concept-card-title">2. 프로세스 5대 상태 전이도 (Diagram of Process State)</div>
@@ -404,7 +600,7 @@ window.CONCEPT_DATABASE.os = {
 
         <!-- 표 2-1: 프로세스 5대 상태 상세 정리표 -->
         <div style="font-weight: 800; font-size: 16px; color: var(--ink); margin: 16px 0 8px 0;">
-          📋 [표 1] 프로세스 5대 상태 (5 Process States — 동그라미 빈칸 & 개념 정리)
+          📋 [표 1] 프로세스 5대 활성 상태 (5 Process States — 동그라미 빈칸 &amp; 개념 정리)
         </div>
         <table class="concept-table">
           <thead>
@@ -457,7 +653,7 @@ window.CONCEPT_DATABASE.os = {
 
         <!-- 표 2-2: 프로세스 6대 상태 전이 상세 정리표 -->
         <div style="font-weight: 800; font-size: 16px; color: var(--ink); margin: 18px 0 8px 0;">
-          🔄 [표 2] 프로세스 6대 상태 전이 (6 State Transitions — 화살표 빈칸 & 서술형 완벽 대비표)
+          🔄 [표 2] 프로세스 6대 상태 전이 (6 State Transitions — 화살표 빈칸 &amp; 서술형 완벽 대비표)
         </div>
         <table class="concept-table">
           <thead>
@@ -510,7 +706,7 @@ window.CONCEPT_DATABASE.os = {
 
         <!-- 시험 출제 포인트 Callout -->
         <div class="callout-box warning" style="margin-top: 14px;">
-          <div class="callout-title">🚨 [시험 출제 1순위] 프로세스 상태 전이도 3대 단골 출제 포인트</div>
+          <div class="callout-title">🚨 [시험 출제 1순위] 프로세스 상태 전이도 3대 단골 출제 포인트 + 비활성 상태(휴식/보류)</div>
           <b>1. 왜 <code>waiting</code>에서 <code>running</code>으로 직접 가는 화살표는 없는가? (서술형·객관식 함정 1위)</b><br>
           • <code>waiting</code> 상태이던 프로세스의 입출력이 완료(<code>I/O or event completion</code>)된 시점에, <b>CPU는 이미 다른 프로세스가 <code>running</code> 상태로 점유하고 있을 수 있습니다.</b> 따라서 즉시 CPU를 새치기할 수 없고, 실행 준비가 끝났다는 의미인 <b><code>ready</code> 상태(준비 큐)</b>로 들어가 줄을 선 뒤 <code>scheduler dispatch</code>를 통해서만 <code>running</code>으로 갈 수 있습니다.<br><br>
           <b>2. <code>interrupt</code> (running → ready) vs <code>I/O or event wait</code> (running → waiting) 완벽 구분</b><br>
@@ -518,22 +714,96 @@ window.CONCEPT_DATABASE.os = {
           • <b><code>I/O or event wait</code></b>: 느린 입출력 장치의 응답을 기다려야 해서 프로세스가 <b>자발적으로 CPU를 내려놓은 경우</b> → I/O가 끝날 때까지 실행 불가능하므로 <b><code>waiting</code></b>으로 이동.<br><br>
           <b>3. 7장 CPU 스케줄링(선점 vs 비선점)과의 연결 고리</b><br>
           • <b>비선점형(Non-preemptive)</b>: 오직 <b>④ <code>running → waiting</code> (I/O wait)</b>과 <b>⑥ <code>running → terminated</code> (exit)</b>처럼 프로세스가 스스로 CPU를 반납할 때만 스케줄링 발생.<br>
-          • <b>선점형(Preemptive)</b>: 여기에 더해 <b>③ <code>running → ready</code> (interrupt)</b>와 <b>⑤ <code>waiting → ready</code> (I/O completion)</b> 시점에도 강제로 CPU를 빼앗는 스케줄링 발생!
+          • <b>선점형(Preemptive)</b>: 여기에 더해 <b>③ <code>running → ready</code> (interrupt)</b>와 <b>⑤ <code>waiting → ready</code> (I/O completion)</b> 시점에도 강제로 CPU를 빼앗는 스케줄링 발생!<br><br>
+          <b>4. [교안 심화] 프로세스 비활성 상태: 휴식 상태(Pause) vs 보류 상태(Suspend / Swapped-out)</b><br>
+          • <b>휴식 상태</b>: 프로세스가 메모리에 그대로 남아 있으나 일시적으로 멈춘 상태.<br>
+          • <b>보류 상태 (Suspended)</b>: 메모리 부족, 프로그램 오류, 사용자 중단 요청, 부모의 디버깅 등으로 인해 <b>중기 스케줄러(Swapper)가 프로세스를 메인 메모리에서 디스크(Swap 영역)로 쫓아낸(Swap-out) 상태</b>. 보류 대기에서 입출력이 완료되면 보류 준비 상태로 이동하며, 다시 메모리로 재적재(Swap-in)되면 활성 준비(Ready) 상태로 복귀함.
         </div>
 
-        <div class="concept-card-title" style="margin-top: 18px;">3. PCB (Process Control Block) 구성 요소</div>
-        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 6px;">
-          운영체제가 프로세스를 관리하기 위해 커널 영역에 저장하는 데이터 블록 (프로그램 + PCB = 프로세스):
-        </p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; font-size: 12.5px;">
-          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>PID & PPID</b>: 프로세스 및 부모 프로세스 ID</div>
-          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>프로세스 상태</b>: New, Ready, Running 등</div>
-          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>프로그램 카운터 (PC)</b>: 다음 실행할 명령어 주소</div>
-          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>CPU 레지스터</b>: 누산기, 인덱스, 스택포인터 등</div>
-          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>스케줄링 정보</b>: 우선순위, 큐 포인터</div>
-          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>메모리 관리 정보</b>: 베이스/한계 레지스터, 페이지 테이블</div>
-          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>I/O 상태 정보</b>: 할당된 입출력 장치, 열린 파일 목록</div>
+        <div class="concept-card-header" style="margin-top: 22px;">
+          <div class="concept-card-title">3. PCB(프로세스 제어 블록) &amp; 문맥 교환(Context Switch) 메커니즘</div>
+          <span class="badge badge-danger">서술형 빈출</span>
         </div>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
+          <b>PCB (Process Control Block, TCB)</b>는 운영체제가 각 프로세스를 관리하기 위해 커널 영역에 생성하는 핵심 자료구조입니다. 프로그램이 프로세스가 되려면 반드시 PCB를 부여받아야 하며, 프로세스 종료 시 PCB도 폐기됩니다.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; font-size: 12.5px; margin-bottom: 14px;">
+          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>포인터(Pointer)</b>: 준비 큐·대기 큐의 연결 리스트 구성을 위한 다음 PCB 주소</div>
+          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>프로세스 상태(State)</b>: new, ready, running, waiting, terminated</div>
+          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>PID &amp; PPID</b>: 고유 프로세스 식별 번호 및 부모 프로세스 PID</div>
+          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>프로그램 카운터(PC)</b>: 해당 프로세스가 다음에 실행할 명령어의 주소</div>
+          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>CPU 레지스터</b>: 누산기, 인덱스 레지스터, 스택 포인터(SP), 범용 레지스터 값</div>
+          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>CPU 스케줄링 정보</b>: 프로세스 우선순위, 스케줄링 큐 포인터, 매개변수</div>
+          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>메모리 관리 정보</b>: 기준(Base)·한계(Limit) 레지스터 값, 페이지/세그먼트 테이블</div>
+          <div style="background: var(--bg-surface); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border-color);">• <b>회계(Accounting) &amp; I/O 정보</b>: CPU 사용 시간, 계정 번호, 할당된 장치 및 열린 파일 테이블</div>
+        </div>
+
+        <table class="concept-table">
+          <thead>
+            <tr>
+              <th style="width: 195px;">문맥 교환 항목</th>
+              <th>상세 동작 과정 및 성능 영향</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>문맥 교환 정의<br>(Context Switch)</b></td>
+              <td>CPU가 현재 실행 중인 프로세스 <code>P<sub>0</sub></code>에서 다른 프로세스 <code>P<sub>1</sub></code>으로 넘어가기 위해, <b>기존 프로세스 <code>P<sub>0</sub></code>의 상태(Context: PC, 레지스터 등)를 <code>PCB<sub>0</sub></code>에 저장(Save)</b>하고, <b>새로 실행할 프로세스 <code>P<sub>1</sub></code>의 저장된 상태를 <code>PCB<sub>1</sub></code>에서 복원(Reload)</b>하는 과정</td>
+            </tr>
+            <tr>
+              <td><b>단계별 실행 흐름<br>(P<sub>0</sub> → P<sub>1</sub> → P<sub>0</sub>)</b></td>
+              <td><code>P0 실행 중</code> → 인터럽트 또는 시스템 콜 발생 → <b><code>save state into PCB0</code></b> (<code>P<sub>0</sub></code>는 Idle/대기 전환) → <b><code>reload state from PCB1</code></b> → <code>P1 실행</code> → 인터럽트 발생 → <b><code>save state into PCB1</code></b> → <b><code>reload state from PCB0</code></b> → <code>P0 실행 재개</code></td>
+            </tr>
+            <tr>
+              <td><b>4대 발생 원인</b></td>
+              <td>① 할당된 타임 슬라이스(Time Quantum)를 다 썼을 때 (타이머 인터럽트)<br>
+              ② I/O 작업을 요청하여 스스로 대기(Waiting) 상태로 갈 때<br>
+              ③ 더 높은 우선순위 프로세스가 도착하거나 시그널/인터럽트가 발생했을 때<br>
+              ④ 프로세스가 실행을 마치고 종료(Exit)할 때</td>
+            </tr>
+            <tr>
+              <td><b>오버헤드 특성<br>(Pure Overhead)</b></td>
+              <td><b style="color: var(--tag-danger-ink);">문맥 교환이 진행되는 동안 시스템은 아무런 유용한 사용자 작업도 수행하지 못함 (순수 오버헤드)!</b><br>
+              • 타임 슬라이스가 너무 작으면 문맥 교환이 지나치게 자주 발생하여 시스템 효율 급락.<br>
+              • 하드웨어가 다중 레지스터 세트를 지원하면 레지스터 포인터만 바꾸어 문맥 교환 시간을 단축 가능.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="concept-card-header" style="margin-top: 22px;">
+          <div class="concept-card-title">4. 스케줄링 큐(Queue)와 3단계 스케줄러(장기 · 중기 · 단기) 비교</div>
+          <span class="badge badge-blue">스케줄러 3종 비교</span>
+        </div>
+        <table class="concept-table">
+          <thead>
+            <tr>
+              <th style="width: 170px;">스케줄러 종류</th>
+              <th style="width: 170px;">별칭 &amp; 전이 구간</th>
+              <th>핵심 역할, 호출 빈도 및 다중 프로그래밍 제어</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>장기 스케줄러<br>(Long-term Scheduler)</b></td>
+              <td><b>잡 스케줄러<br>(Job Scheduler)</b><br><code>New → Ready</code></td>
+              <td>• 디스크 풀(Job Pool)의 작업 중 어떤 것을 <b>메인 메모리에 적재하여 준비 큐에 넣을지(admitted) 결정</b><br>
+              • 메모리에 동시에 올라와 있는 프로세스 수인 <b>다중 프로그래밍 정도(Degree of Multiprogramming)를 직접 제어</b><br>
+              • 호출 빈도가 매우 낮음(수 초~수 분 단위). <b>I/O 바운드 프로세스(I/O 위주)와 CPU 바운드 프로세스(연산 위주)를 적절히 혼합(Good Process Mix)</b>하여 선택해야 함 (현대 시분할 OS에는 보통 없음)</td>
+            </tr>
+            <tr>
+              <td><b>중기 스케줄러<br>(Medium-term Scheduler)</b></td>
+              <td><b>스와퍼 (Swapper)</b><br><code>메모리 ↔ 디스크 스왑</code></td>
+              <td>• 메모리에 과부하가 걸리거나 여유 공간이 부족할 때, 당장 실행되지 않는 프로세스를 <b>메인 메모리에서 디스크 스왑 영역으로 내쫓고(Swap-out, 보류 상태)</b> 나중에 다시 불러들임(<b>Swap-in</b>)<br>
+              • <b>다중 프로그래밍 정도를 감소(완화)</b>시키고 메모리 활용 효율을 높임</td>
+            </tr>
+            <tr>
+              <td><b>단기 스케줄러<br>(Short-term Scheduler)</b></td>
+              <td><b>CPU 스케줄러<br>(CPU Scheduler)</b><br><code>Ready → Running</code></td>
+              <td>• 준비 큐(Ready Queue)에 있는 프로세스 중 <b>당장 다음에 CPU를 할당받을 프로세스를 선택</b><br>
+              • 밀리초(ms) 단위로 <b>매우 빈번하게 호출</b>되므로 스케줄링 알고리즘 자체가 반드시 <b>초고속으로 동작</b>해야 함</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
@@ -541,81 +811,289 @@ window.CONCEPT_DATABASE.os = {
     <section id="os-ch3" class="concept-section">
       <div class="section-banner">
         <div class="section-banner-title">
-          <span>🔄 3장: fork(), wait(), exec() & 프로세스 간 통신(IPC)</span>
+          <span>🔄 3장: 프로세스 계층, fork()/wait()/exec() 6대 실습 코드 &amp; IPC 이론</span>
         </div>
-        <span class="badge badge-green">교수님 09 23 녹음 빈출</span>
+        <span class="badge badge-green">교수님 09/23 녹음 전수 수록</span>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">1. 프로세스 생성 핵심 시스템 콜 3대장</div>
+        <div class="concept-card-header">
+          <div class="concept-card-title">1. 프로세스 계층 구조 · 생성 시스템 콜 3대장 · 좀비 vs 고아 프로세스</div>
+          <span class="badge badge-danger">09/23 녹음 핵심</span>
+        </div>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 10px;">
+          운영체제는 부팅 시 최초 프로세스(UNIX <code>init</code> / Linux <code>systemd</code>, <code>PID = 1</code>)를 생성하고, 이 프로세스가 자식 프로세스를 낳으며 <b>트리(Tree) 형태의 계층 구조</b>를 형성합니다. 프로세스 계층 구조의 장점은 <b>① 다중 작업의 동시 처리(로그인 쉘 등), ② 종료 시 자원 회수의 용이성</b>입니다.
+        </p>
         <table class="concept-table">
-          <thead><tr><th>시스템 콜</th><th>역할 및 특징</th><th>시험 주의사항</th></tr></thead>
+          <thead><tr><th style="width: 170px;">시스템 콜 / 개념</th><th>역할 및 핵심 동작 원리</th><th style="width: 240px;">시험 필수 암기 포인트</th></tr></thead>
           <tbody>
             <tr>
-              <td><b>fork()</b></td>
-              <td>현재 프로세스를 복제하여 자식 프로세스 생성 (부모 주소 공간 복사)</td>
-              <td><b>반환값 구분 필수</b>: 부모에게는 자식 PID(>0), 자식에게는 0, 실패 시 -1</td>
+              <td><b><code>fork()</code></b></td>
+              <td>현재 실행 중인 부모 프로세스의 주소 공간(Code, Data, Heap, Stack)과 PCB를 그대로 <b>복제(Copy)</b>하여 새로운 자식 프로세스 생성 (자식은 <code>fork()</code> 직후 다음 문장부터 실행 시작)</td>
+              <td><b>반환값(Return Value) 3가지</b>:<br>• 부모 프로세스: <b>자식의 PID (&gt; 0)</b><br>• 자식 프로세스: <b>0</b><br>• 생성 실패 시: <b>-1</b></td>
             </tr>
             <tr>
-              <td><b>exec() 계열</b></td>
-              <td>기존 프로세스 골격(PID, 부모관계)은 유지하고 코드와 데이터 영역을 새 프로그램으로 덮어씀</td>
-              <td>호출 성공 시 기존 코드는 사라지고 새 프로그램 메인부터 실행 (반환되지 않음)</td>
+              <td><b><code>exec()</code> 계열</b><br><span style="font-size:12px;">(execlp, execvp 등)</span></td>
+              <td>새로운 프로세스를 생성하지 않고, <b>현재 프로세스의 PID와 부모-자식 관계(PPID)는 그대로 유지한 채</b> 메모리 주소 공간(코드, 데이터, 힙, 스택)을 <b>새로운 실행 파일로 완전히 덮어씀(Overlay)</b></td>
+              <td>• PC 등 레지스터와 열린 파일 리셋 후 새 프로그램의 <code>main()</code> 첫 줄부터 실행!<br>• <b>호출 성공 시 절대 원래 코드로 돌아오지 않음</b> (뒤쪽 코드는 영구 소멸)</td>
             </tr>
             <tr>
-              <td><b>wait()</b></td>
-              <td>자식 프로세스가 종료될 때까지 부모 프로세스를 대기(Blocked) 상태로 전환</td>
-              <td>자식의 종료 상태 코드를 수거하고 <b>좀비 프로세스(Zombie)</b> 방지</td>
+              <td><b><code>wait()</code> / <code>exit()</code></b></td>
+              <td>• <code>exit()</code>: 자식이 실행을 마치고 종료 상태값(Exit Status)을 반환하며 OS에 자원 반납<br>• <code>wait()</code>: 부모가 자식이 종료될 때까지 <b>Waiting(Blocked) 상태로 대기</b>하다가 자식의 종료 상태값과 PCB를 수거함</td>
+              <td>부모가 <code>wait()</code>를 호출해 주어야 자식의 PCB가 커널 프로세스 테이블에서 최종 제거됨 (<b>동기화 수단</b>)</td>
+            </tr>
+            <tr>
+              <td><b>좀비 프로세스 (Zombie)</b><br>vs<br><b>고아 프로세스 (Orphan)</b></td>
+              <td>• <b>좀비 프로세스</b>: 자식 프로세스가 <code>exit()</code>로 실행을 종료했으나, <b>부모가 아직 <code>wait()</code>를 호출하지 않아 커널에 자식의 PCB와 종료 상태 정보가 수거되지 않고 남아 있는 상태</b><br>• <b>고아 프로세스</b>: 자식 프로세스가 아직 실행 중인데 <b>부모 프로세스가 <code>wait()</code> 없이 먼저 종료된 상태</b></td>
+              <td>고아 프로세스가 발생하면 최상위 프로세스인 <b><code>init</code>(또는 <code>systemd</code>, PID=1)이 새 부모로 입양</b>하여 주기적으로 <code>wait()</code>를 호출해 자원을 회수함</td>
             </tr>
           </tbody>
         </table>
 
-        <div class="callout-box info" style="margin-top: 14px;">
-          <b>💡 교수님 09 23 강의 출제 스포일러 (부모와 자식의 메모리 격리):</b><br>
-          "자식 프로세스가 fork() 이후 전역 변수나 지역 변수를 변경하더라도, 부모 프로세스의 변수 값은 영향을 받지 않고 그대로 유지됩니다. fork()는 완전히 독립된 주소 공간 복사본을 생성하기 때문입니다!"
+        <div class="callout-box warning" style="margin-top: 14px;">
+          <div class="callout-title">🚨 교수님 09/23 강의 녹음 직접 출제 예고 6대 실습 C 코드 완벽 분석</div>
+          교수님께서 09/23 강의에서 직접 한 줄씩 설명하시며 <b>"이거 결과값이 어떻게 될지 시험 문제로 낼 수 있죠!"</b>라고 강조하신 6가지 C 코드 전체와 실행 결과입니다.
         </div>
 
-        <div class="concept-card-title" style="margin-top: 18px;">🔥 시험 단골: fork() 실행 흐름 & 메모리 독립성 코드 분석</div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; margin-top: 8px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 14px; margin-top: 12px;">
+          <!-- 실습 1 -->
           <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
-            <div style="font-weight: 700; color: var(--accent); margin-bottom: 6px;">[유형 2] fork() 후 전역 변수 독립성 (Copy-on-Write)</div>
-            <pre class="code-block" style="margin: 0;">int value = 5;
+            <div style="font-weight: 800; color: var(--accent); margin-bottom: 6px;">[실습 1] 기본 fork() 호출과 부모·자식 분기</div>
+            <pre class="code-block" style="margin: 0;">#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+
+int main() {
+    pid_t pid;
+    pid = fork(); // 여기서 프로세스가 2개로 복제됨!
+    printf("Hello Process!\\n"); // 부모 1번 + 자식 1번 = 총 2번 출력!
+
+    if (pid &gt; 0) {
+        // 부모 프로세스: 자식의 PID(양수)를 반환받음
+        printf("Parent process (child PID = %d)\\n", pid);
+    } else if (pid == 0) {
+        // 자식 프로세스: 0을 반환받음
+        printf("Child process (return = 0)\\n");
+    }
+    return 0;
+}</pre>
+          </div>
+
+          <!-- 실습 2 -->
+          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
+            <div style="font-weight: 800; color: var(--tag-danger-ink); margin-bottom: 6px;">[실습 2] ⭐ 출제 1순위: fork() 후 전역 변수 독립성</div>
+            <pre class="code-block" style="margin: 0;">#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
+
+int value = 5; // 전역 변수 (Data 영역)
+
 int main() {
     pid_t pid = fork();
-    if (pid == 0) { // 자식 프로세스
-        value += 15;
+    if (pid == 0) {       /* 자식 프로세스 */
+        value += 15;      // 자식 메모리의 value만 20이 됨!
         return 0;
-    } else if (pid &gt; 0) { // 부모 프로세스
-        wait(NULL);
-        printf("PARENT: value = %d\\n", value);
+    } else if (pid &gt; 0) { /* 부모 프로세스 */
+        wait(NULL);       // 자식이 끝날 때까지 대기
+        printf("PARENT: value = %d\\n", value); /* LINE A */
+        return 0;
     }
 }
-// 출력: PARENT: value = 5 (부모 변수는 5 그대로 유지!)</pre>
+/* [출력 결과] PARENT: value = 5
+ * [이유] fork() 시 자식은 부모의 주소 공간을 독립적으로 복제하므로,
+ * 자식이 value를 수정해도 부모 메모리의 value(5)는 변하지 않음! */</pre>
           </div>
+
+          <!-- 실습 3 -->
           <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
-            <div style="font-weight: 700; color: var(--accent); margin-bottom: 6px;">[유형 4] execlp() 메모리 대체 메커니즘</div>
-            <pre class="code-block" style="margin: 0;">pid = fork();
-if (pid == 0) {
-    execlp("/bin/ls", "ls", NULL);
-    printf("LINE J\\n"); // 절대 실행되지 않음!
-} else {
-    wait(NULL);
-    printf("Child Complete\\n");
+            <div style="font-weight: 800; color: var(--accent); margin-bottom: 6px;">[실습 3] 반복문 연쇄 fork() &amp; 논리 단락 평가</div>
+            <pre class="code-block" style="margin: 0;">/* 1) for 루프 연쇄 fork(): 2^n 공식 */
+for (int i = 0; i &lt; 4; i++) {
+    fork();
 }
-// 이유: execlp는 현재 프로세스 메모리를 새 프로그램으로
-// 완전히 대체(덮어쓰기)하므로 기존 코드는 사라짐</pre>
+// i=0(2개) → i=1(4개) → i=2(8개) → i=3(16개)
+// 총 프로세스 개수 = 2^4 = 16개! (새로 생성된 자식은 15개)
+
+/* 2) 논리 OR 단락 평가: fork() || fork() */
+fork() || fork();
+// • 부모(P0): 첫 fork()가 양수(참) → 뒤쪽 fork() 생략! (1개)
+// • 자식(C1): 첫 fork()가 0(거짓) → 뒤쪽 fork() 실행해 손자(GC1) 생성! (2개)
+// → 총 프로세스 = 3개!
+
+/* 3) 논리 AND 단락 평가: fork() &amp;&amp; fork() */
+fork() &amp;&amp; fork();
+// • 부모(P0): 첫 fork()가 양수(참) → 뒤쪽 fork() 실행해 둘째 자식(C2) 생성!
+// • 첫 자식(C1): 첫 fork()가 0(거짓) → 뒤쪽 fork() 생략!
+// → 총 프로세스 = 3개!</pre>
+          </div>
+
+          <!-- 실습 4 -->
+          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
+            <div style="font-weight: 800; color: var(--tag-danger-ink); margin-bottom: 6px;">[실습 4] ⭐ execlp() 메모리 덮어쓰기 (LINE J 미출력)</div>
+            <pre class="code-block" style="margin: 0;">#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
+
+int main() {
+    pid_t pid = fork();
+    if (pid == 0) { /* 자식 프로세스 */
+        execlp("/bin/ls", "ls", NULL);
+        printf("LINE J\\n"); // ★ 절대 화면에 출력되지 않음!
+    } else if (pid &gt; 0) { /* 부모 프로세스 */
+        wait(NULL);
+        printf("Child Complete\\n");
+    }
+    return 0;
+}
+/* [이유] execlp()가 성공하면 자식의 코드/데이터/힙/스택 주소 공간이
+ * "/bin/ls" 프로그램으로 완전히 덮어씌워져(대체) 기존 코드는 사라짐!
+ * (단, execlp가 오류로 실패했을 때만 LINE J가 실행됨) */</pre>
+          </div>
+
+          <!-- 실습 5 -->
+          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
+            <div style="font-weight: 800; color: var(--tag-danger-ink); margin-bottom: 6px;">[실습 5] ⭐ 교수님 강조: fork() 반환값(pid) vs getpid()(pid1)</div>
+            <pre class="code-block" style="margin: 0;">/* 가정: 부모 실제 PID = 7342, 새로 생성된 자식 실제 PID = 7343 */
+pid_t pid, pid1;
+pid = fork();
+
+if (pid == 0) { /* 자식 프로세스 */
+    pid1 = getpid(); // 자식 자신의 실제 PID 조회
+    printf("child: pid = %d\\n", pid);   // [A] 출력: 0 (fork 반환값)
+    printf("child: pid1 = %d\\n", pid1); // [B] 출력: 7343 (자식 실제 PID)
+} else if (pid &gt; 0) { /* 부모 프로세스 */
+    wait(NULL);
+    pid1 = getpid(); // 부모 자신의 실제 PID 조회
+    printf("parent: pid = %d\\n", pid);   // [C] 출력: 7343 (자식 PID 반환값)
+    printf("parent: pid1 = %d\\n", pid1); // [D] 출력: 7342 (부모 실제 PID)
+}</pre>
+          </div>
+
+          <!-- 실습 6 -->
+          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
+            <div style="font-weight: 800; color: var(--accent); margin-bottom: 6px;">[실습 6] 전역 배열 nums[5] 자식 수정 vs 부모 원본</div>
+            <pre class="code-block" style="margin: 0;">#define SIZE 5
+int nums[SIZE] = {0, 1, 2, 3, 4}; // 전역 배열
+
+int main() {
+    int i;
+    pid_t pid = fork();
+    if (pid == 0) { /* 자식 프로세스 */
+        for (i = 0; i &lt; SIZE; i++) {
+            nums[i] *= -i; // 자식 배열만 0, -1, -4, -9, -16으로 변경
+            printf("CHILD: %d ", nums[i]);
+        }
+    } else if (pid &gt; 0) { /* 부모 프로세스 */
+        wait(NULL);
+        for (i = 0; i &lt; SIZE; i++)
+            printf("PARENT: %d ", nums[i]); // 부모 배열은 원본 그대로!
+    }
+    return 0;
+}
+/* [출력 결과]
+ * CHILD:  0 -1 -4 -9 -16
+ * PARENT: 0  1  2  3  4  (자식의 배열 수정은 부모에 영향 없음!) */</pre>
           </div>
         </div>
 
-        <div class="concept-card-title" style="margin-top: 18px;">2. 프로세스 간 통신 (IPC) 2대 모델 비교</div>
+        <div class="concept-card-header" style="margin-top: 24px;">
+          <div class="concept-card-title">2. 프로세스 간 통신 (IPC: Interprocess Communication) 기본 개념 &amp; 2대 모델</div>
+          <span class="badge badge-blue">IPC 통신 이론</span>
+        </div>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 10px;">
+          • <b>독립적 프로세스(Independent)</b>: 다른 프로세스와 데이터를 공유하지 않고 실행에 영향을 주지도 받지도 않는 프로세스.<br>
+          • <b>협력적 프로세스(Cooperating)</b>: 다른 프로세스와 데이터를 주고받으며 영향을 주고받는 프로세스.<br>
+          • <b>프로세스 협력을 허용하는 4대 이유</b>: <b>① 정보 공유(Information Sharing), ② 계산 가속화(Computation Speedup - 작업을 쪼개 병렬 실행), ③ 모듈성(Modularity - 시스템 기능을 별도 프로세스/스레드로 분리), ④ 편의성(Convenience)</b>.
+        </p>
+
         <table class="concept-table">
-          <thead><tr><th>항목</th><th>공유 메모리 (Shared Memory)</th><th>메시지 패싱 (Message Passing)</th></tr></thead>
+          <thead>
+            <tr>
+              <th style="width: 170px;">비교 기준</th>
+              <th>공유 메모리 (Shared Memory)</th>
+              <th>메시지 패싱 (Message Passing)</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td><b>메커니즘</b></td><td>두 프로세스가 메모리의 특정 영역을 함께 공유</td><td>운영체제 커널을 통해 send() / receive() 메시지 교환</td></tr>
-            <tr><td><b>속도</b></td><td><b>매우 빠름</b> (최초 공유 영역 설정 후 커널 개입 없음)</td><td>상대적 느림 (메시지 전송마다 시스템 콜 및 커널 개입)</td></tr>
-            <tr><td><b>동기화 책임</b></td><td>응용 프로그래머가 직접 동기화(Lock 등) 처리 필요</td><td>운영체제가 통신 동기화를 자동으로 지원</td></tr>
-            <tr><td><b>통신 형태</b></td><td>생산자-소비자 버퍼 모델</td><td>직접 통신(Direct) 또는 간접 통신(Indirect - 메일박스/포트)</td></tr>
+            <tr>
+              <td><b>핵심 동작 원리</b></td>
+              <td>협력 프로세스들이 <b>특정 메모리 영역을 함께 공유</b>하고, 해당 영역에 평범한 메모리 읽기(Read)/쓰기(Write)를 수행하여 데이터를 교환</td>
+              <td>공유 변수 없이 운영체제 커널이 제공하는 <b><code>send(message)</code>와 <code>receive(message)</code> 시스템 콜</b>을 통해 메시지를 주고받음</td>
+            </tr>
+            <tr>
+              <td><b>커널 개입 여부</b></td>
+              <td><b>최초에 공유 메모리 영역을 구축할 때만 시스템 콜(커널 개입)이 필요</b>하며, 이후 모든 데이터 접근은 커널 개입 없이 일반 메모리 접근으로 처리됨</td>
+              <td>메시지를 주고받는 <b>매 통신마다 시스템 콜을 통해 커널이 지속적으로 개입</b>함 (프로세스 A → 커널 버퍼 복사 → 프로세스 B)</td>
+            </tr>
+            <tr>
+              <td><b>통신 속도 &amp; 대량 데이터</b></td>
+              <td><b>매우 빠름</b> (대량의 데이터를 고속으로 교환할 때 압도적으로 유리)</td>
+              <td>상대적으로 느림 (커널 복사 및 시스템 콜 오버헤드 존재. <b>적은 양의 데이터 교환이나 분산 네트워크 환경</b>에 적합)</td>
+            </tr>
+            <tr>
+              <td><b>동기화 및 충돌 책임</b></td>
+              <td>동시에 같은 위치에 쓰지 않도록 <b>응용 프로그래머가 직접 동기화(Lock, 세마포어 등) 코드를 작성</b>해야 함</td>
+              <td>운영체제 커널이 <code>send/receive</code> 큐 관리 및 동기화를 <b>자동으로 지원</b>하여 충돌이 적어 구현이 쉬움</td>
+            </tr>
           </tbody>
         </table>
+
+        <div class="callout-box info" style="margin-top: 12px;">
+          <div class="callout-title">📡 IPC 통신 방향성 · 동기화 방식 · 직접 vs 간접 통신(Mailbox) 정리</div>
+          <b>1. 통신 방향에 따른 분류 (3가지)</b><br>
+          • <b>단방향 (Simplex)</b>: 한쪽 방향으로만 전송 가능 (예: 일반 익명 파이프 1개, TV/라디오 방송)<br>
+          • <b>반이중 (Half-Duplex)</b>: 양방향 전송이 가능하지만 <b>동시 전송은 불가능</b>하고 한 번에 한 방향씩만 전송 (예: 무전기 워키토키)<br>
+          • <b>전이중 (Full-Duplex)</b>: 양방향으로 <b>동시에 전송 가능</b> (예: 전화 통화, TCP 소켓)<br><br>
+          <b>2. 통신 동기화(Synchronization) 분류</b><br>
+          • <b>동기화 통신 (Synchronous / Blocking)</b>: <b>Blocking Send</b>(수신자가 받을 때까지 송신자 대기) / <b>Blocking Receive</b>(메시지가 도착할 때까지 수신자가 Sleep 대기). 데이터가 꽉 차거나 비어 있을 때 프로세스를 대기시켜 낭비를 막음 (예: 파이프, 소켓).<br>
+          • <b>비동기화 통신 (Asynchronous / Non-blocking)</b>: 송신자가 메시지를 보내고 기다리지 않고 즉시 자기 작업 계속 수행, 수신자도 유효한 메시지나 Null을 즉시 반환받음 (데이터 도착 여부를 루프로 계속 확인하는 <b>바쁜 대기 Busy Waiting</b> 발생 가능).<br><br>
+          <b>3. 메시지 패싱의 주소 지정: 직접 통신(Direct) vs 간접 통신(Indirect)</b><br>
+          • <b>직접 통신</b>: 송수신 대상을 명시적으로 직접 지정 (<code>send(P, message)</code>, <code>receive(Q, message)</code>). 두 프로세스 사이에 정확히 1개의 링크가 자동 생성됨 (대칭형 vs 비대칭형 <code>receive(&amp;id, message)</code>). 단점: 프로세스 식별자(이름)가 바뀌면 모든 코드를 수정해야 함(모듈성 저하).<br>
+          • <b>간접 통신</b>: 프로세스가 아닌 <b>메일박스(Mailbox) 또는 포트(Port)</b>라는 중간 우체통을 통해 송수신 (<code>send(A, message)</code>, <code>receive(A, message)</code>). 하나의 메일박스를 여러 프로세스가 공유할 수 있어 유연함.
+        </div>
+
+        <div class="concept-card-header" style="margin-top: 22px;">
+          <div class="concept-card-title">3. 공유 메모리 대표 모델: 생산자-소비자 문제와 환형 버퍼(Circular Buffer) C 코드</div>
+          <span class="badge badge-danger">빈칸·수식 암기 필수</span>
+        </div>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
+          • <b>무한 버퍼(Unbounded Buffer)</b>: 버퍼 크기에 제한이 없어 생산자는 항상 즉시 생산 가능(소비자만 빈 버퍼 시 대기).<br>
+          • <b>유한 버퍼(Bounded Buffer)</b>: 버퍼 크기(<code>BUFFER_SIZE</code>)가 고정되어 있어, <b>버퍼가 가득 차면 생산자가 대기</b>하고 <b>버퍼가 비어 있으면 소비자가 대기</b>합니다.
+        </p>
+        <pre class="code-block">#define BUFFER_SIZE 10
+
+typedef struct {
+    int data;
+} item;
+
+item buffer[BUFFER_SIZE]; // 크기 10인 공유 메모리 환형 배열
+int in = 0;               // 생산자가 다음 데이터를 넣을(Write) 인덱스 포인터
+int out = 0;              // 소비자가 다음 데이터를 꺼낼(Read) 인덱스 포인터
+
+/* [1] 생산자 프로세스 (Producer) */
+item next_produced;
+while (true) {
+    /* 버퍼가 꽉 찼으면(Full) 아무것도 안 하고 대기 (Busy Waiting) */
+    while (((in + 1) % BUFFER_SIZE) == out)
+        ; /* do nothing */
+
+    buffer[in] = next_produced;       // in 위치에 데이터 저장
+    in = (in + 1) % BUFFER_SIZE;      // 포인터를 환형으로 1칸 전진 (9 다음엔 0)
+}
+
+/* [2] 소비자 프로세스 (Consumer) */
+item next_consumed;
+while (true) {
+    /* 버퍼가 비어 있으면(Empty) 아무것도 안 하고 대기 (Busy Waiting) */
+    while (in == out)
+        ; /* do nothing */
+
+    next_consumed = buffer[out];      // out 위치에서 데이터 추출
+    out = (out + 1) % BUFFER_SIZE;    // 포인터를 환형으로 1칸 전진
+}</pre>
+        <div class="callout-box warning" style="margin-top: 10px;">
+          <b>🎯 [시험 빈출 핵심 질문] 왜 <code>BUFFER_SIZE</code>가 10인데 최대 9개(<code>BUFFER_SIZE - 1</code>개)의 데이터만 저장할 수 있는가?</b><br>
+          만약 10칸을 모두 꽉 채우면 <code>in</code>이 한 바퀴를 돌아 <code>in == out</code>이 되어버립니다. 그런데 <code>in == out</code>은 <b>버퍼가 비어 있음(Empty)</b>을 판별하는 조건식과 똑같기 때문에, 별도의 <code>count</code> 변수 없이는 버퍼가 텅 빈 것인지 꽉 찬 것인지 구분할 수 없습니다. 따라서 <b>항상 1칸을 비워두어 <code>((in + 1) % BUFFER_SIZE) == out</code>일 때를 Full 상태로 판별</b>합니다!
+        </div>
       </div>
     </section>
 
@@ -623,57 +1101,223 @@ if (pid == 0) {
     <section id="os-ch4" class="concept-section">
       <div class="section-banner">
         <div class="section-banner-title">
-          <span>🔌 4장: IPC 실습 (파이프, POSIX 공유메모리, 소켓)</span>
+          <span>🔌 4장: IPC 실제 구현 (POSIX 공유 메모리, UNIX 파이프, 소켓, RPC)</span>
         </div>
-        <span class="badge badge-blue">실습 코드 & 네트워크</span>
+        <span class="badge badge-blue">4장 전체 실습 C 코드 수록</span>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">1. 익명 파이프 (Ordinary Pipes)의 구조 및 규칙</div>
-        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
-          UNIX/Linux에서 부모-자식 간에 데이터를 주고받는 가장 고전적인 단방향(Half-duplex) 도구:
-        </p>
-        <div class="code-block">
-int fd[2];
-pipe(fd); // fd[0] = 파이프 읽기 끝 (Read End), fd[1] = 파이프 쓰기 끝 (Write End)
+        <div class="concept-card-header">
+          <div class="concept-card-title">1. POSIX 공유 메모리(Shared Memory) 시스템 콜 4단계 &amp; C 코드</div>
+          <span class="badge badge-blue">shm_open · ftruncate · mmap</span>
         </div>
-        <ul style="margin: 8px 0 0 18px; font-size: 13px; color: var(--text-secondary);">
-          <li><b>단방향 통신</b>: 한쪽 끝에서는 쓰기만, 다른 쪽 끝에서는 읽기만 가능</li>
-          <li><b>양방향 통신 구현</b>: 부모→자식용 파이프 1개 + 자식→부모용 파이프 1개 = <b>총 2개의 파이프 필요</b></li>
-          <li><b>사용 규칙</b>: 통신에 사용하지 않는 파일 디스크립터(예: 부모가 쓰기만 할 때 fd[0])는 반드시 <code>close()</code>할 것</li>
-        </ul>
-
-        <div class="concept-card-title" style="margin-top: 18px;">2. 클라이언트-서버 통신 기법 (소켓 & RPC)</div>
         <table class="concept-table">
-          <thead><tr><th>기법</th><th>정의 및 핵심 내용</th></tr></thead>
+          <thead>
+            <tr>
+              <th style="width: 210px;">POSIX 공유 메모리 함수</th>
+              <th>역할 및 동작 설명</th>
+            </tr>
+          </thead>
           <tbody>
             <tr>
-              <td><b>소켓 (Socket)</b></td>
-              <td>네트워크 통신의 종단점(Endpoint). <b>IP 주소와 포트(Port) 번호의 조합</b>으로 식별 (예: 192.168.0.1:80). TCP(연결지향 Stream), UDP(비연결지향 Datagram) 지원</td>
+              <td><b>1) <code>shm_open()</code></b></td>
+              <td>지정된 이름(<code>"OS"</code>)으로 공유 메모리 객체를 생성하거나 열고 <b>파일 디스크립터(<code>shm_fd</code>)를 반환</b><br><code>shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);</code></td>
             </tr>
             <tr>
-              <td><b>RPC (Remote Procedure Call)</b></td>
-              <td>원격 시스템에 있는 함수/프로시저를 마치 로컬 함수 호출하듯 호출할 수 있도록 추상화한 원격 서비스 인터페이스. 스텁(Stub)이 매개변수 마샬링(Marshaling) 수행</td>
+              <td><b>2) <code>ftruncate()</code></b></td>
+              <td>생성된 공유 메모리 객체의 <b>크기(바이트 단위, 예: 4096B)를 설정</b><br><code>ftruncate(shm_fd, 4096);</code></td>
+            </tr>
+            <tr>
+              <td><b>3) <code>mmap()</code></b></td>
+              <td>공유 메모리 객체를 현재 프로세스의 주소 공간에 <b>메모리 매핑(Mapping)하고 시작 주소 포인터(<code>ptr</code>)를 반환</b><br><code>ptr = mmap(0, SIZE, PROT_WRITE, MAP_SHARED, shm_fd, 0);</code></td>
+            </tr>
+            <tr>
+              <td><b>4) <code>shm_unlink()</code></b></td>
+              <td>소비자가 데이터를 다 읽은 후 <b>공유 메모리 객체를 시스템에서 최종 제거(삭제)</b><br><code>shm_unlink(name);</code> (컴파일 시 <code>gcc ... -lrt</code> 옵션 사용)</td>
             </tr>
           </tbody>
         </table>
 
-        <div class="concept-card-title" style="margin-top: 18px;">🔄 생산자-소비자 문제 환형 버퍼 (Circular Buffer) 판별 조건식</div>
-        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
-          공유 메모리 환경에서 생산자(Producer)와 소비자(Consumer)가 환형 버퍼를 사용할 때의 필수 판별 수식:
-        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 14px; margin-top: 12px;">
+          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
+            <div style="font-weight: 800; color: var(--accent); margin-bottom: 6px;">[POSIX 공유 메모리 생산자 (Producer)]</div>
+            <pre class="code-block" style="margin: 0;">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;sys/shm.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;sys/mman.h&gt;
+#include &lt;unistd.h&gt;
+
+int main() {
+    const int SIZE = 4096;
+    const char *name = "OS";
+    const char *message_0 = "Hello";
+    const char *message_1 = "World!";
+    int shm_fd;
+    void *ptr;
+
+    /* 1. 공유 메모리 객체 생성 */
+    shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
+    /* 2. 공유 메모리 크기 4096 바이트로 설정 */
+    ftruncate(shm_fd, SIZE);
+    /* 3. 메모리 매핑 후 포인터 획득 */
+    ptr = mmap(0, SIZE, PROT_WRITE, MAP_SHARED, shm_fd, 0);
+
+    /* 4. 공유 메모리에 문자열 기록 및 포인터 이동 */
+    sprintf(ptr, "%s", message_0);
+    ptr += strlen(message_0);
+    sprintf(ptr, "%s", message_1);
+    ptr += strlen(message_1);
+    return 0;
+}</pre>
+          </div>
+
+          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
+            <div style="font-weight: 800; color: var(--accent); margin-bottom: 6px;">[POSIX 공유 메모리 소비자 (Consumer)]</div>
+            <pre class="code-block" style="margin: 0;">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;sys/shm.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;sys/mman.h&gt;
+
+int main() {
+    const int SIZE = 4096;
+    const char *name = "OS";
+    int shm_fd;
+    void *ptr;
+
+    /* 1. 기존 생성된 "OS" 공유 메모리 읽기 전용 오픈 */
+    shm_fd = shm_open(name, O_RDONLY, 0666);
+    /* 2. 메모리 매핑 */
+    ptr = mmap(0, SIZE, PROT_READ, MAP_SHARED, shm_fd, 0);
+
+    /* 3. 공유 메모리에서 데이터 읽어서 출력 ("HelloWorld!") */
+    printf("%s\\n", (char *)ptr);
+
+    /* 4. 공유 메모리 객체 제거 */
+    shm_unlink(name);
+    return 0;
+}</pre>
+          </div>
+        </div>
+
+        <div class="concept-card-header" style="margin-top: 24px;">
+          <div class="concept-card-title">2. 파이프(Pipes): 익명 파이프(Ordinary Pipe) vs 지명 파이프(Named Pipe / FIFO)</div>
+          <span class="badge badge-danger">fd[0] · fd[1] 완벽 구분</span>
+        </div>
         <table class="concept-table">
-          <thead><tr><th>상태 구분</th><th>C 언어 수식 형태</th><th>핵심 메커니즘</th></tr></thead>
+          <thead>
+            <tr>
+              <th style="width: 170px;">비교 항목</th>
+              <th>익명 파이프 (Ordinary Pipes)</th>
+              <th>지명 파이프 (Named Pipes / FIFOs)</th>
+            </tr>
+          </thead>
           <tbody>
             <tr>
-              <td><b>버퍼가 비어 있음 (Empty)</b></td>
-              <td><code>in == out</code></td>
-              <td>생산자 포인터(in)와 소비자 포인터(out)가 같을 때 (소비자가 busy wait 대기)</td>
+              <td><b>프로세스 관계 제약</b></td>
+              <td><b>반드시 부모-자식 관계</b>가 있어야만 통신 가능 (부모가 <code>pipe(fd)</code> 생성 후 <code>fork()</code>로 자식이 파일 디스크립터 <code>fd</code>를 상속받음)</td>
+              <td>파일 시스템에 이름을 가진 특수 파일(<code>mkfifo()</code>)로 생성되므로 <b>부모-자식 관계가 없는 전혀 무관한 프로세스들 간에도 통신 가능</b></td>
             </tr>
             <tr>
-              <td><b>버퍼가 가득 참 (Full)</b></td>
-              <td><code>((in + 1) % BUFFER_SIZE) == out</code></td>
-              <td>버퍼 크기가 N일 때 최대 N-1개만 채워 비어있음과 가득참을 명확히 구분 (생산자가 busy wait 대기)</td>
+              <td><b>통신 방향</b></td>
+              <td><b>단방향 (Simplex / One-way)</b> 전용:<br>
+              • <b style="color: var(--accent);"><code>fd[0]</code> = 읽기 끝 (Read End)</b><br>
+              • <b style="color: var(--tag-danger-ink);"><code>fd[1]</code> = 쓰기 끝 (Write End)</b><br>
+              ※ <b>양방향 통신을 하려면 파이프를 2개 생성해야 함!</b></td>
+              <td><b>양방향(반이중 Half-duplex) 통신 가능</b> (UNIX에서는 반이중, Windows Named Pipe는 전이중 및 네트워크 원격 통신까지 지원)</td>
+            </tr>
+            <tr>
+              <td><b>생명 주기 (Lifetime)</b></td>
+              <td>통신하는 부모·자식 프로세스가 종료되면 <b>파이프도 즉시 자동 소멸</b></td>
+              <td>프로세스가 종료되어도 파일 시스템에 계속 남아있음 (명시적으로 삭제 필요)</td>
+            </tr>
+            <tr>
+              <td><b>OS별 명칭</b></td>
+              <td>UNIX/Linux <code>pipe(int fd[])</code> (쉘의 <code>ls | less</code> 파이프라인 기호) / Windows <code>Anonymous Pipe</code></td>
+              <td>UNIX/Linux <b>FIFO</b> (<code>mkfifo</code>) / Windows <b>Named Pipe</b></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top: 12px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color);">
+          <div style="font-weight: 800; color: var(--accent); margin-bottom: 6px;">💻 [4장 교안 필수 코드] UNIX Ordinary Pipe 부모 → 자식 메시지 전송 전체 C 코드</div>
+          <pre class="code-block" style="margin: 0;">#include &lt;sys/types.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+
+#define BUFFER_SIZE 25
+#define READ_END 0   // fd[0]은 반드시 읽기 전용 끝(Read End)
+#define WRITE_END 1  // fd[1]은 반드시 쓰기 전용 끝(Write End)
+
+int main(void) {
+    char write_msg[BUFFER_SIZE] = "Greetings";
+    char read_msg[BUFFER_SIZE];
+    int fd[2];
+    pid_t pid;
+
+    /* 1. fork() 호출 전에 먼저 파이프를 생성해야 자식이 fd[0], fd[1]을 물려받음! */
+    if (pipe(fd) == -1) {
+        fprintf(stderr, "Pipe failed");
+        return 1;
+    }
+
+    /* 2. 자식 프로세스 생성 */
+    pid = fork();
+
+    if (pid &gt; 0) { /* 부모 프로세스 (Producer 역할: 파이프에 쓰기) */
+        close(fd[READ_END]); // ★ 사용하지 않는 읽기 끝(fd[0])은 반드시 즉시 닫음!
+        write(fd[WRITE_END], write_msg, strlen(write_msg) + 1);
+        close(fd[WRITE_END]); // 쓰기 완료 후 쓰기 끝(fd[1]) 닫음 (자식에게 EOF 전달)
+    }
+    else if (pid == 0) { /* 자식 프로세스 (Consumer 역할: 파이프에서 읽기) */
+        close(fd[WRITE_END]); // ★ 사용하지 않는 쓰기 끝(fd[1])은 반드시 즉시 닫음!
+        read(fd[READ_END], read_msg, BUFFER_SIZE);
+        printf("read %s\\n", read_msg); // 출력: read Greetings
+        close(fd[READ_END]);
+    }
+    return 0;
+}</pre>
+          <div style="font-size: 12.5px; color: var(--text-secondary); margin-top: 8px;">
+            💡 <b>왜 안 쓰는 파이프 끝(<code>fd[0]</code> 또는 <code>fd[1]</code>)을 반드시 <code>close()</code> 해야 하는가?</b> 읽기 프로세스가 <code>read()</code>를 호출했을 때 모든 쓰기 끝(<code>fd[1]</code>)이 닫혀야만 <code>EOF(0)</code>를 감지하고 정상 종료할 수 있습니다. 만약 자식 자신이 물려받은 <code>fd[1]</code>을 닫지 않으면 커널은 아직 쓸 프로세스가 남아있다고 판단하여 자식의 <code>read()</code>가 영원히 블록(Block)될 수 있습니다.
+          </div>
+        </div>
+
+        <div class="concept-card-header" style="margin-top: 24px;">
+          <div class="concept-card-title">3. 네트워크 클라이언트-서버 통신: 소켓(Socket) &amp; 원격 프로시저 호출(RPC)</div>
+          <span class="badge badge-blue">소켓 3종 &amp; RPC 스텁</span>
+        </div>
+        <table class="concept-table">
+          <thead>
+            <tr>
+              <th style="width: 190px;">통신 기법</th>
+              <th>상세 구조 및 시험 출제 포인트</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>소켓 (Socket)</b></td>
+              <td>• 정의: 네트워크 상에서 두 프로세스가 통신하기 위한 <b>양 끝단(Endpoint of Communication)</b>.<br>
+              • 구성: <b><code>IP 주소 + 포트 번호(Port Number)</code>의 결합</b> (예: <code>146.86.5.20:1625</code> ↔ 웹 서버 <code>161.25.19.8:80</code>).<br>
+              • 포트 번호 규칙: <b>1024 미만(0~1023)</b>은 잘 알려진 표준 서비스(Well-known Ports: HTTP 80, FTP 21, SSH 22, Telnet 23)용으로 예약되어 있으며, 클라이언트는 1024 이상의 임의 포트를 할당받음.<br>
+              • 루프백 주소: 자기 자신 컴퓨터를 가리키는 특수 IP 주소는 <b><code>127.0.0.1</code> (localhost)</b>.</td>
+            </tr>
+            <tr>
+              <td><b>Java의 3가지 소켓 클래스</b></td>
+              <td>1) <b><code>Socket</code> 클래스 (TCP 연결 지향형)</b>: 신뢰성 있는 바이트 스트림 전송 보장 (서버는 <code>ServerSocket</code>으로 <code>accept()</code> 대기)<br>
+              2) <b><code>DatagramSocket</code> 클래스 (UDP 비연결형)</b>: 연결 설정 없이 패킷 단위로 빠르게 전송하나 신뢰성/순서 보장 안 됨<br>
+              3) <b><code>MulticastSocket</code> 클래스</b>: DatagramSocket의 서브클래스로, 특정 그룹의 여러 호스트에게 동시에 데이터 전송</td>
+            </tr>
+            <tr>
+              <td><b>RPC<br>(Remote Procedure Call)</b></td>
+              <td>• 정의: 네트워크로 연결된 <b>다른 원격 컴퓨터에 있는 함수(프로시저)를 마치 내 로컬 메모리에 있는 함수를 호출하듯</b> 추상화해 주는 고수준 통신 기법.<br>
+              • <b>스텁 (Stub) &amp; 마샬링 (Marshaling)</b>: 클라이언트 측 <b>스텁(Client Stub)</b>이 함수 매개변수들을 네트워크 전송 표준 포맷(<b>XDR: External Data Representation</b> 등)으로 포장하는 <b>마샬링(Marshaling, 직렬화)</b>을 수행해 서버로 전송하면, 서버 측 스텁(Server Stub / Skeleton)이 언마샬링(Unmarshaling)하여 실제 프로시저를 실행한 뒤 결과를 돌려줌.<br>
+              • <b>데이터 표현 문제 해결</b>: CPU마다 다른 바이트 순서(<b>Big-Endian vs Little-Endian</b>) 차이를 극복하기 위해 중립 표현인 <b>XDR</b>을 사용.<br>
+              • <b>호출 의미론</b>: 네트워크 중복 전송 오류로 인해 프로시저가 여러 번 실행되는 것을 막기 위해 타임스탬프와 ACK를 사용하여 <b>최대 한 번(At most once)</b> 또는 <b>정확히 한 번(Exactly once)</b> 실행을 보장함.</td>
             </tr>
           </tbody>
         </table>
@@ -684,132 +1328,607 @@ pipe(fd); // fd[0] = 파이프 읽기 끝 (Read End), fd[1] = 파이프 쓰기 �
     <section id="os-ch5-6" class="concept-section">
       <div class="section-banner">
         <div class="section-banner-title">
-          <span>🧵 5·6장: 스레드(Thread), 3대 모델 & 동시성 vs 병렬성</span>
+          <span>🧵 5·6장: 스레드(Thread) 구조, 멀티스레딩 모델, Pthreads/OpenMP &amp; 6주차 실습 코드</span>
         </div>
-        <span class="badge badge-purple">교수님 6주차 출제 스포</span>
+        <span class="badge badge-purple">교수님 6주차 출제 스포 100%</span>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">1. 멀티스레딩의 4대 이점 (Benefits)</div>
+        <div class="concept-card-header">
+          <div class="concept-card-title">1. 스레드(Thread) 개념과 프로세스 vs 스레드 메모리 공유 구조</div>
+          <div>
+            <span class="badge badge-danger">교수님 "그려보세요" 강조!</span>
+            <span class="badge badge-amber">1순위 암기</span>
+          </div>
+        </div>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 10px;">
+          <b>스레드(Thread, 경량 프로세스 LWP)</b>는 프로세스 내부에서 실제로 <b>CPU 스케줄링과 실행이 이루어지는 가장 작은 기본 단위(Basic Unit of CPU Utilization)</b>입니다.
+        </p>
+
+        <!-- 단일 스레드 vs 멀티스레드 프로세스 비교 도해 (SVG) -->
+        <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-bottom: 14px;">
+          <div style="font-weight: 800; font-size: 14.5px; color: #0f172a; margin-bottom: 8px; text-align: center;">
+            📐 [6주차 교수님 출제 강조 도해] 단일 스레드 프로세스 vs 멀티스레드 프로세스의 자원 공유/독립 구조
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+            <div style="background: #ffffff; border: 1.5px solid #94a3b8; border-radius: 8px; padding: 10px;">
+              <div style="font-weight: 800; color: #1e293b; text-align: center; margin-bottom: 8px; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px;">단일 스레드 프로세스 (Single-Threaded)</div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; text-align: center; font-size: 12.5px; font-weight: 700; margin-bottom: 8px;">
+                <div style="background: #dbeafe; color: #1e40af; padding: 6px; border-radius: 4px; border: 1px solid #93c5fd;">code</div>
+                <div style="background: #dbeafe; color: #1e40af; padding: 6px; border-radius: 4px; border: 1px solid #93c5fd;">data</div>
+                <div style="background: #dbeafe; color: #1e40af; padding: 6px; border-radius: 4px; border: 1px solid #93c5fd;">files (heap)</div>
+              </div>
+              <div style="background: #fef3c7; border: 1.5px dashed #d97706; border-radius: 6px; padding: 8px; text-align: center; font-size: 12.5px; color: #92400e; font-weight: 700;">
+                [단일 실행 흐름 (Thread 1개)]<br>
+                registers &nbsp;|&nbsp; stack &nbsp;|&nbsp; PC
+              </div>
+            </div>
+            <div style="background: #ffffff; border: 2px solid #2563eb; border-radius: 8px; padding: 10px;">
+              <div style="font-weight: 800; color: #1d4ed8; text-align: center; margin-bottom: 8px; border-bottom: 1px solid #bfdbfe; padding-bottom: 4px;">멀티스레드 프로세스 (Multithreaded — 시험 필수!)</div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; text-align: center; font-size: 12.5px; font-weight: 800; margin-bottom: 8px;">
+                <div style="background: #dbeafe; color: #1e40af; padding: 6px; border-radius: 4px; border: 1px solid #60a5fa;">공유: code</div>
+                <div style="background: #dbeafe; color: #1e40af; padding: 6px; border-radius: 4px; border: 1px solid #60a5fa;">공유: data</div>
+                <div style="background: #dbeafe; color: #1e40af; padding: 6px; border-radius: 4px; border: 1px solid #60a5fa;">공유: files/heap</div>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; text-align: center; font-size: 11.5px; font-weight: 700;">
+                <div style="background: #fee2e2; border: 1.5px solid #ef4444; border-radius: 6px; padding: 6px; color: #991b1b;">
+                  <b>Thread 1 (독립)</b><br>registers<br>stack / PC
+                </div>
+                <div style="background: #fee2e2; border: 1.5px solid #ef4444; border-radius: 6px; padding: 6px; color: #991b1b;">
+                  <b>Thread 2 (독립)</b><br>registers<br>stack / PC
+                </div>
+                <div style="background: #fee2e2; border: 1.5px solid #ef4444; border-radius: 6px; padding: 6px; color: #991b1b;">
+                  <b>Thread 3 (독립)</b><br>registers<br>stack / PC
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <table class="concept-table">
-          <thead><tr><th>이점 (Benefit)</th><th>상세 설명</th></tr></thead>
+          <thead><tr><th style="width: 220px;">구분</th><th>포함되는 구성 요소 (한글 / 영문)</th><th>이유 및 시험 핵심 포인트</th></tr></thead>
           <tbody>
-            <tr><td><b>1) 응답성 (Responsiveness)</b></td><td>프로세스의 일부 스레드가 긴 I/O 작업으로 블록되어도 다른 스레드가 UI 상호작용 지속 가능</td></tr>
-            <tr><td><b>2) 자원 공유 (Resource Sharing)</b></td><td>별도 IPC(공유메모리/메시지) 없이도 프로세스 내 Code, Data, Heap을 자연스럽게 공유</td></tr>
-            <tr><td><b>3) 경제성 (Economy)</b></td><td>새 프로세스를 생성/문맥교환하는 것보다 스레드 생성/문맥교환 오버헤드가 현저히 낮음</td></tr>
-            <tr><td><b>4) 확장성 (Scalability)</b></td><td>멀티코어/멀티프로세서 아키텍처에서 각 스레드가 서로 다른 코어에서 병렬 실행 가능</td></tr>
+            <tr>
+              <td><b style="color: var(--accent);">스레드 간 공유하는 자원<br>(Shared across threads)</b></td>
+              <td>• <b>코드 영역 (Code / Text Section)</b><br>• <b>데이터 영역 (Data Section: 전역 변수, static 변수)</b><br>• <b>힙 영역 (Heap: 동적 할당 메모리)</b><br>• <b>운영체제 자원 (Open Files 열린 파일, 시그널)</b></td>
+              <td>같은 프로세스 내 모든 스레드가 전역 변수와 힙을 그대로 공유하므로 별도의 IPC 없이도 데이터를 즉시 주고받음 (단, 동시 수정 시 경쟁 조건 주의)</td>
+            </tr>
+            <tr>
+              <td><b style="color: var(--tag-danger-ink);">각 스레드가 독립 소유하는 자원<br>(Unique per thread)</b></td>
+              <td>• <b>스레드 ID (TID: Thread ID)</b><br>• <b>프로그램 카운터 (PC: Program Counter)</b><br>• <b>레지스터 집합 (Register Set)</b><br>• <b>스택 (Stack: 지역 변수, 매개변수, 복귀 주소)</b></td>
+              <td>각 스레드가 서로 다른 함수를 독립적으로 호출하고 각자의 실행 위치를 기억해야 하므로 <b>PC, 레지스터, Stack은 반드시 스레드마다 따로 가져야 함!</b></td>
+            </tr>
           </tbody>
         </table>
 
-        <div class="concept-card-title" style="margin-top: 18px;">2. 멀티스레딩 3대 모델 비교 (교수님 6주차 그림 강조!)</div>
+        <div class="concept-card-header" style="margin-top: 22px;">
+          <div class="concept-card-title">2. 멀티스레딩 4대 이점 · 멀티코어 5대 과제 · 병렬성 유형 &amp; 암달의 법칙</div>
+          <span class="badge badge-purple">이론 &amp; 공식 총정리</span>
+        </div>
         <table class="concept-table">
-          <thead><tr><th>모델</th><th>구조 매핑</th><th>장단점 및 특징</th></tr></thead>
+          <thead>
+            <tr>
+              <th style="width: 190px;">주제</th>
+              <th>핵심 내용 및 세부 분류</th>
+            </tr>
+          </thead>
           <tbody>
             <tr>
-              <td><b>다대일 (Many-to-One)</b></td>
-              <td>여러 사용자 스레드 → 1개 커널 스레드</td>
-              <td>사용자 공간에서 관리되어 빠르나, <b>한 스레드가 블록되면 전체 프로세스가 정지</b>되며 멀티코어 병렬 실행 불가</td>
+              <td><b>멀티스레딩의 4대 이점<br>(4 Benefits)</b></td>
+              <td>1) <b>응답성 (Responsiveness)</b>: 작업 일부가 I/O로 차단되거나 긴 연산을 해도 다른 스레드가 사용자 UI 응답을 계속 유지<br>
+              2) <b>자원 공유 (Resource Sharing)</b>: 공유 메모리/메시지 패싱 같은 복잡한 IPC 없이 프로세스의 Code, Data, Heap을 기본 공유<br>
+              3) <b>경제성 (Economy)</b>: 프로세스 생성(<code>fork</code>)보다 메모리/자원 할당 비용이 훨씬 적고(약 30배 빠름), 문맥 교환도 약 5배 빠름<br>
+              4) <b>확장성 (Scalability)</b>: 멀티프로세서/멀티코어 아키텍처에서 각 스레드가 서로 다른 코어에서 병렬로 실행되어 성능 배가</td>
             </tr>
             <tr>
-              <td><b>일대일 (One-to-One)</b></td>
-              <td>1개 사용자 스레드 → 1개 커널 스레드</td>
-              <td><b>현대 OS 표준 (Linux, Windows 채택)</b>. 한 스레드가 블록되어도 다른 스레드 계속 실행 가능, 병렬성 우수. 단, 커널 스레드 생성 오버헤드 존재</td>
+              <td><b>동시성 (Concurrency)<br>vs<br>병렬성 (Parallelism)</b></td>
+              <td>• <b>동시성 (Concurrency, 병행성)</b>: <b>단일 코어(Single Core)</b>에서도 가능한 개념. 타임 슬라이싱(시분할 인터리빙)으로 여러 스레드를 아주 빠르게 번갈아 실행하여 <b>마치 동시에 실행되는 것처럼 보이게 하는 논리적 특성</b> (<code>T1 → T2 → T3 → T1...</code>)<br>
+              • <b>병렬성 (Parallelism)</b>: <b>반드시 멀티 코어(Multi-Core)</b>가 필요한 개념. 물리적으로 여러 개의 코어가 <b>동일한 시각에 실제로 여러 작업을 동시에 수행하는 물리적 특성</b></td>
             </tr>
             <tr>
-              <td><b>다대다 (Many-to-Many)</b></td>
-              <td>여러 사용자 스레드 → 같거나 적은 수의 커널 스레드</td>
-              <td>필요한 만큼 커널 스레드 다중화. 유연하나 구현 복잡도가 너무 높아 실제 현대 OS는 일대일 모델 선호</td>
+              <td><b>병렬성의 2가지 유형<br>(Data vs Task)</b></td>
+              <td>• <b>데이터 병렬성 (Data Parallelism)</b>: <b>동일한 데이터 집합을 부분집합으로 쪼개어 여러 코어에 분배</b>하고, 각 코어가 <b>동일한 연산(함수)</b>을 수행 (예: 크기 <code>N</code> 배열을 코어 2개가 각각 <code>0 ~ N/2 - 1</code>과 <code>N/2 ~ N - 1</code>의 합계를 동시에 구함)<br>
+              • <b>태스크 병렬성 (Task Parallelism)</b>: 데이터가 아니라 <b>서로 다른 작업(태스크/스레드 함수)들을 여러 코어에 분배</b>하여 각 코어가 고유한 연산을 수행</td>
+            </tr>
+            <tr>
+              <td><b>멀티코어 프로그래밍의<br>5대 도전 과제</b></td>
+              <td>① <b>태스크 인식(Identifying Tasks)</b>: 병렬로 나눌 수 있는 독립 영역 찾기 / ② <b>균형(Balance)</b>: 모든 코어에 균등한 작업량 배분 / ③ <b>데이터 분리(Data Splitting)</b> / ④ <b>데이터 종속성(Data Dependency)</b>: 실행 순서 동기화 / ⑤ <b>시험 및 디버깅(Testing &amp; Debugging)</b></td>
+            </tr>
+            <tr>
+              <td><b>암달의 법칙<br>(Amdahl's Law)</b></td>
+              <td>프로그램 내에 <b>반드시 순차적으로만 실행되어야 하는 비율을 <code>S</code> (Serial portion)</b>, 병렬화 가능한 비율을 <code>1 - S</code>, 코어 수를 <code>N</code>이라 할 때 최대 속도 향상(Speedup) 공식:<br>
+              <div style="margin: 6px 0; padding: 8px 12px; background: var(--bg-surface-elevated); border-radius: 4px; font-family: var(--font-mono); font-weight: 700; color: var(--accent);">
+                Speedup ≤ 1 / ( S + (1 - S) / N )
+              </div>
+              • <b>핵심 결론</b>: 코어 수 <code>N → ∞</code>로 무한히 늘려도 최대 속도 향상은 <b><code>1 / S</code>로 수렴</b>함! (예: 순차 비율 <code>S = 25%(0.25)</code>이면 코어를 무한대로 늘려도 최대 4배(<code>1 / 0.25</code>)를 절대 넘을 수 없음)</td>
             </tr>
           </tbody>
         </table>
 
-        <div class="concept-card-title" style="margin-top: 18px;">3. 동시성(Concurrency) vs 병렬성(Parallelism) 비교</div>
+        <div class="concept-card-header" style="margin-top: 22px;">
+          <div class="concept-card-title">3. 사용자 스레드 vs 커널 스레드 &amp; 멀티스레딩 3대 모델 (+ 투레벨)</div>
+          <span class="badge badge-danger">교수님 6주차 그림·특징 강조</span>
+        </div>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
+          • <b>사용자 스레드(User Threads)</b>: 커널 위 사용자 공간의 스레드 라이브러리(POSIX Pthreads, Windows, Java Threads)가 관리 (커널은 존재를 모름).<br>
+          • <b>커널 스레드(Kernel Threads)</b>: 운영체제 커널이 직접 생성하고 스케줄링하는 스레드 (Linux, Windows, macOS 등 모든 현대 OS가 지원).
+        </p>
         <table class="concept-table">
-          <thead><tr><th>개념</th><th>실행 환경</th><th>동작 메커니즘</th></tr></thead>
+          <thead><tr><th style="width: 170px;">멀티스레딩 모델</th><th style="width: 185px;">매핑 구조 (User : Kernel)</th><th>장점 · 치명적 단점 · 채택 사례</th></tr></thead>
           <tbody>
             <tr>
-              <td><b>동시성 (Concurrency)</b></td>
-              <td>단일 코어 (Single Core) 또는 멀티 코어</td>
-              <td>CPU가 여러 작업을 <b>시분할(Time-sharing) 인터리빙</b>으로 번갈아 실행하여 사용자에게 <b>동시에 실행되는 것처럼 보이게 함</b> (논리적 동시)</td>
+              <td><b>1) 다대일 모델<br>(Many-to-One)</b></td>
+              <td><b>여러 개의 사용자 스레드<br>→ 1개의 커널 스레드</b></td>
+              <td>• 장점: 사용자 공간의 라이브러리에서 스레드 관리가 이루어져 문맥 교환이 빠름.<br>
+              • <b style="color: var(--tag-danger-ink);">치명적 단점 2가지</b>: ① <b>어느 한 스레드라도 블로킹 시스템 콜(I/O)을 호출하면 커널 스레드가 멈춰 전체 프로세스가 전부 봉쇄(Block)됨!</b> ② 커널 스레드가 1개뿐이므로 <b>멀티코어에서도 병렬 실행이 절대 불가능!</b> (예: 초기 Solaris Green Threads, GNU Portable Threads)</td>
             </tr>
             <tr>
-              <td><b>병렬성 (Parallelism)</b></td>
-              <td>반드시 멀티 코어 (Multi-Core)</td>
-              <td>여러 물리 코어가 각기 다른 스레드를 <b>동일한 시각에 실제로 동시에 실행</b> (물리적 동시)</td>
+              <td><b>2) 일대일 모델<br>(One-to-One)</b></td>
+              <td><b>1개의 사용자 스레드<br>→ 1개의 커널 스레드</b></td>
+              <td>• 장점: <b>한 스레드가 블록되어도 다른 스레드가 계속 실행 가능</b>하며, 멀티코어에서 완벽한 <b>병렬 실행(Parallelism)</b>을 제공.<br>
+              • 단점: 사용자 스레드를 만들 때마다 커널 스레드를 생성해야 하므로 오버헤드가 있음.<br>
+              • <b style="color: var(--tag-green-ink);">현대 OS 표준 채택</b>: <b>Linux, Windows</b> 등 거의 모든 현대 운영체제가 채택!</td>
+            </tr>
+            <tr>
+              <td><b>3) 다대다 모델<br>(Many-to-Many)</b></td>
+              <td><b><code>M</code>개의 사용자 스레드<br>→ <code>N</code>개의 커널 스레드 (<code>M ≥ N</code>)</b></td>
+              <td>• 장점: 프로그래머가 원하는 만큼 많은 사용자 스레드를 만들 수 있고, 커널 스레드들이 멀티코어에서 병렬 수행 가능.<br>
+              • 참고 — <b>투레벨 모델(Two-level Model)</b>: 기본적으로 다대다 모델을 유지하면서 특정 중요 사용자 스레드는 특정 커널 스레드에 1:1로 고정 바인딩(Bound)시키는 변형 모델.</td>
             </tr>
           </tbody>
         </table>
 
-        <div class="concept-card-title" style="margin-top: 18px;">4. 프로세스 vs 스레드 메모리 격리/공유 구조 (시험 단골 도식화)</div>
-        <table class="concept-table">
-          <thead><tr><th>구분</th><th>포함 자원</th><th>특징</th></tr></thead>
-          <tbody>
-            <tr>
-              <td><b>스레드 간 공유 자원 (프로세스 영역)</b></td>
-              <td><b>Code, Data(전역/정적 변수), Heap, 열린 파일 및 OS 리소스</b></td>
-              <td>같은 프로세스 내 스레드는 전역 변수 값을 즉시 공유함 (동기화 필요)</td>
-            </tr>
-            <tr>
-              <td><b>각 스레드 독자 소유 자원 (독립 영역)</b></td>
-              <td><b>스레드 ID (TID), 프로그램 카운터 (PC), 레지스터 세트, 스택 (Stack)</b></td>
-              <td>개별 함수 호출 및 연산 상태 보존을 위해 독립 할당</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="concept-card-header" style="margin-top: 24px;">
+          <div class="concept-card-title">4. 교수님 6주차 실습 C 코드 4종 완벽 수록 (<code>thread.c</code>, <code>thread4.23.c</code>, <code>problem.c</code>, <code>OpenMP</code>)</div>
+          <div>
+            <span class="badge badge-danger">6주차 녹음 100% 반영</span>
+            <span class="badge badge-amber">실행 결과 &amp; 개수 계산</span>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 14px; margin-top: 10px;">
+          <!-- 6주차 코드 1: thread.c -->
+          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
+            <div style="font-weight: 800; color: var(--accent); margin-bottom: 6px;">[실습 1: thread.c] Pthreads로 1~N 누적 합계(sum) 구하기</div>
+            <pre class="code-block" style="margin: 0;">#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int sum; /* 스레드들이 공유하는 전역 변수 (Data 영역) */
+void *runner(void *param); /* 워커 스레드가 실행할 함수 */
+
+int main(int argc, char *argv[]) {
+    pthread_t tid;       /* 스레드 식별자(TID) */
+    pthread_attr_t attr; /* 스레드 속성 */
+
+    /* 1. 기본 스레드 속성 초기화 */
+    pthread_attr_init(&amp;attr);
+    /* 2. 새로운 스레드 생성 후 runner(argv[1]) 실행 시작 */
+    pthread_create(&amp;tid, &amp;attr, runner, argv[1]);
+    /* 3. 워커 스레드가 종료될 때까지 부모(main) 스레드 대기 */
+    pthread_join(tid, NULL);
+
+    printf("sum = %d\\n", sum); // 예: ./a.out 10 실행 시 sum = 55 출력
+}
+
+void *runner(void *param) {
+    int i, upper = atoi(param); // 문자열 인자를 정수로 변환
+    sum = 0;
+    for (i = 1; i &lt;= upper; i++)
+        sum += i;
+    pthread_exit(0); // 스레드 종료
+}
+/* ★ 교수님 강조 포인트:
+ * 1) 컴파일 시 반드시 -pthread 옵션 필요: gcc thread.c -pthread
+ * 2) 실행 시 ./a.out 뒤에 숫자를 안 넣으면 argv[1]이 NULL이 되어
+ *    atoi(NULL)에서 Segmentation fault (core dumped) 발생! */</pre>
+          </div>
+
+          <!-- 6주차 코드 2: thread4.23.c -->
+          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
+            <div style="font-weight: 800; color: var(--tag-danger-ink); margin-bottom: 6px;">[실습 2: thread4.23.c] ⭐ fork() + pthread_create() 전역변수 비교</div>
+            <pre class="code-block" style="margin: 0;">#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
+
+int value = 0; // 전역 변수 (초기값 0)
+void *runner(void *param);
+
+int main(int argc, char *argv[]) {
+    pid_t pid;
+    pthread_t tid;
+    pthread_attr_t attr;
+
+    pid = fork();
+
+    if (pid == 0) { /* [자식 프로세스] */
+        pthread_attr_init(&amp;attr);
+        pthread_create(&amp;tid, &amp;attr, runner, NULL);
+        pthread_join(tid, NULL);
+        printf("CHILD: value = %d\\n", value);  /* LINE C */
+    } else if (pid &gt; 0) { /* [부모 프로세스] */
+        wait(NULL);
+        printf("PARENT: value = %d\\n", value); /* LINE P */
+    }
+}
+void *runner(void *param) {
+    value = 5; // 자식 프로세스 내부 스레드가 value를 5로 변경!
+    pthread_exit(0);
+}
+/* ★ [출력 결과]
+ * LINE C → CHILD: value = 5  (자식과 자식이 만든 스레드는 전역변수 공유!)
+ * LINE P → PARENT: value = 0 (부모 프로세스는 자식과 메모리가 분리되어 0 유지!) */</pre>
+          </div>
+
+          <!-- 6주차 코드 3: problem.c -->
+          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
+            <div style="font-weight: 800; color: var(--tag-danger-ink); margin-bottom: 6px;">[실습 3: problem.c] ⭐ 총 프로세스 개수(6개) &amp; 스레드 개수(2개)</div>
+            <pre class="code-block" style="margin: 0;">pid_t pid;
+pid = fork();                  // (1) 첫 번째 fork()
+if (pid == 0) {                /* 자식 C1만 진입 */
+    fork();                    // (2) 두 번째 fork()
+    pthread_create( ... );     // (3) 스레드 생성
+}
+fork();                        // (4) 세 번째 fork()</pre>
+            <div style="font-size: 12.5px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
+              <b>🔍 교수님 6주차 녹음 단계별 완벽 추적:</b><br>
+              • <b>(1) 첫 <code>fork()</code></b>: 초기 부모 <code>P0</code>가 자식 <code>C1</code> 생성 → 현재 프로세스 2개 (<code>P0</code>, <code>C1</code>).<br>
+              • <b>(2) <code>if (pid == 0)</code> 내부 <code>fork()</code></b>: <code>C1</code>만 진입하여 손자 <code>C2</code> 생성 → 현재 프로세스 3개 (<code>P0</code>, <code>C1</code>, <code>C2</code>).<br>
+              • <b>(3) <code>if</code> 블록 내 <code>pthread_create()</code></b>: <code>if</code> 블록 안에 있는 <b><code>C1</code>과 <code>C2</code>가 각각 스레드를 1개씩 생성</b> → <b>생성된 추가 스레드 = 총 2개!</b><br>
+              • <b>(4) 마지막 <code>fork()</code></b>: 현재 존재하는 3개 프로세스(<code>P0</code>, <code>C1</code>, <code>C2</code>)가 모두 마지막 <code>fork()</code>를 실행하여 각각 자식을 1개씩(총 3개) 더 낳음!<br>
+              👉 <b>최종 정답</b>: <b>전체 프로세스 총 6개 (초기 부모 제외 새로 생성된 자식 프로세스는 5개)</b> / <b>새로 생성된 고유 스레드는 2개</b>!
+            </div>
+          </div>
+
+          <!-- 6주차 코드 4: OpenMP -->
+          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
+            <div style="font-weight: 800; color: var(--accent); margin-bottom: 6px;">[실습 4: 암묵적 스레딩] OpenMP 병렬 리전 &amp; 배열 덧셈 C 코드</div>
+            <pre class="code-block" style="margin: 0;">#include &lt;omp.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(int argc, char *argv[]) {
+    /* 1. 시스템의 CPU 코어 수만큼 자동으로 스레드를 생성하여 병렬 실행 */
+    #pragma omp parallel
+    {
+        printf("I am a parallel region.\\n");
+    }
+
+    /* 2. 스레드 개수를 4개로 지정하고 for 루프를 분할 병렬 처리 */
+    omp_set_num_threads(4);
+    #pragma omp parallel for
+    for (int i = 0; i &lt; N; i++) {
+        c[i] = a[i] + b[i]; // 데이터 병렬성 자동 수행!
+    }
+    return 0;
+}
+/* ★ 핵심 포인트:
+ * • 컴파일러 지시자(#pragma omp parallel)만 넣으면 런타임 라이브러리가
+ *   스레드 생성·관리를 대신 처리하는 '암묵적 스레딩(Implicit Threading)'!
+ * • 컴파일 명령어: gcc openmp.c -fopenmp */</pre>
+          </div>
+        </div>
+
+        <div class="callout-box info" style="margin-top: 12px;">
+          <div class="callout-title">🧩 암묵적 스레딩(Implicit Threading) 4대 기법 요약</div>
+          스레드 수가 수백 개로 늘어나면 개발자가 직접 스레드를 생성·관리하기 어렵기 때문에, <b>스레드 생성과 스케줄링 책임을 컴파일러와 런타임 라이브러리에게 넘기는 기법</b>입니다:<br>
+          1) <b>스레드 풀 (Thread Pool)</b>: 프로세스 시작 시 미리 일정 개수의 스레드를 만들어 풀에 대기시켜 두고, 작업 요청이 오면 기존 스레드를 재사용 (생성/소멸 오버헤드 제거 및 동시 실행 스레드 최대 개수 제한하여 시스템 과부하 방지).<br>
+          2) <b>Fork-Join</b>: 메인 스레드가 작업을 분할(Fork)하여 병렬 실행한 뒤 결과를 취합(Join)하는 동기적 모델.<br>
+          3) <b>OpenMP</b>: C/C++/Fortran에서 <code>#pragma omp parallel</code> 컴파일러 지시어로 공유 메모리 병렬 프로그래밍 수행.<br>
+          4) <b>GCD (Grand Central Dispatch)</b>: Apple macOS/iOS에서 블록(<code>^{ ... }</code>) 단위의 작업을 디스패치 큐(Serial / Concurrent Queue)에 넣어 스레드 풀에서 자동 스케줄링하는 기술.
+        </div>
       </div>
     </section>
 
-    <!-- SECTION: 7장 CPU 스케줄링 4대 알고리즘 -->
+    <!-- SECTION: 7장 CPU 스케줄링 4대 알고리즘 & 교안 예제 1~7 전수 풀이 -->
     <section id="os-ch7" class="concept-section">
       <div class="section-banner danger-banner">
         <div class="section-banner-title">
-          <span>⚡ 7장: CPU 스케줄링 4대 알고리즘 심층 비교</span>
+          <span>⚡ 7장: CPU 스케줄링 이론 · 6대 알고리즘 · 교안 예제(문제 1~7) 간트 차트 전수 풀이</span>
         </div>
         <span class="badge badge-amber">중간고사 최대 배점 영역</span>
       </div>
 
       <div class="concept-card">
+        <div class="concept-card-header">
+          <div class="concept-card-title">1. CPU-I/O 버스트 사이클 · 선점 vs 비선점 4대 시점 · 디스패처(Dispatcher)</div>
+          <span class="badge badge-danger">7장 핵심 이론</span>
+        </div>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 10px;">
+          프로세스 실행은 <b>CPU 버스트(CPU 연산 구간)</b>와 <b>I/O 버스트(입출력 대기 구간)</b>의 교대 반복으로 이루어지며, 항상 CPU 버스트로 시작해 마지막 CPU 버스트의 종료 요청으로 끝납니다. 빈도 분포를 보면 <b>짧은 CPU 버스트(I/O 바운드 프로세스)가 매우 많고, 긴 CPU 버스트(CPU 바운드 프로세스)는 적습니다.</b>
+        </p>
+
         <table class="concept-table">
           <thead>
             <tr>
-              <th>알고리즘</th>
-              <th>선점 여부</th>
-              <th>선정 기준</th>
-              <th>핵심 특징 및 문제점</th>
-              <th>해결책</th>
+              <th style="width: 195px;">핵심 주제</th>
+              <th>상세 내용 및 시험 출제 포인트</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><b>FCFS (선입선출)</b></td>
-              <td><b>비선점</b></td>
-              <td>레디 큐 도착 순서</td>
-              <td>구현이 단순하나, 앞선 긴 작업 때문에 짧은 작업들이 대기하는 <b>호위 효과(Convoy Effect)</b> 발생</td>
-              <td>도착 순서 최적화 또는 선점형 전환</td>
+              <td><b>CPU 스케줄링이 발생하는<br>4가지 상태 변화 시점</b></td>
+              <td><b>① 실행(Running) → 대기(Waiting)</b> (예: I/O 요청이나 <code>wait()</code> 호출로 스스로 CPU 반납)<br>
+              <b>② 실행(Running) → 준비(Ready)</b> (예: 타이머 인터럽트/타임 퀀텀 만료로 CPU 강제 반납)<br>
+              <b>③ 대기(Waiting) → 준비(Ready)</b> (예: I/O 완료 인터럽트로 고우선순위/짧은 작업이 준비 큐에 진입)<br>
+              <b>④ 실행(Running) → 종료(Terminated)</b> (프로세스 실행 완료)<br>
+              👉 <b style="color: var(--accent);">비선점형(Non-preemptive)</b>: 오직 <b>①번과 ④번</b>(자발적 반납)에서만 스케줄링 발생!<br>
+              👉 <b style="color: var(--tag-danger-ink);">선점형(Preemptive)</b>: <b>①, ②, ③, ④ 모든 시점</b>에서 실행 중인 프로세스의 CPU를 강제로 빼앗을 수 있음! (공유 데이터 경쟁 조건 및 커널 선점 문제 고려 필요)</td>
             </tr>
             <tr>
-              <td><b>SJF (최단 작업 우선)</b></td>
-              <td>비선점 (기본)</td>
-              <td>다음 CPU 버스트가 가장 짧은 프로세스</td>
-              <td><b>항상 최소 평균 대기시간(Minimum AWT) 보장</b>. 단, 버스트 긴 작업이 무한 대기하는 <b>기아 현상(Starvation)</b> 발생</td>
-              <td><b>에이징 (Aging)</b> 기법 적용 (대기 시간에 비례해 우선순위 상향)</td>
+              <td><b>디스패처 (Dispatcher)<br>&amp; 디스패치 지연시간</b></td>
+              <td>• <b>디스패처(Dispatcher)</b>: 단기 스케줄러가 선택한 프로세스에게 <b>실제로 CPU 제어권을 넘겨주는 모듈</b>.<br>
+              • <b>디스패처의 3대 기능</b>: <b>① 문맥 교환(Context Switch), ② 사용자 모드로 전환(Switching to User Mode), ③ 사용자 프로그램의 적절한 위치(PC)로 점프(Jumping)하여 실행 재개</b>.<br>
+              • <b>디스패치 지연 (Dispatch Latency)</b>: 디스패처가 하나의 프로세스를 정지시키고 다른 프로세스의 실행을 시작하기까지 걸리는 시간 (짧을수록 좋음).</td>
             </tr>
             <tr>
-              <td><b>SRTF (최단 잔여시간 우선)</b></td>
-              <td><b>선점형</b></td>
-              <td>남은 실행 시간(Remaining Time)이 가장 짧은 프로세스</td>
-              <td>선점형 SJF. 새 프로세스가 도착했을 때 남은 시간이 더 짧으면 즉시 선점. 잦은 문맥 교환 주의</td>
-              <td>에이징 적용</td>
-            </tr>
-            <tr>
-              <td><b>Round Robin (RR)</b></td>
-              <td><b>선점형</b></td>
-              <td>도착 순서 + <b>고정 타임 퀀텀(q)</b></td>
-              <td>모든 프로세스가 공평하게 CPU 분할. 퀀텀 소진 시 레디 큐 맨 뒤로 이동.<br>• q 너무 큼 → FCFS화<br>• q 너무 작음 → 문맥교환 폭증</td>
-              <td>CPU 버스트의 약 80%가 퀀텀보다 짧도록 10~100ms 설정</td>
+              <td><b>스케줄링의 6대 목표</b></td>
+              <td>① <b>공평성(Fairness)</b>: 모든 프로세스에게 공정한 CPU 배분 / ② <b>효율성(Efficiency)</b>: 유휴 시간 없이 CPU 사용 / ③ <b>안정성(Stability)</b>: 우선순위 및 자원 점유 파괴 방지 / ④ <b>확장성(Scalability)</b> / ⑤ <b>반응 시간 보장</b> / ⑥ <b>무한 연기(Starvation) 방지</b></td>
             </tr>
           </tbody>
         </table>
+
+        <div class="concept-card-header" style="margin-top: 22px;">
+          <div class="concept-card-title">2. CPU 스케줄링 6대 알고리즘 완벽 비교표</div>
+          <span class="badge badge-amber">선점 여부 · 기아 · 해결책</span>
+        </div>
+        <table class="concept-table">
+          <thead>
+            <tr>
+              <th style="width: 155px;">알고리즘</th>
+              <th style="width: 95px;">선점 여부</th>
+              <th style="width: 170px;">CPU 할당 선정 기준</th>
+              <th>핵심 특징 및 치명적 문제점</th>
+              <th style="width: 165px;">해결책 / 비고</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>FCFS<br>(선입선출)</b></td>
+              <td><b>비선점</b></td>
+              <td>준비 큐에 먼저 도착한 순서 (FIFO 큐)</td>
+              <td>구현이 가장 단순하나, 도착 순서에 따라 평균 대기시간 편차가 극심하며 앞선 긴 작업 때문에 뒤따르는 짧은 작업들이 모두 묶이는 <b>콘보이 효과(Convoy Effect, 호위 효과)</b> 발생</td>
+              <td>시분할(대화형) 시스템에 부적합</td>
+            </tr>
+            <tr>
+              <td><b>SJF<br>(최단 작업 우선)</b></td>
+              <td><b>비선점</b><br>(기본)</td>
+              <td><b>다음 CPU 버스트 시간</b>이 가장 짧은 프로세스</td>
+              <td>주어진 프로세스 집합에 대해 <b>항상 최소 평균 대기시간(Minimum AWT)을 보장(Optimal)</b>함.<br>단점: ① 다음 CPU 버스트 길이를 미리 정확히 알 수 없음, ② 긴 작업이 영원히 밀리는 <b>기아 현상(Starvation)</b> 발생</td>
+              <td>① <b>지수 이동평균 공식</b>으로 버스트 예측<br>② <b>에이징(Aging)</b>으로 기아 해결</td>
+            </tr>
+            <tr>
+              <td><b>SRTF<br>(최단 잔여시간 우선)</b></td>
+              <td><b style="color: var(--tag-danger-ink);">선점형</b></td>
+              <td><b>남은 CPU 버스트 시간(Remaining Time)</b>이 가장 짧은 프로세스</td>
+              <td><b>선점형 SJF</b>. 새로운 프로세스가 도착했을 때 현재 실행 중인 프로세스의 <b>남은 시간보다 새 프로세스의 버스트가 더 짧으면 즉시 CPU를 선점!</b> 비선점 SJF보다 평균 대기시간이 더 짧음</td>
+              <td>기아 현상 해결을 위해 <b>에이징(Aging)</b> 적용</td>
+            </tr>
+            <tr>
+              <td><b>Round Robin<br>(RR, 라운드로빈)</b></td>
+              <td><b style="color: var(--tag-danger-ink);">선점형</b></td>
+              <td>도착 순서 + <b>고정 시간 할당량(Time Quantum, <code>q</code>)</b></td>
+              <td>시분할 시스템을 위해 설계됨. 각 프로세스는 최대 <code>q</code>만큼만 실행 후 타이머 인터럽트로 선점되어 준비 큐 맨 뒤로 이동 (응답 시간 우수, 기아 없음).<br>• <b><code>q</code>가 너무 크면 → FCFS와 동일해짐</b><br>• <b><code>q</code>가 너무 작으면 → 잦은 문맥 교환 오버헤드로 효율 급락</b></td>
+              <td>CPU 버스트의 약 <b>80%가 타임 퀀텀(<code>q</code>)보다 짧도록</b> 10~100ms로 설정</td>
+            </tr>
+            <tr>
+              <td><b>Priority<br>(우선순위)</b></td>
+              <td><b>선점 / 비선점</b> 모두 가능</td>
+              <td>우선순위가 가장 높은 프로세스 (교안 기준: <b>숫자가 작을수록 높은 우선순위</b>)</td>
+              <td>SJF도 다음 버스트 시간의 역수를 우선순위로 둔 우선순위 스케줄링의 일종임.<br>치명적 문제점: 낮은 우선순위 프로세스가 영원히 실행되지 못하는 <b>기아 현상(Starvation / Indefinite Blocking)</b> 발생</td>
+              <td>대기 시간에 비례해 우선순위를 점진적으로 높이는 <b>에이징(Aging)</b>으로 해결!</td>
+            </tr>
+            <tr>
+              <td><b>MLQ vs MLFQ<br>(다단계 큐 / 피드백 큐)</b></td>
+              <td><b>선점형</b></td>
+              <td>전경(대화형 RR) 큐 / 배경(일괄 FCFS) 큐 분리</td>
+              <td>• <b>다단계 큐(MLQ)</b>: 프로세스가 한 큐에 영구 배정되어 <b>큐 간 이동 불가</b> (기아 위험)<br>• <b>다단계 피드백 큐(MLFQ)</b>: CPU를 많이 쓰면 하위 큐로 강등, 오래 대기하면 상위 큐로 승격하여 <b>큐 간 이동 허용!</b> (가장 유연하고 일반적이나 설계 복잡)</td>
+              <td>MLFQ는 짧은 작업 우대 + 에이징을 통한 기아 방지 동시 달성</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="concept-card-header" style="margin-top: 26px;">
+          <div class="concept-card-title">3. [교안 전수 수록] 7장 강의 슬라이드 모든 스케줄링 예제 &amp; 문제 1~7 간트 차트 완벽 풀이</div>
+          <div>
+            <span class="badge badge-danger">7주차 강의 예제 100%</span>
+            <span class="badge badge-amber">간트 차트 + 대기/반환시간</span>
+          </div>
+        </div>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          7주차 강의 슬라이드와 녹음본에서 교수님이 직접 풀어주신 <b>모든 스케줄링 예제(예제 2건 + 문제 1~7)</b>의 간트 차트와 개별 대기 시간·반환 시간 풀이입니다. 시험에 그대로 또는 수치만 살짝 바뀌어 출제됩니다.
+        </p>
+
+        <!-- [예제 A & 예제 B] 도착 시간이 0, 3, 6으로 다른 FCFS vs RR(q=10) 비교 -->
+        <div style="padding: 14px; background: var(--bg-surface-elevated); border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 14px;">
+          <div style="font-weight: 800; font-size: 15px; color: var(--accent); margin-bottom: 8px;">
+            📌 [교안 기본 예제] 도착 시간이 다른 경우 (P1: 도착 0 / 버스트 30, P2: 도착 3 / 버스트 18, P3: 도착 6 / 버스트 9)
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 14px;">
+            <div>
+              <div style="font-weight: 700; margin-bottom: 6px;">① FCFS 적용 시 (비선점)</div>
+              <div class="gantt-chart-vis">
+                <div class="gantt-block" style="flex: 30;">P1 (0~30)</div>
+                <div class="gantt-block" style="flex: 18;">P2 (30~48)</div>
+                <div class="gantt-block" style="flex: 9;">P3 (48~57)</div>
+              </div>
+              <div class="gantt-time-labels"><span>0</span><span>30</span><span>48</span><span>57</span></div>
+              <div style="font-size: 12.5px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
+                • <b>대기 시간(WT)</b>: P1 = <code>0 - 0 = 0</code>, P2 = <code>30 - 3 = 27</code>, P3 = <code>48 - 6 = 42</code><br>
+                &nbsp;&nbsp;→ <b>평균 대기 시간(AWT)</b> = <code>(0 + 27 + 42) / 3 = 69 / 3 =</code> <b>23 초</b><br>
+                • <b>반환 시간(TT = WT + Burst)</b>: P1 = <code>30</code>, P2 = <code>27 + 18 = 45</code>, P3 = <code>42 + 9 = 51</code><br>
+                &nbsp;&nbsp;→ <b>평균 반환 시간(ATT)</b> = <code>(30 + 45 + 51) / 3 = 126 / 3 =</code> <b>42 초</b>
+              </div>
+            </div>
+            <div>
+              <div style="font-weight: 700; margin-bottom: 6px;">② Round Robin (타임 슬라이스 <code>q = 10초</code>) 적용 시</div>
+              <div class="gantt-chart-vis">
+                <div class="gantt-block" style="flex: 10;">P1</div>
+                <div class="gantt-block" style="flex: 10;">P2</div>
+                <div class="gantt-block" style="flex: 9;">P3</div>
+                <div class="gantt-block" style="flex: 10;">P1</div>
+                <div class="gantt-block" style="flex: 8;">P2</div>
+                <div class="gantt-block" style="flex: 10;">P1</div>
+              </div>
+              <div class="gantt-time-labels"><span>0</span><span>10</span><span>20</span><span>29</span><span>39</span><span>47</span><span>57</span></div>
+              <div style="font-size: 12.5px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
+                • <b>대기 시간(WT = 완료 - 도착 - 버스트)</b>:<br>
+                &nbsp;&nbsp;- P1: <code>(0) + (29 - 10) + (47 - 39) = 19 + 8 =</code> <b>27 초</b> (또는 <code>57 - 0 - 30 = 27</code>)<br>
+                &nbsp;&nbsp;- P2: <code>(10 - 3) + (39 - 20) = 7 + 19 =</code> <b>26 초</b> (또는 <code>47 - 3 - 18 = 26</code>)<br>
+                &nbsp;&nbsp;- P3: <code>20 - 6 =</code> <b>14 초</b> (29초에 종료! <code>29 - 6 - 9 = 14</code>)<br>
+                &nbsp;&nbsp;→ <b>평균 대기 시간(AWT)</b> = <code>(27 + 26 + 14) / 3 = 67 / 3 =</code> <b>22.33 초</b><br>
+                • <b>반환 시간(TT)</b>: P1 = <code>57</code>, P2 = <code>47 - 3 = 44</code>, P3 = <code>29 - 6 = 23</code> → <b>ATT = 41.33 초</b>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- [문제 1 & 문제 2 & 문제 3] FCFS 도착 순서에 따른 콘보이 효과 비교 -->
+        <div style="padding: 14px; background: var(--bg-surface-elevated); border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 14px;">
+          <div style="font-weight: 800; font-size: 15px; color: var(--accent); margin-bottom: 8px;">
+            📌 [교안 문제 1 · 2 · 3] FCFS 도착 순서 역전과 콘보이 효과(Convoy Effect) 증명
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
+            <div style="background: var(--bg-surface); padding: 10px; border-radius: 6px; border: 1px solid var(--border-color);">
+              <div style="font-weight: 700; color: var(--tag-danger-ink); margin-bottom: 4px;">[문제 1] P1(24), P2(3), P3(3)가 P1→P2→P3 순 도착</div>
+              <div class="gantt-chart-vis">
+                <div class="gantt-block" style="flex: 24;">P1 (0~24)</div>
+                <div class="gantt-block" style="flex: 3;">P2</div>
+                <div class="gantt-block" style="flex: 3;">P3</div>
+              </div>
+              <div class="gantt-time-labels"><span>0</span><span>24</span><span>27</span><span>30</span></div>
+              <div style="font-size: 12.5px; margin-top: 6px;">
+                • 대기시간: P1=0, P2=24, P3=27<br>
+                • <b>평균 대기시간(AWT)</b> = <code>(0 + 24 + 27) / 3 =</code> <b style="color: var(--tag-danger-ink);">17 ms</b><br>
+                • <b>콘보이 효과 발생!</b> (앞선 긴 P1 때문에 짧은 P2, P3가 24ms 이상 대기)
+              </div>
+            </div>
+
+            <div style="background: var(--bg-surface); padding: 10px; border-radius: 6px; border: 1px solid var(--border-color);">
+              <div style="font-weight: 700; color: var(--tag-green-ink); margin-bottom: 4px;">[문제 2] 동일 작업이 P2(3)→P3(3)→P1(24) 순 도착</div>
+              <div class="gantt-chart-vis">
+                <div class="gantt-block" style="flex: 3;">P2</div>
+                <div class="gantt-block" style="flex: 3;">P3</div>
+                <div class="gantt-block" style="flex: 24;">P1 (6~30)</div>
+              </div>
+              <div class="gantt-time-labels"><span>0</span><span>3</span><span>6</span><span>30</span></div>
+              <div style="font-size: 12.5px; margin-top: 6px;">
+                • 대기시간: P2=0, P3=3, P1=6 (번호순: P1=6, P2=0, P3=3)<br>
+                • <b>평균 대기시간(AWT)</b> = <code>(6 + 0 + 3) / 3 =</code> <b style="color: var(--tag-green-ink);">3 ms</b><br>
+                • 짧은 작업이 먼저 오자 평균 대기시간이 <b>17ms → 3ms로 대폭 단축!</b>
+              </div>
+            </div>
+
+            <div style="background: var(--bg-surface); padding: 10px; border-radius: 6px; border: 1px solid var(--border-color);">
+              <div style="font-weight: 700; color: var(--accent); margin-bottom: 4px;">[문제 3] FCFS 도착시간 다름: P1(0, 10), P2(1, 29), P3(2, 3)</div>
+              <div class="gantt-chart-vis">
+                <div class="gantt-block" style="flex: 10;">P1 (0~10)</div>
+                <div class="gantt-block" style="flex: 29;">P2 (10~39)</div>
+                <div class="gantt-block" style="flex: 3;">P3</div>
+              </div>
+              <div class="gantt-time-labels"><span>0</span><span>10</span><span>39</span><span>42</span></div>
+              <div style="font-size: 12.5px; margin-top: 6px;">
+                • 대기시간(시작-도착): P1=<code>0-0=0</code>, P2=<code>10-1=9</code>, P3=<code>39-2=37</code><br>
+                • <b>AWT</b> = <code>(0 + 9 + 37) / 3 = 46 / 3 =</code> <b>15.33 ms</b><br>
+                • 반환시간(완료-도착): P1=10, P2=38, P3=40 → <b>ATT = 29.33 ms</b>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- [문제 4 & 문제 5] 비선점 SJF vs 선점 SRTF -->
+        <div style="padding: 14px; background: var(--bg-surface-elevated); border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 14px;">
+          <div style="font-weight: 800; font-size: 15px; color: var(--tag-danger-ink); margin-bottom: 8px;">
+            📌 [교안 문제 4 · 5] ⭐ 비선점형 SJF vs 선점형 SJF (SRTF) 완벽 비교 (교수님 출제 1순위!)
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 14px;">
+            <div>
+              <div style="font-weight: 700; margin-bottom: 6px;">[문제 4] 비선점 SJF (모두 0초 도착: P1=6, P2=8, P3=7, P4=3)</div>
+              <div class="gantt-chart-vis">
+                <div class="gantt-block" style="flex: 3;">P4 (0~3)</div>
+                <div class="gantt-block" style="flex: 6;">P1 (3~9)</div>
+                <div class="gantt-block" style="flex: 7;">P3 (9~16)</div>
+                <div class="gantt-block" style="flex: 8;">P2 (16~24)</div>
+              </div>
+              <div class="gantt-time-labels"><span>0</span><span>3</span><span>9</span><span>16</span><span>24</span></div>
+              <div style="font-size: 12.5px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
+                • 버스트 오름차순 실행: <b>P4(3) → P1(6) → P3(7) → P2(8)</b><br>
+                • 대기 시간: P4 = 0, P1 = 3, P3 = 9, P2 = 16<br>
+                • <b>평균 대기 시간(AWT)</b> = <code>(3 + 16 + 9 + 0) / 4 = 28 / 4 =</code> <b>7 ms</b><br>
+                • (만약 FCFS로 실행했다면 AWT = <code>(0 + 6 + 14 + 21) / 4 = 10.25 ms</code>)
+              </div>
+            </div>
+
+            <div>
+              <div style="font-weight: 700; color: var(--tag-danger-ink); margin-bottom: 6px;">[문제 5] SRTF (선점형 SJF): P1(0, 8), P2(1, 4), P3(2, 9), P4(3, 5)</div>
+              <div class="gantt-chart-vis">
+                <div class="gantt-block" style="flex: 1;">P1</div>
+                <div class="gantt-block" style="flex: 4;">P2 (1~5)</div>
+                <div class="gantt-block" style="flex: 5;">P4 (5~10)</div>
+                <div class="gantt-block" style="flex: 7;">P1 (10~17)</div>
+                <div class="gantt-block" style="flex: 9;">P3 (17~26)</div>
+              </div>
+              <div class="gantt-time-labels"><span>0</span><span>1</span><span>5</span><span>10</span><span>17</span><span>26</span></div>
+              <div style="font-size: 12.5px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
+                • <code>t = 0</code>: P1 시작 / <code>t = 1</code>: P2(버스트 4) 도착 &lt; P1 잔여(7) → <b>P2가 즉시 선점!</b><br>
+                • <code>t = 5</code>: P2 종료 후 남은 P1(7), P3(9), P4(5) 중 <b>P4 → P1 → P3 순 실행</b><br>
+                • <b>SRTF 대기 시간</b>: P1 = <code>(10 - 1) = 9</code>, P2 = <code>1 - 1 = 0</code>, P3 = <code>17 - 2 = 15</code>, P4 = <code>5 - 3 = 2</code><br>
+                &nbsp;&nbsp;→ <b>SRTF 평균 대기 시간(AWT)</b> = <code>(9 + 0 + 15 + 2) / 4 = 26 / 4 =</code> <b style="color: var(--tag-danger-ink);">6.5 ms</b><br>
+                • <b>[참고] 만약 문제 5를 비선점형 SJF로 풀면?</b><br>
+                &nbsp;&nbsp;- 간트 차트: <code>P1(0~8) → P2(8~12) → P4(12~17) → P3(17~26)</code><br>
+                &nbsp;&nbsp;- 대기 시간: P1=<code>0</code>, P2=<code>8-1=7</code>, P4=<code>12-3=9</code>, P3=<code>17-2=15</code> → <b>비선점 AWT = <code>31 / 4 =</code> 7.75 ms</b>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- [문제 6 & 문제 7] Round Robin(q=4) & 우선순위 스케줄링 -->
+        <div style="padding: 14px; background: var(--bg-surface-elevated); border-radius: 8px; border: 1px solid var(--border-color);">
+          <div style="font-weight: 800; font-size: 15px; color: var(--accent); margin-bottom: 8px;">
+            📌 [교안 문제 6 · 7] Round Robin (<code>q = 4</code>) &amp; 우선순위 스케줄링 (Priority Scheduling)
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 14px;">
+            <div>
+              <div style="font-weight: 700; margin-bottom: 6px;">[문제 6] Round Robin (<code>q = 4 ms</code>, 0초 도착: P1=24, P2=3, P3=3)</div>
+              <div class="gantt-chart-vis">
+                <div class="gantt-block" style="flex: 4;">P1</div>
+                <div class="gantt-block" style="flex: 3;">P2</div>
+                <div class="gantt-block" style="flex: 3;">P3</div>
+                <div class="gantt-block" style="flex: 4;">P1</div>
+                <div class="gantt-block" style="flex: 4;">P1</div>
+                <div class="gantt-block" style="flex: 4;">P1</div>
+                <div class="gantt-block" style="flex: 4;">P1</div>
+                <div class="gantt-block" style="flex: 4;">P1</div>
+              </div>
+              <div class="gantt-time-labels"><span>0</span><span>4</span><span>7</span><span>10</span><span>14</span><span>18</span><span>22</span><span>26</span><span>30</span></div>
+              <div style="font-size: 12.5px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
+                • P1이 0~4 실행 후 선점 → P2(4~7, 3ms 완주) → P3(7~10, 3ms 완주) → 이후 남은 작업은 P1뿐이므로 10~30까지 P1이 4ms씩 연속 실행<br>
+                • 대기 시간: P1 = <code>10 - 4 = 6</code>, P2 = <code>4</code>, P3 = <code>7</code><br>
+                • <b>평균 대기 시간(AWT)</b> = <code>(6 + 4 + 7) / 3 = 17 / 3 =</code> <b>5.66 ms</b>
+              </div>
+            </div>
+
+            <div>
+              <div style="font-weight: 700; margin-bottom: 6px;">[문제 7] 우선순위 스케줄링 (숫자가 작을수록 고우선순위!)</div>
+              <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">
+                조건: P1(버스트 10, 우선순위 3), P2(1, 1), P3(2, 4), P4(1, 5), P5(5, 2)
+              </div>
+              <div class="gantt-chart-vis">
+                <div class="gantt-block" style="flex: 1;">P2</div>
+                <div class="gantt-block" style="flex: 5;">P5 (1~6)</div>
+                <div class="gantt-block" style="flex: 10;">P1 (6~16)</div>
+                <div class="gantt-block" style="flex: 2;">P3</div>
+                <div class="gantt-block" style="flex: 1;">P4</div>
+              </div>
+              <div class="gantt-time-labels"><span>0</span><span>1</span><span>6</span><span>16</span><span>18</span><span>19</span></div>
+              <div style="font-size: 12.5px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
+                • 우선순위 순서(1→2→3→4→5): <b>P2(1) → P5(5) → P1(10) → P3(2) → P4(1)</b><br>
+                • 대기 시간: P2 = <code>0</code>, P5 = <code>1</code>, P1 = <code>6</code>, P3 = <code>16</code>, P4 = <code>18</code><br>
+                • <b>평균 대기 시간(AWT)</b> = <code>(0 + 1 + 6 + 16 + 18) / 5 = 41 / 5 =</code> <b>8.2 ms</b>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   `

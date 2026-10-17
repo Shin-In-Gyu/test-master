@@ -338,7 +338,7 @@ function renderCurrentExam() {
           </button>
         </div>
 
-        <div class="q-text">${q.text.replace(/\n/g, '<br>')}</div>
+        <div class="q-text">${q.text.split(/(<pre[\s\S]*?<\/pre>)/gi).map(part => /^<pre/i.test(part) ? part : part.replace(/\n/g, '<br>')).join('')}</div>
     `;
 
     // 1) 객관식 (Choice)
@@ -393,15 +393,15 @@ function renderCurrentExam() {
       </div>
 
       <div class="solution-box" id="sol_${qKey}">
-        <div><span class="sol-correct-ans">정답: ${q.answers ? q.answers.join(' / ') : (q.answer || '모범 답안 참조')}</span></div>
-        <div style="color: var(--text-secondary); margin-top: 6px;">${q.explanation || ''}</div>
+        <div><span class="sol-correct-ans">정답: ${q.answers ? q.answers.map(a => String(a).replace(/</g, '&lt;').replace(/>/g, '&gt;')).join(' / ') : (q.answer || '모범 답안 참조')}</span></div>
+        <div style="color: var(--text-secondary); margin-top: 6px;">${(q.explanation || '').split(/(<pre[\s\S]*?<\/pre>)/gi).map(part => /^<pre/i.test(part) ? part : part.replace(/\n/g, '<br>')).join('')}</div>
     `;
 
     if (q.sampleAnswer) {
       html += `
         <div style="margin-top: 10px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px;">
           <div style="font-weight: 800; color: var(--accent); margin-bottom: 4px;">모범 답안 예시:</div>
-          <div style="font-size: 15px; line-height: 1.6;">${q.sampleAnswer}</div>
+          <div style="font-size: 15px; line-height: 1.6; white-space: pre-wrap;">${q.sampleAnswer}</div>
         </div>
       `;
     }
