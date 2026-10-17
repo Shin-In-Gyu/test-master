@@ -44,6 +44,7 @@ function changeSubject(subKey) {
   }
   currentSubject = subKey;
   currentExamIndex = 0;
+  isWrongNotesMode = false;
   userAnswers = {};
   shortScores = {};
   essayScores = {};
@@ -117,6 +118,7 @@ function switchMainMode(mode) {
   const btnExam = document.getElementById("modeBtnExam");
   const bottomBar = document.getElementById("bottomBar");
   const chapterBar = document.getElementById("conceptFilterBar");
+  const examFilterBar = document.getElementById("examFilterBar");
 
   if (mode === "concept") {
     conceptSec.style.display = "block";
@@ -125,14 +127,17 @@ function switchMainMode(mode) {
     btnExam.classList.remove("active");
     bottomBar.style.display = "none";
     if (chapterBar) chapterBar.style.display = "flex";
+    if (examFilterBar) examFilterBar.style.display = "none";
     showToast("[개념 총정리] 뷰로 전환되었습니다.");
   } else {
+    isWrongNotesMode = false;
     conceptSec.style.display = "none";
     examSec.style.display = "block";
     btnConcept.classList.remove("active");
     btnExam.classList.add("active");
     bottomBar.style.display = "flex";
     if (chapterBar) chapterBar.style.display = "none";
+    if (examFilterBar) examFilterBar.style.display = "flex";
     showToast("[실전 모의고사] 뷰로 전환되었습니다.");
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -272,44 +277,100 @@ document.addEventListener("click", (e) => {
   }
 });
 
+let isWrongNotesMode = false;
+
 // ========================================================
 // 3. 실전 모의고사 렌더링 및 채점 로직
 // ========================================================
+function renderExamFilterBar() {
+  const bar = document.getElementById("examFilterBar");
+  const subjectData = window.EXAM_DATABASE[currentSubject];
+  if (!bar) return;
+  if (!subjectData || !subjectData.exams || subjectData.exams.length === 0) {
+    bar.innerHTML = "";
+    bar.style.display = "none";
+    return;
+  }
+
+  let optionsHtml = "";
+  subjectData.exams.forEach((exam, idx) => {
+    const isSelected = (!isWrongNotesMode && idx === currentExamIndex) ? "selected" : "";
+    optionsHtml += `<option value="${idx}" ${isSelected}>${cleanTasteString(exam.name)}</option>`;
+  });
+  const wrongSelected = isWrongNotesMode ? "selected" : "";
+  optionsHtml += `<option value="wrong" ${wrongSelected}>오답 집중 모아보기</option>`;
+
+  bar.innerHTML = `
+    <div class="chapter-select-box">
+      <span class="chapter-select-tag">회차 선택</span>
+      <select id="examChapterSelect" class="chapter-select" onchange="handleExamSelect(this.value)">
+        ${optionsHtml}
+      </select>
+    </div>
+  `;
+  bar.style.display = currentMode === "exam" ? "flex" : "none";
+}
+
+function handleExamSelect(val) {
+  if (val === "wrong") {
+    showWrongNotes();
+  } else {
+    switchExam(parseInt(val, 10));
+  }
+}
+
+function toggleWrongNotesView() {
+  if (isWrongNotesMode) {
+    switchExam(currentExamIndex);
+  } else {
+    showWrongNotes();
+  }
+}
+
 function renderExamTabs() {
+  renderExamFilterBar();
+
   const container = document.getElementById("examTabsContainer");
   const subjectData = window.EXAM_DATABASE[currentSubject];
-  if (!subjectData || !subjectData.exams) {
+  if (!container) return;
+  if (!subjectData || !subjectData.exams || subjectData.exams.length === 0) {
     container.innerHTML = "";
     return;
   }
 
-  let html = "";
-  subjectData.exams.forEach((exam, idx) => {
-    const isActive = (idx === currentExamIndex) ? "active" : "";
-    html += `
-      <button class="exam-tab-btn ${isActive}" onclick="switchExam(${idx})">
-        <span>${exam.name}</span>
-        <span class="badge ${isActive ? 'badge-amber' : 'badge-blue'}" style="font-size:13px;">${exam.tag}</span>
-      </button>
-    `;
-  });
+  const exam = subjectData.exams[currentExamIndex];
+  if (!exam) {
+    container.innerHTML = "";
+    return;
+  }
 
-  // 오답노트 탭
-  html += `
-    <button class="exam-tab-btn wrong-tab" id="wrongTabBtn" onclick="showWrongNotes()">
-      <span>오답 집중 모아보기</span>
-    </button>
+  container.innerHTML = `
+    <div class="exam-active-header">
+      <div class="exam-active-info">
+        <span class="exam-active-title">${isWrongNotesMode ? '[오답 집중] 틀린 문제 모아보기' : cleanTasteString(exam.name)}</span>
+        <span class="badge ${isWrongNotesMode ? 'badge-accent' : 'badge-amber'}" style="font-size:12.5px;">
+          ${isWrongNotesMode ? '오답(0점) 문제 필터링' : cleanTasteString(exam.tag)}
+        </span>
+      </div>
+      <div class="exam-active-actions">
+        <button class="exam-header-btn ${isWrongNotesMode ? 'active' : ''}" id="wrongTabBtn" onclick="toggleWrongNotesView()">
+          <span>${isWrongNotesMode ? '전체 문제 보기' : '오답 집중 모아보기'}</span>
+        </button>
+      </div>
+    </div>
   `;
-
-  container.innerHTML = html;
 }
 
 function switchExam(idx) {
+  isWrongNotesMode = false;
   currentExamIndex = idx;
+  const examSel = document.getElementById("examChapterSelect");
+  if (examSel && examSel.value !== String(idx)) {
+    examSel.value = String(idx);
+  }
   renderExamTabs();
   renderCurrentExam();
   updateProgressAndScore();
-  updateSubjectView();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -617,7 +678,8 @@ function resetCurrentExam() {
 
 // 틀린 문제 모아보기
 function showWrongNotes() {
-  const exam = window.EXAM_DATABASE[currentSubject].exams[currentExamIndex];
+  const exam = window.EXAM_DATABASE[currentSubject]?.exams[currentExamIndex];
+  if (!exam) return;
   let wrongCount = 0;
 
   exam.questions.forEach(q => {
@@ -632,8 +694,10 @@ function showWrongNotes() {
     }
   });
 
-  document.querySelectorAll(".exam-tab-btn").forEach(b => b.classList.remove("active"));
-  document.getElementById("wrongTabBtn").classList.add("active");
+  isWrongNotesMode = true;
+  renderExamTabs();
+  const examSel = document.getElementById("examChapterSelect");
+  if (examSel) examSel.value = "wrong";
 
   if (wrongCount === 0) {
     showToast("현재 오답으로 채점된 문제가 없습니다. (전체 채점을 먼저 눌러보세요)");

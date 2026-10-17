@@ -345,9 +345,9 @@ p, div, span, li, button, input, select, textarea {
 }
 
 .nav-chapter-wrapper {
-  flex: 0 0 220px !important;
-  width: 220px !important;
-  max-width: 260px !important;
+  flex: 0 0 250px !important;
+  width: 250px !important;
+  max-width: 320px !important;
   min-width: 160px !important;
   display: flex !important;
   align-items: center !important;
@@ -912,10 +912,67 @@ p, div, span, li, button, input, select, textarea {
    4. Mock Exam View
    ======================================================== */
 .exam-tabs {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.exam-active-header {
   display: flex;
-  gap: 8px;
-  margin-bottom: 24px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  box-sizing: border-box;
+}
+
+.exam-active-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   flex-wrap: wrap;
+  min-width: 0;
+}
+
+.exam-active-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.exam-active-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.exam-header-btn {
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--ink);
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.exam-header-btn:hover {
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
+.exam-header-btn.active {
+  background-color: var(--tag-gold-ink);
+  color: var(--bg-base);
+  border-color: var(--tag-gold-ink);
 }
 
 .exam-tab-btn {
