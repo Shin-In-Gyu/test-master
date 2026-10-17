@@ -70,7 +70,8 @@ function cleanTasteString(str) {
 
 function cleanTasteHtml(html) {
   if (!html) return "";
-  return cleanTasteString(html)
+  return html
+    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}]/gu, '')
     .replace(/class="q-icon"/g, 'class="q-num-tag"')
     .replace(/font-size:\s*(?:[0-9]|1[0-2])(?:\.\d+)?px/gi, 'font-size: 14px')
     .replace(/font-size:\s*(?:[0-9]|1[0-2])(?:\.\d+)?pt/gi, 'font-size: 14px');

@@ -11,21 +11,21 @@ window.CONCEPT_DATABASE.os = {
   title: "💻 운영체제 1~7장 전범위 핵심 총정리 & 시험 오픈북 치트시트",
   filterChips: [
     { id: "all", label: "전체보기" },
-    { id: "os-cheat", label: "⚡ 1초 정답 치트키 (20선)", class: "amber-chip" },
+    { id: "os-cheat", label: "⚡ 1초 정답 치트키 (21선)", class: "amber-chip" },
     { id: "os-sched", label: "📊 스케줄링 공식 & 간트 차트", class: "danger-chip" },
     { id: "os-ch1", label: "1장: 개요·듀얼모드·폰노이만" },
-    { id: "os-ch2", label: "2장: 프로세스·PCB·문맥교환" },
+    { id: "os-ch2", label: "2장: 프로세스 상태전이도·PCB·문맥교환" },
     { id: "os-ch3", label: "3장: fork()·계층·IPC 2대모델" },
     { id: "os-ch4", label: "4장: 파이프·공유메모리·소켓" },
     { id: "os-ch5-6", label: "5·6장: 스레드·3대모델·동시성" },
     { id: "os-ch7", label: "7장: CPU 스케줄링 4대 알고리즘" }
   ],
   html: `
-    <!-- SECTION: 1초 정답 치트키 20선 -->
+    <!-- SECTION: 1초 정답 치트키 21선 -->
     <section id="os-cheat" class="concept-section">
       <div class="section-banner gold-banner">
         <div class="section-banner-title">
-          <span>⚡ 운영체제 1초 정답 치트키 (교수님 강조 & 시험 빈출 20선)</span>
+          <span>⚡ 운영체제 1초 정답 치트키 (교수님 강조 & 시험 빈출 21선)</span>
         </div>
         <span style="font-size: 11.5px; opacity: 0.9;">문제 확인 즉시 작성할 단답형 핵심 키워드</span>
       </div>
@@ -115,10 +115,10 @@ window.CONCEPT_DATABASE.os = {
           <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">* 프로그램 실행이란 하드디스크의 프로그램 코드가 메인 메모리로 올라와 프로세스가 되는 것을 의미</div>
         </div>
 
-        <div class="qa-card" data-tags="프로세스 5대 상태 전이 new ready running waiting terminated">
-          <div class="qa-q"><span class="q-icon">Q15</span><span>I/O 요청이나 이벤트 대기를 위해 CPU를 반납하고 머무르는 프로세스 상태는?</span></div>
-          <div class="qa-a"><span class="ans-target">대기 상태 (Waiting / Blocked)</span><button class="copy-btn" onclick="copyText('대기 상태 (Waiting)')">복사</button></div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">* I/O 완료 시 Ready(준비) 상태로 전이되며, 곧바로 Running 상태로 직행하는 것이 아님</div>
+        <div class="qa-card" data-tags="프로세스 5대 상태 전이 new ready running waiting terminated diagram of process state">
+          <div class="qa-q"><span class="q-icon">Q15</span><span>프로세스 상태 전이도(Diagram of Process State)의 5대 상태 명칭은?</span></div>
+          <div class="qa-a"><span class="ans-target">new(생성), ready(준비), running(실행), waiting(대기), terminated(종료)</span><button class="copy-btn" onclick="copyText('new, ready, running, waiting, terminated')">복사</button></div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">* I/O 완료 시 waiting에서 곧바로 running으로 가지 않고 반드시 ready(준비 큐)로 전이됨!</div>
         </div>
 
         <div class="qa-card" data-tags="exec 시스템콜 껍데기 재사용 코드 교체">
@@ -149,6 +149,12 @@ window.CONCEPT_DATABASE.os = {
           <div class="qa-q"><span class="q-icon">Q20</span><span>네트워크 상에서 서로 다른 컴퓨터 간 통신의 종단점(Endpoint)으로 IP 주소와 포트 번호의 결합체는?</span></div>
           <div class="qa-a"><span class="ans-target">소켓 (Socket)</span><button class="copy-btn" onclick="copyText('소켓 (Socket)')">복사</button></div>
           <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">* 클라이언트-서버 구조에서 표준 IPC 통신 수단으로 사용됨</div>
+        </div>
+
+        <div class="qa-card" data-tags="프로세스 상태 전이 화살표 admitted scheduler dispatch interrupt io or event wait completion exit">
+          <div class="qa-q"><span class="q-icon">Q21</span><span>Diagram of Process State의 6대 상태 전이 화살표 영문명은?</span></div>
+          <div class="qa-a"><span class="ans-target">admitted / scheduler dispatch / interrupt / I/O or event wait / I/O or event completion / exit</span><button class="copy-btn" onclick="copyText('admitted, scheduler dispatch, interrupt, I/O or event wait, I/O or event completion, exit')">복사</button></div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">* Ready→Running은 scheduler dispatch, Running→Ready는 interrupt, Running→Waiting은 I/O or event wait</div>
         </div>
       </div>
     </section>
@@ -269,9 +275,9 @@ window.CONCEPT_DATABASE.os = {
     <section id="os-ch2" class="concept-section">
       <div class="section-banner">
         <div class="section-banner-title">
-          <span>⚙️ 2장: 프로세스(Process), 메모리 레이아웃 & PCB</span>
+          <span>⚙️ 2장: 프로세스 상태 전이도(Diagram of Process State), 메모리 구조 & PCB</span>
         </div>
-        <span class="badge badge-purple">프로세스 관리</span>
+        <span class="badge badge-danger">시험 출제 확정 핵심 파트</span>
       </div>
 
       <div class="concept-card">
@@ -287,19 +293,233 @@ window.CONCEPT_DATABASE.os = {
           </tbody>
         </table>
 
-        <div class="concept-card-title" style="margin-top: 18px;">2. 프로세스 5대 상태 전이도 (State Diagram)</div>
-        <div style="padding: 12px; background: rgba(30,41,59,0.3); border-radius: 6px; border: 1px solid var(--border-color); font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.7;">
-          [New] ──(admitted)──> [Ready] <───(interrupt / time out)─── [Running] ──(exit)──> [Terminated]<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└───────── (I/O or event completion) ─── [Waiting]<br>
+        <div class="concept-card-header" style="margin-top: 24px;">
+          <div class="concept-card-title">2. 프로세스 5대 상태 전이도 (Diagram of Process State)</div>
+          <div>
+            <span class="badge badge-danger">교수님 시험 출제 예고</span>
+            <span class="badge badge-amber">빈칸·서술형 1순위</span>
+          </div>
         </div>
-        <ul style="margin: 8px 0 0 18px; font-size: 13px; color: var(--text-secondary);">
-          <li><b>New</b>: 프로세스가 막 생성되는 중인 상태 (PCB 할당)</li>
-          <li><b>Ready</b>: CPU만 할당받으면 즉시 실행 가능한 상태 (Ready Queue에서 대기)</li>
-          <li><b>Running</b>: CPU를 점유하여 실제 명령어를 실행 중인 상태</li>
-          <li><b>Waiting (Blocked)</b>: I/O 작업 완료나 신호 등 특정 이벤트를 기다리는 상태 (CPU를 할당받을 수 없음)</li>
-          <li><b>Terminated</b>: 프로세스 실행이 완료되어 자원이 회수되는 상태</li>
-        </ul>
+        <p style="font-size: 14.5px; color: var(--ink-secondary); margin-bottom: 12px;">
+          프로세스는 생성부터 종료까지 실행되면서 상태(State)가 변화합니다. 시험에 출제되는 <b>Diagram of Process State</b>의 <b>5개 상태(타원)</b>와 <b>6개 상태 전이(화살표)</b>의 정확한 영문/한글 명칭과 전이 원인을 완벽히 암기해야 합니다.
+        </p>
+
+        <!-- 강의 원본 슬라이드 이미지 + 한/영 번호 매핑 고해상도 벡터 다이어그램 -->
+        <div class="state-diagram-showcase">
+          <div class="state-diagram-box">
+            <div class="state-diagram-box-header">
+              <span>📌 강의 교안 원본 슬라이드 (Diagram of Process State)</span>
+              <span class="badge badge-blue">원본 이미지</span>
+            </div>
+            <img src="assets/process-state-diagram.png" alt="Diagram of Process State 강의 슬라이드" class="state-diagram-img">
+            <div style="font-size: 13px; color: var(--ink-muted); margin-top: 8px; text-align: center;">
+              * 슬라이드 내 5대 상태(new, ready, running, waiting, terminated) 및 6대 화살표 라벨 영문 스펠링 확인
+            </div>
+          </div>
+
+          <div class="state-diagram-box">
+            <div class="state-diagram-box-header">
+              <span>🎯 시험 빈칸 완벽 대비 한·영 번호 매핑 도해 (①~⑥)</span>
+              <span class="badge badge-amber">번호별 전이 추적</span>
+            </div>
+            <div class="state-svg-wrapper">
+              <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of Process State Annotated">
+                <defs>
+                  <marker id="arrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M 0 1 L 9 5 L 0 9 z" fill="#1d4ed8"/>
+                  </marker>
+                  <marker id="arrowHeadRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M 0 1 L 9 5 L 0 9 z" fill="#dc2626"/>
+                  </marker>
+                  <marker id="arrowHeadGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M 0 1 L 9 5 L 0 9 z" fill="#059669"/>
+                  </marker>
+                </defs>
+
+                <!-- Background Card -->
+                <rect x="4" y="4" width="672" height="352" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+
+                <!-- 1. new -> ready (admitted) -->
+                <path d="M 148 78 Q 210 92 225 144" fill="none" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#arrowHead)"/>
+                <text x="195" y="75" font-family="Pretendard, sans-serif" font-size="13.5" font-weight="800" fill="#0f172a" text-anchor="middle">① admitted</text>
+                <text x="195" y="92" font-family="Pretendard, sans-serif" font-size="11.5" font-weight="600" fill="#475569" text-anchor="middle">(승인 / Ready 큐 진입)</text>
+
+                <!-- 3. running -> ready (interrupt) -->
+                <path d="M 412 148 Q 340 94 268 148" fill="none" stroke="#dc2626" stroke-width="2.4" marker-end="url(#arrowHeadRed)"/>
+                <text x="340" y="92" font-family="Pretendard, sans-serif" font-size="13.5" font-weight="800" fill="#dc2626" text-anchor="middle">③ interrupt</text>
+                <text x="340" y="109" font-family="Pretendard, sans-serif" font-size="11.5" font-weight="600" fill="#475569" text-anchor="middle">(타임아웃 / CPU 강제 선점)</text>
+
+                <!-- 2. ready -> running (scheduler dispatch) -->
+                <path d="M 275 190 Q 340 232 405 190" fill="none" stroke="#059669" stroke-width="2.4" marker-end="url(#arrowHeadGreen)"/>
+                <text x="340" y="226" font-family="Pretendard, sans-serif" font-size="13.5" font-weight="800" fill="#047857" text-anchor="middle">② scheduler dispatch</text>
+                <text x="340" y="243" font-family="Pretendard, sans-serif" font-size="11.5" font-weight="600" fill="#475569" text-anchor="middle">(스케줄러 선택 &amp; 디스패처 CPU 할당)</text>
+
+                <!-- 4. running -> waiting (I/O or event wait) -->
+                <path d="M 442 204 Q 434 275 398 298" fill="none" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#arrowHead)"/>
+                <text x="515" y="268" font-family="Pretendard, sans-serif" font-size="13.5" font-weight="800" fill="#0f172a" text-anchor="middle">④ I/O or event wait</text>
+                <text x="515" y="285" font-family="Pretendard, sans-serif" font-size="11.5" font-weight="600" fill="#475569" text-anchor="middle">(I/O 요청·이벤트 대기 / CPU 반납)</text>
+
+                <!-- 5. waiting -> ready (I/O or event completion) -->
+                <path d="M 282 298 Q 244 275 236 206" fill="none" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#arrowHead)"/>
+                <text x="148" y="268" font-family="Pretendard, sans-serif" font-size="13.5" font-weight="800" fill="#0f172a" text-anchor="middle">⑤ I/O or event completion</text>
+                <text x="148" y="285" font-family="Pretendard, sans-serif" font-size="11.5" font-weight="600" fill="#475569" text-anchor="middle">(I/O·이벤트 완료 → Ready 복귀!)</text>
+
+                <!-- 6. running -> terminated (exit) -->
+                <path d="M 456 146 Q 480 92 530 78" fill="none" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#arrowHead)"/>
+                <text x="488" y="75" font-family="Pretendard, sans-serif" font-size="13.5" font-weight="800" fill="#0f172a" text-anchor="middle">⑥ exit</text>
+                <text x="488" y="92" font-family="Pretendard, sans-serif" font-size="11.5" font-weight="600" fill="#475569" text-anchor="middle">(실행 종료)</text>
+
+                <!-- State Ovals -->
+                <!-- new -->
+                <ellipse cx="90" cy="72" rx="58" ry="30" fill="#bae6fd" stroke="#0284c7" stroke-width="2.2"/>
+                <text x="90" y="69" font-family="Pretendard, sans-serif" font-size="15.5" font-weight="800" fill="#0f172a" text-anchor="middle">new</text>
+                <text x="90" y="86" font-family="Pretendard, sans-serif" font-size="11.5" font-weight="700" fill="#0369a1" text-anchor="middle">(생성)</text>
+
+                <!-- ready -->
+                <ellipse cx="235" cy="174" rx="58" ry="30" fill="#bae6fd" stroke="#0284c7" stroke-width="2.2"/>
+                <text x="235" y="171" font-family="Pretendard, sans-serif" font-size="15.5" font-weight="800" fill="#0f172a" text-anchor="middle">ready</text>
+                <text x="235" y="188" font-family="Pretendard, sans-serif" font-size="11.5" font-weight="700" fill="#0369a1" text-anchor="middle">(준비 큐)</text>
+
+                <!-- running -->
+                <ellipse cx="445" cy="174" rx="58" ry="30" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2.6"/>
+                <text x="445" y="171" font-family="Pretendard, sans-serif" font-size="15.5" font-weight="800" fill="#0f172a" text-anchor="middle">running</text>
+                <text x="445" y="188" font-family="Pretendard, sans-serif" font-size="11.5" font-weight="700" fill="#1d4ed8" text-anchor="middle">(CPU 실행)</text>
+
+                <!-- waiting -->
+                <ellipse cx="340" cy="306" rx="60" ry="30" fill="#bae6fd" stroke="#0284c7" stroke-width="2.2"/>
+                <text x="340" y="303" font-family="Pretendard, sans-serif" font-size="15.5" font-weight="800" fill="#0f172a" text-anchor="middle">waiting</text>
+                <text x="340" y="320" font-family="Pretendard, sans-serif" font-size="11.5" font-weight="700" fill="#0369a1" text-anchor="middle">(대기/Blocked)</text>
+
+                <!-- terminated -->
+                <ellipse cx="590" cy="72" rx="60" ry="30" fill="#bae6fd" stroke="#0284c7" stroke-width="2.2"/>
+                <text x="590" y="69" font-family="Pretendard, sans-serif" font-size="15.5" font-weight="800" fill="#0f172a" text-anchor="middle">terminated</text>
+                <text x="590" y="86" font-family="Pretendard, sans-serif" font-size="11.5" font-weight="700" fill="#0369a1" text-anchor="middle">(종료)</text>
+              </svg>
+            </div>
+            <div style="font-size: 13px; color: var(--ink-muted); margin-top: 8px; text-align: center;">
+              * 다크/라이트 모드 및 인쇄 시에도 선명하게 보이는 번호 매핑 다이어그램
+            </div>
+          </div>
+        </div>
+
+        <!-- 표 2-1: 프로세스 5대 상태 상세 정리표 -->
+        <div style="font-weight: 800; font-size: 16px; color: var(--ink); margin: 16px 0 8px 0;">
+          📋 [표 1] 프로세스 5대 상태 (5 Process States — 동그라미 빈칸 & 개념 정리)
+        </div>
+        <table class="concept-table">
+          <thead>
+            <tr>
+              <th style="width: 150px;">상태 (영문)</th>
+              <th style="width: 110px;">한글 명칭</th>
+              <th style="width: 140px;">머무는 곳 / 큐</th>
+              <th style="width: 100px;">CPU 점유</th>
+              <th>상태 정의 및 시험 핵심 특징</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b style="color: var(--accent);">new</b></td>
+              <td><b>생성 상태</b></td>
+              <td>외부 디스크 → 메모리 진입 중</td>
+              <td>X</td>
+              <td>프로세스가 막 생성되고 있는 상태. 커널에 <b>PCB(Process Control Block)</b>가 할당되나 아직 메인 메모리 진입 승인(<code>admitted</code>)을 받기 전 단계</td>
+            </tr>
+            <tr>
+              <td><b style="color: var(--accent);">ready</b></td>
+              <td><b>준비 상태</b></td>
+              <td><b>Ready Queue (준비 큐)</b></td>
+              <td>X (대기)</td>
+              <td>실행에 필요한 모든 메모리와 자원을 할당받고 <b>오직 CPU(프로세서) 할당만을 기다리는 상태</b>. 스케줄러에 의해 선택되면 즉시 실행 가능</td>
+            </tr>
+            <tr>
+              <td><b style="color: var(--accent);">running</b></td>
+              <td><b>실행 상태</b></td>
+              <td><b>CPU 코어 내부</b></td>
+              <td><b>O (점유 중)</b></td>
+              <td>디스패처에 의해 실제로 CPU 제어권을 부여받아 <b>명령어(Instruction)를 실행 중인 상태</b> (단일 코어 기준 한 순간에 1개만 존재)</td>
+            </tr>
+            <tr>
+              <td><b style="color: var(--accent);">waiting</b></td>
+              <td><b>대기 상태</b><br><span style="font-size:13px; color:var(--ink-muted);">(Blocked / 봉쇄)</span></td>
+              <td><b>Waiting / Device Queue (대기 큐)</b></td>
+              <td>X (실행 불가)</td>
+              <td>I/O 입출력 완료나 자식 프로세스 종료(<code>wait()</code>), 이벤트 신호를 기다리는 상태. <b>당장 CPU를 주더라도 이벤트가 끝나기 전까진 실행 불가</b></td>
+            </tr>
+            <tr>
+              <td><b style="color: var(--accent);">terminated</b></td>
+              <td><b>종료 상태</b></td>
+              <td>자원 회수 단계</td>
+              <td>X</td>
+              <td>프로세스가 실행을 완전히 마쳤거나(<code>exit</code>) 강제 중단되어 <b>메모리와 할당 자원을 OS에 반납하는 상태</b> (부모가 <code>wait()</code> 전까지 PCB가 남으면 좀비 프로세스)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 표 2-2: 프로세스 6대 상태 전이 상세 정리표 -->
+        <div style="font-weight: 800; font-size: 16px; color: var(--ink); margin: 18px 0 8px 0;">
+          🔄 [표 2] 프로세스 6대 상태 전이 (6 State Transitions — 화살표 빈칸 & 서술형 완벽 대비표)
+        </div>
+        <table class="concept-table">
+          <thead>
+            <tr>
+              <th style="width: 165px;">전이 구간 (출발 → 도착)</th>
+              <th style="width: 200px;">슬라이드 영문 라벨 (필수 암기!)</th>
+              <th style="width: 130px;">한글 의미</th>
+              <th>발생 원인 · 담당 모듈 · 시험 출제 포인트</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>① new → ready</b></td>
+              <td><b style="color: var(--accent);">admitted</b></td>
+              <td><b>승인 (진입 허가)</b></td>
+              <td>운영체제(장기 스케줄러)가 프로세스 생성을 완료하고 메인 메모리를 할당하여 <b>준비 큐(Ready Queue)</b>에 진입시킴</td>
+            </tr>
+            <tr>
+              <td><b>② ready → running</b></td>
+              <td><b style="color: var(--tag-green-ink);">scheduler dispatch</b></td>
+              <td><b>스케줄러 디스패치</b></td>
+              <td><b>CPU 스케줄러(단기 스케줄러)</b>가 준비 큐에서 프로세스를 선택하고, <b>디스패처(Dispatcher)</b>가 문맥 교환을 통해 실제 CPU 제어권을 할당함</td>
+            </tr>
+            <tr>
+              <td><b>③ running → ready</b></td>
+              <td><b style="color: var(--tag-danger-ink);">interrupt</b></td>
+              <td><b>인터럽트 (타임아웃)</b></td>
+              <td>할당된 <b>타임 퀀텀(Time Quantum)이 만료(Timer Interrupt)</b>되거나 더 높은 우선순위 프로세스가 도착하여 <b>CPU를 강제로 빼앗김(선점)</b>. I/O 대기가 아니므로 곧장 <b>ready</b>로 이동!</td>
+            </tr>
+            <tr>
+              <td><b>④ running → waiting</b></td>
+              <td><b style="color: var(--accent);">I/O or event wait</b></td>
+              <td><b>입출력·이벤트 대기</b></td>
+              <td>실행 중 디스크 읽기/쓰기 등 <b>I/O 시스템 콜을 요청</b>하거나 <code>wait()</code> 등 특정 이벤트를 기다려야 해서 <b>프로세스가 스스로 CPU를 반납</b>하고 대기 큐로 이동함</td>
+            </tr>
+            <tr>
+              <td><b>⑤ waiting → ready</b></td>
+              <td><b style="color: var(--accent);">I/O or event completion</b></td>
+              <td><b>입출력·이벤트 완료</b></td>
+              <td>요청했던 하드웨어 I/O 작업이 끝나 인터럽트가 발생하거나 이벤트가 해결됨.<br><b style="color: var(--tag-danger-ink);">※ 주의: Running으로 바로 가지 않고 반드시 Ready(준비 큐)로 복귀함!</b></td>
+            </tr>
+            <tr>
+              <td><b>⑥ running → terminated</b></td>
+              <td><b style="color: var(--accent);">exit</b></td>
+              <td><b>종료 (실행 완료)</b></td>
+              <td>프로세스가 마지막 문장 실행을 완료(<code>return</code>, <code>exit()</code>)하거나 오류(abort)로 인해 완전히 종료되어 OS가 자원을 회수함</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 시험 출제 포인트 Callout -->
+        <div class="callout-box warning" style="margin-top: 14px;">
+          <div class="callout-title">🚨 [시험 출제 1순위] 프로세스 상태 전이도 3대 단골 출제 포인트</div>
+          <b>1. 왜 <code>waiting</code>에서 <code>running</code>으로 직접 가는 화살표는 없는가? (서술형·객관식 함정 1위)</b><br>
+          • <code>waiting</code> 상태이던 프로세스의 입출력이 완료(<code>I/O or event completion</code>)된 시점에, <b>CPU는 이미 다른 프로세스가 <code>running</code> 상태로 점유하고 있을 수 있습니다.</b> 따라서 즉시 CPU를 새치기할 수 없고, 실행 준비가 끝났다는 의미인 <b><code>ready</code> 상태(준비 큐)</b>로 들어가 줄을 선 뒤 <code>scheduler dispatch</code>를 통해서만 <code>running</code>으로 갈 수 있습니다.<br><br>
+          <b>2. <code>interrupt</code> (running → ready) vs <code>I/O or event wait</code> (running → waiting) 완벽 구분</b><br>
+          • <b><code>interrupt</code></b>: 프로세스는 더 실행하고 싶으나 타임 슬라이스(Time Quantum) 소진 등으로 <b>비자발적(강제)으로 CPU를 빼앗긴 경우</b> → 당장 다시 실행 가능하므로 <b><code>ready</code></b>로 이동.<br>
+          • <b><code>I/O or event wait</code></b>: 느린 입출력 장치의 응답을 기다려야 해서 프로세스가 <b>자발적으로 CPU를 내려놓은 경우</b> → I/O가 끝날 때까지 실행 불가능하므로 <b><code>waiting</code></b>으로 이동.<br><br>
+          <b>3. 7장 CPU 스케줄링(선점 vs 비선점)과의 연결 고리</b><br>
+          • <b>비선점형(Non-preemptive)</b>: 오직 <b>④ <code>running → waiting</code> (I/O wait)</b>과 <b>⑥ <code>running → terminated</code> (exit)</b>처럼 프로세스가 스스로 CPU를 반납할 때만 스케줄링 발생.<br>
+          • <b>선점형(Preemptive)</b>: 여기에 더해 <b>③ <code>running → ready</code> (interrupt)</b>와 <b>⑤ <code>waiting → ready</code> (I/O completion)</b> 시점에도 강제로 CPU를 빼앗는 스케줄링 발생!
+        </div>
 
         <div class="concept-card-title" style="margin-top: 18px;">3. PCB (Process Control Block) 구성 요소</div>
         <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 6px;">
@@ -356,30 +576,30 @@ window.CONCEPT_DATABASE.os = {
 
         <div class="concept-card-title" style="margin-top: 18px;">🔥 시험 단골: fork() 실행 흐름 & 메모리 독립성 코드 분석</div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; margin-top: 8px;">
-          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color);">
+          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
             <div style="font-weight: 700; color: var(--accent); margin-bottom: 6px;">[유형 2] fork() 후 전역 변수 독립성 (Copy-on-Write)</div>
-            <pre style="font-family: var(--font-mono); font-size: 13px; line-height: 1.45; color: var(--ink);">int value = 5;
+            <pre class="code-block" style="margin: 0;">int value = 5;
 int main() {
     pid_t pid = fork();
-    if (pid == 0) { // 자식
+    if (pid == 0) { // 자식 프로세스
         value += 15;
         return 0;
-    } else if (pid > 0) { // 부모
+    } else if (pid &gt; 0) { // 부모 프로세스
         wait(NULL);
-        printf("PARENT: value = %d\n", value);
+        printf("PARENT: value = %d\\n", value);
     }
 }
 // 출력: PARENT: value = 5 (부모 변수는 5 그대로 유지!)</pre>
           </div>
-          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color);">
+          <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
             <div style="font-weight: 700; color: var(--accent); margin-bottom: 6px;">[유형 4] execlp() 메모리 대체 메커니즘</div>
-            <pre style="font-family: var(--font-mono); font-size: 13px; line-height: 1.45; color: var(--ink);">pid = fork();
+            <pre class="code-block" style="margin: 0;">pid = fork();
 if (pid == 0) {
     execlp("/bin/ls", "ls", NULL);
-    printf("LINE J\n"); // 절대 실행되지 않음!
+    printf("LINE J\\n"); // 절대 실행되지 않음!
 } else {
     wait(NULL);
-    printf("Child Complete\n");
+    printf("Child Complete\\n");
 }
 // 이유: execlp는 현재 프로세스 메모리를 새 프로그램으로
 // 완전히 대체(덮어쓰기)하므로 기존 코드는 사라짐</pre>
@@ -1171,11 +1391,11 @@ window.EXAM_DATABASE.os = {
           explanation: "콘보이 효과(Convoy Effect)는 긴 작업 뒤에 짧은 작업들이 기차처럼 줄지어 대기하면서 대기시간이 폭증하는 FCFS의 대표적인 단점입니다."
         },
         {
-          id: 10, type: "short", score: 5, origin: "프로세스 대기 상태 (Waiting)",
-          text: "실행 중인 프로세스가 I/O 장치의 입출력 완료나 자식 프로세스의 종료(wait) 등 특정 이벤트가 발생하기를 기다리기 위해 CPU를 반납하고 전이되는 프로세스 5대 상태 중 하나의 명칭은?",
-          placeholder: "상태 명칭 입력 (예: 대기 상태 또는 Waiting)",
+          id: 10, type: "short", score: 5, origin: "2장 프로세스 상태 전이도 (Diagram of Process State)",
+          text: "아래 프로세스 상태 전이도(Diagram of Process State)에서 실행 중(running)인 프로세스가 I/O 장치의 입출력 완료나 특정 이벤트 발생을 기다리기 위해 스스로 CPU를 반납(`I/O or event wait`)하고 전이되는 프로세스 상태의 명칭은?<br><br><img src='assets/process-state-diagram.png' alt='Diagram of Process State' class='state-diagram-img' style='margin-top:8px;'>",
+          placeholder: "상태 명칭 입력 (예: waiting 또는 대기 상태)",
           answers: ["대기", "대기 상태", "대기상태", "waiting", "Waiting", "Blocked", "블록"],
-          explanation: "Waiting(대기) 상태는 I/O 완료나 이벤트 신호를 대기하는 상태로, 이벤트가 완료되면 Ready(준비) 상태로 이동합니다."
+          explanation: "<b>Waiting (대기 상태 / Blocked)</b>은 I/O 완료나 이벤트 신호를 대기하는 상태입니다.<br>• <b>new → ready</b>: <code>admitted</code> (승인)<br>• <b>ready → running</b>: <code>scheduler dispatch</code> (스케줄러 디스패치)<br>• <b>running → ready</b>: <code>interrupt</code> (타임아웃/선점)<br>• <b>running → waiting</b>: <code>I/O or event wait</code> (입출력/이벤트 대기)<br>• <b>waiting → ready</b>: <code>I/O or event completion</code> (입출력/이벤트 완료 — Running 직행 불가!)<br>• <b>running → terminated</b>: <code>exit</code> (종료)"
         },
 
         // [계산 2문항: 각 10점 = 20점]

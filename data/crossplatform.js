@@ -126,7 +126,7 @@ window.CONCEPT_DATABASE.crossplatform = {
 
     <!-- SECTION 2: 교수님 시험 공지 및 감점 방지 기준 -->
     <section id="cp-prof" class="concept-section">
-      <div class="section-banner" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(38, 18, 20, 0.8)); border-left: 4px solid var(--tag-danger-ink);">
+      <div class="section-banner danger-banner">
         <div class="section-banner-title">
           <span>🎯 교수님 공지 시험 개요 & 감점 방지 필수 채점 기준</span>
         </div>
@@ -844,7 +844,194 @@ window.EXAM_DATABASE.crossplatform = {
           explanation: "<b>정답: ActivityIndicator, size</b><br>ActivityIndicator 컴포넌트는 앱 로딩 중 원형 스피너를 보여주며, size 속성에 'small' 또는 'large'를 전달하여 크기를 지정할 수 있습니다."
         }
       ]
+    },
+    // [회차 5] 전 범위 소스코드 빈칸완성 & 코드작성 마스터 모의고사 (20문항 / 100점)
+    {
+      id: "cp_exam5",
+      name: "제5회 [올코드 빈칸 마스터] 2~7주차 전 범위 소스코드 빈칸완성 & 코드작성 특훈 (20문항)",
+      tag: "올코드 빈칸 20문항 (100점)",
+      desc: "교안 2주차 환경구축부터 7주차 Hook 및 계산기 실습까지 전 강의 교안에 등장하는 모든 React Native 핵심 소스코드의 키워드, 속성, Hook 선언문, 이벤트 핸들러 빈칸 뚫기 전수 수록!",
+      questions: [
+        {
+          id: 1, type: "short", score: 5, origin: "2주차 교안 p.8: React Native 루트 컴포넌트 & 스타일시트 생성",
+          text: "다음은 Expo 프로젝트의 엔트리 포인트인 <code>App.js</code> 기본 구조이다. 문자열 출력을 위한 표준 컴포넌트 <b>(A)</b>와 스타일 객체를 생성하는 메서드 <b>(B)</b>를 순서대로 쓰시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>import { StyleSheet, (A), View } from 'react-native';\n\nexport default function App() {\n    return (\n        &lt;View style={styles.container}&gt;\n            &lt;(A)&gt;크로스플랫폼 중간고사 대비&lt;/(A)&gt;\n        &lt;/View&gt;\n    );\n}\n\nconst styles = StyleSheet.(B)({\n    container: { flex: 1, justifyContent: 'center', alignItems: 'center' }\n});</pre>",
+          placeholder: "순서대로 입력 (예: Text, create)",
+          answers: ["Text, create", "Text,create", "Text, Create"],
+          explanation: "<b>정답: Text, create</b><br>리액트 네이티브에서는 웹의 p나 span 태그 대신 반드시 &lt;Text&gt; 컴포넌트로 문자를 감싸야 하며, 스타일 객체는 StyleSheet.create({ ... })로 생성합니다."
+        },
+        {
+          id: 2, type: "short", score: 5, origin: "3주차 교안 p.4: 레이아웃 기본 주축(flexDirection) 기본값",
+          text: "리액트 네이티브의 레이아웃 모델인 Flexbox에서 <b>주축(Main Axis)의 방향을 결정하는 <code>flexDirection</code>의 기본값(Default Value)</b>은 무엇인가?",
+          placeholder: "기본값 입력 (예: column)",
+          answers: ["column", "Column", "'column'"],
+          explanation: "<b>정답: column (세로 방향)</b><br>일반 웹 CSS에서는 가로(row)가 기본값이지만, 스마트폰 세로 화면에 최적화된 리액트 네이티브는 세로(column)가 기본값입니다."
+        },
+        {
+          id: 3, type: "short", score: 5, origin: "3주차 교안 p.13: 여러 스타일 동시 적용 문법",
+          text: "다음 코드에서 <code>styles.box</code>와 <code>styles.active</code> 두 스타일을 하나의 컴포넌트에 결합 적용하기 위한 빈칸 <b>(A)</b>의 배열 문법을 완성하여 작성하시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;View style={(A)}&gt;\n    &lt;Text&gt;다중 스타일 적용&lt;/Text&gt;\n&lt;/View&gt;</pre>",
+          placeholder: "배열 표기법 작성 (예: [styles.box, styles.active])",
+          answers: [
+            "[styles.box, styles.active]",
+            "[styles.box,styles.active]",
+            "[styles.box, styles.active ]"
+          ],
+          explanation: "<b>정답: [styles.box, styles.active]</b><br>리액트 네이티브에서 둘 이상의 스타일을 병합할 때는 배열 [style1, style2]를 사용하며, 뒤에 오는 스타일이 앞의 스타일 속성을 덮어씁니다(오버라이드)."
+        },
+        {
+          id: 4, type: "short", score: 5, origin: "3주차 교안 p.14~15: 외부 스타일 파일 export/import",
+          text: "외부 파일 <code>src/styles.js</code>에 선언된 <code>viewStyles</code> 객체를 다른 컴포넌트에서 가져다 쓸 수 있도록 내보낼 때 사용하는 자바스크립트 키워드는 무엇인가?",
+          placeholder: "키워드 입력 (예: export)",
+          answers: ["export", "export const"],
+          explanation: "<b>정답: export</b><br>export const viewStyles = StyleSheet.create({ ... }) 형태로 선언하여 내보내고, 사용하는 파일에서 import { viewStyles } from './src/styles'로 가져옵니다."
+        },
+        {
+          id: 5, type: "short", score: 5, origin: "4주차 교안 p.5: Text 컴포넌트 중첩(Nesting)과 스타일 상속",
+          text: "다음 코드의 렌더링 결과에서 '강조된 텍스트'의 <b>글자 크기(fontSize)</b> (1)과 <b>글자 색상(color)</b> (2)를 순서대로 쓰시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;Text style={{ fontSize: 24, color: 'gray' }}&gt;\n    일반 텍스트와 &lt;Text style={{ color: 'red', fontWeight: 'bold' }}&gt;강조된 텍스트&lt;/Text&gt;\n&lt;/Text&gt;</pre>",
+          placeholder: "순서대로 입력 (예: 24, red)",
+          answers: ["24, red", "24,red", "24, 'red'"],
+          explanation: "<b>정답: 24, red</b><br>리액트 네이티브는 원칙적으로 스타일 상속을 지원하지 않으나, &lt;Text&gt; 내부에 또 다른 &lt;Text&gt;를 중첩한 경우 자식 텍스트는 부모의 fontSize(24)를 상속받고 자신의 color('red')를 적용합니다."
+        },
+        {
+          id: 6, type: "short", score: 5, origin: "4주차 교안 p.11: Button 컴포넌트 2대 필수 Props",
+          text: "리액트 네이티브의 기본 <code>&lt;Button /&gt;</code> 컴포넌트에 반드시 작성해야 하는 <b>버튼에 표시될 텍스트 속성</b> (1)과 <b>클릭 이벤트 핸들러 속성</b> (2)를 순서대로 쓰시오.",
+          placeholder: "순서대로 입력 (예: title, onPress)",
+          answers: ["title, onPress", "title,onPress", "title, onPress"],
+          explanation: "<b>정답: title, onPress</b><br>&lt;Button /&gt; 컴포넌트는 자체 닫는 태그 형태로 자식 엘리먼트를 가질 수 없으며, title과 onPress 속성을 필수로 지정해야 합니다."
+        },
+        {
+          id: 7, type: "short", score: 5, origin: "4주차 교안 p.13: Alert 다이얼로그 취소/확인 팝업",
+          text: "다음 Alert 대화상자 코드에서 빈칸 <b>(A)</b>와 <b>(B)</b>에 들어갈 키워드를 순서대로 쓰시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>Alert.alert(\n    '삭제 확인',\n    '데이터를 삭제하시겠습니까?',\n    [\n        { text: '취소', style: '(A)' },\n        { text: '삭제', (B): () => deleteItem() }\n    ]\n);</pre>",
+          placeholder: "순서대로 입력 (예: cancel, onPress)",
+          answers: ["cancel, onPress", "cancel,onPress", "cancel, onPress"],
+          explanation: "<b>정답: cancel, onPress</b><br>Alert 버튼 배열에서 취소 버튼 스타일은 style: 'cancel'이며, 버튼 클릭 시 실행할 동작 함수는 onPress 속성에 콜백을 바인딩합니다."
+        },
+        {
+          id: 8, type: "short", score: 5, origin: "4주차 교안 p.14~15: TextInput 텍스트 입력과 비밀번호 마스킹",
+          text: "TextInput에서 사용자가 타이핑할 때마다 호출되는 <b>텍스트 변경 이벤트 속성</b> (1)과, 비밀번호 입력창처럼 글자를 점이나 별표로 가려주는 <b>마스킹 속성</b> (2)를 순서대로 쓰시오.",
+          placeholder: "순서대로 입력 (예: onChangeText, secureTextEntry)",
+          answers: [
+            "onChangeText, secureTextEntry",
+            "onChangeText,secureTextEntry",
+            "onChangeText, secureTextEntry={true}"
+          ],
+          explanation: "<b>정답: onChangeText, secureTextEntry</b><br>웹의 onChange(e => ...)와 달리 리액트 네이티브는 입력된 텍스트 문자열이 바로 전달되는 onChangeText를 사용하며, 비밀번호 숨김은 secureTextEntry={true}입니다."
+        },
+        {
+          id: 9, type: "short", score: 5, origin: "5주차 교안 p.10: Image 원격 네트워크 로드 필수 스타일",
+          text: "원격 인터넷 URL로부터 이미지를 가져올 때(<code>source={{ uri: '...' }}</code>), 화면에 이미지가 정상적으로 출력되기 위해 <b>스타일(style) 객체에 반드시 명시해야 하는 2가지 속성</b>은 무엇인가?",
+          placeholder: "속성 2가지 쉼표 구분 (예: width, height)",
+          answers: ["width, height", "width,height", "height, width", "height,width"],
+          explanation: "<b>정답: width, height</b><br>로컬 require() 이미지는 이미지 파일 헤더에서 원본 크기를 자동 인식하지만, 원격 네트워크 uri 이미지는 크기(width, height)를 지정하지 않으면 크기가 0이 되어 화면에 나타나지 않습니다."
+        },
+        {
+          id: 10, type: "short", score: 5, origin: "5주차 교안 p.11: Switch 토글 상태 변경 속성",
+          text: "토글 스위치 컴포넌트인 <code>&lt;Switch /&gt;</code>에서 스위치 상태가 On/Off로 전환될 때 호출되는 <b>이벤트 속성(Prop)</b>의 이름은?",
+          placeholder: "속성명 입력 (예: onValueChange)",
+          answers: ["onValueChange", "onvaluechange"],
+          explanation: "<b>정답: onValueChange</b><br>Switch 컴포넌트의 토글 핸들러는 onChange가 아닌 onValueChange={(val) => setEnabled(val)}입니다."
+        },
+        {
+          id: 11, type: "short", score: 5, origin: "5주차 교안 p.12: FlatList 3대 필수 Props",
+          text: "다음 FlatList 컴포넌트의 빈칸 <b>(A), (B), (C)</b>에 들어갈 3대 필수 속성 명칭을 순서대로 작성하시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;FlatList\n    (A)={userList}\n    (B)={(item) =&gt; item.id}\n    (C)={({ item }) =&gt; &lt;Text&gt;{item.name}&lt;/Text&gt;}\n/&gt;</pre>",
+          placeholder: "순서대로 입력 (예: data, keyExtractor, renderItem)",
+          answers: [
+            "data, keyExtractor, renderItem",
+            "data,keyExtractor,renderItem",
+            "data, keyExtractor, renderitem"
+          ],
+          explanation: "<b>정답: data, keyExtractor, renderItem</b><br>FlatList는 1) 원본 배열 데이터(data), 2) 각 항목의 고유 키 추출(keyExtractor), 3) 항목을 화면에 그릴 JSX 함수(renderItem)의 3가지 속성이 필수입니다."
+        },
+        {
+          id: 12, type: "short", score: 5, origin: "6주차 교안 p.4: BackHandler 기본동작 차단 반환값",
+          text: "안드로이드 뒤로가기 버튼 리스너(<code>hardwareBackPress</code>)에서 OS의 기본 뒤로가기 동작을 차단하고 <b>개발자가 정의한 커스텀 로직만 실행되게 하려면 콜백 함수에서 어떤 boolean 값을 반환(return)</b>해야 하는가?",
+          placeholder: "boolean 값 입력 (예: true)",
+          answers: ["true", "True"],
+          explanation: "<b>정답: true</b><br>BackHandler 콜백 함수에서 true를 반환하면 시스템의 기본 뒤로가기(화면 닫기나 앱 종료) 동작이 무시되고 차단됩니다. (false 반환 시 기본 뒤로가기 실행)"
+        },
+        {
+          id: 13, type: "short", score: 5, origin: "6주차 교안 p.7: ToastAndroid 토스트 팝업 API",
+          text: "화면 하단에 잠시 나타났다 사라지는 토스트 메시지를 출력하기 위해 사용하는 리액트 네이티브 내장 API의 이름은?",
+          placeholder: "API 이름 입력 (예: ToastAndroid)",
+          answers: ["ToastAndroid", "toastAndroid"],
+          explanation: "<b>정답: ToastAndroid</b><br>ToastAndroid.show('메시지', ToastAndroid.SHORT); 형태로 호출하여 안드로이드 네이티브 토스트 팝업을 띄웁니다."
+        },
+        {
+          id: 14, type: "short", score: 5, origin: "6주차 교안 p.9: Animated API와 useNativeDriver",
+          text: "Animated API로 부드러운 60fps 애니메이션을 구현할 때, 자바스크립트 스레드를 거치지 않고 네이티브 UI 스레드에서 직접 애니메이션을 구동시키기 위해 <code>Animated.timing</code> 설정 객체에 명시하는 <b>boolean 속성</b>은 무엇인가?",
+          placeholder: "속성명: 값 형태 또는 속성명 (예: useNativeDriver: true)",
+          answers: [
+            "useNativeDriver: true",
+            "useNativeDriver",
+            "useNativeDriver:true",
+            "useNativeDriver = true"
+          ],
+          explanation: "<b>정답: useNativeDriver: true</b><br>useNativeDriver: true를 설정하면 애니메이션 계산을 네이티브 스레드로 위임하여 JS 스레드가 바쁘더라도 프레임 드랍 없이 부드러운 애니메이션을 제공합니다."
+        },
+        {
+          id: 15, type: "short", score: 5, origin: "6주차 교안 p.11: Dimensions 가용 영역 해상도",
+          text: "모바일 기기의 상단 상태바(Status Bar)나 하단 소프트키를 제외한 <b>실제 앱 가용 화면 해상도를 픽셀 단위로 구하는 API 메서드 호출 구문</b>은 무엇인가?",
+          placeholder: "호출 구문 입력 (예: Dimensions.get('window'))",
+          answers: [
+            "Dimensions.get('window')",
+            "Dimensions.get(\"window\")",
+            "Dimensions.get('window')",
+            "Dimensions.get('window')"
+          ],
+          explanation: "<b>정답: Dimensions.get('window')</b><br>Dimensions.get('window')는 소프트키 등을 제외한 앱 가용 영역의 width와 height를 반환하고, Dimensions.get('screen')은 기기 물리적 전체 화면 크기를 반환합니다."
+        },
+        {
+          id: 16, type: "short", score: 5, origin: "7주차 교안 p.5: useState 상태 선언 및 리렌더링",
+          text: "다음 컴포넌트에서 <code>useState</code>의 상태 변경 함수인 <b>세터 함수(setCount)가 호출되었을 때 컴포넌트에 일어나는 핵심 동작 메커니즘</b>을 한 단어로 쓰시오.",
+          placeholder: "한 단어로 작성 (예: 리렌더링)",
+          answers: ["리렌더링", "재렌더링", "다시 렌더링", "re-rendering", "rerendering"],
+          explanation: "<b>정답: 리렌더링 (Re-rendering)</b><br>useState의 세터 함수가 호출되면 리액트는 상태 변화를 감지하고 해당 컴포넌트 함수를 다시 실행하여 화면 UI를 새로 고치는 리렌더링을 수행합니다."
+        },
+        {
+          id: 17, type: "short", score: 5, origin: "7주차 교안 p.10: useRef와 DOM 포커스 이동",
+          text: "다음 코드에서 사용자가 버튼을 눌렀을 때 TextInput으로 커서 포커스를 이동시키고자 한다. 빈칸 <b>(A)</b>와 <b>(B)</b>에 들어갈 코드를 순서대로 쓰시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>const inputRef = useRef(null);\nconst focusInput = () => {\n    inputRef.(A).focus();\n};\nreturn (\n    &lt;View&gt;\n        &lt;TextInput (B)={inputRef} placeholder=\"이름\" /&gt;\n        &lt;Button title=\"포커스\" onPress={focusInput} /&gt;\n    &lt;/View&gt;\n);</pre>",
+          placeholder: "순서대로 입력 (예: current, ref)",
+          answers: ["current, ref", "current,ref", "current, ref"],
+          explanation: "<b>정답: current, ref</b><br>useRef로 생성된 참조 객체는 TextInput의 ref 속성에 연결되며, 실제 DOM 요소는 inputRef.current 프로퍼티를 통해 접근하므로 inputRef.current.focus()를 호출합니다."
+        },
+        {
+          id: 18, type: "short", score: 5, origin: "7주차 교안 p.9: useState vs useRef vs let 변수 실행 결과 예측",
+          text: "다음 컴포넌트에서 <b>[클릭]</b> 버튼을 <b>5번 연속 클릭</b>한 직후, <b>[리랜더]</b> 버튼을 <b>1번 클릭</b>하였다.<br>화면 UI에 최종 표시되는 <b>CountRef</b> 값 (1)과 <b>CountVar</b> 값 (2)를 순서대로 쓰시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>export default function StateVsRef() {\n    const [render, setRender] = useState(false);\n    const countRef = useRef(0);\n    let countVar = 5;\n\n    const handleClick = () => {\n        countRef.current += 1;\n        countVar += 1;\n    };\n    const doRender = () => setRender(!render);\n    return (\n        &lt;View&gt;\n            &lt;Text&gt;CountRef: {countRef.current}&lt;/Text&gt;\n            &lt;Text&gt;CountVar: {countVar}&lt;/Text&gt;\n            &lt;Button title=\"클릭\" onPress={handleClick} /&gt;\n            &lt;Button title=\"리랜더\" onPress={doRender} /&gt;\n        &lt;/View&gt;\n    );\n}</pre>",
+          placeholder: "순서대로 정수 입력 (예: 5, 5)",
+          answers: ["5, 5", "5,5"],
+          explanation: "<b>정답: 5, 5</b><br>[클릭] 5번 누를 때: countRef.current는 5, countVar는 10이 되지만 리렌더링이 발생하지 않음.<br>[리랜더] 1번 누를 때: 컴포넌트가 다시 렌더링되면서 useRef는 값을 보존하여 5가 출력되고, countVar는 일반 로컬 변수이므로 let countVar = 5; 구문에 의해 5로 다시 초기화되어 5가 출력됩니다!"
+        },
+        {
+          id: 19, type: "short", score: 5, origin: "7주차 교안 p.16: useMemo의 메모이제이션 최적화 목적",
+          text: "연산 비용이 큰 함수의 반환값을 메모리에 캐싱(메모이제이션)하여, 의존성 배열의 값이 바뀌지 않는 한 불필요한 재계산을 방지하고 성능을 최적화하는 <b>React Hook의 이름</b>은?",
+          placeholder: "Hook 이름 입력 (예: useMemo)",
+          answers: ["useMemo", "usememo"],
+          explanation: "<b>정답: useMemo</b><br>useMemo(() => expensiveCalc(a), [a]) 형태로 사용하며, 의존성 배열 a가 변경되었을 때만 계산 함수를 다시 실행하고 그 외의 리렌더링 시에는 캐시된 값을 즉시 재사용합니다."
+        },
+        {
+          id: 20, type: "short", score: 5, origin: "7주차 교안 p.19: 계산기 실습 상세조건 (교수님 감점방지 스포)",
+          text: "7주차 계산기 실습 교안 상세조건에서 명시된 <b>전체 컨테이너 배경색(backgroundColor)</b> (1), <b>디스플레이 텍스트 글자 크기(fontSize)</b> (2), <b>숫자 버튼 배경색 Hex 코드</b> (3)을 순서대로 쓰시오.<br><br>" +
+                "• (1): 컨테이너 배경색 영문명<br>" +
+                "• (2): displayText fontSize 정수값<br>" +
+                "• (3): number Button backgroundColor 16진수 코드",
+          placeholder: "순서대로 입력 (예: black, 84, #2f2f2f)",
+          answers: [
+            "black, 84, #2f2f2f",
+            "black,84,#2f2f2f",
+            "'black', 84, '#2f2f2f'",
+            "black, 84, #2F2F2F"
+          ],
+          explanation: "<b>정답: black, 84, #2f2f2f</b><br>교수님이 음성 녹음본에서 '상세조건 안 맞추면 점수 안 나간다. 블랙 대신 회색 쓰면 감점'이라고 직접 강조한 부분입니다. 전체 배경은 'black', 결과 글자 크기는 84, 숫자 버튼 배경은 #2f2f2f, 연산자 버튼은 #F5A623입니다."
+        }
+      ]
     }
   ]
 };
+
 
