@@ -260,17 +260,27 @@ function toggleQuizMode() {
   if (isActive) {
     btn.classList.add("active");
     label.textContent = "퀴즈 풀이 중";
-    showToast("자가 테스트 모드 활성화 (정답 카드를 누르면 정답이 보입니다)");
+    showToast("자가 테스트 모드 활성화 (카드를 누르면 정답과 설명이 보입니다)");
   } else {
     btn.classList.remove("active");
     label.textContent = "자가 테스트";
-    document.querySelectorAll(".qa-a.revealed").forEach(el => el.classList.remove("revealed"));
+    document.querySelectorAll(".qa-a.revealed, .qa-card.revealed").forEach(el => el.classList.remove("revealed"));
     showToast("정답 가리기가 해제되었습니다.");
   }
 }
 
 document.addEventListener("click", (e) => {
   if (!document.body.classList.contains("quiz-mode-active")) return;
+  const card = e.target.closest(".qa-card");
+  if (card && !e.target.closest(".copy-btn")) {
+    const isNowRevealed = card.classList.toggle("revealed");
+    const qaA = card.querySelector(".qa-a");
+    if (qaA) {
+      if (isNowRevealed) qaA.classList.add("revealed");
+      else qaA.classList.remove("revealed");
+    }
+    return;
+  }
   const qaA = e.target.closest(".qa-a");
   if (qaA && !e.target.closest(".copy-btn")) {
     qaA.classList.toggle("revealed");

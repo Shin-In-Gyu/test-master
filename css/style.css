@@ -668,9 +668,22 @@ p, div, span, li, button, input, select, textarea {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.quiz-mode-active .qa-a.revealed .ans-target {
+.quiz-mode-active .qa-a.revealed .ans-target,
+.quiz-mode-active .qa-card.revealed .ans-target {
   background-color: transparent;
   color: var(--accent) !important;
+}
+
+/* 자가 테스트 모드 시 정답 하단 부연설명/노트 및 복사 버튼 가리기 */
+.quiz-mode-active .qa-card:not(.revealed) .qa-a ~ *,
+.quiz-mode-active .qa-a:not(.revealed) ~ * {
+  display: none !important;
+}
+
+.quiz-mode-active .qa-card:not(.revealed) .copy-btn,
+.quiz-mode-active .qa-a:not(.revealed) .copy-btn {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .copy-btn {
