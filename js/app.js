@@ -402,7 +402,6 @@ function renderCurrentExam() {
           <div class="q-title-group">
             <span class="q-num">[문제 ${q.id}]</span>
             <span class="q-points">${typeBadge} ${q.score}점</span>
-            <span class="q-origin">${q.origin}</span>
           </div>
           <button class="bookmark-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark('${qKey}')" title="중요 문제 북마크">
             ${isBookmarked ? '북마크됨' : '북마크'}
@@ -465,6 +464,7 @@ function renderCurrentExam() {
 
       <div class="solution-box" id="sol_${qKey}">
         <div><span class="sol-correct-ans">정답: ${q.answers ? q.answers.map(a => String(a).replace(/</g, '&lt;').replace(/>/g, '&gt;')).join(' / ') : (q.answer || '모범 답안 참조')}</span></div>
+        ${q.origin ? `<div style="color: var(--ink-muted); font-size: 13px; margin-top: 4px;">출처/유형: ${q.origin}</div>` : ''}
         <div style="color: var(--text-secondary); margin-top: 6px;">${(q.explanation || '').split(/(<pre[\s\S]*?<\/pre>)/gi).map(part => /^<pre/i.test(part) ? part : part.replace(/\n/g, '<br>')).join('')}</div>
     `;
 
