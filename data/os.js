@@ -11,21 +11,21 @@ window.CONCEPT_DATABASE.os = {
   title: "💻 운영체제 1~7장 전범위 핵심 총정리 & 시험 오픈북 치트시트",
   filterChips: [
     { id: "all", label: "전체보기" },
-    { id: "os-cheat", label: "⚡ 1초 정답 치트키 (21선)", class: "amber-chip" },
+    { id: "os-cheat", label: "⚡ 1초 정답 치트키 (26선)", class: "amber-chip" },
     { id: "os-sched", label: "📊 스케줄링 공식 & 간트 차트", class: "danger-chip" },
     { id: "os-ch1", label: "1장: 개요·듀얼모드·폰노이만" },
     { id: "os-ch2", label: "2장: 프로세스 상태전이도·PCB·문맥교환" },
     { id: "os-ch3", label: "3장: fork()·계층·IPC 2대모델" },
-    { id: "os-ch4", label: "4장: 파이프·공유메모리·소켓" },
-    { id: "os-ch5-6", label: "5·6장: 스레드·3대모델·동시성" },
+    { id: "os-ch4", label: "4장: 파이프·공유메모리·소켓·RPC (5주차)" },
+    { id: "os-ch5-6", label: "5·6장: 스레드·자원구조·암달의법칙" },
     { id: "os-ch7", label: "7장: CPU 스케줄링 4대 알고리즘" }
   ],
   html: `
-    <!-- SECTION: 1초 정답 치트키 21선 -->
+    <!-- SECTION: 1초 정답 치트키 26선 -->
     <section id="os-cheat" class="concept-section">
       <div class="section-banner gold-banner">
         <div class="section-banner-title">
-          <span>⚡ 운영체제 1초 정답 치트키 (교수님 강조 & 시험 빈출 21선)</span>
+          <span>⚡ 운영체제 1초 정답 치트키 (교수님 강조 &amp; 시험 빈출 26선)</span>
         </div>
         <span style="font-size: 11.5px; opacity: 0.9;">문제 확인 즉시 작성할 단답형 핵심 키워드</span>
       </div>
@@ -155,6 +155,36 @@ window.CONCEPT_DATABASE.os = {
           <div class="qa-q"><span class="q-icon">Q21</span><span>Diagram of Process State의 6대 상태 전이 화살표 영문명은?</span></div>
           <div class="qa-a"><span class="ans-target">admitted / scheduler dispatch / interrupt / I/O or event wait / I/O or event completion / exit</span><button class="copy-btn" onclick="copyText('admitted, scheduler dispatch, interrupt, I/O or event wait, I/O or event completion, exit')">복사</button></div>
           <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">* Ready→Running은 scheduler dispatch, Running→Ready는 interrupt, Running→Waiting은 I/O or event wait</div>
+        </div>
+
+        <div class="qa-card" data-tags="posix 공유메모리 segmentation fault 세그멘테이션 폴트 consumer 포인터 초과">
+          <div class="qa-q"><span class="q-icon">Q22</span><span>[5주차 교수님 강조] POSIX 공유 메모리 실습에서 Consumer가 데이터를 다 읽은 후 계속 읽을 때 발생하는 오류와 원인은?</span></div>
+          <div class="qa-a"><span class="ans-target">Segmentation fault (매핑되지 않은 유효하지 않은 주소 접근)</span><button class="copy-btn" onclick="copyText('Segmentation fault (매핑되지 않은 유효하지 않은 메모리 주소 접근)')">복사</button></div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">* 버퍼 데이터 소진 후 포인터를 넘기면 매핑되지 않은 메모리에 접근하여 커널이 SIGSEGV 발송</div>
+        </div>
+
+        <div class="qa-card" data-tags="rpc 원격 프로시저 호출 마셜링 marshalling 매개변수 패킷 포장">
+          <div class="qa-q"><span class="q-icon">Q23</span><span>[5주차 단답형 1순위] RPC에서 함수 파라미터들을 네트워크 전송용 표준 바이트 패킷으로 포장(직렬화)하는 과정은?</span></div>
+          <div class="qa-a"><span class="ans-target">마셜링 (Marshalling)</span><button class="copy-btn" onclick="copyText('마셜링 (Marshalling)')">복사</button></div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">* 클라이언트 스텁이 마셜링하여 전송하고, 서버 스텁은 언마셜링(Unmarshalling)하여 실행</div>
+        </div>
+
+        <div class="qa-card" data-tags="암달의 법칙 amdahl speedup 직렬 비율 25 코어 2개 4개 계산">
+          <div class="qa-q"><span class="q-icon">Q24</span><span>[5주차 교수님 수치] 암달의 법칙에서 직렬(순차) 비율 S = 0.25일 때 2코어와 4코어의 속도 향상은?</span></div>
+          <div class="qa-a"><span class="ans-target">2코어: 1.6배 / 4코어: 약 2.28배 (직렬 50%이면 최대 2배 한계)</span><button class="copy-btn" onclick="copyText('2코어: 1.6배, 4코어: 2.28배')">복사</button></div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">* 공식: 1 / (S + (1-S)/N) 적용. 코어를 무한히 늘려도 1/S로 수렴하여 한계 발생</div>
+        </div>
+
+        <div class="qa-card" data-tags="소켓 클래스 tcp udp 등기 우편 socket datagramsocket multicast">
+          <div class="qa-q"><span class="q-icon">Q25</span><span>[5주차 비유] Java 소켓 클래스 중 수신 확인(ACK)을 받는 '등기 우편' 같은 연결 지향형 클래스는?</span></div>
+          <div class="qa-a"><span class="ans-target">Socket (TCP 연결 지향형) / (참고: DatagramSocket은 무작정 보내는 일반 우편)</span><button class="copy-btn" onclick="copyText('Socket (TCP 연결 지향형)')">복사</button></div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">* MulticastSocket은 특정 지정 그룹의 여러 호스트에게 동시 전송하는 소켓</div>
+        </div>
+
+        <div class="qa-card" data-tags="프로세스 스레드 차이 면접 기출 자원공유 오버헤드 세그폴트 crash">
+          <div class="qa-q"><span class="q-icon">Q26</span><span>[5주차 면접 필수] 프로세스와 스레드의 결정적 차이 3가지는?</span></div>
+          <div class="qa-a"><span class="ans-target">① 메모리(스레드는 Code/Data/Heap 공유) ② 오버헤드(스레드가 훨씬 가벼움) ③ 격리성(스레드는 하나 죽으면 프로세스 전체 사망)</span><button class="copy-btn" onclick="copyText('공유 구조, 생성/전환 오버헤드, 장애 격리성')">복사</button></div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">* 프로세스는 독립 주소 공간을 가져 서로 안전하지만, 스레드는 메모리를 공유하므로 한 스레드 오류 시 프로세스 종료</div>
         </div>
       </div>
     </section>
@@ -1115,21 +1145,26 @@ while (true) {
     <section id="os-ch4" class="concept-section">
       <div class="section-banner">
         <div class="section-banner-title">
-          <span>🔌 4장: IPC 실제 구현 (POSIX 공유 메모리, UNIX 파이프, 소켓, RPC)</span>
+          <span>🔌 4장: IPC 실제 구현 (POSIX 공유 메모리, UNIX 파이프, 소켓, RPC) (5주차 강의 집중 반영)</span>
         </div>
-        <span class="badge badge-blue">4장 전체 실습 C 코드 수록</span>
+        <span class="badge badge-blue">4장 전체 실습 C 코드 &amp; 교수님 실험 분석 수록</span>
       </div>
 
       <div class="concept-card">
         <div class="concept-card-header">
           <div class="concept-card-title">1. POSIX 공유 메모리(Shared Memory) 시스템 콜 4단계 &amp; C 코드</div>
-          <span class="badge badge-blue">shm_open · ftruncate · mmap</span>
+          <span class="badge badge-blue">shm_open · ftruncate · mmap · shm_unlink</span>
         </div>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 10px;">
+          • <b>POSIX(Portable Operating System Interface) 배경</b>: 유닉스가 여러 계열로 분기되자 시스템 호출 인터페이스 규격을 통일화·표준화하기 위해 제정되었습니다.<br>
+          • <b>동작 원리</b>: 일반 파일처럼 느린 보조기억장치(HDD/SSD)에 파일을 쓰는 것이 아니라, <b>메인 메모리(RAM) 상에 Memory-mapped file 객체를 생성</b>하여 두 프로세스가 접근하므로 <b>통신 속도가 압도적으로 빠릅니다(High Speed)</b>.
+        </p>
+
         <table class="concept-table">
           <thead>
             <tr>
               <th style="width: 210px;">POSIX 공유 메모리 함수</th>
-              <th>역할 및 동작 설명</th>
+              <th>역할 및 동작 설명 (컴파일 시 반드시 <code>-lrt</code> 옵션 필수!)</th>
             </tr>
           </thead>
           <tbody>
@@ -1139,7 +1174,7 @@ while (true) {
             </tr>
             <tr>
               <td><b>2) <code>ftruncate()</code></b></td>
-              <td>생성된 공유 메모리 객체의 <b>크기(바이트 단위, 예: 4096B)를 설정</b><br><code>ftruncate(shm_fd, 4096);</code></td>
+              <td>생성된 공유 메모리 객체의 <b>크기(바이트 단위, 예: 4096B = 4KB 1페이지 크기)를 설정</b><br><code>ftruncate(shm_fd, 4096);</code></td>
             </tr>
             <tr>
               <td><b>3) <code>mmap()</code></b></td>
@@ -1147,7 +1182,7 @@ while (true) {
             </tr>
             <tr>
               <td><b>4) <code>shm_unlink()</code></b></td>
-              <td>소비자가 데이터를 다 읽은 후 <b>공유 메모리 객체를 시스템에서 최종 제거(삭제)</b><br><code>shm_unlink(name);</code> (컴파일 시 <code>gcc ... -lrt</code> 옵션 사용)</td>
+              <td>소비자가 데이터를 다 읽은 후 <b>공유 메모리 객체를 시스템에서 최종 제거(삭제)</b><br><code>shm_unlink(name);</code></td>
             </tr>
           </tbody>
         </table>
@@ -1165,22 +1200,22 @@ while (true) {
 #include &lt;unistd.h&gt;
 
 int main() {
-    const int SIZE = 4096;
-    const char *name = "OS";
-    const char *message_0 = "Hello";
-    const char *message_1 = "World!";
-    int shm_fd;
-    void *ptr;
+    const int SIZE = 4096;                           // 공유 메모리 크기 (4096 바이트)
+    const char *name = "OS";                         // 공유 메모리 식별 이름
+    const char *message_0 = "Hello";                 // 기록할 메시지 0
+    const char *message_1 = "World!";                // 기록할 메시지 1
+    int shm_fd;                                      // 파일 디스크립터
+    void *ptr;                                       // 메모리 매핑 포인터
 
     shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666); // 1. 공유 메모리 객체 생성
     ftruncate(shm_fd, SIZE);                         // 2. 크기를 4096B로 설정
     ptr = mmap(0, SIZE, PROT_WRITE, MAP_SHARED, shm_fd, 0); // 3. 메모리 매핑
 
-    sprintf(ptr, "%s", message_0);                   // 4. "Hello" 기록
-    ptr += strlen(message_0);                        // 포인터 5칸 이동
-    sprintf(ptr, "%s", message_1);                   // "World!" 이어서 기록
+    sprintf(ptr, "%s", message_0);                   // 4. "Hello" 쓰기
+    ptr += strlen(message_0);                        // 포인터 5바이트 전진
+    sprintf(ptr, "%s", message_1);                   // "World!" 이어서 쓰기
     ptr += strlen(message_1);
-    return 0;
+    return 0;                                        // 화면에는 아무것도 출력되지 않음!
 }</pre>
           </div>
 
@@ -1206,6 +1241,19 @@ int main() {
     return 0;
 }</pre>
           </div>
+        </div>
+
+        <!-- 5주차 강의 교수님 실험 & 세그멘테이션 폴트 분석 박스 -->
+        <div class="callout-box warning" style="margin-top: 14px;">
+          <div class="callout-title">🚨 [5주차 교수님 녹음 14:27~15:04 직접 강조] 소비자(Consumer) 연속 접근 시 Segmentation fault 발생 원인!</div>
+          교수님 말씀: <i>"컨슈머에서 적어놓은 걸 한번 읽었잖아요. 그 다음 또 읽으면 어떻게 돼요? 그 다음 포인터 가리키는 곳은 아무것도 없기 때문에 세그멘테이션 폴트(Segmentation fault)가 날 수밖에 없다!"</i><br><br>
+          • <b>발생 메커니즘</b>:
+          <ol style="margin: 6px 0 0 18px; padding-left: 0; line-height: 1.7;">
+            <li>생산자(Producer)는 4096B 버퍼 앞부분에 <code>"HelloWorld!"</code>만 기록하고 정상 종료합니다. (터미널 출력 없음)</li>
+            <li>소비자(Consumer)가 1회 실행되면 <code>"HelloWorld!"</code>를 정상 출력하고 <code>shm_unlink("OS")</code>로 공유 메모리 링크를 해제합니다.</li>
+            <li>만약 소비자가 버퍼 끝을 넘어 계속 포인터를 증가시키며 읽거나, 이미 <code>shm_unlink</code>로 제거되었거나 매핑되지 않은 메모리 주소(Unmapped Memory / Invalid Address)에 접근하게 되면, <b>CPU의 MMU와 운영체제 커널이 잘못된 메모리 접근을 감지하여 즉시 <code>SIGSEGV</code> 시그널을 발송</b>합니다.</li>
+            <li>그 결과 터미널에 <b style="color: var(--tag-danger-ink);"><code>Segmentation fault (core dumped)</code></b> 오류가 출력되며 프로세스가 강제 종료됩니다.</li>
+          </ol>
         </div>
 
         <div class="concept-card-header" style="margin-top: 24px;">
@@ -1240,6 +1288,11 @@ int main() {
               <td>프로세스가 종료되어도 파일 시스템에 계속 남아있음 (명시적으로 삭제 필요)</td>
             </tr>
             <tr>
+              <td><b>물리적 통신 범위<br>(★ 교수님 강조 한계)</b></td>
+              <td><b style="color: var(--tag-danger-ink);">오직 컴퓨터 1대 내부(로컬 프로세스)</b> 통신만 가능!<br>네트워크로 연결된 다른 컴퓨터와의 통신은 불가능함</td>
+              <td>UNIX FIFO는 로컬 전용, Windows Named Pipe는 원격 네트워크 통신 지원</td>
+            </tr>
+            <tr>
               <td><b>OS별 명칭</b></td>
               <td>UNIX/Linux <code>pipe(int fd[])</code> (쉘의 <code>ls | less</code> 파이프라인 기호) / Windows <code>Anonymous Pipe</code></td>
               <td>UNIX/Linux <b>FIFO</b> (<code>mkfifo</code>) / Windows <b>Named Pipe</b></td>
@@ -1255,8 +1308,8 @@ int main() {
 #include &lt;unistd.h&gt;
 
 #define BUFFER_SIZE 25
-#define READ_END 0   // fd[0]은 반드시 읽기 전용 끝(Read End)
-#define WRITE_END 1  // fd[1]은 반드시 쓰기 전용 끝(Write End)
+#define READ_END 0                                      // fd[0]은 반드시 읽기 전용 끝(Read End)
+#define WRITE_END 1                                     // fd[1]은 반드시 쓰기 전용 끝(Write End)
 
 int main(void) {
     char write_msg[BUFFER_SIZE] = "Greetings";
@@ -1264,23 +1317,23 @@ int main(void) {
     int fd[2];
     pid_t pid;
 
-    if (pipe(fd) == -1) {              // 1. fork() 전에 파이프 먼저 생성!
+    if (pipe(fd) == -1) {                               // 1. fork() 전에 파이프 먼저 생성!
         fprintf(stderr, "Pipe failed");
         return 1;
     }
 
-    pid = fork();                      // 2. 자식 프로세스 생성 (fd[0], fd[1] 상속)
+    pid = fork();                                       // 2. 자식 프로세스 생성 (fd[0], fd[1] 상속)
 
-    if (pid &gt; 0) {                     // 부모 프로세스 (파이프에 쓰기)
-        close(fd[READ_END]);           // 사용하지 않는 읽기 끝(fd[0]) 닫기
-        write(fd[WRITE_END], write_msg, strlen(write_msg) + 1);
-        close(fd[WRITE_END]);          // 쓰기 완료 후 쓰기 끝(fd[1]) 닫기
+    if (pid &gt; 0) {                                      // 부모 프로세스 (파이프에 쓰기)
+        close(fd[READ_END]);                            // 사용하지 않는 읽기 끝(fd[0]) 닫기
+        write(fd[WRITE_END], write_msg, strlen(write_msg) + 1); // fd[1]에 문자열 전송
+        close(fd[WRITE_END]);                           // 쓰기 완료 후 쓰기 끝(fd[1]) 닫기
     }
-    else if (pid == 0) {               // 자식 프로세스 (파이프에서 읽기)
-        close(fd[WRITE_END]);          // 사용하지 않는 쓰기 끝(fd[1]) 닫기
-        read(fd[READ_END], read_msg, BUFFER_SIZE);
-        printf("read %s\\n", read_msg); // 출력: read Greetings
-        close(fd[READ_END]);
+    else if (pid == 0) {                                // 자식 프로세스 (파이프에서 읽기)
+        close(fd[WRITE_END]);                           // 사용하지 않는 쓰기 끝(fd[1]) 닫기
+        read(fd[READ_END], read_msg, BUFFER_SIZE);       // fd[0]에서 문자열 수신
+        printf("read %s\\n", read_msg);                  // 실제 터미널 출력: read Greetings
+        close(fd[READ_END]);                            // 읽기 완료 후 읽기 끝(fd[0]) 닫기
     }
     return 0;
 }</pre>
@@ -1291,35 +1344,40 @@ int main(void) {
 
         <div class="concept-card-header" style="margin-top: 24px;">
           <div class="concept-card-title">3. 네트워크 클라이언트-서버 통신: 소켓(Socket) &amp; 원격 프로시저 호출(RPC)</div>
-          <span class="badge badge-blue">소켓 3종 &amp; RPC 스텁</span>
+          <span class="badge badge-blue">소켓 3종 &amp; RPC 스텁 &amp; 마셜링</span>
         </div>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 10px;">
+          • 파이프와 POSIX 공유 메모리는 <b>컴퓨터 1대 내부(로컬) 통신 전용</b>입니다. 반면 네트워크로 떨어진 여러 컴퓨터의 프로세스 간 통신에는 <b>소켓(Socket)</b>과 <b>RPC</b>를 사용합니다.
+        </p>
+
         <table class="concept-table">
           <thead>
             <tr>
               <th style="width: 190px;">통신 기법</th>
-              <th>상세 구조 및 시험 출제 포인트</th>
+              <th>상세 구조 및 시험 출제 포인트 (교수님 5주차 비유 반영)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><b>소켓 (Socket)</b></td>
               <td>• 정의: 네트워크 상에서 두 프로세스가 통신하기 위한 <b>양 끝단(Endpoint of Communication)</b>.<br>
-              • 구성: <b><code>IP 주소 + 포트 번호(Port Number)</code>의 결합</b> (예: <code>146.86.5.20:1625</code> ↔ 웹 서버 <code>161.25.19.8:80</code>).<br>
+              • 구성: <b><code>IP 주소(컴퓨터 식별) + 포트 번호(프로세스 식별)</code>의 결합</b> (예: <code>146.86.5.20:1625</code> ↔ 웹 서버 <code>161.25.19.8:80</code>).<br>
               • 포트 번호 규칙: <b>1024 미만(0~1023)</b>은 잘 알려진 표준 서비스(Well-known Ports: HTTP 80, FTP 21, SSH 22, Telnet 23)용으로 예약되어 있으며, 클라이언트는 1024 이상의 임의 포트를 할당받음.<br>
               • 루프백 주소: 자기 자신 컴퓨터를 가리키는 특수 IP 주소는 <b><code>127.0.0.1</code> (localhost)</b>.</td>
             </tr>
             <tr>
-              <td><b>Java의 3가지 소켓 클래스</b></td>
-              <td>1) <b><code>Socket</code> 클래스 (TCP 연결 지향형)</b>: 신뢰성 있는 바이트 스트림 전송 보장 (서버는 <code>ServerSocket</code>으로 <code>accept()</code> 대기)<br>
-              2) <b><code>DatagramSocket</code> 클래스 (UDP 비연결형)</b>: 연결 설정 없이 패킷 단위로 빠르게 전송하나 신뢰성/순서 보장 안 됨<br>
-              3) <b><code>MulticastSocket</code> 클래스</b>: DatagramSocket의 서브클래스로, 특정 그룹의 여러 호스트에게 동시에 데이터 전송</td>
+              <td><b>Java의 3가지 소켓 클래스<br>(교수님 5주차 직관 비유)</b></td>
+              <td>1) <b style="color: var(--accent);"><code>Socket</code> 클래스 (TCP 연결 지향형)</b>: 데이터를 보낸 뒤 상대방이 잘 받았는지 확인증을 받는 <b>"등기 우편"</b> 같은 신뢰성 있는 전송 방식! (서버는 <code>ServerSocket</code>으로 <code>accept()</code> 연결 수락)<br>
+              2) <b style="color: var(--tag-gold-ink);"><code>DatagramSocket</code> 클래스 (UDP 비연결형)</b>: 확인 과정(ACK) 없이 빠르게 무작정 패킷을 전송하는 <b>"일반 우편"</b> 방식 (신뢰성/도착 순서 보장 안 됨)<br>
+              3) <b style="color: var(--tag-green-ink);"><code>MulticastSocket</code> 클래스</b>: 여러 호스트 중 <b>특정 그룹으로 지정된 사람들에게만 한 번에 데이터를 전송</b>하는 소켓</td>
             </tr>
             <tr>
-              <td><b>RPC<br>(Remote Procedure Call)</b></td>
-              <td>• 정의: 네트워크로 연결된 <b>다른 원격 컴퓨터에 있는 함수(프로시저)를 마치 내 로컬 메모리에 있는 함수를 호출하듯</b> 추상화해 주는 고수준 통신 기법.<br>
-              • <b>스텁 (Stub) &amp; 마샬링 (Marshaling)</b>: 클라이언트 측 <b>스텁(Client Stub)</b>이 함수 매개변수들을 네트워크 전송 표준 포맷(<b>XDR: External Data Representation</b> 등)으로 포장하는 <b>마샬링(Marshaling, 직렬화)</b>을 수행해 서버로 전송하면, 서버 측 스텁(Server Stub / Skeleton)이 언마샬링(Unmarshaling)하여 실제 프로시저를 실행한 뒤 결과를 돌려줌.<br>
-              • <b>데이터 표현 문제 해결</b>: CPU마다 다른 바이트 순서(<b>Big-Endian vs Little-Endian</b>) 차이를 극복하기 위해 중립 표현인 <b>XDR</b>을 사용.<br>
-              • <b>호출 의미론</b>: 네트워크 중복 전송 오류로 인해 프로시저가 여러 번 실행되는 것을 막기 위해 타임스탬프와 ACK를 사용하여 <b>최대 한 번(At most once)</b> 또는 <b>정확히 한 번(Exactly once)</b> 실행을 보장함.</td>
+              <td><b>RPC<br>(Remote Procedure Call)<br>&amp; 마셜링(Marshalling)</b></td>
+              <td>• <b>정의</b>: 별도의 복잡한 네트워크 통신 코드 없이, <b>원격 호스트 컴퓨터에 있는 함수(프로시저)를 마치 로컬 메모리에 있는 함수를 호출하듯 실행</b>할 수 있게 추상화해 주는 기술.<br>
+              • <b>스텁 (Stub)</b>: 클라이언트 측에 제공되어 원격 프로시저 호출을 대리하고 포장해 주는 클라이언트 측 프록시 모듈.<br>
+              • <b style="color: var(--tag-danger-ink);">마셜링 (Marshalling — ★ 5주차 31분 교수님 강조 단답형 1순위)</b>: 함수 호출 시 전달되는 <b>서로 다른 데이터 타입의 매개변수들(정수 int, 문자열 string, 배열 등)을 네트워크 패킷으로 전송할 수 있는 표준 바이트 스트림 형태로 포장(직렬화)하는 규칙과 변환 과정!</b><br>
+              • <b>언마셜링 (Unmarshalling)</b>: 서버 측 스텁이 네트워크 패킷을 받아서 원래의 함수 파라미터 형태로 복원하여 실제 프로시저를 실행하는 과정.<br>
+              • <b>데이터 표현 문제 해결</b>: CPU 아키텍처마다 다른 바이트 저장 순서(<b>Big-Endian vs Little-Endian</b>) 차이를 극복하기 위해 중립 표준 표현인 <b>XDR(External Data Representation)</b>을 사용.</td>
             </tr>
           </tbody>
         </table>
@@ -1330,27 +1388,28 @@ int main(void) {
     <section id="os-ch5-6" class="concept-section">
       <div class="section-banner">
         <div class="section-banner-title">
-          <span>🧵 5·6장: 스레드(Thread) 구조, 멀티스레딩 모델, Pthreads/OpenMP &amp; 6주차 실습 코드</span>
+          <span>🧵 5·6장: 스레드(Thread) 구조, 멀티스레딩 모델, Pthreads/OpenMP &amp; 5·6주차 실습 코드</span>
         </div>
-        <span class="badge badge-purple">교수님 6주차 출제 스포 100%</span>
+        <span class="badge badge-purple">교수님 5·6주차 출제 스포 100% 반영</span>
       </div>
 
       <div class="concept-card">
         <div class="concept-card-header">
           <div class="concept-card-title">1. 스레드(Thread) 개념과 프로세스 vs 스레드 메모리 공유 구조</div>
           <div>
-            <span class="badge badge-danger">교수님 "그려보세요" 강조!</span>
-            <span class="badge badge-amber">1순위 암기</span>
+            <span class="badge badge-danger">교수님 "이 그림 제일 중요!"</span>
+            <span class="badge badge-amber">1순위 출제</span>
           </div>
         </div>
         <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 10px;">
-          <b>스레드(Thread, 경량 프로세스 LWP)</b>는 프로세스 내부에서 실제로 <b>CPU 스케줄링과 실행이 이루어지는 가장 작은 기본 단위(Basic Unit of CPU Utilization)</b>입니다.
+          • <b>스레드(Thread)의 정의</b>: <b>경량 프로세스 (Lightweight Process, LWP)</b>이자, 프로세스 내부에서 <b>CPU 스케줄링과 실행이 이루어지는 가장 작은 기본/최소 단위(Basic Unit of CPU Utilization)</b>입니다.<br>
+          • <b>식별자 비교</b>: 프로세스가 <b>PID</b>로 식별된다면, 스레드는 <b>TID (Thread ID)</b>로 식별되며, 각 스레드는 고유한 <b>PC(Program Counter), Register Set, Stack</b>을 가집니다.
         </p>
 
         <!-- 단일 스레드 vs 멀티스레드 프로세스 비교 도해 (SVG) -->
         <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-bottom: 14px;">
           <div style="font-weight: 800; font-size: 14.5px; color: #0f172a; margin-bottom: 8px; text-align: center;">
-            📐 [6주차 교수님 출제 강조 도해] 단일 스레드 프로세스 vs 멀티스레드 프로세스의 자원 공유/독립 구조
+            📐 [5주차 교수님 직접 언급: "오늘 특별히 하나를 뽑는다면 이 그림이 제일 중요!"] 프로세스 자원 공유/독립 구조
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
             <div style="background: #ffffff; border: 1.5px solid #94a3b8; border-radius: 8px; padding: 10px;">
@@ -1403,9 +1462,50 @@ int main(void) {
           </tbody>
         </table>
 
+        <!-- 5주차 교수님 강조 면접 & 주관식 1순위: 프로세스 vs 스레드 5대 비교표 -->
+        <div class="callout-box info" style="margin-top: 14px;">
+          <div class="callout-title">💼 [5주차 교수님 녹음 47:57~48:27 직접 강조] "면접에서 프로세스와 스레드의 차이가 뭐냐고 물어봤을 때 빠지지 않고 나온다!"</div>
+          <table class="concept-table" style="margin-top: 8px;">
+            <thead>
+              <tr>
+                <th style="width: 18%;">비교 항목</th>
+                <th style="width: 41%;">프로세스 (Process)</th>
+                <th>스레드 (Thread)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>1. 정의</b></td>
+                <td>실행 중인 독립적인 프로그램 단위 (자원 할당의 단위)</td>
+                <td>프로세스 내에서 실행 흐름의 최소 단위 (<b>CPU 스케줄링의 단위</b>)</td>
+              </tr>
+              <tr>
+                <td><b>2. 메모리 공유</b></td>
+                <td>독립된 주소 공간(Code, Data, Stack, Heap)을 가짐 (기본 공유 X)</td>
+                <td>부모 프로세스의 <b>Code, Data, Heap, 열린 파일을 모든 스레드가 공유</b></td>
+              </tr>
+              <tr>
+                <td><b>3. 생성 및 전환 비용</b></td>
+                <td><code>fork()</code>로 새 주소 공간을 복제하므로 <b>생성 및 문맥 교환 오버헤드가 큼</b></td>
+                <td>스택과 레지스터만 새로 할당하므로 <b>생성(약 30배) 및 전환(약 5배)이 훨씬 빠름</b></td>
+              </tr>
+              <tr>
+                <td><b>4. 통신 (IPC)</b></td>
+                <td>공유 메모리나 파이프, 소켓 등 <b>별도의 IPC 메커니즘 필수</b></td>
+                <td>공유하는 전역 변수(Data)와 Heap을 통해 <b>IPC 없이 즉시 통신</b></td>
+              </tr>
+              <tr>
+                <td><b>5. 장애 격리성</b></td>
+                <td>독립적이므로 한 프로세스가 비정상 종료되어도 다른 프로세스는 안전함</td>
+                <td><b style="color: var(--tag-danger-ink);">한 스레드가 오류(Segmentation fault)로 비정상 종료되면 전체 프로세스가 함께 사망!</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <div class="concept-card-header" style="margin-top: 22px;">
-          <div class="concept-card-title">2. 멀티스레딩 4대 이점 · 멀티코어 5대 과제 · 병렬성 유형 &amp; 암달의 법칙</div>
-          <span class="badge badge-purple">이론 &amp; 공식 총정리</span>
+          <div class="concept-card-title">2. 멀티스레딩 4대 이점 · 멀티코어 5대 과제 · 병렬성 유형 &amp; 암달의 법칙 (5주차 수치 완벽 수록)</div>
+          <span class="badge badge-purple">이론 &amp; 계산 공식 총정리</span>
         </div>
         <table class="concept-table">
           <thead>
@@ -1424,7 +1524,7 @@ int main(void) {
             </tr>
             <tr>
               <td><b>동시성 (Concurrency)<br>vs<br>병렬성 (Parallelism)</b></td>
-              <td>• <b>동시성 (Concurrency, 병행성)</b>: <b>단일 코어(Single Core)</b>에서도 가능한 개념. 타임 슬라이싱(시분할 인터리빙)으로 여러 스레드를 아주 빠르게 번갈아 실행하여 <b>마치 동시에 실행되는 것처럼 보이게 하는 논리적 특성</b> (<code>T1 → T2 → T3 → T1...</code>)<br>
+              <td>• <b>동시성 (Concurrency, 병행성)</b>: <b>단일 코어(Single Core)</b>에서도 가능한 개념. 타임 슬라이싱(시분할 <b>인터리빙 Interleaving</b>)으로 여러 스레드를 아주 빠르게 번갈아 실행하여 <b>마치 동시에 실행되는 것처럼 보이게 하는 논리적 특성</b> (<code>T1 → T2 → T3 → T1...</code>)<br>
               • <b>병렬성 (Parallelism)</b>: <b>반드시 멀티 코어(Multi-Core)</b>가 필요한 개념. 물리적으로 여러 개의 코어가 <b>동일한 시각에 실제로 여러 작업을 동시에 수행하는 물리적 특성</b></td>
             </tr>
             <tr>
@@ -1437,12 +1537,15 @@ int main(void) {
               <td>① <b>태스크 인식(Identifying Tasks)</b>: 병렬로 나눌 수 있는 독립 영역 찾기 / ② <b>균형(Balance)</b>: 모든 코어에 균등한 작업량 배분 / ③ <b>데이터 분리(Data Splitting)</b> / ④ <b>데이터 종속성(Data Dependency)</b>: 실행 순서 동기화 / ⑤ <b>시험 및 디버깅(Testing &amp; Debugging)</b></td>
             </tr>
             <tr>
-              <td><b>암달의 법칙<br>(Amdahl's Law)</b></td>
+              <td><b>암달의 법칙<br>(Amdahl's Law — ★ 5주차 43~46분 교수님 수치 계산)</b></td>
               <td>프로그램 내에 <b>반드시 순차적으로만 실행되어야 하는 비율을 <code>S</code> (Serial portion)</b>, 병렬화 가능한 비율을 <code>1 - S</code>, 코어 수를 <code>N</code>이라 할 때 최대 속도 향상(Speedup) 공식:<br>
               <div style="margin: 6px 0; padding: 8px 12px; background: var(--bg-surface-elevated); border-radius: 4px; font-family: var(--font-mono); font-weight: 700; color: var(--accent);">
                 Speedup ≤ 1 / ( S + (1 - S) / N )
               </div>
-              • <b>핵심 결론</b>: 코어 수 <code>N → ∞</code>로 무한히 늘려도 최대 속도 향상은 <b><code>1 / S</code>로 수렴</b>함! (예: 순차 비율 <code>S = 25%(0.25)</code>이면 코어를 무한대로 늘려도 최대 4배(<code>1 / 0.25</code>)를 절대 넘을 수 없음)</td>
+              • <b>[5주차 교수님 직접 강의 수치 예시]</b>: 순차(직렬) 작업 비율이 <b>25% (<code>S = 0.25</code>)</b>일 때:<br>
+              &nbsp;&nbsp;1) <b>코어가 2개(<code>N = 2</code>)인 경우</b>: <code>1 / (0.25 + 0.75 / 2) = 1 / 0.625 = </code><b style="color: var(--accent);">1.6배 속도 향상</b> (2배가 아님!)<br>
+              &nbsp;&nbsp;2) <b>코어가 4개(<code>N = 4</code>)인 경우</b>: <code>1 / (0.25 + 0.75 / 4) = 1 / 0.4375 ≈ </code><b style="color: var(--accent);">2.28배 속도 향상</b> (4배가 아님!)<br>
+              • <b>핵심 결론</b>: 만약 직렬 비율이 50%(<code>S = 0.5</code>)라면 코어를 아무리 무한대(<code>N → ∞</code>)로 늘려도 최대 속도 향상은 <b><code>1 / 0.5 = 2배</code>로 수렴</b>하여 성능 개선 한계에 부딪힘!</td>
             </tr>
           </tbody>
         </table>
@@ -3146,6 +3249,126 @@ window.EXAM_DATABASE.os = {
                   "explanation": "출력 결과:\nC1: 30\nC2: 35\nC2: 35\nP1: 20\n(C2의 두 라인은 실행 순서에 따라 출력 순서가 바뀔 수 있으나 값은 동일함)\n\n상세 분석:\n1) 최초 부모가 val=10 상태에서 fork()를 호출하여 자식(C)을 생성합니다.\n2) 자식 프로세스는 자신의 독립된 메모리에서 val += 20을 실행하여 30이 되고, 'C1: 30'을 출력합니다.\n3) 자식 프로세스가 다시 내부에서 fork()를 호출하여 손자(GC) 프로세스를 생성합니다. 이때 자식과 손자 모두 현재 시점의 메모리 값인 val=30을 복제하여 갖습니다.\n4) 자식과 손자 프로세스는 각각 독립적으로 val += 5를 실행하여 둘 다 35가 되며, 각각 'C2: 35'를 1번씩 총 2회 출력합니다.\n5) 부모 프로세스는 wait(NULL)에 의해 자식 프로세스의 모든 작업이 끝날 때까지 대기합니다. 자식들의 메모리 수정은 부모에게 전혀 전파되지 않으므로 부모의 val은 여전히 10입니다. 부모는 val *= 2를 수행하여 20이 된 후 'P1: 20'을 출력합니다."
             }
       ]
-}
+    },
+    // ========================================================
+    // [회차 6] 5주차 강의 녹음본 집중 10대 적중 모의고사 (100점 만점)
+    // ========================================================
+    {
+      id: "os_exam6",
+      name: "제6회 [5주차 특훈] IPC(공유메모리·파이프·소켓·RPC) & 스레드·암달의법칙 10선",
+      tag: "5주차 녹음 100% 반영 · 10문항 (100점)",
+      desc: "운영체제 5주차 강의 녹음본('답십리동 4 복사본.m4a') 정밀 분석 전수 반영: POSIX 공유 메모리 Consumer 세그멘테이션 폴트(Segmentation fault) 원인, UNIX 파이프 fd[0]/fd[1]과 로컬 한계, 소켓 3종(TCP 등기우편·UDP·멀티캐스트), RPC 스텁과 마셜링(Marshalling), 단일 vs 멀티스레드 자원 구조, 프로세스 vs 스레드 5대 차이 면접 기출, 암달의 법칙(Amdahl's Law) 2코어(1.6배)·4코어(2.28배) 계산, 동시성 인터리빙, 데이터 vs 태스크 병렬성",
+      questions: [
+        {
+          id: 1, type: "essay", score: 10, origin: "5주차 녹음 14분: POSIX 공유 메모리 세그멘테이션 폴트 원인",
+          text: "POSIX 공유 메모리 실습에서 생산자(Producer)가 4096B 크기의 메모리 객체('OS')에 문자열을 쓰고 정상 종료하였다. 이후 소비자(Consumer)가 정상적으로 데이터를 읽고 <code>shm_unlink('OS')</code>를 호출한 상태에서, 소비자가 버퍼 끝을 넘어 계속 읽으려고 하거나 재접근할 때 발생하는 <b>오류 명칭</b>과 <b>구체적 발생 원인</b>을 운영체제 메모리 관리 관점에서 서술하시오.",
+          placeholder: "발생하는 오류 명칭과 메모리 매핑 관점의 발생 원인을 서술하세요.",
+          rubric: [
+            { criteria: "오류 명칭: Segmentation fault (세그멘테이션 폴트 / SIGSEGV) 명시", points: "4점" },
+            { criteria: "발생 원인: 버퍼 데이터 소진 후 포인터를 넘기거나 해제된 유효하지 않은/매핑되지 않은 주소(Unmapped Memory)에 접근하여 커널이 오류를 발생시킴을 서술", points: "6점" }
+          ],
+          sampleAnswer: "오류 명칭: Segmentation fault (세그멘테이션 폴트 / SIGSEGV)\n발생 원인: 생산자가 버퍼에 기록한 유효한 데이터를 소비자가 모두 읽은 후, 버퍼의 끝을 넘어 포인터를 계속 증가시키거나 shm_unlink로 해제된 공유 메모리 영역에 재접근하게 되면 프로세스 주소 공간에 유효하게 매핑되지 않은 메모리 주소(Unmapped Memory / Invalid Address)에 접근하게 된다. 이를 CPU의 MMU와 운영체제 커널이 감지하여 SIGSEGV 시그널을 프로세스에 보내 강제 비정상 종료시킨다.",
+          explanation: "교수님 5주차 녹음 14:27: '버퍼에서 적어놓은 걸 컨슈머에서 한번 읽었잖아요. 그 다음 포인터 가리키는 곳은 아무것도 없기 때문에 세그멘트 폴트가 날 수밖에 없다!'"
+        },
+        {
+          id: 2, type: "short", score: 10, origin: "5주차 녹음 20분: UNIX 파이프 파일 디스크립터",
+          text: "UNIX 일반 파이프(Ordinary Pipe)를 생성하기 위해 <code>int fd[2]; pipe(fd);</code>를 호출했을 때, 데이터를 읽어 들이는 <b>읽기 끝(Read End)</b>의 배열 인덱스와 데이터를 쓰는 <b>쓰기 끝(Write End)</b>의 배열 인덱스를 순서대로 쓰시오. (예: fd[0], fd[1])",
+          placeholder: "인덱스 순서대로 입력 (예: fd[0], fd[1])",
+          answers: ["fd[0], fd[1]", "fd[0],fd[1]", "0, 1", "0,1", "0과 1", "fd[0]과 fd[1]", "fd[0]", "0"],
+          explanation: "UNIX 일반 파이프에서 <code>fd[0]</code>은 항상 읽기 끝(Read End), <code>fd[1]</code>은 쓰기 끝(Write End)입니다."
+        },
+        {
+          id: 3, type: "short", score: 10, origin: "5주차 녹음 17분: 파이프의 로컬 한계와 네트워크 IPC",
+          text: "일반 파이프(Ordinary Pipe) 및 POSIX 공유 메모리와 같은 전통적 IPC 메커니즘이 가진 <b>물리적 통신 범위의 결정적 한계점</b>을 쓰고, 네트워크로 연결된 서로 다른 독립적인 컴퓨터 간 프로세스 통신을 위해 사용되는 <b>대표적인 통신 기법 2가지</b>를 쓰시오.",
+          placeholder: "한계점과 통신 기법 2가지 입력 (예: 단일 컴퓨터 로컬 통신만 가능, 소켓과 RPC)",
+          answers: [
+            "단일 컴퓨터 로컬 통신만 가능, 소켓과 RPC",
+            "단일 컴퓨터 내부만 가능, 소켓, RPC",
+            "로컬 통신만 가능, 소켓과 RPC",
+            "컴퓨터 1대 내부 통신만 가능, 소켓과 RPC",
+            "소켓과 RPC",
+            "소켓, RPC"
+          ],
+          explanation: "파이프와 POSIX 공유 메모리는 오직 '컴퓨터 1대 내부(로컬)'에서만 동작하며 네트워크 통신은 불가능합니다. 외부 네트워크 통신을 위해서는 소켓(Socket)과 RPC(Remote Procedure Call)를 사용합니다."
+        },
+        {
+          id: 4, type: "short", score: 10, origin: "5주차 녹음 29분: 소켓 3종 클래스 (교수님 직관 비유)",
+          text: "5주차 강의에서 교수님이 비유한 Java의 소켓 클래스 중, 데이터를 전송한 후 상대방이 잘 받았는지 수신 확인증(ACK)을 받는 <b>'등기 우편'에 비유되는 연결 지향형 소켓 클래스</b>와, 확인 과정 없이 패킷을 무작정 빠르게 전송하는 <b>비연결형 소켓 클래스</b>의 명칭을 차례대로 쓰시오.",
+          placeholder: "클래스명 순서대로 입력 (예: Socket, DatagramSocket)",
+          answers: [
+            "Socket, DatagramSocket",
+            "Socket,DatagramSocket",
+            "TCP, UDP",
+            "TCP 소켓, UDP 소켓",
+            "Socket과 DatagramSocket",
+            "Socket",
+            "TCP"
+          ],
+          explanation: "수신 확인을 받는 등기 우편 같은 연결 지향형은 <b>Socket (TCP)</b>, 확인 없이 빠르게 막 보내는 비연결형은 <b>DatagramSocket (UDP)</b>, 특정 지정 그룹 대상은 <b>MulticastSocket</b>입니다."
+        },
+        {
+          id: 5, type: "short", score: 10, origin: "5주차 녹음 31분: RPC 마셜링(Marshalling)",
+          text: "원격 프로시저 호출(RPC)에서 클라이언트가 원격 함수를 호출할 때 전달하는 정수(int), 문자열(string) 등 서로 다른 데이터 타입의 매개변수들을 네트워크 패킷으로 전송할 수 있는 표준 바이트 스트림 형태로 포장(직렬화)하는 규칙과 변환 과정의 명칭은?",
+          placeholder: "과정 명칭 입력 (예: 마셜링 또는 Marshalling)",
+          answers: ["마셜링", "마샬링", "marshalling", "Marshalling"],
+          explanation: "<b>마셜링 (Marshalling)</b>은 클라이언트 스텁이 함수 호출 인자들을 네트워크 표준 규격(XDR 등)으로 직렬화/패킹하는 과정이며, 서버 측 스텁은 이를 받아 언마셜링(Unmarshalling)합니다."
+        },
+        {
+          id: 6, type: "short", score: 10, origin: "5주차 녹음 37분: 스레드 자원 구조 (교수님 강조 그림)",
+          text: "5주차 강의에서 교수님이 '오늘 특별히 하나를 뽑는다면 이 그림이 제일 중요!'라고 강조한 스레드 구조에서, 동일 프로세스 내의 여러 스레드가 <b>함께 공유하는 자원 3가지</b>와 각 스레드가 <b>독립적으로 개별 소유하는 자원 3가지</b>를 각각 쓰시오.",
+          placeholder: "공유 자원과 독립 자원 입력 (예: 공유: Code, Data, Files / 독립: Stack, Register, PC)",
+          answers: [
+            "공유: Code, Data, Files / 독립: Stack, Register, PC",
+            "공유: Code, Data, Files(Heap) / 독립: Stack, Register, PC",
+            "Code, Data, Files / Stack, Register, PC",
+            "공유: 코드, 데이터, 파일 / 독립: 스택, 레지스터, PC",
+            "코드, 데이터, 파일 / 스택, 레지스터, PC",
+            "Code, Data, Files",
+            "Stack, Register, PC"
+          ],
+          explanation: "• <b>공유하는 자원</b>: 코드(Code), 데이터(Data: 전역/정적 변수), 힙(Heap), 열린 파일(Files)<br>• <b>독립적인 자원</b>: 스레드 ID(TID), 프로그램 카운터(PC), 레지스터 세트, 스택(Stack)"
+        },
+        {
+          id: 7, type: "essay", score: 10, origin: "5주차 녹음 48분: 면접 빈출 프로세스 vs 스레드 차이",
+          text: "운영체제 기술 면접 및 중간고사 단골 질문인 <b>'프로세스(Process)'와 '스레드(Thread)'의 결정적 차이점</b>을 (1) 메모리 공유 구조, (2) 생성 및 문맥 교환 오버헤드, (3) 장애 격리성(한쪽이 오류로 사망 시 영향) 관점에서 비교 서술하시오.",
+          placeholder: "메모리 공유, 오버헤드, 장애 격리성 3가지 관점에서 서술하세요.",
+          rubric: [
+            { criteria: "메모리 공유: 프로세스는 독립된 주소 공간을 가지나, 스레드는 부모 프로세스의 Code, Data, Heap을 공유함을 명시", points: "3점" },
+            { criteria: "오버헤드: 프로세스는 fork 및 문맥 교환 비용이 크지만, 스레드는 스택/레지스터만 교체하여 생성(약 30배) 및 전환(약 5배)이 훨씬 가볍고 빠름을 명시", points: "3점" },
+            { criteria: "장애 격리성: 프로세스는 독립적이므로 하나가 비정상 종료되어도 안전하지만, 스레드는 메모리를 공유하므로 한 스레드가 세그폴트로 Crash 시 전체 프로세스가 함께 비정상 종료됨을 명시", points: "4점" }
+          ],
+          sampleAnswer: "(1) 메모리 공유: 프로세스는 독립된 주소 공간(Code, Data, Heap, Stack)을 가져 별도의 IPC가 필요하지만, 스레드는 부모 프로세스의 Code, Data, Heap, 열린 파일을 모든 스레드가 공유하므로 IPC 없이 전역 변수로 즉시 통신한다.\n(2) 오버헤드: 프로세스는 fork() 시 주소 공간 전체를 복제해야 하고 문맥 교환 시 캐시 플러시가 발생하여 무겁지만, 스레드는 스택과 레지스터만 새로 할당하므로 생성(약 30배) 및 문맥 교환(약 5배) 비용이 훨씬 경제적이다.\n(3) 장애 격리성: 프로세스는 한 프로세스가 비정상 종료되어도 다른 프로세스에 영향을 주지 않지만, 스레드는 메모리를 공유하므로 한 스레드가 세그멘테이션 폴트 등의 오류를 내면 프로세스 내의 모든 스레드가 함께 강제 종료된다.",
+          explanation: "교수님 5주차 녹음 47:57: '진짜 많이 물어봐요. 면접으로 프로세스와 스레드의 차이가 뭐냐고 물어봤을 때 빠지지 않고 나오는 것 같아요!'"
+        },
+        {
+          id: 8, type: "calc", score: 10, origin: "5주차 녹음 43~46분: 암달의 법칙 코어 2개 계산",
+          text: "암달의 법칙(Amdahl's Law) 공식 <b>Speedup ≤ 1 / (S + (1 - S) / N)</b>을 적용하여, 시스템에서 반드시 순차적으로 실행되어야 하는 직렬 작업 비율이 25% (<b>S = 0.25</b>)일 때, 프로세서 코어 수가 2개(<b>N = 2</b>)인 경우의 최대 속도 향상 배수를 소수점 첫째 자리까지 구하시오. (숫자만 입력)",
+          placeholder: "속도 향상 배수 숫자 입력 (예: 1.6)",
+          answers: ["1.6", "1.6배"],
+          explanation: "Speedup ≤ 1 / (0.25 + (1 - 0.25) / 2) = 1 / (0.25 + 0.375) = 1 / 0.625 = <b>1.6배</b> 입니다. (코어가 2배라고 2배 빨라지는 것이 아니라 1.6배 빨라짐!)"
+        },
+        {
+          id: 9, type: "calc", score: 10, origin: "5주차 녹음 43~46분: 암달의 법칙 코어 4개 계산",
+          text: "동일한 시스템(직렬 작업 비율 <b>S = 0.25</b>)에서 프로세서 코어 수를 4개(<b>N = 4</b>)로 늘렸을 때, 암달의 법칙에 따른 최대 속도 향상 배수를 소수점 둘째 자리까지 구하시오. (숫자만 입력)",
+          placeholder: "속도 향상 배수 숫자 입력 (예: 2.28 또는 2.29)",
+          answers: ["2.28", "2.29", "2.28배", "2.29배"],
+          explanation: "Speedup ≤ 1 / (0.25 + (1 - 0.25) / 4) = 1 / (0.25 + 0.1875) = 1 / 0.4375 ≈ <b>2.28배 (반올림 시 2.29배)</b> 입니다. (코어를 4배로 늘려도 속도는 2.28배에 그침!)"
+        },
+        {
+          id: 10, type: "short", score: 10, origin: "5주차 녹음 40~42분: 동시성 인터리빙 & 병렬성 유형",
+          text: "5주차 강의에서 다룬 다음 두 개념의 명칭을 쓰시오.<br><br>(1) 단일 코어에서 CPU가 여러 스레드를 시간 단위로 잘게 쪼개어 번갈아 끼워 넣으며 실행하는 기법의 명칭<br>(2) 동일한 데이터 집합을 여러 코어에 분배하여 동일한 연산을 동시에 수행하는 병렬성의 명칭",
+          placeholder: "(1), (2) 명칭 입력 (예: 인터리빙, 데이터 병렬성)",
+          answers: [
+            "인터리빙, 데이터 병렬성",
+            "인터리빙, 데이터병렬성",
+            "인터리빙(Interleaving), 데이터 병렬성",
+            "인터리빙 / 데이터 병렬성",
+            "인터리빙",
+            "데이터 병렬성"
+          ],
+          explanation: "(1) 단일 코어에서 스레드 사이를 시분할로 번갈아 끼워 넣는 기법은 <b>인터리빙 (Interleaving)</b>입니다.<br>(2) 데이터를 분할하여 동일 연산을 수행하는 것은 <b>데이터 병렬성 (Data Parallelism)</b>이며, 서로 다른 함수/작업을 분배하는 것은 태스크 병렬성(Task Parallelism)입니다."
+        }
+      ]
+    }
   ]
 };
