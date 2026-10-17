@@ -1377,6 +1377,425 @@ window.EXAM_DATABASE.os = {
         }
       ]
     }
+    ,
+{
+      "id": "os_exam5",
+      "name": "제5회 [올코드 특집] 전 범위 C 소스코드 & 실행 결과 예측 마스터 모의고사 (22문항)",
+      "tag": "올코드 22문항 · 전범위 100점 실전",
+      "desc": "운영체제 전 강의 슬라이드(1장~7장) 및 강의 녹음본에 등장하는 모든 C 시스템 프로그래밍 소스코드 전수 수록! fork() 반환값·메모리 격리, 연쇄 fork() 트리, 논리 단락 평가, execlp 오버레이, 공유메모리 환형버퍼, 유닉스 파이프 IPC, pthread/OpenMP, 임계구역 레이스컨디션, 피터슨 알고리즘, TAS/CAS 하드웨어 원자명령, 뮤텍스 스핀락, 세마포어 카운트/대기큐, Readers-Writers 및 식사하는 철학자까지 실제 시험에 반드시 출제되는 코드와 결과값 예측을 총망라한 100점 마스터 세트",
+      "questions": [
+            {
+                  "id": 1,
+                  "type": "choice",
+                  "score": 4,
+                  "origin": "3장 프로세스 생성 - fork() 반환값과 PID",
+                  "text": "다음 C 프로그램을 실행했을 때 생성된 자식 프로세스의 PID가 2603이고 부모 프로세스의 PID가 2600이다. [A], [B], [C], [D] 각 라인에서 콘솔에 출력되는 정수 값으로 올바르게 짝지어진 것은?\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint main() {\n    pid_t pid, pid1;\n    pid = fork();\n    if (pid &lt; 0) {\n        return 1;\n    } else if (pid == 0) { /* 자식 프로세스 */\n        pid1 = getpid();\n        printf(\"child: pid = %d\\n\", pid);    /* [A] */\n        printf(\"child: pid1 = %d\\n\", pid1);  /* [B] */\n    } else { /* 부모 프로세스 */\n        wait(NULL);\n        pid1 = getpid();\n        printf(\"parent: pid = %d\\n\", pid);   /* [C] */\n        printf(\"parent: pid1 = %d\\n\", pid1); /* [D] */\n    }\n    return 0;\n}</code></pre>",
+                  "options": [
+                        "A. [A]: 0, [B]: 2603, [C]: 2603, [D]: 2600",
+                        "B. [A]: 2603, [B]: 2603, [C]: 0, [D]: 2600",
+                        "C. [A]: 0, [B]: 2600, [C]: 2603, [D]: 2603",
+                        "D. [A]: 2603, [B]: 0, [C]: 2600, [D]: 2603"
+                  ],
+                  "answer": "A",
+                  "answers": [
+                        "A",
+                        "a",
+                        "1"
+                  ],
+                  "explanation": "자식 프로세스에게 fork()는 성공 시 0을 반환하므로 [A] pid=0입니다. getpid()는 현재 실행 중인 프로세스 자신의 PID를 반환하므로 자식 프로세스에서 [B] pid1=2603입니다. 부모 프로세스에게 fork()는 생성된 자식의 PID를 반환하므로 [C] pid=2603입니다. 부모 프로세스에서 getpid()는 부모 자신의 PID이므로 [D] pid1=2600입니다."
+            },
+            {
+                  "id": 2,
+                  "type": "calc",
+                  "score": 4,
+                  "origin": "3장 프로세스 메모리 독립성 - fork()와 전역변수",
+                  "text": "다음 C 프로그램을 컴파일하여 실행했을 때, LINE A에서 최종 출력되는 전역 변수 'value'의 정수 값은 무엇인가? (숫자만 입력)\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint value = 5;\n\nint main() {\n    pid_t pid;\n    pid = fork();\n\n    if (pid == 0) { /* 자식 프로세스 */\n        value += 15;\n        return 0;\n    } else if (pid &gt; 0) { /* 부모 프로세스 */\n        wait(NULL);\n        printf(\"PARENT: value = %d\\n\", value); /* LINE A */\n    }\n    return 0;\n}</code></pre>",
+                  "placeholder": "숫자만 입력",
+                  "answers": [
+                        "5",
+                        "5점",
+                        "value = 5",
+                        "value=5"
+                  ],
+                  "explanation": "정답은 5입니다. fork() 시스템 콜로 생성된 자식 프로세스는 부모의 주소 공간(Code, Data, Heap, Stack)을 완전히 복제(Copy-on-Write)하여 독립된 메모리 영역을 갖습니다. 자식이 value += 15 연산으로 자신의 메모리 내 value를 20으로 수정하더라도 부모의 주소 공간에 있는 전역 변수 value는 아무런 영향을 받지 않고 원래 초기값인 5를 그대로 유지합니다."
+            },
+            {
+                  "id": 3,
+                  "type": "calc",
+                  "score": 4,
+                  "origin": "3장 연쇄 fork() 프로세스 트리 생성",
+                  "text": "다음 C 코드를 실행했을 때, 콘솔 화면에 문자열 'OS_EXAM'이 출력되는 총 횟수(최초 부모 포함 생성된 모든 프로세스의 총합)는 몇 회인가? (숫자만 입력)\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n\nint main() {\n    for (int i = 0; i &lt; 4; i++) {\n        fork();\n    }\n    printf(\"OS_EXAM\\n\");\n    return 0;\n}</code></pre>",
+                  "placeholder": "숫자만 입력",
+                  "answers": [
+                        "16",
+                        "16번",
+                        "16회",
+                        "16개"
+                  ],
+                  "explanation": "정답은 16입니다. fork()가 n번 호출되면 기존의 모든 프로세스가 각각 새로운 자식 프로세스를 1개씩 추가 생성하므로, 프로세스의 수는 매 루프마다 2배씩 기하급수적으로 증가합니다. 4번의 루프 후 최종 프로세스 수는 2⁴ = 16개입니다. 모든 16개의 프로세스가 루프를 탈출한 후 각각 printf()를 실행하므로 총 16번 출력됩니다."
+            },
+            {
+                  "id": 4,
+                  "type": "calc",
+                  "score": 4,
+                  "origin": "3장 논리 연산자 단락 평가(Short-Circuit)와 fork()",
+                  "text": "다음 C 코드가 실행되었을 때 터미널에 문자열 'HELLO'가 출력되는 총 횟수는 몇 번인가? (숫자만 입력)\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n\nint main() {\n    fork() || fork();\n    printf(\"HELLO\\n\");\n    return 0;\n}</code></pre>",
+                  "placeholder": "숫자만 입력",
+                  "answers": [
+                        "3",
+                        "3번",
+                        "3회",
+                        "3개"
+                  ],
+                  "explanation": "정답은 3번입니다. C 언어의 논리 OR(||) 연산자는 앞의 항이 참(0이 아닌 양수)이면 뒤의 항을 평가하지 않는 '단락 평가(Short-Circuit)' 특성을 갖습니다.\n1) 최초 부모 P0가 첫 번째 fork()를 호출하여 자식 C1을 생성합니다. 부모에게는 C1의 PID(양수, 참)가 반환되므로 부모는 뒤쪽 fork()를 실행하지 않고 바로 다음 줄로 넘어가 HELLO를 출력합니다. (1회)\n2) 자식 C1에게는 첫 번째 fork()의 리턴값으로 0(거짓)이 반환됩니다. 따라서 C1은 || 연산자의 뒤쪽 두 번째 fork()를 반드시 실행합니다.\n3) C1이 두 번째 fork()를 실행하여 손자 GC1을 생성합니다. 이제 C1과 GC1 모두 연산을 마치고 HELLO를 출력합니다. (2회)\n따라서 최종적으로 부모(P0), 자식(C1), 손자(GC1) 총 3개의 프로세스가 HELLO를 출력합니다."
+            },
+            {
+                  "id": 5,
+                  "type": "short",
+                  "score": 4,
+                  "origin": "3장 execlp() 시스템 콜과 주소 공간 덮어쓰기",
+                  "text": "다음 C 프로그램에서 /bin/ls 실행 파일이 정상적으로 존재할 때, 자식 프로세스의 LINE X('EXEC_FAILED')가 화면에 결코 출력되지 않는 이유를 운영체제의 프로세스 '주소 공간(Address Space)' 관점에서 서술하시오.\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint main() {\n    pid_t pid = fork();\n    if (pid == 0) { /* 자식 */\n        execlp(\"/bin/ls\", \"ls\", NULL);\n        printf(\"EXEC_FAILED\\n\"); /* LINE X */\n    } else if (pid &gt; 0) { /* 부모 */\n        wait(NULL);\n        printf(\"CHILD_DONE\\n\");\n    }\n    return 0;\n}</code></pre>",
+                  "placeholder": "이유를 핵심 키워드와 함께 서술하세요",
+                  "answers": [
+                        "주소 공간 덮어쓰기",
+                        "메모리 덮어쓰기",
+                        "오버레이",
+                        "주소 공간 교체"
+                  ],
+                  "keywords": [
+                        "execlp 성공",
+                        "새로운 실행 파일 바이너리로 주소 공간 완전히 교체",
+                        "Code Data Heap Stack 덮어씀",
+                        "이후 코드 소멸"
+                  ],
+                  "explanation": "execlp() 시스템 콜이 성공적으로 실행되면, 현재 프로세스의 메모리 주소 공간(Code/Text, Data, Heap, Stack 영역 전체)이 호출한 새 프로그램(/bin/ls)의 바이너리로 완전히 덮어씌워집니다(Overlay). 따라서 기존에 적재되어 있던 프로그램의 다음 줄(LINE X) 명령문은 메모리상에서 영구 소멸되므로 결코 실행될 수 없습니다. LINE X는 오직 execlp()가 실패(파일 없음, 권한 오류 등)하여 -1을 리턴했을 때만 실행됩니다."
+            },
+            {
+                  "id": 6,
+                  "type": "calc",
+                  "score": 4,
+                  "origin": "3장 공유 메모리 환형 버퍼(Circular Buffer)",
+                  "text": "다음은 공유 메모리를 이용한 환형 버퍼 생산자-소비자 C 코드의 일부이다. BUFFER_SIZE가 10으로 선언되어 있을 때, 이 알고리즘에서 버퍼에 동시에 채울 수 있는 '최대 아이템 개수'는 몇 개인가? (숫자만 입력)\n<pre><code class=\"language-c\">#define BUFFER_SIZE 10\nitem buffer[BUFFER_SIZE];\nint in = 0;\nint out = 0;\n\n/* Producer */\nwhile (true) {\n    while (((in + 1) % BUFFER_SIZE) == out)\n        ; /* 버퍼 FULL 대기 */\n    buffer[in] = next_produced;\n    in = (in + 1) % BUFFER_SIZE;\n}\n\n/* Consumer */\nwhile (true) {\n    while (in == out)\n        ; /* 버퍼 EMPTY 대기 */\n    next_consumed = buffer[out];\n    out = (out + 1) % BUFFER_SIZE;\n}</code></pre>",
+                  "placeholder": "숫자만 입력",
+                  "answers": [
+                        "9",
+                        "9개"
+                  ],
+                  "explanation": "정답은 9개 (BUFFER_SIZE - 1)입니다. 만약 버퍼 슬롯 10개를 모두 꽉 채우게 되면 (in + 1) % 10 연산에 의해 in의 위치가 out과 같아지게(in == out) 됩니다. 그런데 in == out은 '버퍼가 완전히 비어있는(Empty)' 조건과 동일하므로, 추가적인 count 변수 없이 포인터 위치만으로는 비어있는 상태와 꽉 찬 상태를 구분할 수 없게 됩니다. 따라서 빈 공간 1칸을 항상 보초(Sentinel)로 남겨두어 최대 9개까지만 저장합니다."
+            },
+            {
+                  "id": 7,
+                  "type": "choice",
+                  "score": 4,
+                  "origin": "3장 UNIX Ordinary Pipe(파이프) 통신",
+                  "text": "다음 UNIX Ordinary Pipe를 사용한 프로세스 간 통신(IPC) C 프로그램에서 fd[0]과 fd[1]의 역할로 올바른 것은?\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;string.h&gt;\n#include &lt;unistd.h&gt;\n\n#define BUFFER_SIZE 25\n#define READ_END 0\n#define WRITE_END 1\n\nint main() {\n    char write_msg[BUFFER_SIZE] = \"SYSTEM_PASS\";\n    char read_msg[BUFFER_SIZE];\n    int fd[2];\n    pipe(fd);\n\n    if (fork() &gt; 0) { /* 부모 */\n        close(fd[READ_END]);\n        write(fd[WRITE_END], write_msg, strlen(write_msg) + 1);\n        close(fd[WRITE_END]);\n    } else { /* 자식 */\n        close(fd[WRITE_END]);\n        read(fd[READ_END], read_msg, BUFFER_SIZE);\n        printf(\"%s\\n\", read_msg);\n        close(fd[READ_END]);\n    }\n    return 0;\n}</code></pre>",
+                  "options": [
+                        "A. fd[0]은 읽기 전용 끝단(Read End), fd[1]은 쓰기 전용 끝단(Write End)",
+                        "B. fd[0]은 쓰기 전용 끝단(Write End), fd[1]은 읽기 전용 끝단(Read End)",
+                        "C. 둘 다 양방향 읽기/쓰기가 동시에 가능한 파일 디스크립터",
+                        "D. fd[0]은 부모 전용 채널, fd[1]은 자식 전용 채널"
+                  ],
+                  "answer": "A",
+                  "answers": [
+                        "A",
+                        "a",
+                        "1"
+                  ],
+                  "explanation": "UNIX 일반 파이프(Ordinary Pipe)에서 pipe(fd) 호출 시 fd[0]은 항상 읽기 끝단(READ_END), fd[1]은 쓰기 끝단(WRITE_END)으로 설정되어 단방향 통신 채널을 형성합니다. 부모는 쓰기 위해 안 쓰는 fd[0]을 닫고 fd[1]에 쓰며, 자식은 쓰지 않는 fd[1]을 닫고 fd[0]에서 읽습니다."
+            },
+            {
+                  "id": 8,
+                  "type": "choice",
+                  "score": 4,
+                  "origin": "4장 스레드와 fork 혼합 모델 (thread4.23.c)",
+                  "text": "다음 C 프로그램을 컴파일하여 실행했을 때, LINE C와 LINE P에서 터미널에 출력되는 문자열 결과로 올바른 것은?\n<pre><code class=\"language-c\">#include &lt;pthread.h&gt;\n#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint value = 0;\n\nvoid *runner(void *param) {\n    value = 5;\n    pthread_exit(0);\n}\n\nint main(int argc, char *argv[]) {\n    pid_t pid;\n    pthread_t tid;\n\n    pid = fork();\n    if (pid == 0) { /* 자식 프로세스 */\n        pthread_create(&tid, NULL, runner, NULL);\n        pthread_join(tid, NULL);\n        printf(\"CHILD: value = %d\\n\", value); /* LINE C */\n    } else if (pid &gt; 0) { /* 부모 프로세스 */\n        wait(NULL);\n        printf(\"PARENT: value = %d\\n\", value); /* LINE P */\n    }\n    return 0;\n}</code></pre>",
+                  "options": [
+                        "A. CHILD: value = 5 , PARENT: value = 0",
+                        "B. CHILD: value = 5 , PARENT: value = 5",
+                        "C. CHILD: value = 0 , PARENT: value = 0",
+                        "D. CHILD: value = 0 , PARENT: value = 5"
+                  ],
+                  "answer": "A",
+                  "answers": [
+                        "A",
+                        "a",
+                        "1"
+                  ],
+                  "explanation": "1) fork() 시 자식 프로세스는 부모로부터 완전히 독립된 메모리 주소 공간(초기 value=0)을 복제받습니다.\n2) 자식 프로세스 내부에서 생성된 POSIX 스레드는 자식 프로세스의 메모리를 공유하므로 전역 변수 value를 5로 수정합니다. pthread_join 후 자식의 LINE C는 'CHILD: value = 5'를 출력합니다.\n3) 부모 프로세스는 자식과 물리적으로 격리된 별도의 메모리 공간을 유지하므로, 자식 내부의 스레드가 무슨 값을 바꿨든 부모의 value는 여전히 0입니다. 따라서 부모의 LINE P는 'PARENT: value = 0'을 출력합니다."
+            },
+            {
+                  "id": 9,
+                  "type": "calc",
+                  "score": 4,
+                  "origin": "4장 프로세스 및 스레드 생성 개수 카운팅 (problem.c)",
+                  "text": "다음 C 코드가 실행되는 동안 '새롭게 생성된 자식 프로세스의 총 개수'는 몇 개인가? (초기 부모 프로세스는 제외, 숫자만 입력)\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;pthread.h&gt;\n\nvoid *runner(void *param) {\n    pthread_exit(0);\n}\n\nint main() {\n    pid_t pid;\n    pthread_t tid;\n\n    pid = fork(); /* 1차 fork */\n    if (pid == 0) {\n        fork();   /* 2차 fork */\n        pthread_create(&tid, NULL, runner, NULL);\n    }\n    fork();       /* 3차 fork */\n    return 0;\n}</code></pre>",
+                  "placeholder": "숫자만 입력",
+                  "answers": [
+                        "6",
+                        "6개"
+                  ],
+                  "explanation": "정답은 6개입니다.\n1) 1차 fork(): 초기 부모 P0가 자식 C1을 생성 (총 2개: P0, C1)\n2) if (pid == 0): 자식 C1만 내부로 진입하여 2차 fork() 호출 -> 손자 C1_1 생성. 그리고 C1과 C1_1 둘 다 각각 스레드를 1개씩 생성(스레드는 총 2개 생성됨).\n3) 현재 프로세스 상태: P0, C1, C1_1 총 3개 존재.\n4) 3차 fork(): 이 3개의 프로세스가 모두 3차 fork()를 실행하므로 각각 1개씩 총 3개의 자식 프로세스를 추가 생성함.\n5) 최종 프로세스 총합: 기존 3개 + 새로 생긴 3개 = 6개의 프로세스가 추가 생성되어 전체는 7개(P0 포함)가 되며, '새로 생성된 프로세스'는 총 6개입니다."
+            },
+            {
+                  "id": 10,
+                  "type": "choice",
+                  "score": 4,
+                  "origin": "4장 POSIX Pthread sum 계산 및 pthread_join()",
+                  "text": "다음 C 프로그램에서 LINE J (pthread_join)의 역할과, 만약 LINE J를 주석(//) 처리하여 제거했을 때 발생할 수 있는 문제점으로 가장 올바른 설명은?\n<pre><code class=\"language-c\">#include &lt;pthread.h&gt;\n#include &lt;stdio.h&gt;\n#include &lt;stdlib.h&gt;\n\nint sum = 0;\n\nvoid *runner(void *param) {\n    int upper = atoi(param);\n    for (int i = 1; i &lt;= upper; i++) {\n        sum += i;\n    }\n    pthread_exit(0);\n}\n\nint main(int argc, char *argv[]) {\n    pthread_t tid;\n    pthread_create(&tid, NULL, runner, \"5\");\n    pthread_join(tid, NULL); /* LINE J */\n    printf(\"sum = %d\\n\", sum);\n    return 0;\n}</code></pre>",
+                  "options": [
+                        "A. LINE J는 스레드가 종료될 때까지 메인을 대기시키며, 제거 시 스레드가 sum을 계산하기 전에 메인이 먼저 실행되어 sum = 0이 출력될 수 있다.",
+                        "B. LINE J는 스레드를 즉시 강제 종료시키는 함수이며, 제거 시 스레드가 영구 무한 루프에 빠진다.",
+                        "C. LINE J는 스레드에게 CPU 권한을 양보하며, 제거하더라도 운영체제가 자동으로 스레드 종료를 대기하므로 출력 결과는 항상 15로 동일하다.",
+                        "D. LINE J는 스레드의 반환값을 0으로 리셋하며, 제거 시 sum 변수가 오버플로우를 일으킨다."
+                  ],
+                  "answer": "A",
+                  "answers": [
+                        "A",
+                        "a",
+                        "1"
+                  ],
+                  "explanation": "pthread_join()은 지정한 스레드가 종료될 때까지 호출한 스레드(main 스레드)를 블록(대기)시키는 동기화 함수입니다. 이를 생략하면 메인 스레드가 백그라운드 스레드의 runner 연산(1~5의 합 15)이 끝나기도 전에 곧바로 다음 줄로 진행하여 초기값인 sum = 0을 출력하고 프로세스를 종료해버리는 경쟁 상태(Race Condition)가 발생합니다."
+            },
+            {
+                  "id": 11,
+                  "type": "short",
+                  "score": 4,
+                  "origin": "4장 OpenMP 병렬 컴파일 지시어",
+                  "text": "다음 OpenMP 기반 병렬 프로그램을 gcc 컴파일러로 빌드할 때 OpenMP 지시어(#pragma omp)를 인식시키기 위해 반드시 추가해야 하는 컴파일 옵션 플래그는 무엇인가? (예: -option)\n<pre><code class=\"language-c\">#include &lt;omp.h&gt;\n#include &lt;stdio.h&gt;\n\nint main() {\n    #pragma omp parallel num_threads(4)\n    {\n        printf(\"OpenMP Thread Run!\\n\");\n    }\n    return 0;\n}</code></pre>",
+                  "placeholder": "-option 형식으로 입력",
+                  "answers": [
+                        "-fopenmp",
+                        "fopenmp"
+                  ],
+                  "explanation": "gcc에서 OpenMP 지시어(#pragma omp)를 활성화하여 다중 스레드로 병렬 컴파일하려면 컴파일 옵션으로 '-fopenmp' (예: gcc -fopenmp test.c)를 전달해야 합니다. 이 옵션이 없으면 pragma 지시어가 무시되어 단일 스레드로 순차 실행됩니다."
+            },
+            {
+                  "id": 12,
+                  "type": "calc",
+                  "score": 4,
+                  "origin": "5장 임계구역 문제 - count++ / count-- 어셈블리 레이스 컨디션",
+                  "text": "전역 변수 count의 초기값이 5일 때, 생산자와 소비자가 CPU를 번갈아 선점하면서 아래 명령어들이 'T1 -&gt; T2 -&gt; T4 -&gt; T5 -&gt; T3 -&gt; T6' 순서로 인터리빙(Interleaving) 실행되었다. T6이 완료된 후 최종 메모리 count 변수에 저장되어 있는 정수 값은 얼마인가? (숫자만 입력)\n<pre><code class=\"language-c\">/* 생산자 */\nregister1 = count;        // T1\nregister1 = register1 + 1;// T2\ncount = register1;        // T3\n\n/* 소비자 */\nregister2 = count;        // T4\nregister2 = register2 - 1;// T5\ncount = register2;        // T6</code></pre>",
+                  "placeholder": "숫자만 입력",
+                  "answers": [
+                        "4",
+                        "4개"
+                  ],
+                  "explanation": "정답은 4입니다.\n1) T1: 생산자 register1 = count (5)\n2) T2: 생산자 register1 = 5 + 1 = 6\n3) T4: 소비자 CPU 선점! 소비자 register2 = count (아직 메모리 count는 5이므로 5 적재)\n4) T5: 소비자 register2 = 5 - 1 = 4\n5) T3: 생산자 CPU 재선점! count = register1 (메모리에 6 저장)\n6) T6: 소비자 CPU 재선점! count = register2 (메모리에 4를 덮어씀!)\n따라서 최종 메모리 count는 4가 됩니다. (정상적인 동기화 환경이라면 5+1-1=5여야 하지만 레이스 컨디션으로 인해 4가 저장됨)"
+            },
+            {
+                  "id": 13,
+                  "type": "choice",
+                  "score": 4,
+                  "origin": "5장 피터슨 알고리즘 (Peterson's Algorithm)",
+                  "text": "다음 피터슨 알고리즘 코드에서 flag[i] = true와 turn = j가 수행하는 역할을 가장 올바르게 설명한 것은?\n<pre><code class=\"language-c\">int turn;\nboolean flag[2];\n\n/* Process Pi (상대방은 Pj) */\nwhile (true) {\n    flag[i] = true;\n    turn = j;\n    while (flag[j] && turn == j)\n        ; /* busy wait */\n\n    /* CRITICAL SECTION */\n\n    flag[i] = false;\n\n    /* REMAINDER SECTION */\n}</code></pre>",
+                  "options": [
+                        "A. flag[i]=true는 자신이 임계구역에 진입할 의사가 있음을 선언하고, turn=j는 상대방에게 먼저 진입할 수 있는 우선권을 양보하는 것이다.",
+                        "B. flag[i]=true는 상대방을 임계구역에서 강제 추방하고, turn=j는 자신의 턴을 강제로 확정하는 것이다.",
+                        "C. flag[i]=true는 임계구역의 잠금을 해제하고, turn=j는 하드웨어 인터럽트를 활성화하는 것이다.",
+                        "D. flag[i]=true와 turn=j 모두 자식 프로세스에게만 실행 권한을 위임하는 동기화 명령이다."
+                  ],
+                  "answer": "A",
+                  "answers": [
+                        "A",
+                        "a",
+                        "1"
+                  ],
+                  "explanation": "피터슨 알고리즘에서 flag[i]는 프로세스 i가 임계구역에 들어가고 싶다는 의향(intent)을 표시하는 것이며, turn은 '양보의 미덕'으로 상대방 j에게 진입 차례를 양보하는 변수입니다. 두 프로세스가 동시에 flag를 세우더라도 turn 변수에는 마지막에 쓴 값 하나만 남으므로, 먼저 양보한 프로세스가 임계구역에 진입하고 나중에 양보한 프로세스가 while문에서 대기하여 상호 배제(Mutual Exclusion)를 완벽히 만족합니다."
+            },
+            {
+                  "id": 14,
+                  "type": "choice",
+                  "score": 4,
+                  "origin": "5장 하드웨어 원자적 명령어 - test_and_set",
+                  "text": "다음 C 코드에서 초기 lock = false 상태일 때, 첫 번째 프로세스 P0가 test_and_set(&lock)을 호출하여 임계구역에 성공적으로 진입할 때 (1) 함수가 반환하는 값(rv)과 (2) 함수 호출 직후 lock 변수에 저장되는 새로운 값으로 올바른 것은?\n<pre><code class=\"language-c\">boolean test_and_set(boolean *target) {\n    boolean rv = *target;\n    *target = true;\n    return rv;\n}\n\n/* 임계구역 진입 제어 */\nboolean lock = false;\n\ndo {\n    while (test_and_set(&lock))\n        ; /* busy wait */\n\n    /* CRITICAL SECTION */\n\n    lock = false;\n\n    /* REMAINDER SECTION */\n} while (true);</code></pre>",
+                  "options": [
+                        "A. 반환값: false , lock의 새로운 값: true",
+                        "B. 반환값: true , lock의 새로운 값: false",
+                        "C. 반환값: false , lock의 새로운 값: false",
+                        "D. 반환값: true , lock의 새로운 값: true"
+                  ],
+                  "answer": "A",
+                  "answers": [
+                        "A",
+                        "a",
+                        "1"
+                  ],
+                  "explanation": "test_and_set은 인자로 전달된 포인터의 '이전 값'을 반환하고, 메모리의 해당 값은 무조건 'true'로 갱신하는 하드웨어 원자적(Atomic) 연산입니다. 따라서 lock이 false일 때 호출하면 이전 값인 false를 반환하여 while(false) 탈출로 임계구역에 들어가고, lock 변수 자체는 true로 변경되어 뒤따라오는 다른 프로세스들을 while(true)에 묶어둡니다."
+            },
+            {
+                  "id": 15,
+                  "type": "calc",
+                  "score": 4,
+                  "origin": "5장 하드웨어 원자적 명령어 - compare_and_swap (CAS)",
+                  "text": "다음 CAS 기반 임계구역 동기화 코드에서, 현재 다른 프로세스가 임계구역을 점유하여 lock의 값이 1인 상태이다. 이때 새로운 프로세스가 while 조건문 compare_and_swap(&lock, 0, 1)을 실행했을 때 함수가 반환하는 정수 값은 무엇인가? (숫자만 입력)\n<pre><code class=\"language-c\">int compare_and_swap(int *value, int expected, int new_value) {\n    int temp = *value;\n    if (*value == expected)\n        *value = new_value;\n    return temp;\n}\n\n/* 임계구역 제어 */\nint lock = 0;\n\nwhile (true) {\n    while (compare_and_swap(&lock, 0, 1) != 0)\n        ; /* busy wait */\n\n    /* CRITICAL SECTION */\n\n    lock = 0;\n\n    /* REMAINDER SECTION */\n}</code></pre>",
+                  "placeholder": "숫자만 입력",
+                  "answers": [
+                        "1"
+                  ],
+                  "explanation": "정답은 1입니다. 현재 lock이 1이므로 compare_and_swap의 value(1)와 expected(0)가 일치하지 않습니다. 따라서 *value = 1로 교체되지 않고 원래 가지고 있던 이전 값인 temp(1)를 그대로 반환합니다. 이 리턴값 1은 != 0 조건을 만족하므로 while 루프가 계속 회전(busy wait)하며 진입을 대기하게 됩니다."
+            },
+            {
+                  "id": 16,
+                  "type": "short",
+                  "score": 4,
+                  "origin": "5장 뮤텍스 락 (스핀락 vs 슬립락)",
+                  "text": "다음 코드처럼 임계구역 진입 조건(available)을 획득할 때까지 CPU를 점유한 채 루프를 계속 돌며 검사하는(Busy Waiting) 락을 무엇이라 부르는가? (한국어 또는 영어로 작성)\n<pre><code class=\"language-c\">acquire() {\n    while (!available)\n        ; /* busy wait */\n    available = false;\n}\n\nrelease() {\n    available = true;\n}</code></pre>",
+                  "placeholder": "락 명칭 입력",
+                  "answers": [
+                        "스핀락",
+                        "spinlock",
+                        "Spinlock",
+                        "스핀 락"
+                  ],
+                  "explanation": "바쁜 대기(Busy Waiting)를 수행하며 락 획득을 계속해서 재시도하는 뮤텍스 락을 '스핀락(Spinlock)'이라고 합니다. 스핀락은 임계구역 점유 시간이 매우 짧고 멀티코어 환경일 때 문맥 교환(Context Switch)에 따른 오버헤드를 줄일 수 있어 유용하지만, 대기 시간이 길면 CPU 사이클을 심각하게 낭비하는 단점이 있습니다."
+            },
+            {
+                  "id": 17,
+                  "type": "choice",
+                  "score": 4,
+                  "origin": "5장 세마포어(Semaphore) 카운팅과 대기 큐",
+                  "text": "다음 비선점 세마포어 구현에서, 초기 S->value가 2인 세마포어에 대해 프로세스들이 연속으로 5번의 wait(S) 연산을 수행하고 signal(S)은 한 번도 수행하지 않았다. 이때 최종 S->value의 값과 현재 S->list에서 대기(Blocked) 상태로 잠들어 있는 프로세스의 수로 바르게 짝지어진 것은?\n<pre><code class=\"language-c\">typedef struct {\n    int value;\n    struct process *list;\n} semaphore;\n\nvoid wait(semaphore *S) {\n    S-&gt;value--;\n    if (S-&gt;value &lt; 0) {\n        add_to_list(S-&gt;list, current_process);\n        sleep();\n    }\n}\n\nvoid signal(semaphore *S) {\n    S-&gt;value++;\n    if (S-&gt;value &lt;= 0) {\n        process *P = remove_from_list(S-&gt;list);\n        wakeup(P);\n    }\n}</code></pre>",
+                  "options": [
+                        "A. S->value = -3 , 대기 중인 프로세스 수 = 3개",
+                        "B. S->value = -5 , 대기 중인 프로세스 수 = 5개",
+                        "C. S->value = -3 , 대기 중인 프로세스 수 = 2개",
+                        "D. S->value = 0 , 대기 중인 프로세스 수 = 3개"
+                  ],
+                  "answer": "A",
+                  "answers": [
+                        "A",
+                        "a",
+                        "1"
+                  ],
+                  "explanation": "초기값 2에서 wait(S)가 5번 호출되면 S->value는 2 - 5 = -3이 됩니다. 비선점 바쁜 대기가 없는 세마포어에서 value가 음수일 때, 그 값의 절댓값(|-3| = 3)은 현재 세마포어 대기 큐(list)에 대기 중인 프로세스의 정확한 개수를 의미합니다."
+            },
+            {
+                  "id": 18,
+                  "type": "choice",
+                  "score": 4,
+                  "origin": "5장 세마포어 교착 상태 (Deadlock)",
+                  "text": "두 프로세스 P0와 P1이 실행될 때 두 프로세스가 모두 영구히 대기 상태에 빠지는 교착 상태(Deadlock)를 초래하는 라인 실행 인터리빙 순서로 올바른 것은?\n<pre><code class=\"language-c\">/* semaphore S = 1, Q = 1 */\n\n/* Process P0 */\nwait(S); // 라인 1\nwait(Q); // 라인 2\n...\nsignal(S);\nsignal(Q);\n\n/* Process P1 */\nwait(Q); // 라인 3\nwait(S); // 라인 4\n...\nsignal(Q);\nsignal(S);</code></pre>",
+                  "options": [
+                        "A. 라인 1 (P0: wait(S)) -&gt; 라인 3 (P1: wait(Q)) -&gt; 라인 2 (P0: wait(Q)) -&gt; 라인 4 (P1: wait(S))",
+                        "B. 라인 1 (P0: wait(S)) -&gt; 라인 2 (P0: wait(Q)) -&gt; 라인 3 (P1: wait(Q)) -&gt; 라인 4 (P1: wait(S))",
+                        "C. 라인 3 (P1: wait(Q)) -&gt; 라인 4 (P1: wait(S)) -&gt; 라인 1 (P0: wait(S)) -&gt; 라인 2 (P0: wait(Q))",
+                        "D. 라인 1 (P0: wait(S)) -&gt; signal(S) -&gt; 라인 3 (P1: wait(Q)) -&gt; signal(Q)"
+                  ],
+                  "answer": "A",
+                  "answers": [
+                        "A",
+                        "a",
+                        "1"
+                  ],
+                  "explanation": "P0가 먼저 wait(S)를 실행하여 S를 쥐고(S=0), 문맥 교환이 일어나 P1이 wait(Q)를 실행하여 Q를 쥔(Q=0) 후, P0가 Q를 요구하면(wait(Q)) P1이 쥐고 있어 블록되고, P1이 S를 요구하면(wait(S)) P0가 쥐고 있어 블록됩니다. 서로가 쥔 자원을 기다리며 무한 대기하는 전형적인 교착 상태(Deadlock) 순서입니다."
+            },
+            {
+                  "id": 19,
+                  "type": "essay",
+                  "score": 7,
+                  "origin": "6장 유한 버퍼 세마포어 순서 오류 분석",
+                  "text": "[심층 분석 서술 7점] 생산자 코드에서 wait(empty)와 wait(mutex)의 순서가 아래와 같이 뒤바뀌었을 때, 만약 현재 버퍼가 가득 찬 상태(empty == 0)라면 어떤 치명적인 교착 상태(Deadlock)가 발생하는지 그 원인과 프로세스들의 대기 과정을 단계별로 서술하시오.\n<pre><code class=\"language-c\">/* Producer */\ndo {\n    /* produce an item */\n    wait(mutex); // 잘못 변경된 순서!\n    wait(empty);\n    /* add to buffer */\n    signal(mutex);\n    signal(full);\n} while (true);\n\n/* Consumer */\ndo {\n    wait(full);\n    wait(mutex);\n    /* remove an item */\n    signal(mutex);\n    signal(empty);\n    /* consume item */\n} while (true);</code></pre>",
+                  "placeholder": "여기에 서술형 답안을 작성하세요.",
+                  "keywords": [
+                        "버퍼 가득 찬 상태 empty=0",
+                        "생산자가 mutex 락 먼저 획득",
+                        "생산자가 wait(empty)에서 블록 슬립",
+                        "소비자는 wait(mutex)에서 블록",
+                        "상호 대기로 교착 상태 Deadlock"
+                  ],
+                  "rubric": [
+                        {
+                              "item": "1. 생산자의 락 점유 및 블록",
+                              "desc": "생산자가 mutex를 먼저 획득(0)한 후 empty=0이므로 wait(empty)에서 mutex를 쥔 채 슬립 대기 상태로 빠짐을 기술 시 3.5점"
+                        },
+                        {
+                              "item": "2. 소비자의 진입 차단 및 상호 교착",
+                              "desc": "소비자가 버퍼를 비워주려 해도 wait(mutex)에서 생산자가 쥐고 있는 락 때문에 블록되어 영원히 깨어날 수 없는 Deadlock이 발생함을 기술 시 3.5점"
+                        }
+                  ],
+                  "explanation": "1) 버퍼가 가득 차서 empty=0인 상황에서 생산자가 실행됩니다.\n2) 생산자는 wait(mutex)를 먼저 호출하여 버퍼 접근 독점 락(mutex)을 성공적으로 획득합니다.\n3) 그 직후 생산자는 wait(empty)를 호출하지만, empty가 0이므로 음수가 되어 슬립(sleep) 대기 큐로 들어가 잠듭니다. 이때 생산자는 방금 획득한 mutex 락을 손에 쥔 채로 잠들게 됩니다.\n4) 버퍼 공간을 만들어주기 위해 소비자가 진입하여 아이템을 꺼내려 하지만, 소비자의 wait(mutex)에서 이미 생산자가 쥐고 놓지 않은 mutex 때문에 소비자마저 블록됩니다.\n5) 결국 소비자는 mutex를 얻지 못해 영원히 소비를 못 하고, 생산자는 소비자가 empty를 signal 해주지 않아 영원히 깨어나지 못하는 치명적인 Deadlock에 빠집니다."
+            },
+            {
+                  "id": 20,
+                  "type": "essay",
+                  "score": 7,
+                  "origin": "6장 Readers-Writers 문제 세마포어 동기화",
+                  "text": "[분석형 7점] 다음 Readers-Writers 해결 알고리즘에서 (1) read_count == 1일 때만 LINE R1(wait(rw_mutex))을 호출하는 이유와, (2) read_count == 0일 때만 LINE R2(signal(rw_mutex))를 호출하는 이유를 각각 서술하시오.\n<pre><code class=\"language-c\">semaphore rw_mutex = 1;\nsemaphore mutex = 1;\nint read_count = 0;\n\n/* Reader Process */\ndo {\n    wait(mutex);\n    read_count++;\n    if (read_count == 1)\n        wait(rw_mutex); /* LINE R1 */\n    signal(mutex);\n\n    /* reading performed */\n\n    wait(mutex);\n    read_count--;\n    if (read_count == 0)\n        signal(rw_mutex); /* LINE R2 */\n    signal(mutex);\n} while (true);</code></pre>",
+                  "placeholder": "여기에 서술형 답안을 작성하세요.",
+                  "keywords": [
+                        "첫 번째 리더가 작성자 배제 락 획득",
+                        "이후 리더들은 락 대기 없이 동시 읽기 허용",
+                        "마지막 리더가 읽기를 마칠 때 락 해제",
+                        "대기 중인 작성자 진입 허용"
+                  ],
+                  "rubric": [
+                        {
+                              "item": "1. read_count == 1 (첫 번째 리더)의 역할",
+                              "desc": "첫 번째로 진입하는 리더가 rw_mutex를 획득하여 작성자(Writer)의 진입을 원천 차단하고, 2번째 이후의 리더들은 락 대기 없이 병렬로 동시에 읽을 수 있게 함을 설명 시 3.5점"
+                        },
+                        {
+                              "item": "2. read_count == 0 (마지막 리더)의 역할",
+                              "desc": "임계구역에 남아있는 모든 리더가 다 읽고 나가는 '마지막 리더' 시점에 비로소 rw_mutex를 해제하여 대기 중인 작성자가 진입할 수 있도록 함을 설명 시 3.5점"
+                        }
+                  ],
+                  "explanation": "(1) read_count == 1 (LINE R1): 가장 처음 진입하는 첫 번째 리더(First Reader)가 대표로 rw_mutex를 획득하여 데이터를 쓰고 있는 작성자(Writer)를 차단합니다. 일단 첫 리더가 이 락을 쥐면, 그 뒤에 들어오는 수많은 다른 리더들은 rw_mutex에 대한 추가 대기 없이 즉시 동시 병렬 읽기가 가능해집니다.\n(2) read_count == 0 (LINE R2): 임계구역에서 책을 읽고 있는 리더가 단 1명이라도 남아있으면 작성자가 써서는 안 되므로, 마지막으로 임계구역을 빠져나가는 마지막 리더(Last Reader)만이 rw_mutex를 signal()하여 대기 중이던 작성자가 임계구역에 들어올 수 있도록 잠금을 풀어줍니다."
+            },
+            {
+                  "id": 21,
+                  "type": "essay",
+                  "score": 7,
+                  "origin": "6장 식사하는 철학자 문제 (Dining-Philosophers)",
+                  "text": "[서술형 7점] 다음 코드에서 5명의 철학자가 동시에 배가 고파져서 각자 자신의 왼쪽 젓가락(chopstick[i])을 동시에 집었을 때 발생하는 문제점의 명칭을 쓰고, 이 문제점을 해결하기 위한 대표적인 비대칭(Asymmetric) 해결 방안을 구체적으로 서술하시오.\n<pre><code class=\"language-c\">semaphore chopstick[5]; /* 모두 1로 초기화 */\n\n/* Philosopher i (0 ~ 4) */\ndo {\n    wait(chopstick[i]);\n    wait(chopstick[(i + 1) % 5]);\n\n    /* eat */\n\n    signal(chopstick[i]);\n    signal(chopstick[(i + 1) % 5]);\n\n    /* think */\n} while (true);</code></pre>",
+                  "placeholder": "여기에 서술형 답안을 작성하세요.",
+                  "keywords": [
+                        "교착 상태 Deadlock",
+                        "환형 대기 Circular Wait",
+                        "홀수 번호 철학자는 왼쪽 먼저",
+                        "짝수 번호 철학자는 오른쪽 먼저",
+                        "비대칭 젓가락 집기 규칙"
+                  ],
+                  "rubric": [
+                        {
+                              "item": "1. 발생 문제점 명시",
+                              "desc": "모두가 왼쪽 젓가락을 쥐고 오른쪽 젓가락을 기다려 발생하는 교착 상태(Deadlock / 순환 대기) 명시 시 3점"
+                        },
+                        {
+                              "item": "2. 비대칭 해결책 서술",
+                              "desc": "철학자의 번호(짝수/홀수)에 따라 젓가락을 집는 순서를 다르게 강제(예: 홀수는 왼쪽 먼저, 짝수는 오른쪽 먼저)하여 순환 대기 고리를 끊어냄을 설명 시 4점"
+                        }
+                  ],
+                  "explanation": "1) 문제점: 교착 상태(Deadlock). 모든 철학자가 동시에 왼쪽 젓가락을 집으면 남아있는 젓가락이 하나도 없는 상태에서 모두가 오른쪽 젓가락을 요구하며 무한 대기하는 순환 대기(Circular Wait)가 형성됩니다.\n2) 비대칭(Asymmetric) 해결 방안: 모든 철학자가 동일한 방향으로 젓가락을 집는 대칭성을 깨뜨리는 것입니다. 예를 들어 홀수 번호 철학자(1, 3)는 왼쪽 젓가락을 먼저 집은 뒤 오른쪽 젓가락을 집고, 짝수 번호 철학자(0, 2, 4)는 오른쪽 젓가락을 먼저 집은 뒤 왼쪽 젓가락을 집도록 규칙을 비대칭화합니다. 이렇게 하면 인접한 두 철학자가 동일한 젓가락을 두고 먼저 경쟁하게 되므로 한 명이 두 젓가락을 모두 쥐고 식사할 수 있게 되어 순환 대기 사이클이 원천적으로 파괴됩니다."
+            },
+            {
+                  "id": 22,
+                  "type": "essay",
+                  "score": 7,
+                  "origin": "3장 fork 복합 실행 결과 트레이스",
+                  "text": "[복합 출력 예측 서술 7점] 다음 C 코드를 실행했을 때 터미널에 출력되는 모든 라인(C1, C2, P1)의 출력 문자열과 각 라인의 정수 값을 실행 순서 및 프로세스 계층 구조(부모, 자식, 손자)와 함께 완벽히 설명하여 서술하시오.\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint main() {\n    int val = 10;\n    pid_t pid = fork();\n\n    if (pid == 0) {\n        val += 20;\n        printf(\"C1: %d\\n\", val);\n        fork();\n        val += 5;\n        printf(\"C2: %d\\n\", val);\n    } else if (pid &gt; 0) {\n        wait(NULL);\n        val *= 2;\n        printf(\"P1: %d\\n\", val);\n    }\n    return 0;\n}</code></pre>",
+                  "placeholder": "여기에 서술형 답안을 작성하세요.",
+                  "keywords": [
+                        "C1: 30 자식 프로세스",
+                        "C2: 35 자식과 손자 각각 1번씩 총 2회 출력",
+                        "P1: 20 부모 프로세스",
+                        "독립된 메모리 공간 val 복제"
+                  ],
+                  "rubric": [
+                        {
+                              "item": "1. C1 출력 및 값",
+                              "desc": "자식 프로세스가 val += 20을 수행하여 'C1: 30'을 1회 출력함을 정확히 명시 시 2점"
+                        },
+                        {
+                              "item": "2. C2 출력 및 값",
+                              "desc": "자식이 다시 fork()하여 자식과 손자 프로세스 2개가 각각 val += 5를 수행하여 'C2: 35'를 총 2회 출력함을 명시 시 3점"
+                        },
+                        {
+                              "item": "3. P1 출력 및 값",
+                              "desc": "부모는 wait()로 자식들의 종료를 대기한 뒤 자신의 독립된 val(10)에 곱하기 2를 하여 'P1: 20'을 1회 출력함을 명시 시 2점"
+                        }
+                  ],
+                  "explanation": "출력 결과:\nC1: 30\nC2: 35\nC2: 35\nP1: 20\n(C2의 두 라인은 실행 순서에 따라 출력 순서가 바뀔 수 있으나 값은 동일함)\n\n상세 분석:\n1) 최초 부모가 val=10 상태에서 fork()를 호출하여 자식(C)을 생성합니다.\n2) 자식 프로세스는 자신의 독립된 메모리에서 val += 20을 실행하여 30이 되고, 'C1: 30'을 출력합니다.\n3) 자식 프로세스가 다시 내부에서 fork()를 호출하여 손자(GC) 프로세스를 생성합니다. 이때 자식과 손자 모두 현재 시점의 메모리 값인 val=30을 복제하여 갖습니다.\n4) 자식과 손자 프로세스는 각각 독립적으로 val += 5를 실행하여 둘 다 35가 되며, 각각 'C2: 35'를 1번씩 총 2회 출력합니다.\n5) 부모 프로세스는 wait(NULL)에 의해 자식 프로세스의 모든 작업이 끝날 때까지 대기합니다. 자식들의 메모리 수정은 부모에게 전혀 전파되지 않으므로 부모의 val은 여전히 10입니다. 부모는 val *= 2를 수행하여 20이 된 후 'P1: 20'을 출력합니다."
+            }
+      ]
+}
   ]
 };
-
