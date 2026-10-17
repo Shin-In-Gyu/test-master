@@ -152,19 +152,107 @@ p, div, span, li, button, input, select, textarea {
   top: 0;
   z-index: 1000;
   background-color: var(--bg-surface);
-  border-bottom: 2px solid var(--bg-surface-elevated);
+  border-bottom: 2px solid var(--border-color);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
 .nav-container {
-  max-width: 1100px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 12px 24px;
+  padding: 10px 20px 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.nav-top-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
   width: 100%;
+}
+
+/* Nav Sub Bar: SEARCH + 단원 선택 */
+.nav-sub-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.nav-search-wrapper {
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  gap: 10px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.nav-search-wrapper:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(90, 155, 252, 0.15);
+}
+
+.nav-chapter-wrapper {
+  flex: 0 0 auto;
+  min-width: 220px;
+  max-width: 440px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-chapter-wrapper .chapter-select-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 5px 12px;
+  margin: 0;
+  width: 100%;
+  transition: border-color 0.15s ease;
+}
+
+.nav-chapter-wrapper .chapter-select-box:focus-within {
+  border-color: var(--accent);
+}
+
+.nav-chapter-wrapper .chapter-select-tag {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.nav-chapter-wrapper .chapter-select {
+  flex: 1;
+  background-color: var(--bg-surface-elevated);
+  color: var(--ink);
+  border: none;
+  padding: 6px 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  outline: none;
+  font-family: var(--font-body);
+  transition: background-color 0.15s ease;
+}
+
+.nav-chapter-wrapper .chapter-select:hover {
+  background-color: var(--bg-surface-active);
 }
 
 .brand-box {
@@ -324,7 +412,7 @@ p, div, span, li, button, input, select, textarea {
 .main-wrapper {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: 16px 20px;
   flex: 1;
   width: 100%;
 }
@@ -1629,8 +1717,17 @@ html, body {
   .nav-container {
     padding: 10px 16px;
   }
+  .nav-sub-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .nav-chapter-wrapper {
+    max-width: 100%;
+    min-width: 100%;
+  }
   .main-wrapper {
-    padding: 20px 16px;
+    padding: 16px 14px;
   }
   .hero-banner {
     padding: 24px 20px;

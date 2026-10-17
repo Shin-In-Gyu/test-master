@@ -111,6 +111,7 @@ function switchMainMode(mode) {
   const btnConcept = document.getElementById("modeBtnConcept");
   const btnExam = document.getElementById("modeBtnExam");
   const bottomBar = document.getElementById("bottomBar");
+  const chapterBar = document.getElementById("conceptFilterBar");
 
   if (mode === "concept") {
     conceptSec.style.display = "block";
@@ -118,6 +119,7 @@ function switchMainMode(mode) {
     btnConcept.classList.add("active");
     btnExam.classList.remove("active");
     bottomBar.style.display = "none";
+    if (chapterBar) chapterBar.style.display = "flex";
     showToast("[개념 총정리] 뷰로 전환되었습니다.");
   } else {
     conceptSec.style.display = "none";
@@ -125,6 +127,7 @@ function switchMainMode(mode) {
     btnConcept.classList.remove("active");
     btnExam.classList.add("active");
     bottomBar.style.display = "flex";
+    if (chapterBar) chapterBar.style.display = "none";
     showToast("[실전 모의고사] 뷰로 전환되었습니다.");
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -140,6 +143,7 @@ function renderConceptFilterBar() {
   if (!bar) return;
   if (!data || !data.filterChips) {
     bar.innerHTML = "";
+    bar.style.display = "none";
     return;
   }
 
@@ -156,6 +160,7 @@ function renderConceptFilterBar() {
       </select>
     </div>
   `;
+  bar.style.display = currentMode === "concept" ? "flex" : "none";
 }
 
 function renderConceptContent() {

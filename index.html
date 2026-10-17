@@ -16,58 +16,74 @@
 <!-- Top Navigation -->
 <nav class="navbar">
   <div class="nav-container">
-    <!-- Brand Title -->
-    <div class="brand-box" onclick="location.reload()">
-      <div class="brand-code">DOSSIER</div>
-      <div>
-        <h1 class="brand-title">EXAM MASTER <span class="badge badge-accent">ARCHIVE</span></h1>
-        <div class="brand-sub">대학 시험 전용 개념 총정리 & 실전 모의고사 평가 시스템</div>
+    <!-- Row 1: Brand, Mode Switcher, Controls -->
+    <div class="nav-top-row">
+      <!-- Brand Title -->
+      <div class="brand-box" onclick="location.reload()">
+        <div class="brand-code">DOSSIER</div>
+        <div>
+          <h1 class="brand-title">EXAM MASTER <span class="badge badge-accent">ARCHIVE</span></h1>
+          <div class="brand-sub">대학 시험 전용 개념 총정리 &amp; 실전 모의고사 평가 시스템</div>
+        </div>
+      </div>
+
+      <!-- Mode Switcher -->
+      <div class="mode-switcher">
+        <button class="mode-btn active" id="modeBtnConcept" onclick="switchMainMode('concept')">
+          <span>개념 총정리</span>
+        </button>
+        <button class="mode-btn" id="modeBtnExam" onclick="switchMainMode('exam')">
+          <span>실전 모의고사</span>
+        </button>
+      </div>
+
+      <!-- Controls -->
+      <div class="nav-controls">
+        <!-- Subject Dropdown -->
+        <select id="subjectSelect" class="subject-select" onchange="changeSubject(this.value)">
+          <option value="crossplatform" selected>크로스플랫폼 프로그래밍 (정종수 교수 / 실전 1~4회 &amp; 올코드 빈칸 마스터 5회)</option>
+          <option value="gameprog">게임프로그래밍 (김영호 교수 / 실전 모의고사 1~4회)</option>
+          <option value="security">정보보호개론 (박정수 교수 / 실전 모의고사 1~4회)</option>
+          <option value="os">운영체제 (녹음본 19대 유형 · 실전 1~4회 &amp; 올코드 마스터 5회)</option>
+          <option value="__add__">+ 새 과목 추가 / 가이드...</option>
+        </select>
+
+        <!-- 7-min Open Book Timer -->
+        <div class="timer-pill" title="오픈북 7분 실전 타이머">
+          <span class="timer-tag">TIMER</span>
+          <span id="timerDisplay" class="timer-val">07:00</span>
+          <button class="timer-btn" onclick="toggleTimer()" id="timerToggleBtn">시작</button>
+          <button class="timer-btn" onclick="resetTimer()">리셋</button>
+        </div>
+
+        <!-- Self Test Masking Toggle -->
+        <button class="icon-btn" id="quizModeBtn" onclick="toggleQuizMode()" title="정답을 가려 실전 자가 테스트 진행">
+          <span id="quizBtnLabel">자가 테스트</span>
+        </button>
+
+        <!-- Font Size Controls -->
+        <button class="icon-btn" onclick="changeFontSize(-1)" title="글자 축소">A-</button>
+        <button class="icon-btn" onclick="changeFontSize(1)" title="글자 확대">A+</button>
+
+        <!-- Print / PDF -->
+        <button class="icon-btn" onclick="window.print()" title="A4 치트시트 인쇄 또는 PDF 저장">인쇄</button>
+
+        <!-- Theme Toggle -->
+        <button class="icon-btn" onclick="toggleTheme()" id="themeBtn">DARK</button>
       </div>
     </div>
 
-    <!-- Mode Switcher -->
-    <div class="mode-switcher">
-      <button class="mode-btn active" id="modeBtnConcept" onclick="switchMainMode('concept')">
-        <span>개념 총정리</span>
-      </button>
-      <button class="mode-btn" id="modeBtnExam" onclick="switchMainMode('exam')">
-        <span>실전 모의고사</span>
-      </button>
-    </div>
-
-    <!-- Controls -->
-    <div class="nav-controls">
-      <!-- Subject Dropdown -->
-      <select id="subjectSelect" class="subject-select" onchange="changeSubject(this.value)">
-        <option value="crossplatform" selected>크로스플랫폼 프로그래밍 (정종수 교수 / 실전 1~4회 & 올코드 빈칸 마스터 5회)</option>
-        <option value="gameprog">게임프로그래밍 (김영호 교수 / 실전 모의고사 1~4회)</option>
-        <option value="security">정보보호개론 (박정수 교수 / 실전 모의고사 1~4회)</option>
-        <option value="os">운영체제 (녹음본 19대 유형 · 실전 1~4회 & 올코드 마스터 5회)</option>
-        <option value="__add__">+ 새 과목 추가 / 가이드...</option>
-      </select>
-
-      <!-- 7-min Open Book Timer -->
-      <div class="timer-pill" title="오픈북 7분 실전 타이머">
-        <span class="timer-tag">TIMER</span>
-        <span id="timerDisplay" class="timer-val">07:00</span>
-        <button class="timer-btn" onclick="toggleTimer()" id="timerToggleBtn">시작</button>
-        <button class="timer-btn" onclick="resetTimer()">리셋</button>
+    <!-- Row 2: SEARCH + 단원 선택 Bar -->
+    <div class="nav-sub-bar" id="navSubBar">
+      <!-- Search Input -->
+      <div class="nav-search-wrapper">
+        <span class="search-label">SEARCH</span>
+        <input type="text" id="globalSearchInput" class="search-input" placeholder="전체 검색: 키워드 입력 (예: GetComponent, Time.deltaTime, Gravity Scale, Is Trigger, Instantiate, fork, PCB, DES...)" oninput="handleGlobalSearch(this.value)">
+        <button id="searchClearBtn" class="search-clear" onclick="clearSearch()" style="display: none;">CLEAR</button>
       </div>
 
-      <!-- Self Test Masking Toggle -->
-      <button class="icon-btn" id="quizModeBtn" onclick="toggleQuizMode()" title="정답을 가려 실전 자가 테스트 진행">
-        <span id="quizBtnLabel">자가 테스트</span>
-      </button>
-
-      <!-- Font Size Controls -->
-      <button class="icon-btn" onclick="changeFontSize(-1)" title="글자 축소">A-</button>
-      <button class="icon-btn" onclick="changeFontSize(1)" title="글자 확대">A+</button>
-
-      <!-- Print / PDF -->
-      <button class="icon-btn" onclick="window.print()" title="A4 치트시트 인쇄 또는 PDF 저장">인쇄</button>
-
-      <!-- Theme Toggle -->
-      <button class="icon-btn" onclick="toggleTheme()" id="themeBtn">DARK</button>
+      <!-- Chapter Select (conceptFilterBar) -->
+      <div id="conceptFilterBar" class="nav-chapter-wrapper"></div>
     </div>
   </div>
 </nav>
@@ -75,18 +91,8 @@
 <!-- Main Wrapper -->
 <main class="main-wrapper">
 
-  <!-- Live Search Bar -->
-  <section class="search-section">
-    <div class="search-wrapper">
-      <span class="search-label">SEARCH</span>
-      <input type="text" id="globalSearchInput" class="search-input" placeholder="전체 검색: 키워드 입력 (예: GetComponent, Time.deltaTime, Gravity Scale, Is Trigger, Instantiate, fork, PCB, DES...)" oninput="handleGlobalSearch(this.value)">
-      <button id="searchClearBtn" class="search-clear" onclick="clearSearch()">CLEAR</button>
-    </div>
-  </section>
-
   <!-- VIEW 1: Concept Summary -->
   <div id="conceptViewSection" class="concept-view">
-    <nav class="filter-bar" id="conceptFilterBar"></nav>
     <div id="conceptContainer"></div>
   </div>
 
