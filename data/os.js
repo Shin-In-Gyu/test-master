@@ -855,7 +855,7 @@ int main(int argc, char *argv[]) { // argc, argv: [Stack 영역] 함수 매개�
           교수님께서 09/23 강의에서 직접 한 줄씩 설명하시며 <b>"이거 결과값이 어떻게 될지 시험 문제로 낼 수 있죠!"</b>라고 강조하신 6가지 C 코드 전체와 실행 결과입니다.
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 14px; margin-top: 12px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 14px; margin-top: 12px;">
           <!-- 실습 1 -->
           <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
             <div style="font-weight: 800; color: var(--accent); margin-bottom: 6px;">[실습 1] 기본 fork() 호출과 부모·자식 분기</div>
@@ -876,6 +876,14 @@ int main() {
     }
     return 0;
 }</pre>
+            <div style="margin-top: 8px; padding: 10px; background: var(--bg-surface); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 12.5px; line-height: 1.6;">
+              <b style="color: var(--accent);">🖥️ 실제 터미널 출력 결과 (자식 PID = 1234 가정):</b>
+              <pre style="margin: 4px 0 6px 0; padding: 8px; background: #0f172a; color: #f8fafc; border-radius: 4px; font-family: var(--font-mono); font-size: 12px;">Hello Process!
+Parent process (child PID = 1234)
+Hello Process!
+Child process (return = 0)</pre>
+              • <b>핵심 해설</b>: <code>fork()</code> 직후의 <code>printf("Hello Process!\\n")</code>는 분기문 밖에 있으므로 <b>부모 1회 + 자식 1회 = 총 2번 출력</b>됩니다. (<code>wait()</code>가 없으므로 부모와 자식의 출력 순서는 스케줄링에 따라 뒤바뀔 수 있음)
+            </div>
           </div>
 
           <!-- 실습 2 -->
@@ -897,10 +905,12 @@ int main() {
         printf("PARENT: value = %d\\n", value); /* LINE A */
         return 0;
     }
-}
-/* [출력 결과] PARENT: value = 5
- * [이유] fork() 시 자식은 부모의 주소 공간을 독립적으로 복제하므로,
- * 자식이 value를 수정해도 부모 메모리의 value(5)는 변하지 않음! */</pre>
+}</pre>
+            <div style="margin-top: 8px; padding: 10px; background: var(--bg-surface); border-left: 3px solid var(--tag-danger-ink); border-radius: 4px; font-size: 12.5px; line-height: 1.6;">
+              <b style="color: var(--tag-danger-ink);">🖥️ 실제 터미널 출력 결과 (LINE A):</b>
+              <pre style="margin: 4px 0 6px 0; padding: 8px; background: #0f172a; color: #f8fafc; border-radius: 4px; font-family: var(--font-mono); font-size: 12px;">PARENT: value = 5</pre>
+              • <b>핵심 해설</b>: <code>fork()</code> 시 자식은 부모의 주소 공간(Data 영역 포함)을 <b>독립적으로 복제</b>합니다. 자식이 <code>value += 15</code>로 자신의 <code>value</code>를 <code>20</code>으로 바꾸고 종료해도 <b>부모 메모리의 <code>value</code>는 원본 <code>5</code> 그대로 유지</b>됩니다!
+            </div>
           </div>
 
           <!-- 실습 3 -->
@@ -910,20 +920,22 @@ int main() {
 for (int i = 0; i &lt; 4; i++) {
     fork();
 }
-// i=0(2개) → i=1(4개) → i=2(8개) → i=3(16개)
-// 총 프로세스 개수 = 2^4 = 16개! (새로 생성된 자식은 15개)
+printf("Hello\\n"); // 몇 번 출력되는가?
 
 /* 2) 논리 OR 단락 평가: fork() || fork() */
 fork() || fork();
-// • 부모(P0): 첫 fork()가 양수(참) → 뒤쪽 fork() 생략! (1개)
-// • 자식(C1): 첫 fork()가 0(거짓) → 뒤쪽 fork() 실행해 손자(GC1) 생성! (2개)
-// → 총 프로세스 = 3개!
+printf("Hello\\n"); // 몇 번 출력되는가?
 
 /* 3) 논리 AND 단락 평가: fork() &amp;&amp; fork() */
 fork() &amp;&amp; fork();
-// • 부모(P0): 첫 fork()가 양수(참) → 뒤쪽 fork() 실행해 둘째 자식(C2) 생성!
-// • 첫 자식(C1): 첫 fork()가 0(거짓) → 뒤쪽 fork() 생략!
-// → 총 프로세스 = 3개!</pre>
+printf("Hello\\n"); // 몇 번 출력되는가?</pre>
+            <div style="margin-top: 8px; padding: 10px; background: var(--bg-surface); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 12.5px; line-height: 1.6;">
+              <b style="color: var(--accent);">🖥️ 각 코드 단독 실행 시 실제 출력 결과 &amp; 총 프로세스 수:</b>
+              <pre style="margin: 4px 0 6px 0; padding: 8px; background: #0f172a; color: #f8fafc; border-radius: 4px; font-family: var(--font-mono); font-size: 12px;">[1) for문 4회] "Hello" 총 16줄 출력! (총 프로세스 = 2^4 = 16개 / 생성된 자식 = 15개)
+[2) fork() || fork()] "Hello" 총 3줄 출력! (총 프로세스 = 3개: 부모 P0, 자식 C1, 손자 GC1)
+[3) fork() &amp;&amp; fork()] "Hello" 총 3줄 출력! (총 프로세스 = 3개: 부모 P0, 첫자식 C1, 둘째자식 C2)</pre>
+              • <b>단락 평가 원리</b>: <code>||</code>는 앞이 참(부모=양수)이면 뒤 <code>fork()</code>를 생략하므로 자식(<code>0</code>=거짓)만 뒤 <code>fork()</code>를 실행합니다. 반대로 <code>&amp;&amp;</code>는 앞이 거짓(자식=<code>0</code>)이면 뒤 <code>fork()</code>를 생략하므로 부모(양수=참)만 뒤 <code>fork()</code>를 실행합니다.
+            </div>
           </div>
 
           <!-- 실습 4 -->
@@ -943,10 +955,13 @@ int main() {
         printf("Child Complete\\n");
     }
     return 0;
-}
-/* [이유] execlp()가 성공하면 자식의 코드/데이터/힙/스택 주소 공간이
- * "/bin/ls" 프로그램으로 완전히 덮어씌워져(대체) 기존 코드는 사라짐!
- * (단, execlp가 오류로 실패했을 때만 LINE J가 실행됨) */</pre>
+}</pre>
+            <div style="margin-top: 8px; padding: 10px; background: var(--bg-surface); border-left: 3px solid var(--tag-danger-ink); border-radius: 4px; font-size: 12.5px; line-height: 1.6;">
+              <b style="color: var(--tag-danger-ink);">🖥️ 실제 터미널 출력 결과:</b>
+              <pre style="margin: 4px 0 6px 0; padding: 8px; background: #0f172a; color: #f8fafc; border-radius: 4px; font-family: var(--font-mono); font-size: 12px;">a.out   main.c   test.txt   (← 자식이 실행한 /bin/ls 디렉터리 파일 목록)
+Child Complete              (← 자식이 끝난 뒤 wait(NULL)에서 깨어난 부모 출력)</pre>
+              • <b>핵심 해설</b>: <b style="color: var(--tag-danger-ink);"><code>LINE J</code>는 절대 화면에 출력되지 않습니다!</b> <code>execlp()</code>가 성공하는 순간 자식의 주소 공간(코드·데이터·힙·스택)이 <code>/bin/ls</code> 프로그램으로 완전히 덮어씌워져 기존 코드는 소멸되기 때문입니다. (오직 <code>execlp</code>가 오류로 실패했을 때만 <code>LINE J</code>가 출력됨)
+            </div>
           </div>
 
           <!-- 실습 5 -->
@@ -966,6 +981,15 @@ if (pid == 0) { /* 자식 프로세스 */
     printf("parent: pid = %d\\n", pid);   // [C] 출력: 7343 (자식 PID 반환값)
     printf("parent: pid1 = %d\\n", pid1); // [D] 출력: 7342 (부모 실제 PID)
 }</pre>
+            <div style="margin-top: 8px; padding: 10px; background: var(--bg-surface); border-left: 3px solid var(--tag-danger-ink); border-radius: 4px; font-size: 12.5px; line-height: 1.6;">
+              <b style="color: var(--tag-danger-ink);">🖥️ 실제 터미널 출력 결과 (부모 PID = 7342, 자식 PID = 7343 가정):</b>
+              <pre style="margin: 4px 0 6px 0; padding: 8px; background: #0f172a; color: #f8fafc; border-radius: 4px; font-family: var(--font-mono); font-size: 12px;">child: pid = 0
+child: pid1 = 7343
+parent: pid = 7343
+parent: pid1 = 7342</pre>
+              • <b>[A] <code>0</code></b>: 자식에게 반환된 <code>fork()</code> 반환값 / <b>[B] <code>7343</code></b>: <code>getpid()</code>로 조회한 자식 자신의 진짜 PID<br>
+              • <b>[C] <code>7343</code></b>: 부모에게 반환된 <code>fork()</code> 반환값(=자식의 PID) / <b>[D] <code>7342</code></b>: <code>getpid()</code>로 조회한 부모 자신의 진짜 PID (부모가 <code>wait(NULL)</code>을 호출하므로 항상 자식의 A, B가 먼저 출력된 후 부모의 C, D가 출력됨!)
+            </div>
           </div>
 
           <!-- 실습 6 -->
@@ -988,10 +1012,13 @@ int main() {
             printf("PARENT: %d ", nums[i]); // 부모 배열은 원본 그대로!
     }
     return 0;
-}
-/* [출력 결과]
- * CHILD:  0 -1 -4 -9 -16
- * PARENT: 0  1  2  3  4  (자식의 배열 수정은 부모에 영향 없음!) */</pre>
+}</pre>
+            <div style="margin-top: 8px; padding: 10px; background: var(--bg-surface); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 12.5px; line-height: 1.6;">
+              <b style="color: var(--accent);">🖥️ 실제 터미널 출력 결과:</b>
+              <pre style="margin: 4px 0 6px 0; padding: 8px; background: #0f172a; color: #f8fafc; border-radius: 4px; font-family: var(--font-mono); font-size: 12px;">CHILD: 0 CHILD: -1 CHILD: -4 CHILD: -9 CHILD: -16 PARENT: 0 PARENT: 1 PARENT: 2 PARENT: 3 PARENT: 4 </pre>
+              • <b>자식 출력값</b>: <code>0, -1, -4, -9, -16</code> (<code>i = 0~4</code>에 대해 <code>nums[i] * (-i)</code> 연산: <code>0*0=0</code>, <code>1*-1=-1</code>, <code>2*-2=-4</code>, <code>3*-3=-9</code>, <code>4*-4=-16</code>)<br>
+              • <b>부모 출력값</b>: <code>0, 1, 2, 3, 4</code> (부모가 <code>wait(NULL)</code>로 자식 종료 후 출력하며, 자식의 배열 수정은 부모 메모리에 전혀 영향을 주지 않음!)
+            </div>
           </div>
         </div>
 
@@ -1517,11 +1544,17 @@ void *runner(void *param) {
     for (i = 1; i &lt;= upper; i++)
         sum += i;
     pthread_exit(0); // 스레드 종료
-}
-/* ★ 교수님 강조 포인트:
- * 1) 컴파일 시 반드시 -pthread 옵션 필요: gcc thread.c -pthread
- * 2) 실행 시 ./a.out 뒤에 숫자를 안 넣으면 argv[1]이 NULL이 되어
- *    atoi(NULL)에서 Segmentation fault (core dumped) 발생! */</pre>
+}</pre>
+            <div style="margin-top: 8px; padding: 10px; background: var(--bg-surface); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 12.5px; line-height: 1.6;">
+              <b style="color: var(--accent);">🖥️ 실제 터미널 출력 결과 (<code>./a.out 10</code> vs 인자 누락 <code>./a.out</code>):</b>
+              <pre style="margin: 4px 0 6px 0; padding: 8px; background: #0f172a; color: #f8fafc; border-radius: 4px; font-family: var(--font-mono); font-size: 12px;">$ gcc thread.c -pthread
+$ ./a.out 10
+sum = 55
+
+$ ./a.out
+Segmentation fault (core dumped)  (← argv[1]이 NULL이라 atoi(NULL) 참조 오류!)</pre>
+              • <b>핵심 해설</b>: 워커 스레드와 <code>main</code> 스레드는 전역 변수 <code>sum</code>(Data 영역)을 공유하므로 워커가 계산한 <code>55</code>를 <code>main</code>이 그대로 출력합니다.
+            </div>
           </div>
 
           <!-- 6주차 코드 2: thread4.23.c -->
@@ -1555,10 +1588,14 @@ int main(int argc, char *argv[]) {
 void *runner(void *param) {
     value = 5; // 자식 프로세스 내부 스레드가 value를 5로 변경!
     pthread_exit(0);
-}
-/* ★ [출력 결과]
- * LINE C → CHILD: value = 5  (자식과 자식이 만든 스레드는 전역변수 공유!)
- * LINE P → PARENT: value = 0 (부모 프로세스는 자식과 메모리가 분리되어 0 유지!) */</pre>
+}</pre>
+            <div style="margin-top: 8px; padding: 10px; background: var(--bg-surface); border-left: 3px solid var(--tag-danger-ink); border-radius: 4px; font-size: 12.5px; line-height: 1.6;">
+              <b style="color: var(--tag-danger-ink);">🖥️ 실제 터미널 출력 결과 (LINE C &amp; LINE P):</b>
+              <pre style="margin: 4px 0 6px 0; padding: 8px; background: #0f172a; color: #f8fafc; border-radius: 4px; font-family: var(--font-mono); font-size: 12px;">CHILD: value = 5
+PARENT: value = 0</pre>
+              • <b>LINE C (<code>5</code>)</b>: 자식 프로세스와 그 내부에서 생성된 스레드는 전역 변수 <code>value</code>를 <b>공유</b>하므로 <code>5</code> 출력!<br>
+              • <b>LINE P (<code>0</code>)</b>: 부모 프로세스는 <code>fork()</code>로 자식과 메모리 공간이 <b>분리</b>되어 있으므로 초기값 <code>0</code> 유지!
+            </div>
           </div>
 
           <!-- 6주차 코드 3: problem.c -->
@@ -1571,13 +1608,11 @@ if (pid == 0) {                /* 자식 C1만 진입 */
     pthread_create( ... );     // (3) 스레드 생성
 }
 fork();                        // (4) 세 번째 fork()</pre>
-            <div style="font-size: 12.5px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
-              <b>🔍 교수님 6주차 녹음 단계별 완벽 추적:</b><br>
-              • <b>(1) 첫 <code>fork()</code></b>: 초기 부모 <code>P0</code>가 자식 <code>C1</code> 생성 → 현재 프로세스 2개 (<code>P0</code>, <code>C1</code>).<br>
-              • <b>(2) <code>if (pid == 0)</code> 내부 <code>fork()</code></b>: <code>C1</code>만 진입하여 손자 <code>C2</code> 생성 → 현재 프로세스 3개 (<code>P0</code>, <code>C1</code>, <code>C2</code>).<br>
-              • <b>(3) <code>if</code> 블록 내 <code>pthread_create()</code></b>: <code>if</code> 블록 안에 있는 <b><code>C1</code>과 <code>C2</code>가 각각 스레드를 1개씩 생성</b> → <b>생성된 추가 스레드 = 총 2개!</b><br>
-              • <b>(4) 마지막 <code>fork()</code></b>: 현재 존재하는 3개 프로세스(<code>P0</code>, <code>C1</code>, <code>C2</code>)가 모두 마지막 <code>fork()</code>를 실행하여 각각 자식을 1개씩(총 3개) 더 낳음!<br>
-              👉 <b>최종 정답</b>: <b>전체 프로세스 총 6개 (초기 부모 제외 새로 생성된 자식 프로세스는 5개)</b> / <b>새로 생성된 고유 스레드는 2개</b>!
+            <div style="margin-top: 8px; padding: 10px; background: var(--bg-surface); border-left: 3px solid var(--tag-danger-ink); border-radius: 4px; font-size: 12.5px; line-height: 1.6;">
+              <b style="color: var(--tag-danger-ink);">🖥️ 최종 생성 개수 결과:</b>
+              <pre style="margin: 4px 0 6px 0; padding: 8px; background: #0f172a; color: #f8fafc; border-radius: 4px; font-family: var(--font-mono); font-size: 12px;">• 전체 고유 프로세스 개수 = 6개 (초기 부모 제외 새로 생성된 자식 프로세스 = 5개)
+• 새로 생성된 고유 스레드 개수 = 2개</pre>
+              <b>🔍 단계별 추적:</b> (1) 첫 <code>fork()</code> → <code>P0, C1</code> (2개) ▶ (2) <code>if(pid==0)</code> 안 <code>fork()</code> → <code>C1</code>만 손자 <code>C2</code> 생성하여 <code>P0, C1, C2</code> (3개) ▶ (3) <code>C1, C2</code>가 각각 <code>pthread_create</code> 실행 → <b>스레드 2개 생성</b> ▶ (4) 마지막 <code>fork()</code> → 3개 프로세스(<code>P0, C1, C2</code>)가 모두 실행하여 <b>총 6개 프로세스</b>!
             </div>
           </div>
 
@@ -1601,11 +1636,17 @@ int main(int argc, char *argv[]) {
         c[i] = a[i] + b[i]; // 데이터 병렬성 자동 수행!
     }
     return 0;
-}
-/* ★ 핵심 포인트:
- * • 컴파일러 지시자(#pragma omp parallel)만 넣으면 런타임 라이브러리가
- *   스레드 생성·관리를 대신 처리하는 '암묵적 스레딩(Implicit Threading)'!
- * • 컴파일 명령어: gcc openmp.c -fopenmp */</pre>
+}</pre>
+            <div style="margin-top: 8px; padding: 10px; background: var(--bg-surface); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 12.5px; line-height: 1.6;">
+              <b style="color: var(--accent);">🖥️ 실제 터미널 출력 결과 (4코어 CPU 환경 가정):</b>
+              <pre style="margin: 4px 0 6px 0; padding: 8px; background: #0f172a; color: #f8fafc; border-radius: 4px; font-family: var(--font-mono); font-size: 12px;">$ gcc openmp.c -fopenmp
+$ ./a.out
+I am a parallel region.
+I am a parallel region.
+I am a parallel region.
+I am a parallel region.</pre>
+              • <b>핵심 해설</b>: <code>#pragma omp parallel</code> 블록은 CPU 코어(또는 지정된 스레드) 수만큼 스레드를 자동 생성하여 병렬 실행합니다.
+            </div>
           </div>
         </div>
 
