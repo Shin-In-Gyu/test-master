@@ -279,23 +279,18 @@ window.CONCEPT_DATABASE.gameprog = {
           </li>
         </ul>
 
-        <pre class="code-block">// [Unity C# 예시] Vector3를 이용한 위치 확인 및 거리 계산
-using UnityEngine;
+        <pre class="code-block">using UnityEngine;
 
 public class TransformExample : MonoBehaviour
 {
     void Start()
     {
-        // 1. 현재 월드 위치 출력 (Vector3: x, y, z)
-        Vector3 currentPos = transform.position;
+        Vector3 currentPos = transform.position;        // 1. 현재 월드 위치 확인 (x, y, z)
+        transform.position += new Vector3(3f, 2f, 0f);  // 2. 오른쪽(X+) 3, 위쪽(Y+) 2만큼 이동
 
-        // 2. 오른쪽(X+)으로 3만큼, 위쪽(Y+)으로 2만큼 이동
-        transform.position += new Vector3(3f, 2f, 0f);
-
-        // 3. 같은 축에서 두 점(x=1, x=5) 사이의 거리 계산
-        Vector2 pointA = new Vector2(1f, 0f);
-        Vector2 pointB = new Vector2(5f, 0f);
-        float dist1 = Vector2.Distance(pointA, pointB); // 결과: 4
+        Vector2 pointA = new Vector2(1f, 0f);           // 3. 점 A (x = 1)
+        Vector2 pointB = new Vector2(5f, 0f);           //    점 B (x = 5)
+        float dist1 = Vector2.Distance(pointA, pointB); // 결과: 4 (|5 - 1| = 4)
         float dist2 = Vector2.Distance(pointB, pointA); // 결과: 4 (순서와 무관하게 거리는 항상 4!)
     }
 }</pre>
@@ -404,8 +399,7 @@ public class TransformExample : MonoBehaviour
           스크립트 코드에서 같은 GameObject에 붙어 있는 다른 컴포넌트를 제어하려면 먼저 <b>참조(Reference)</b>를 가져와야 합니다.
         </p>
 
-        <pre class="code-block">// [교안 8~9페이지 핵심 코드] 컴포넌트 참조 가져오기 &amp; Null 방어
-using UnityEngine;
+        <pre class="code-block">using UnityEngine;
 
 public class PlayerPhysics : MonoBehaviour
 {
@@ -413,18 +407,12 @@ public class PlayerPhysics : MonoBehaviour
 
     void Awake()
     {
-        // 1. 현재 스크립트가 붙어 있는 '같은 GameObject'에서 Rigidbody2D 컴포넌트를 찾아 참조 반환
-        body = GetComponent&lt;Rigidbody2D&gt;();
-
-        // 2. 만약 이 GameObject에 Rigidbody2D가 붙어 있지 않다면 body에는 null이 들어감!
-        //    null인 상태에서 body.gravityScale 등에 접근하면 NullReferenceException 런타임 에러 발생!
-        if (body == null)
+        body = GetComponent&lt;Rigidbody2D&gt;(); // 1. 같은 GameObject에서 컴포넌트 참조 가져오기 (없으면 null)
+        if (body == null)                   // 2. 컴포넌트가 없을 때 NullReferenceException 방지
         {
-            return; // 안전하게 함수 조기 종료 (방어 코드)
+            return;                         //    안전하게 함수 조기 종료 (방어 코드)
         }
-
-        // 3. body가 null이 아닐 때만 안전하게 컴포넌트 속성 제어
-        body.gravityScale = 2.0f;
+        body.gravityScale = 2.0f;           // 3. null이 아닐 때만 안전하게 속성 제어
     }
 }</pre>
 
@@ -471,30 +459,23 @@ public class PlayerPhysics : MonoBehaviour
           </tbody>
         </table>
 
-        <pre class="code-block" style="margin-top: 12px;">// [Unity C# 예시] 비활성화와 재활성화 시 변수 값 유지 확인 (Page 10 완벽 반영)
-public class EnemyState : MonoBehaviour
+        <pre class="code-block" style="margin-top: 12px;">public class EnemyState : MonoBehaviour
 {
     public int hp = 100;
     public SpriteRenderer spriteRenderer;
 
     void TakeDamage()
     {
-        hp = 30; // 체력이 30으로 줄어듦
-
-        // [케이스 A] 그림만 끄기 -&gt; 화면에만 안 보일 뿐 물리 충돌과 Update()는 계속 돌아감! hp도 30 유지!
-        spriteRenderer.enabled = false;
-
-        // [케이스 B] 오브젝트 전체 끄기 -&gt; 모든 컴포넌트와 자식 오브젝트 중지!
-        // 하지만 객체가 파괴(Destroy)되거나 변수가 초기화된 것은 아니므로 hp는 여전히 30으로 남아 있음!
-        gameObject.SetActive(false);
+        hp = 30;                        // 체력이 30으로 줄어듦
+        spriteRenderer.enabled = false; // [A] 그림만 끔 (물리 충돌·Update는 계속 동작, hp=30 유지)
+        gameObject.SetActive(false);    // [B] 오브젝트 전체 끔 (모든 컴포넌트 중지, 단 hp=30은 그대로 남음!)
     }
 
-    // 나중에 오브젝트 풀에서 꺼내 다시 재사용할 때:
-    public void Respawn()
+    public void Respawn()               // 오브젝트 풀에서 꺼내 재사용할 때
     {
-        gameObject.SetActive(true); // 다시 켜도 hp는 이전에 깎인 30 그대로 남아 있음!
-        hp = 100;                   // 따라서 새 적처럼 쓰려면 필드를 직접 초기값(100)으로 다시 대입해야 함!
-        spriteRenderer.enabled = true;
+        gameObject.SetActive(true);     // 다시 켜도 hp는 이전에 깎인 30 그대로 남아 있음!
+        hp = 100;                       // 새 적처럼 쓰려면 필드를 직접 초기값(100)으로 다시 대입해야 함
+        spriteRenderer.enabled = true;  // 렌더러 다시 활성화
     }
 }</pre>
       </div>
@@ -530,17 +511,14 @@ public class EnemyState : MonoBehaviour
           </tbody>
         </table>
 
-        <pre class="code-block">// [Unity C# 예시] Prefab 원본을 이용해 씬에 서로 다른 위치의 인스턴스 생성하기
-public class Spawner : MonoBehaviour
+        <pre class="code-block">public class Spawner : MonoBehaviour
 {
     public GameObject coinPrefab; // Inspector에서 연결한 Prefab 에셋 (설계도 원본)
 
     void Start()
     {
-        // 같은 coinPrefab 원본으로부터 씬에 2개의 독립된 인스턴스를 각각 다른 위치에 생성!
-        GameObject coin1 = Instantiate(coinPrefab, new Vector3(0f, 2f, 0f), Quaternion.identity);
-        GameObject coin2 = Instantiate(coinPrefab, new Vector3(5f, 2f, 0f), Quaternion.identity);
-        // coin1과 coin2는 같은 Prefab에서 나왔지만 씬 안에서는 위치와 상태가 서로 독립된 별개의 인스턴스임!
+        GameObject coin1 = Instantiate(coinPrefab, new Vector3(0f, 2f, 0f), Quaternion.identity); // (0,2,0)에 독립 인스턴스 1 생성
+        GameObject coin2 = Instantiate(coinPrefab, new Vector3(5f, 2f, 0f), Quaternion.identity); // (5,2,0)에 독립 인스턴스 2 생성
     }
 }</pre>
       </div>
@@ -609,9 +587,7 @@ public class Spawner : MonoBehaviour
           • 만약 <code>Time.deltaTime</code>을 곱하지 않고 매 프레임 고정된 값을 더하면, <b>프레임 수(FPS)가 높은 고성능 컴퓨터일수록 캐릭터가 몇 배나 더 빠르게 날아가는 심각한 문제</b>가 발생합니다!
         </div>
 
-        <pre class="code-block">// [교안 13페이지 핵심 코드] 프레임 독립적(Frame-independent) 이동 수식
-// speed가 5라면, 어떤 FPS의 기기에서 실행하든 정확히 "1초에 5만큼" 오른쪽으로 이동함!
-transform.position += Vector3.right * speed * Time.deltaTime;</pre>
+        <pre class="code-block">transform.position += Vector3.right * speed * Time.deltaTime; // 어떤 FPS 기기에서든 정확히 "1초에 speed만큼" 오른쪽 이동!</pre>
 
         <table class="concept-table" style="margin-top: 12px;">
           <thead>
@@ -700,24 +676,21 @@ transform.position += Vector3.right * speed * Time.deltaTime;</pre>
           &nbsp;&nbsp;② <b style="color: var(--tag-danger-ink);">접촉하는 두 오브젝트 중 최소 한쪽에는 반드시 <code>Rigidbody2D</code>가 붙어 있어야 합니다!</b> (만약 두 오브젝트 모두 <code>Collider2D</code>만 있고 둘 다 <code>Rigidbody2D</code>가 없다면 유니티 물리 엔진은 충돌/트리거 이벤트를 발생시키지 않습니다.)
         </div>
 
-        <pre class="code-block" style="margin-top: 12px;">// [Unity C# 예시] 바닥 물리 충돌(Collision) vs 코인 통과 감지(Trigger) 비교 코드
-using UnityEngine;
+        <pre class="code-block" style="margin-top: 12px;">using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
     private int score = 0;
 
-    // 1. Is Trigger가 꺼진 바닥/벽과 '물리적으로 부딪혔을 때' 자동 호출
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) // 1. Is Trigger가 꺼진 바닥/벽과 물리적으로 부딪혔을 때 호출
     {
-        Debug.Log("물리적 충돌 발생! 상대 오브젝트: " + collision.gameObject.name);
+        Debug.Log("물리적 충돌 발생: " + collision.gameObject.name);
     }
 
-    // 2. Is Trigger가 켜진 코인/골인 영역에 '통과하며 처음 들어갔을 때' 자동 호출
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)        // 2. Is Trigger가 켜진 코인/골인 영역에 통과하며 들어갔을 때 호출
     {
         score += 10;
-        other.gameObject.SetActive(false); // 먹은 코인 비활성화
+        other.gameObject.SetActive(false);                 // 먹은 코인 비활성화
     }
 }</pre>
       </div>
@@ -825,8 +798,7 @@ public class PlayerInteraction : MonoBehaviour
           </tbody>
         </table>
 
-        <pre class="code-block">// [교안 20페이지 핵심 코드] Animator Parameter를 통한 상태 전환(Transition) 흐름
-using UnityEngine;
+        <pre class="code-block">using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
@@ -834,18 +806,12 @@ public class PlayerAnimation : MonoBehaviour
 
     void Awake()
     {
-        animator = GetComponent&lt;Animator&gt;();
+        animator = GetComponent&lt;Animator&gt;();        // 같은 GameObject의 Animator 컴포넌트 참조 획득
     }
 
     void UpdateMoveState(bool isMovingNow)
     {
-        // 1. 스크립트에서 Animator Controller의 "IsMoving" bool 파라미터 값을 true로 변경!
-        // 주의: "IsMoving"은 유니티 내장 키워드가 아니라 개발자가 Controller에 직접 만든 파라미터 이름임!
-        animator.SetBool("IsMoving", isMovingNow);
-
-        // 2. [내부 전환 과정]:
-        //    현재 상태: [Idle State] ──(Transition 조건: IsMoving == true)──&gt; 다음 상태: [Move State]
-        //    Controller가 지정된 Transition 조건을 검사하여 조건이 충족되면 Move State로 상태를 전환함!
+        animator.SetBool("IsMoving", isMovingNow);  // Controller의 "IsMoving" 파라미터 변경 → Transition 조건 충족 시 상태 전환!
     }
 }</pre>
       </div>
@@ -928,14 +894,11 @@ public class PlayerAnimation : MonoBehaviour
           </tbody>
         </table>
 
-        <pre class="code-block">// [Unity C# 예시] UI Button 클릭 시 호출될 public 함수 작성
-using UnityEngine;
+        <pre class="code-block">using UnityEngine;
 
 public class GameUIController : MonoBehaviour
 {
-    // Inspector의 Button -&gt; On Click () 이벤트 슬롯에 이 오브젝트를 넣고
-    // 드롭다운에서 GameUIController -&gt; OnClickRestartButton()을 직접 선택해 연결해야 함!
-    public void OnClickRestartButton()
+    public void OnClickRestartButton() // Inspector의 Button -> On Click() 슬롯에 직접 연결해야 호출됨!
     {
         Debug.Log("재시작 버튼이 클릭되어 등록된 함수가 호출되었습니다!");
     }
@@ -1000,22 +963,19 @@ public class GameUIController : MonoBehaviour
           </li>
         </ul>
 
-        <pre class="code-block">// [Unity C# 예시] Destroy 대신 비활성화 후 재사용하는 오브젝트 풀 개념 코드
-using UnityEngine;
+        <pre class="code-block">using UnityEngine;
 
 public class BulletPoolExample : MonoBehaviour
 {
-    // 1. 총알이 화면 밖으로 나가거나 적에게 맞았을 때: Destroy(gameObject) 하지 않음!
-    public void ReturnToPool()
+    public void ReturnToPool()                      // 1. 총알 사용 완료 시: Destroy 하지 않고 비활성화하여 풀에 보관
     {
-        gameObject.SetActive(false); // 비활성화하여 풀에 대기시킴
+        gameObject.SetActive(false);                //    비활성화하여 풀에 대기시킴
     }
 
-    // 2. 다시 총알을 발사할 때: Instantiate 하지 않고 비활성화된 총알을 다시 켜서 재사용!
-    public void ReuseFromPool(Vector3 spawnPosition)
+    public void ReuseFromPool(Vector3 spawnPos)     // 2. 다시 총알 발사 시: Instantiate 대신 기존 총알을 다시 켜서 재사용
     {
-        transform.position = spawnPosition; // 위치 재설정 (초기화)
-        gameObject.SetActive(true);         // 다시 활성화하여 재사용!
+        transform.position = spawnPos;              //    발사 위치 재설정 (초기화)
+        gameObject.SetActive(true);                 //    다시 활성화하여 재사용!
     }
 }</pre>
       </div>
@@ -1075,11 +1035,10 @@ public class BulletPoolExample : MonoBehaviour
           • 반면 일반 대입 연산자(<b><code>=</code></b>)는 이전 값이 무엇이었든 상관없이 <b>이전 값을 완전히 버리고 오른쪽의 새 값으로 덮어씁니다!</b>
         </div>
 
-        <pre class="code-block" style="margin-top: 10px;">// [교안 26페이지 원본 코드 한 줄씩 완벽 추적]
-int number = 3;   // [1단계] number 변수를 선언하고 초기값 3을 저장함         (현재 number = 3)
-number += 4;      // [2단계] 기존 값(3)에 4를 더해서 다시 저장함 (3 + 4 = 7)    (현재 number = 7)
-number = 2;       // [3단계] ★ 함정 주의: 더하는 게 아니라 2를 새로 대입(덮어쓰기)! (현재 number = 2)
-number++;         // [4단계] 현재 값(2)을 1 증가시킴 (2 + 1 = 3)               (최종 number = 3)</pre>
+        <pre class="code-block" style="margin-top: 10px;">int number = 3;   // [1단계] number 선언 및 초기값 3 저장              (현재 number = 3)
+number += 4;      // [2단계] 기존 값(3)에 4를 더해 저장 (3 + 4 = 7)    (현재 number = 7)
+number = 2;       // [3단계] ★ 함정 주의: 2를 새로 대입(덮어쓰기)!      (현재 number = 2)
+number++;         // [4단계] 현재 값(2)을 1 증가시킴 (2 + 1 = 3)       (최종 number = 3)</pre>
       </div>
 
       <!-- 6-2. 비교 연산자와 논리 연산자 (Page 27~28) -->
@@ -1135,36 +1094,29 @@ number++;         // [4단계] 현재 값(2)을 1 증가시킴 (2 + 1 = 3)      
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
           📌 [교안 29페이지 코드 추적 2] <code>if</code> 조건문: 변수 값이 바뀐 뒤 다시 비교할 때
         </div>
-        <pre class="code-block">// [교안 29페이지 원본 코드] 같은 조건식이라도 실행 시점의 변수 값에 따라 결과가 달라진다!
-int value = 9;
+        <pre class="code-block">int value = 9;
 int highest = 12;
 
-// [첫 번째 비교 시점] 현재 value(9) &gt; highest(12) 인가? --&gt; 9 &gt; 12 는 false(거짓)!
-if (value &gt; highest)
+if (value &gt; highest)    // [1차 비교] 9 &gt; 12 는 false(거짓)
 {
-    highest = value; // 조건이 false이므로 이 줄은 건너뜀! (highest는 여전히 12 유지)
+    highest = value;    // 조건이 false이므로 건너뜀! (highest = 12 유지)
 }
 
-// [변수 값 변경] value에 15를 새로 대입함
-value = 15;
+value = 15;             // value에 15를 새로 대입
 
-// [두 번째 비교 시점] 현재 value(15) &gt; highest(12) 인가? --&gt; 15 &gt; 12 는 true(참)!
-if (value &gt; highest)
+if (value &gt; highest)    // [2차 비교] 15 &gt; 12 는 true(참)
 {
-    highest = value; // 조건이 true이므로 실행됨! highest에 15가 대입됨!
-}
-// ★ 최종 결과: value = 15, highest = 15</pre>
+    highest = value;    // 조건이 true이므로 실행됨! (최종 highest = 15)
+}</pre>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           📌 [교안 30페이지 코드 추적 3] <code>for</code> 반복문: 초기값 · 조건식 · 증감식 단계별 표 추적
         </div>
-        <pre class="code-block">// [교안 30페이지 원본 코드]
-int total = 0;
-for (int i = 0; i &lt; 4; i++)
+        <pre class="code-block">int total = 0;
+for (int i = 0; i &lt; 4; i++) // i = 0, 1, 2, 3 (총 4회 반복, i = 4일 때 종료)
 {
-    total += 2;
-}
-// ★ 최종 결과: 반복 횟수 = 총 4회 (i = 0, 1, 2, 3), 최종 total = 8</pre>
+    total += 2;             // 매 반복마다 2씩 증가 → 최종 total = 8
+}</pre>
 
         <table class="concept-table" style="margin-top: 10px;">
           <thead>
@@ -1223,73 +1175,50 @@ for (int i = 0; i &lt; 4; i++)
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
           📌 [교안 31페이지 코드 추적 4] 함수 선언과 호출 시점 (함수는 부르기 전까지 실행되지 않는다!)
         </div>
-        <pre class="code-block">// [교안 31페이지 원본 코드 & 핵심 함정]
-int value = 1;
+        <pre class="code-block">int value = 1;      // 1) SetValue() 호출 전에는 value = 1 유지
 
-void SetValue()
+void SetValue()     // 선언만 해두면 호출되기 전까지 실행되지 않음
 {
-    value = 3; // 주의: value += 3 이 아니라 value = 3 (단순 대입)임!
-}
-
-// 1) SetValue()를 호출하기 전: 함수는 선언만 해두면 실행되지 않으므로 value = 1
-// 2) SetValue(); 를 1번 호출한 후: 함수 본문이 실행되어 value = 3
-// 3) ★ 함정: SetValue(); 를 2번 연속 호출하면?
-//    더하는 코드(+=)가 아니라 3을 대입(=)하는 코드이므로 몇 번을 다시 호출해도 결과는 그대로 value = 3 !</pre>
+    value = 3;      // 2) SetValue() 호출 시 value = 3 (단순 대입이므로 2번 호출해도 그대로 3!)
+}</pre>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           📌 [교안 32~33페이지] 매개변수(Parameter) vs 인수(Argument) 및 반환값(<code>return</code> vs <code>void</code>)
         </div>
-        <pre class="code-block">// 1. 매개변수(Parameter)와 인수(Argument) 구분 (Page 32)
-void AddScore(int number) // &lt;-- 여기서 'int number'는 전달받은 값을 담는 변수인 [매개변수 (Parameter)]
+        <pre class="code-block">void AddScore(int number)   // 'int number'는 전달받은 값을 담는 [매개변수 (Parameter)]
 {
     score += number;
 }
 
 void Test()
 {
-    AddScore(3); // &lt;-- 호출할 때 실제로 넘겨주는 값 '3', '7'은 [인수 (Argument)]
-    AddScore(7); //     같은 함수라도 전달한 인수(3 vs 7)에 따라 실행 결과가 달라짐!
+    AddScore(3);            // 호출할 때 실제로 넘겨주는 값 '3', '7'은 [인수 (Argument)]
+    AddScore(7);            // 전달한 인수(3 vs 7)에 따라 실행 결과가 달라짐
 }
 
-// 2. 반환값이 있는 함수 vs 반환값이 없는 void 함수 (Page 33)
-int Add(int a, int b)
+int Add(int a, int b)       // 반환형이 int인 함수
 {
-    return a + b; // 계산 결과(int)를 호출한 곳으로 돌려주고 함수 종료
+    return a + b;           // 계산 결과를 호출한 곳으로 돌려주고 함수 종료
 }
-int result = Add(2, 5); // 반환된 값 7을 result 변수에 저장해 이어서 사용 가능! (result = 7)
+int result = Add(2, 5);     // 반환된 값 7을 변수에 저장해 이어서 사용 가능 (result = 7)
 
-void StopIfDead(int hp)
+void StopIfDead(int hp)     // 반환값이 없는 void 함수
 {
-    if (hp &lt;= 0)
-    {
-        return; // void 함수에서의 return; 은 값을 돌려주지 않고 "함수를 그 자리에서 즉시 종료"함!
-    }
-    // hp가 0 이하이면 위 return; 때문에 아래 코드는 실행되지 않음!
+    if (hp &lt;= 0) return;    // void 함수의 return; 은 그 자리에서 함수를 즉시 종료함!
 }</pre>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--tag-danger-ink); margin: 16px 0 6px 0;">
           🚨 [교안 34페이지 코드 추적 5 — 시험 출제 1순위] <code>bool</code> 플래그와 <code>return</code>을 이용한 중복 실행 방지
         </div>
-        <pre class="code-block">// [교안 34페이지 원본 코드 완벽 해부]
-bool processed = false;
+        <pre class="code-block">bool processed = false;
 int count = 4;
 
 void Process()
 {
-    if (processed) return; // 이미 처리되었다면(processed == true) 아래 코드를 실행하지 않고 즉시 종료!
-    count += 2;
-    processed = true;      // 1회 실행 후 상태를 true로 변경 (잠금)
-}
-
-// ▶ [추적 1] Process()를 첫 번째 호출했을 때:
-//   1. if (processed) 검사: 현재 processed는 false이므로 return 하지 않고 통과!
-//   2. count += 2 실행: count가 4에서 6으로 바뀜 (count = 6)
-//   3. processed = true 실행: 이제 processed가 true가 됨!
-
-// ▶ [추적 2] Process()를 두 번째(또는 100번째) 다시 호출했을 때:
-//   1. if (processed) 검사: 현재 processed가 true이므로 조건이 참!
-//   2. 즉시 return; 실행되어 함수가 그 자리에서 끝남! 아래의 count += 2 는 절대 실행되지 않음!
-//   ★ 최종 결과: Process()를 2번 이상 호출해도 최종 count = 6, processed = true 유지!</pre>
+    if (processed) return; // 이미 처리되었다면(processed == true) 아래 코드를 건너뛰고 즉시 종료!
+    count += 2;            // 1회차 호출 시에만 4 + 2 = 6으로 증가 (2회차부터는 실행 안 됨!)
+    processed = true;      // 1회 실행 후 상태를 true로 변경하여 잠금 (최종 count = 6 유지)
+}</pre>
       </div>
     </section>
   `

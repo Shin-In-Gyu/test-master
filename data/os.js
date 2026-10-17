@@ -479,8 +479,7 @@ int main(int argc, char *argv[]) { // argc, argv: [Stack 영역] 함수 매개�
     int *values;     // values 포인터 변수 자체는 [Stack 영역]의 지역 변수
     int i;           // i: [Stack 영역]의 지역 변수
 
-    // malloc()이 할당한 20바이트 공간 자체는 [Heap 영역]에 생성됨!
-    values = (int *)malloc(sizeof(int) * 5);
+    values = (int *)malloc(sizeof(int) * 5); // 할당된 20B 공간 자체는 [Heap 영역]
 
     for (i = 0; i &lt; 5; i++)
         values[i] = i; // 기계어 실행 코드는 [Text(Code) 영역]에 저장됨
@@ -864,14 +863,12 @@ int main(int argc, char *argv[]) { // argc, argv: [Stack 영역] 함수 매개�
 
 int main() {
     pid_t pid;
-    pid = fork(); // 여기서 프로세스가 2개로 복제됨!
+    pid = fork();               // 여기서 프로세스가 2개로 복제됨!
     printf("Hello Process!\\n"); // 부모 1번 + 자식 1번 = 총 2번 출력!
 
-    if (pid &gt; 0) {
-        // 부모 프로세스: 자식의 PID(양수)를 반환받음
+    if (pid &gt; 0) {              // 부모 프로세스: 자식의 PID(양수) 반환받음
         printf("Parent process (child PID = %d)\\n", pid);
-    } else if (pid == 0) {
-        // 자식 프로세스: 0을 반환받음
+    } else if (pid == 0) {      // 자식 프로세스: 0을 반환받음
         printf("Child process (return = 0)\\n");
     }
     return 0;
@@ -897,12 +894,12 @@ int value = 5; // 전역 변수 (Data 영역)
 
 int main() {
     pid_t pid = fork();
-    if (pid == 0) {       /* 자식 프로세스 */
+    if (pid == 0) {       // 자식 프로세스
         value += 15;      // 자식 메모리의 value만 20이 됨!
         return 0;
-    } else if (pid &gt; 0) { /* 부모 프로세스 */
+    } else if (pid &gt; 0) { // 부모 프로세스
         wait(NULL);       // 자식이 끝날 때까지 대기
-        printf("PARENT: value = %d\\n", value); /* LINE A */
+        printf("PARENT: value = %d\\n", value); // LINE A (출력: 5)
         return 0;
     }
 }</pre>
@@ -916,19 +913,16 @@ int main() {
           <!-- 실습 3 -->
           <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
             <div style="font-weight: 800; color: var(--accent); margin-bottom: 6px;">[실습 3] 반복문 연쇄 fork() &amp; 논리 단락 평가</div>
-            <pre class="code-block" style="margin: 0;">/* 1) for 루프 연쇄 fork(): 2^n 공식 */
-for (int i = 0; i &lt; 4; i++) {
-    fork();
+            <pre class="code-block" style="margin: 0;">for (int i = 0; i &lt; 4; i++) { // [1] for 루프 연쇄 fork(): 2^n 공식
+    fork();                   // i=0(2개) → i=1(4개) → i=2(8개) → i=3(16개)
 }
-printf("Hello\\n"); // 몇 번 출력되는가?
+printf("Hello\\n");            // 총 16번 출력! (생성된 자식은 15개)
 
-/* 2) 논리 OR 단락 평가: fork() || fork() */
-fork() || fork();
-printf("Hello\\n"); // 몇 번 출력되는가?
+fork() || fork();             // [2] 논리 OR: 자식(0=거짓)만 뒤 fork() 실행
+printf("Hello\\n");            // 총 3번 출력! (부모 P0 + 자식 C1 + 손자 GC1)
 
-/* 3) 논리 AND 단락 평가: fork() &amp;&amp; fork() */
-fork() &amp;&amp; fork();
-printf("Hello\\n"); // 몇 번 출력되는가?</pre>
+fork() &amp;&amp; fork();             // [3] 논리 AND: 부모(>0=참)만 뒤 fork() 실행
+printf("Hello\\n");            // 총 3번 출력! (부모 P0 + 첫자식 C1 + 둘째자식 C2)</pre>
             <div style="margin-top: 8px; padding: 10px; background: var(--bg-surface); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 12.5px; line-height: 1.6;">
               <b style="color: var(--accent);">🖥️ 각 코드 단독 실행 시 실제 출력 결과 &amp; 총 프로세스 수:</b>
               <pre style="margin: 4px 0 6px 0; padding: 8px; background: #0f172a; color: #f8fafc; border-radius: 4px; font-family: var(--font-mono); font-size: 12px;">[1) for문 4회] "Hello" 총 16줄 출력! (총 프로세스 = 2^4 = 16개 / 생성된 자식 = 15개)
@@ -947,11 +941,11 @@ printf("Hello\\n"); // 몇 번 출력되는가?</pre>
 
 int main() {
     pid_t pid = fork();
-    if (pid == 0) { /* 자식 프로세스 */
-        execlp("/bin/ls", "ls", NULL);
-        printf("LINE J\\n"); // ★ 절대 화면에 출력되지 않음!
-    } else if (pid &gt; 0) { /* 부모 프로세스 */
-        wait(NULL);
+    if (pid == 0) {                    // 자식 프로세스
+        execlp("/bin/ls", "ls", NULL); // 주소 공간을 /bin/ls로 완전히 덮어씀!
+        printf("LINE J\\n");            // ★ 절대 화면에 출력되지 않음!
+    } else if (pid &gt; 0) {              // 부모 프로세스
+        wait(NULL);                    // 자식의 /bin/ls 실행 종료까지 대기
         printf("Child Complete\\n");
     }
     return 0;
@@ -967,17 +961,16 @@ Child Complete              (← 자식이 끝난 뒤 wait(NULL)에서 깨어난
           <!-- 실습 5 -->
           <div style="padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; border: 1px solid var(--border-color); min-width: 0; overflow-x: auto;">
             <div style="font-weight: 800; color: var(--tag-danger-ink); margin-bottom: 6px;">[실습 5] ⭐ 교수님 강조: fork() 반환값(pid) vs getpid()(pid1)</div>
-            <pre class="code-block" style="margin: 0;">/* 가정: 부모 실제 PID = 7342, 새로 생성된 자식 실제 PID = 7343 */
-pid_t pid, pid1;
-pid = fork();
+            <pre class="code-block" style="margin: 0;">pid_t pid, pid1;
+pid = fork(); // 가정: 부모 실제 PID = 7342, 자식 실제 PID = 7343
 
-if (pid == 0) { /* 자식 프로세스 */
-    pid1 = getpid(); // 자식 자신의 실제 PID 조회
+if (pid == 0) {                         // 자식 프로세스
+    pid1 = getpid();                    // 자식 자신의 실제 PID 조회
     printf("child: pid = %d\\n", pid);   // [A] 출력: 0 (fork 반환값)
     printf("child: pid1 = %d\\n", pid1); // [B] 출력: 7343 (자식 실제 PID)
-} else if (pid &gt; 0) { /* 부모 프로세스 */
-    wait(NULL);
-    pid1 = getpid(); // 부모 자신의 실제 PID 조회
+} else if (pid &gt; 0) {                   // 부모 프로세스
+    wait(NULL);                         // 자식 종료 대기
+    pid1 = getpid();                    // 부모 자신의 실제 PID 조회
     printf("parent: pid = %d\\n", pid);   // [C] 출력: 7343 (자식 PID 반환값)
     printf("parent: pid1 = %d\\n", pid1); // [D] 출력: 7342 (부모 실제 PID)
 }</pre>
@@ -1001,13 +994,13 @@ int nums[SIZE] = {0, 1, 2, 3, 4}; // 전역 배열
 int main() {
     int i;
     pid_t pid = fork();
-    if (pid == 0) { /* 자식 프로세스 */
+    if (pid == 0) {               // 자식 프로세스
         for (i = 0; i &lt; SIZE; i++) {
-            nums[i] *= -i; // 자식 배열만 0, -1, -4, -9, -16으로 변경
+            nums[i] *= -i;        // 자식 배열만 0, -1, -4, -9, -16으로 변경
             printf("CHILD: %d ", nums[i]);
         }
-    } else if (pid &gt; 0) { /* 부모 프로세스 */
-        wait(NULL);
+    } else if (pid &gt; 0) {         // 부모 프로세스
+        wait(NULL);               // 자식 종료 대기
         for (i = 0; i &lt; SIZE; i++)
             printf("PARENT: %d ", nums[i]); // 부모 배열은 원본 그대로!
     }
@@ -1096,26 +1089,20 @@ item buffer[BUFFER_SIZE]; // 크기 10인 공유 메모리 환형 배열
 int in = 0;               // 생산자가 다음 데이터를 넣을(Write) 인덱스 포인터
 int out = 0;              // 소비자가 다음 데이터를 꺼낼(Read) 인덱스 포인터
 
-/* [1] 생산자 프로세스 (Producer) */
-item next_produced;
+item next_produced;       // [1] 생산자 프로세스 (Producer)
 while (true) {
-    /* 버퍼가 꽉 찼으면(Full) 아무것도 안 하고 대기 (Busy Waiting) */
-    while (((in + 1) % BUFFER_SIZE) == out)
-        ; /* do nothing */
-
-    buffer[in] = next_produced;       // in 위치에 데이터 저장
-    in = (in + 1) % BUFFER_SIZE;      // 포인터를 환형으로 1칸 전진 (9 다음엔 0)
+    while (((in + 1) % BUFFER_SIZE) == out) // 버퍼가 가득 찼으면(Full) 대기
+        ;
+    buffer[in] = next_produced;             // in 위치에 데이터 저장
+    in = (in + 1) % BUFFER_SIZE;            // 포인터를 환형으로 1칸 전진
 }
 
-/* [2] 소비자 프로세스 (Consumer) */
-item next_consumed;
+item next_consumed;       // [2] 소비자 프로세스 (Consumer)
 while (true) {
-    /* 버퍼가 비어 있으면(Empty) 아무것도 안 하고 대기 (Busy Waiting) */
-    while (in == out)
-        ; /* do nothing */
-
-    next_consumed = buffer[out];      // out 위치에서 데이터 추출
-    out = (out + 1) % BUFFER_SIZE;    // 포인터를 환형으로 1칸 전진
+    while (in == out)                       // 버퍼가 비어 있으면(Empty) 대기
+        ;
+    next_consumed = buffer[out];            // out 위치에서 데이터 추출
+    out = (out + 1) % BUFFER_SIZE;          // 포인터를 환형으로 1칸 전진
 }</pre>
         <div class="callout-box warning" style="margin-top: 10px;">
           <b>🎯 [시험 빈출 핵심 질문] 왜 <code>BUFFER_SIZE</code>가 10인데 최대 9개(<code>BUFFER_SIZE - 1</code>개)의 데이터만 저장할 수 있는가?</b><br>
@@ -1185,17 +1172,13 @@ int main() {
     int shm_fd;
     void *ptr;
 
-    /* 1. 공유 메모리 객체 생성 */
-    shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
-    /* 2. 공유 메모리 크기 4096 바이트로 설정 */
-    ftruncate(shm_fd, SIZE);
-    /* 3. 메모리 매핑 후 포인터 획득 */
-    ptr = mmap(0, SIZE, PROT_WRITE, MAP_SHARED, shm_fd, 0);
+    shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666); // 1. 공유 메모리 객체 생성
+    ftruncate(shm_fd, SIZE);                         // 2. 크기를 4096B로 설정
+    ptr = mmap(0, SIZE, PROT_WRITE, MAP_SHARED, shm_fd, 0); // 3. 메모리 매핑
 
-    /* 4. 공유 메모리에 문자열 기록 및 포인터 이동 */
-    sprintf(ptr, "%s", message_0);
-    ptr += strlen(message_0);
-    sprintf(ptr, "%s", message_1);
+    sprintf(ptr, "%s", message_0);                   // 4. "Hello" 기록
+    ptr += strlen(message_0);                        // 포인터 5칸 이동
+    sprintf(ptr, "%s", message_1);                   // "World!" 이어서 기록
     ptr += strlen(message_1);
     return 0;
 }</pre>
@@ -1216,16 +1199,10 @@ int main() {
     int shm_fd;
     void *ptr;
 
-    /* 1. 기존 생성된 "OS" 공유 메모리 읽기 전용 오픈 */
-    shm_fd = shm_open(name, O_RDONLY, 0666);
-    /* 2. 메모리 매핑 */
-    ptr = mmap(0, SIZE, PROT_READ, MAP_SHARED, shm_fd, 0);
-
-    /* 3. 공유 메모리에서 데이터 읽어서 출력 ("HelloWorld!") */
-    printf("%s\\n", (char *)ptr);
-
-    /* 4. 공유 메모리 객체 제거 */
-    shm_unlink(name);
+    shm_fd = shm_open(name, O_RDONLY, 0666);        // 1. 공유 메모리 읽기 전용 오픈
+    ptr = mmap(0, SIZE, PROT_READ, MAP_SHARED, shm_fd, 0); // 2. 메모리 매핑
+    printf("%s\\n", (char *)ptr);                    // 3. 데이터 출력 ("HelloWorld!")
+    shm_unlink(name);                               // 4. 공유 메모리 객체 최종 제거
     return 0;
 }</pre>
           </div>
@@ -1287,22 +1264,20 @@ int main(void) {
     int fd[2];
     pid_t pid;
 
-    /* 1. fork() 호출 전에 먼저 파이프를 생성해야 자식이 fd[0], fd[1]을 물려받음! */
-    if (pipe(fd) == -1) {
+    if (pipe(fd) == -1) {              // 1. fork() 전에 파이프 먼저 생성!
         fprintf(stderr, "Pipe failed");
         return 1;
     }
 
-    /* 2. 자식 프로세스 생성 */
-    pid = fork();
+    pid = fork();                      // 2. 자식 프로세스 생성 (fd[0], fd[1] 상속)
 
-    if (pid &gt; 0) { /* 부모 프로세스 (Producer 역할: 파이프에 쓰기) */
-        close(fd[READ_END]); // ★ 사용하지 않는 읽기 끝(fd[0])은 반드시 즉시 닫음!
+    if (pid &gt; 0) {                     // 부모 프로세스 (파이프에 쓰기)
+        close(fd[READ_END]);           // 사용하지 않는 읽기 끝(fd[0]) 닫기
         write(fd[WRITE_END], write_msg, strlen(write_msg) + 1);
-        close(fd[WRITE_END]); // 쓰기 완료 후 쓰기 끝(fd[1]) 닫음 (자식에게 EOF 전달)
+        close(fd[WRITE_END]);          // 쓰기 완료 후 쓰기 끝(fd[1]) 닫기
     }
-    else if (pid == 0) { /* 자식 프로세스 (Consumer 역할: 파이프에서 읽기) */
-        close(fd[WRITE_END]); // ★ 사용하지 않는 쓰기 끝(fd[1])은 반드시 즉시 닫음!
+    else if (pid == 0) {               // 자식 프로세스 (파이프에서 읽기)
+        close(fd[WRITE_END]);          // 사용하지 않는 쓰기 끝(fd[1]) 닫기
         read(fd[READ_END], read_msg, BUFFER_SIZE);
         printf("read %s\\n", read_msg); // 출력: read Greetings
         close(fd[READ_END]);
@@ -1521,21 +1496,18 @@ int main(void) {
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
-int sum; /* 스레드들이 공유하는 전역 변수 (Data 영역) */
-void *runner(void *param); /* 워커 스레드가 실행할 함수 */
+int sum;                   // 스레드들이 공유하는 전역 변수 (Data 영역)
+void *runner(void *param); // 워커 스레드가 실행할 함수
 
 int main(int argc, char *argv[]) {
-    pthread_t tid;       /* 스레드 식별자(TID) */
-    pthread_attr_t attr; /* 스레드 속성 */
+    pthread_t tid;       // 스레드 식별자(TID)
+    pthread_attr_t attr; // 스레드 속성
 
-    /* 1. 기본 스레드 속성 초기화 */
-    pthread_attr_init(&amp;attr);
-    /* 2. 새로운 스레드 생성 후 runner(argv[1]) 실행 시작 */
-    pthread_create(&amp;tid, &amp;attr, runner, argv[1]);
-    /* 3. 워커 스레드가 종료될 때까지 부모(main) 스레드 대기 */
-    pthread_join(tid, NULL);
+    pthread_attr_init(&amp;attr);                     // 1. 기본 스레드 속성 초기화
+    pthread_create(&amp;tid, &amp;attr, runner, argv[1]); // 2. 새 스레드 생성 및 runner 실행
+    pthread_join(tid, NULL);                      // 3. 워커 스레드 종료까지 main 대기
 
-    printf("sum = %d\\n", sum); // 예: ./a.out 10 실행 시 sum = 55 출력
+    printf("sum = %d\\n", sum);                    // ./a.out 10 실행 시 sum = 55 출력
 }
 
 void *runner(void *param) {
@@ -1543,7 +1515,7 @@ void *runner(void *param) {
     sum = 0;
     for (i = 1; i &lt;= upper; i++)
         sum += i;
-    pthread_exit(0); // 스레드 종료
+    pthread_exit(0);            // 워커 스레드 종료
 }</pre>
             <div style="margin-top: 8px; padding: 10px; background: var(--bg-surface); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 12.5px; line-height: 1.6;">
               <b style="color: var(--accent);">🖥️ 실제 터미널 출력 결과 (<code>./a.out 10</code> vs 인자 누락 <code>./a.out</code>):</b>
@@ -1575,18 +1547,18 @@ int main(int argc, char *argv[]) {
 
     pid = fork();
 
-    if (pid == 0) { /* [자식 프로세스] */
+    if (pid == 0) {                              // 자식 프로세스
         pthread_attr_init(&amp;attr);
         pthread_create(&amp;tid, &amp;attr, runner, NULL);
         pthread_join(tid, NULL);
-        printf("CHILD: value = %d\\n", value);  /* LINE C */
-    } else if (pid &gt; 0) { /* [부모 프로세스] */
+        printf("CHILD: value = %d\\n", value);    // LINE C (출력: 5)
+    } else if (pid &gt; 0) {                        // 부모 프로세스
         wait(NULL);
-        printf("PARENT: value = %d\\n", value); /* LINE P */
+        printf("PARENT: value = %d\\n", value);   // LINE P (출력: 0)
     }
 }
 void *runner(void *param) {
-    value = 5; // 자식 프로세스 내부 스레드가 value를 5로 변경!
+    value = 5;       // 자식 프로세스 내부 스레드가 value를 5로 변경!
     pthread_exit(0);
 }</pre>
             <div style="margin-top: 8px; padding: 10px; background: var(--bg-surface); border-left: 3px solid var(--tag-danger-ink); border-radius: 4px; font-size: 12.5px; line-height: 1.6;">
@@ -1603,7 +1575,7 @@ PARENT: value = 0</pre>
             <div style="font-weight: 800; color: var(--tag-danger-ink); margin-bottom: 6px;">[실습 3: problem.c] ⭐ 총 프로세스 개수(6개) &amp; 스레드 개수(2개)</div>
             <pre class="code-block" style="margin: 0;">pid_t pid;
 pid = fork();                  // (1) 첫 번째 fork()
-if (pid == 0) {                /* 자식 C1만 진입 */
+if (pid == 0) {                // 자식 C1만 진입
     fork();                    // (2) 두 번째 fork()
     pthread_create( ... );     // (3) 스레드 생성
 }
@@ -1623,17 +1595,15 @@ fork();                        // (4) 세 번째 fork()</pre>
 #include &lt;stdio.h&gt;
 
 int main(int argc, char *argv[]) {
-    /* 1. 시스템의 CPU 코어 수만큼 자동으로 스레드를 생성하여 병렬 실행 */
-    #pragma omp parallel
+    #pragma omp parallel             // 1. 코어 수만큼 스레드 자동 생성 및 병렬 실행
     {
         printf("I am a parallel region.\\n");
     }
 
-    /* 2. 스레드 개수를 4개로 지정하고 for 루프를 분할 병렬 처리 */
-    omp_set_num_threads(4);
-    #pragma omp parallel for
+    omp_set_num_threads(4);          // 2. 스레드 개수를 4개로 지정
+    #pragma omp parallel for         // for 루프를 4개 스레드로 분할 병렬 처리
     for (int i = 0; i &lt; N; i++) {
-        c[i] = a[i] + b[i]; // 데이터 병렬성 자동 수행!
+        c[i] = a[i] + b[i];          // 데이터 병렬성 자동 수행!
     }
     return 0;
 }</pre>

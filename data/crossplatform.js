@@ -299,8 +299,7 @@ window.CONCEPT_DATABASE.crossplatform = {
           <li><b>5) 클라우드 빌드 및 배포 지원 (EAS)</b>: Windows PC에서도 클라우드를 통해 iOS/Android 스토어 배포용 앱 빌드 가능.</li>
         </ul>
 
-        <pre class="code-block"># [교안 p.33~38] Expo CLI 설치 및 프로젝트 생성·실행 순서 명령어
-npm install -g expo-cli     # 1. Expo CLI 전역(-g) 설치
+        <pre class="code-block">npm install -g expo-cli     # 1. Expo CLI 전역(-g) 설치
 expo init myApp             # 2. 'myApp'이라는 이름의 새 Expo 프로젝트 생성 (Blank 템플릿 선택)
 cd myApp                    # 3. 생성된 프로젝트 폴더로 이동
 code .                      # 4. 현재 폴더를 VS Code 에디터로 열기
@@ -388,25 +387,24 @@ npm start                   # 5. Metro 개발 서버 실행 (또는 npx expo sta
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
           💻 [코드 3-1] 인라인 스타일링(Inline Styling)과 <code>{"\\n"}</code> 줄바꿈 (교안 p.2~4)
         </div>
-        <pre class="code-block">// [교안 3주차 p.2~4] style={{ 속성: 값 }} 이중 중괄호 인라인 스타일링
-import React from "react";
+        <pre class="code-block">import React from "react";
 import { View, Text } from "react-native";
 
 const App = () =&gt; {
   return (
     &lt;View
-      style={{
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
+      style={{                      // 이중 중괄호 {{ }}로 인라인 스타일 객체 전달
+        flex: 1,                    // 전체 화면 영역 차지
+        backgroundColor: "#fff",    // 카멜 표기법(camelCase) 배경색
+        alignItems: "center",       // 교차축(가로) 중앙 정렬
+        justifyContent: "center",   // 주축(세로) 중앙 정렬
       }}
     &gt;
       &lt;Text
         style={{
-          padding: 10,
+          padding: 10,              // 숫자만 작성 (px 생략)
           fontSize: 26,
-          fontWeight: "600",
+          fontWeight: "600",        // 두께는 문자열로 지정
           color: "black",
         }}
       &gt;
@@ -420,7 +418,7 @@ const App = () =&gt; {
           color: "red",
         }}
       &gt;
-        Inline Styling - Error{"\\n"}새로운 줄입니다.
+        Inline Styling - Error{"\\n"}새로운 줄입니다.  // {"\n"}으로 강제 줄바꿈
       &lt;/Text&gt;
     &lt;/View&gt;
   );
@@ -431,21 +429,19 @@ export default App;</pre>
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [코드 3-2] 클래스 스타일링(<code>StyleSheet.create</code>)과 다중 스타일 배열 결합 (교안 p.12~14)
         </div>
-        <pre class="code-block">// [교안 3주차 p.14] 배열 표기법 style={[styles.text, styles.error]} 로 여러 스타일 동시 적용!
-// ★ 핵심 규칙: 배열 뒤쪽에 적은 styles.error의 속성(color: "red", fontWeight: "400")이 앞쪽 styles.text의 동명 속성을 덮어씀(오버라이드)!
-import React from "react";
+        <pre class="code-block">import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 
 const App = () =&gt; {
   return (
     &lt;View style={styles.container}&gt;
       &lt;Text style={styles.text}&gt;StyleSheet - Text&lt;/Text&gt;
-      &lt;Text style={[styles.text, styles.error]}&gt;Multiple Styles - Error&lt;/Text&gt;
+      &lt;Text style={[styles.text, styles.error]}&gt;Multiple Styles - Error&lt;/Text&gt; // 배열 뒤쪽 styles.error가 앞쪽 styles.text 속성을 덮어씀!
     &lt;/View&gt;
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({  // StyleSheet.create로 스타일 객체 분리 정의
   container: {
     flex: 1,
     backgroundColor: "#fff",
@@ -459,8 +455,8 @@ const styles = StyleSheet.create({
     color: "black",
   },
   error: {
-    fontWeight: "400",
-    color: "red",
+    fontWeight: "400",              // styles.text의 fontWeight("600")를 덮어씀
+    color: "red",                   // styles.text의 color("black")를 덮어씀
   },
 });
 
@@ -469,10 +465,9 @@ export default App;</pre>
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [코드 3-3] 외부 스타일 모듈 분리 (<code>src/styles.js</code> &amp; <code>App.js</code>) 및 <code>flex</code> 비율 분할 (교안 p.15~19)
         </div>
-        <pre class="code-block">// [1] src/styles.js — 외부 파일로 스타일 객체를 분리하여 export
-import { StyleSheet } from "react-native";
+        <pre class="code-block">import { StyleSheet } from "react-native";
 
-export const viewStyles = StyleSheet.create({
+export const viewStyles = StyleSheet.create({   // [src/styles.js] 외부 파일로 스타일 객체를 분리하여 export
   container: {
     flex: 1,
     backgroundColor: "#fff",
@@ -494,14 +489,10 @@ export const textStyles = StyleSheet.create({
   },
 });
 
-// ------------------------------------------------------------------
-// [2] 교안 p.17~19: Header(1) : Contents(3) : Footer(1) 비율 분할 및 가로 2분할 레이아웃
-// ★ Header(flex:1), Contents(flex:3), Footer(flex:1) -&gt; 전체 세로 화면을 1 : 3 : 1 (즉 20% : 60% : 20%) 비율로 분할!
-// ★ Contents 내부를 좌/우 가로로 나누고 싶다면 Contents에 flexDirection: "row"를 지정함!
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 
-export const LayoutApp = () =&gt; {
+export const LayoutApp = () =&gt; {                // [App.js] Header(1) : Contents(3) : Footer(1) 비율 분할 레이아웃
   return (
     &lt;View style={layoutStyles.container}&gt;
       &lt;View style={[layoutStyles.box, layoutStyles.header]}&gt;
@@ -519,16 +510,16 @@ export const LayoutApp = () =&gt; {
 };
 
 const layoutStyles = StyleSheet.create({
-  container: { flex: 1 },
+  container: { flex: 1 },                       // 전체 화면 100% 차지
   box: { alignItems: "center", justifyContent: "center" },
-  header: { flex: 1, backgroundColor: "#f1c40f" },
+  header: { flex: 1, backgroundColor: "#f1c40f" }, // 세로 비율 1/5 (20%) 차지
   contents: {
-    flex: 3,
-    flexDirection: "row",          // 내부 자식을 가로(좌-&gt;우)로 배치
-    justifyContent: "space-around", // 가로 간격 균등 배치
+    flex: 3,                                    // 세로 비율 3/5 (60%) 차지
+    flexDirection: "row",                       // 내부 자식(Left, Right)을 가로(좌-&gt;우)로 배치
+    justifyContent: "space-around",             // 가로 간격 균등 배치
     backgroundColor: "#1abc9c",
   },
-  footer: { flex: 1, backgroundColor: "#3498db" },
+  footer: { flex: 1, backgroundColor: "#3498db" }, // 세로 비율 1/5 (20%) 차지
   text: { fontSize: 26, fontWeight: "700" },
 });</pre>
       </div>
@@ -605,27 +596,24 @@ const layoutStyles = StyleSheet.create({
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
           💻 [코드 4-1] <code>Text</code> 중첩 스타일 상속 &amp; <code>onPress</code> 상태 변경 + <code>numberOfLines={5}</code> (교안 p.5, p.8)
         </div>
-        <pre class="code-block">// [교안 4주차 p.5 &amp; p.8 통합] Text 중첩 상속 + Text 터치 시 onPress로 상태 변경 + 5줄 말줄임
-import React, { useState } from "react";
+        <pre class="code-block">import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 
 export default function TextExample() {
-  const [titleText, setTitleText] = useState("산을 오르다 (터치해보세요)");
+  const [titleText, setTitleText] = useState("산을 오르다 (터치해보세요)"); // 제목 상태 선언
   const bodyText = "이것은 아주 긴 본문 텍스트입니다.\\n2번째 줄\\n3번째 줄\\n4번째 줄\\n5번째 줄\\n6번째 줄(숨겨짐)";
 
   const onPressTitle = () =&gt; {
-    setTitleText("산은 높고 골은 깊다 [변경완료]");
+    setTitleText("산은 높고 골은 깊다 [변경완료]");                         // 제목 터치 시 텍스트 상태 변경
   };
 
   return (
     &lt;View style={styles.container}&gt;
-      {/* 바깥 Text의 baseText 스타일을 안쪽 Text들도 기본 상속받음! */}
-      &lt;Text style={styles.baseText}&gt;
-        &lt;Text style={styles.titleText} onPress={onPressTitle}&gt;
+      &lt;Text style={styles.baseText}&gt;                                        // 바깥 Text의 baseText 스타일을 안쪽 Text들이 상속받음!
+        &lt;Text style={styles.titleText} onPress={onPressTitle}&gt;              // 터치 시 onPressTitle 실행
           {titleText}{"\\n"}{"\\n"}
         &lt;/Text&gt;
-        {/* 최대 5줄까지만 표시하고 나머지는 ... 처리 */}
-        &lt;Text numberOfLines={5}&gt;{bodyText}&lt;/Text&gt;
+        &lt;Text numberOfLines={5}&gt;{bodyText}&lt;/Text&gt;                           // 최대 5줄까지만 표시하고 초과분은 ... 말줄임 처리
       &lt;/Text&gt;
     &lt;/View&gt;
   );
@@ -640,20 +628,19 @@ const styles = StyleSheet.create({
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [코드 4-2] <code>Button</code>과 <code>Alert.alert</code> 2버튼(취소/확인) 대화상자 (교안 p.11~12 — ★ 시험 빈칸 출제!)
         </div>
-        <pre class="code-block">// [교안 4주차 p.11~12] Alert.alert(제목, 메시지, [취소버튼객체, 확인버튼객체])
-import React from "react";
+        <pre class="code-block">import React from "react";
 import { StyleSheet, View, Button, Alert } from "react-native";
 
 export default function ButtonAlertExample() {
   const showConfirmAlert = () =&gt; {
-    Alert.alert(
-      "경고 타이틀",
-      "정말로 실행하시겠습니까?",
-      [
+    Alert.alert(                                        // Alert.alert(제목, 메시지, [취소버튼, 확인버튼])
+      "경고 타이틀",                                    // 1번째 인자: 대화상자 제목
+      "정말로 실행하시겠습니까?",                       // 2번째 인자: 본문 메시지
+      [                                                 // 3번째 인자: 버튼 객체 배열
         {
           text: "취소",
           onPress: () =&gt; console.log("취소 클릭됨"),
-          style: "cancel",
+          style: "cancel",                              // 취소 버튼 스타일 지정
         },
         {
           text: "확인",
@@ -677,45 +664,40 @@ const styles = StyleSheet.create({
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [코드 4-3] <code>TextInput</code> 숫자 전용 필터링 &amp; 여러 줄 입력 + 확인 후 초기화 (교안 p.15~18)
         </div>
-        <pre class="code-block">// [교안 4주차 p.15~18] 숫자만 남기는 정규식 replace(/[^0-9]/g, "") + multiline 입력 후 초기화
-import React, { useState } from "react";
+        <pre class="code-block">import React, { useState } from "react";
 import { StyleSheet, View, TextInput, Button, Alert } from "react-native";
 
 export default function TextInputMaster() {
   const [numValue, setNumValue] = useState("");
   const [multiValue, setMultiValue] = useState("");
 
-  // 1) 숫자가 아닌 문자는 모두 빈 문자열("")로 제거하는 핸들러 (교안 p.15)
   const handleNumericChange = (inputText) =&gt; {
-    const filteredText = inputText.replace(/[^0-9]/g, "");
+    const filteredText = inputText.replace(/[^0-9]/g, ""); // 숫자가 아닌 문자는 모두 빈 문자열("")로 제거!
     setNumValue(filteredText);
   };
 
-  // 2) 버튼 클릭 시 입력값 출력 후 입력창 비우기 (교안 p.17)
   const handlePressConfirm = () =&gt; {
-    Alert.alert("입력된 값", multiValue || "(Empty)");
-    setMultiValue(""); // 입력창 초기화!
+    Alert.alert("입력된 값", multiValue || "(Empty)");     // 입력값 팝업 출력 (비어있으면 "(Empty)")
+    setMultiValue("");                                     // 확인 후 입력창 빈 문자열로 초기화!
   };
 
   return (
     &lt;View style={styles.container}&gt;
-      {/* 숫자 키패드 + 비밀번호 마스킹 예제 */}
       &lt;TextInput
         style={styles.input}
         value={numValue}
-        onChangeText={handleNumericChange}
+        onChangeText={handleNumericChange}                 // 입력될 때마다 숫자 필터링 함수 호출
         placeholder="숫자 비밀번호만 입력"
-        keyboardType="numeric"
-        secureTextEntry={true}
+        keyboardType="numeric"                             // 숫자 키패드 표시
+        secureTextEntry={true}                             // 비밀번호 마스킹(•••) 처리
       /&gt;
 
-      {/* 여러 줄(multiline) 최대 40자 입력 예제 */}
       &lt;TextInput
         style={styles.multiInput}
-        editable={true}
-        multiline={true}
-        numberOfLines={4}
-        maxLength={40}
+        editable={true}                                    // 텍스트 편집 허용
+        multiline={true}                                   // 여러 줄 입력 허용
+        numberOfLines={4}                                  // 기본 4줄 높이 표시
+        maxLength={40}                                     // 최대 40자 제한
         value={multiValue}
         onChangeText={(text) =&gt; setMultiValue(text)}
         placeholder="최대 40자까지 여러 줄 입력..."
@@ -755,8 +737,7 @@ const styles = StyleSheet.create({
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
           💻 [코드 5-1] 조건부 렌더링 3대 기법(<code>if-else</code> / 삼항 연산자 <code>? :</code> / 단축 평가 <code>&amp;&amp;, ||</code>) 및 실행 결과 완벽 추적 (교안 p.5~7)
         </div>
-        <pre class="code-block">// [교안 5주차 p.5~7] 조건부 렌더링 실행 결과 예측 (시험 단골 유형!)
-import React from "react";
+        <pre class="code-block">import React from "react";
 import { View, Text } from "react-native";
 
 export default function ConditionalRenderExample() {
@@ -765,20 +746,10 @@ export default function ConditionalRenderExample() {
 
   return (
     &lt;View&gt;
-      {/* 1) 삼항 연산자 (조건 ? 참일때 : 거짓일때) */}
-      &lt;Text&gt;{name === "React" ? "리액트입니다!" : "리액트가 아닙니다."}&lt;/Text&gt;
-      {/* -&gt; 출력 결과: "리액트입니다!" */}
-
-      {/* 2) &amp;&amp; (AND 단축 평가): 앞 조건이 true일 때만 뒤 요소를 렌더링함! */}
-      {name === "React" &amp;&amp; &lt;Text&gt;환영합니다, React!&lt;/Text&gt;}
-      {/* -&gt; 출력 결과: "환영합니다, React!" */}
-
-      {name === "Vue" &amp;&amp; &lt;Text&gt;이 문장은 절대 화면에 나타나지 않습니다.&lt;/Text&gt;}
-      {/* -&gt; 앞 조건이 false이므로 아무것도 렌더링되지 않음 */}
-
-      {/* 3) || (OR 단축 평가): 앞의 값이 Falsy("", null, undefined, 0, false)이면 뒤의 기본값을 반환! */}
-      &lt;Text&gt;{falsyName || "이름이 비어있을 때 표시되는 기본값"}&lt;/Text&gt;
-      {/* -&gt; falsyName이 ""(거짓)이므로 뒤쪽 문자열 출력! */}
+      &lt;Text&gt;{name === "React" ? "리액트입니다!" : "리액트가 아닙니다."}&lt;/Text&gt; // 1) 삼항 연산자 -&gt; "리액트입니다!" 출력
+      {name === "React" &amp;&amp; &lt;Text&gt;환영합니다, React!&lt;/Text&gt;}                    // 2) &amp;&amp; 단축 평가(참) -&gt; "환영합니다, React!" 출력
+      {name === "Vue" &amp;&amp; &lt;Text&gt;이 문장은 절대 화면에 나타나지 않습니다.&lt;/Text&gt;} // 3) &amp;&amp; 단축 평가(거짓) -&gt; 아무것도 렌더링 안 됨
+      &lt;Text&gt;{falsyName || "이름이 비어있을 때 표시되는 기본값"}&lt;/Text&gt;          // 4) || 단축 평가(Falsy) -&gt; 뒤쪽 기본값 문자열 출력!
     &lt;/View&gt;
   );
 }</pre>
@@ -792,40 +763,36 @@ export default function ConditionalRenderExample() {
           • <b>원격 URL 이미지</b>: <code>source={{ uri: "https://..." }}</code> — 다운로드하기 전까지 RN이 이미지 크기를 알 수 없으므로, <b style="color: var(--tag-danger-ink);">반드시 <code>style={{ width: 200, height: 200 }}</code>처럼 가로(<code>width</code>)와 세로(<code>height</code>) 크기를 명시해야 화면에 보입니다!</b> (지정하지 않으면 0×0으로 렌더링되어 보이지 않음)
         </div>
 
-        <pre class="code-block">// [교안 5주차 p.8~10] Image 로컬/원격 비교 &amp; Switch 다크모드 배경 전환 전체 코드
-import React, { useState } from "react";
+        <pre class="code-block">import React, { useState } from "react";
 import { StyleSheet, View, Text, Image, Switch } from "react-native";
 
 export default function ImageAndSwitchExample() {
-  const [isDark, setIsDark] = useState(false);
-  const toggleSwitch = () =&gt; setIsDark((prevState) =&gt; !prevState);
+  const [isDark, setIsDark] = useState(false);                        // 다크모드 여부 불리언 상태
+  const toggleSwitch = () =&gt; setIsDark((prevState) =&gt; !prevState);    // 스위치 토글 시 상태 반전
 
   return (
     &lt;View
       style={[
         styles.container,
-        { backgroundColor: isDark ? "#222222" : "#ffffff" }, // 스위치 상태에 따라 배경색 동적 전환!
+        { backgroundColor: isDark ? "#222222" : "#ffffff" },          // 스위치 상태에 따라 배경색 동적 전환!
       ]}
     &gt;
-      {/* 1. 로컬 이미지: require('경로') */}
-      &lt;Image source={require("./kangnam.png")} style={styles.image} /&gt;
+      &lt;Image source={require("./kangnam.png")} style={styles.image} /&gt; // 1. 로컬 이미지: require('경로') 사용
 
-      {/* 2. 원격 네트워크 이미지: {{ uri: '주소' }} + 반드시 width, height 지정! */}
       &lt;Image
-        source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
-        style={{ width: 80, height: 80, marginVertical: 10 }}
+        source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }} // 2. 원격 이미지: {{ uri: '주소' }} 사용
+        style={{ width: 80, height: 80, marginVertical: 10 }}         // 원격 이미지는 반드시 width, height 지정!
       /&gt;
 
       &lt;Text style={{ color: isDark ? "#ffffff" : "#000000", fontSize: 18, marginBottom: 10 }}&gt;
         현재 모드: {isDark ? "다크 모드 (ON)" : "라이트 모드 (OFF)"}
       &lt;/Text&gt;
 
-      {/* 3. Switch 컴포넌트: value(현재 불리언값), onValueChange(상태변경 함수) 필수! */}
       &lt;Switch
-        trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={isDark ? "#f5dd4b" : "#f4f3f4"}
-        onValueChange={toggleSwitch}
-        value={isDark}
+        trackColor={{ false: "#767577", true: "#81b0ff" }}            // OFF/ON 트랙 배경색 지정
+        thumbColor={isDark ? "#f5dd4b" : "#f4f3f4"}                   // 동그란 스위치 버튼 색상
+        onValueChange={toggleSwitch}                                  // 값 변경 시 호출할 콜백 함수 (필수)
+        value={isDark}                                                // 현재 스위치 상태값 (필수)
       /&gt;
     &lt;/View&gt;
   );
@@ -870,8 +837,7 @@ const styles = StyleSheet.create({
           </tbody>
         </table>
 
-        <pre class="code-block">// [교안 5주차 p.11~14] FlatList &amp; SectionList 전체 핵심 코드
-import React from "react";
+        <pre class="code-block">import React from "react";
 import { StyleSheet, View, Text, FlatList, SectionList } from "react-native";
 
 const USERS = [
@@ -888,11 +854,10 @@ const SECTIONS = [
 export default function ListMasterExample() {
   return (
     &lt;View style={styles.container}&gt;
-      {/* [1] FlatList: data, keyExtractor, renderItem 3대 Props 필수 암기! */}
       &lt;FlatList
-        data={USERS}
-        keyExtractor={(item) =&gt; item.id}
-        renderItem={({ item }) =&gt; (
+        data={USERS}                                              // [FlatList 필수 1] 렌더링할 데이터 배열
+        keyExtractor={(item) =&gt; item.id}                          // [FlatList 필수 2] 각 항목의 고유 key 추출 함수
+        renderItem={({ item }) =&gt; (                               // [FlatList 필수 3] 각 항목을 JSX로 렌더링하는 함수
           &lt;View style={styles.itemBox}&gt;
             &lt;Text style={styles.name}&gt;{item.name}&lt;/Text&gt;
             &lt;Text&gt;{item.email}&lt;/Text&gt;
@@ -900,12 +865,11 @@ export default function ListMasterExample() {
         )}
       /&gt;
 
-      {/* [2] SectionList: 섹션별 헤더(renderSectionHeader)와 목록을 함께 표시할 때 사용 */}
       &lt;SectionList
-        sections={SECTIONS}
+        sections={SECTIONS}                                       // [SectionList] 섹션 배열 데이터 전달
         keyExtractor={(item, index) =&gt; item + index}
         renderItem={({ item }) =&gt; &lt;Text style={styles.item}&gt;{item}&lt;/Text&gt;}
-        renderSectionHeader={({ section: { title } }) =&gt; (
+        renderSectionHeader={({ section: { title } }) =&gt; (        // 각 섹션 상단 제목 헤더 렌더링
           &lt;Text style={styles.header}&gt;{title}&lt;/Text&gt;
         )}
       /&gt;
@@ -938,11 +902,7 @@ const styles = StyleSheet.create({
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
           💻 [1] <code>BackHandler</code>: 안드로이드 하드웨어 뒤로가기 버튼 감지 및 종료 확인 팝업 (교안 p.2~3)
         </div>
-        <pre class="code-block">// ★ 핵심 포인트:
-// 1) 이벤트 이름: "hardwareBackPress"
-// 2) 콜백 함수에서 return true; 를 반환해야 시스템의 기본 뒤로가기(즉시 종료)를 막고 커스텀 Alert를 띄움!
-// 3) useEffect의 return () =&gt; backHandler.remove(); 로 언마운트 시 이벤트 리스너를 반드시 해제!
-import React, { useEffect } from "react";
+        <pre class="code-block">import React, { useEffect } from "react";
 import { View, Text, BackHandler, Alert } from "react-native";
 
 export function BackHandlerExample() {
@@ -950,13 +910,13 @@ export function BackHandlerExample() {
     const backAction = () =&gt; {
       Alert.alert("잠깐만요!", "정말로 앱을 종료하시겠습니까?", [
         { text: "취소", onPress: () =&gt; null, style: "cancel" },
-        { text: "종료", onPress: () =&gt; BackHandler.exitApp() },
+        { text: "종료", onPress: () =&gt; BackHandler.exitApp() },         // 확인 클릭 시 앱 완전 종료
       ]);
-      return true; // 기본 뒤로가기 동작 차단!
+      return true;                                                      // true 반환 시 시스템 기본 뒤로가기(즉시 종료) 차단!
     };
 
-    const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction);
-    return () =&gt; backHandler.remove(); // 클린업 함수에서 리스너 제거
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction); // 뒤로가기 이벤트 등록
+    return () =&gt; backHandler.remove();                                  // 언마운트 시 이벤트 리스너 반드시 해제!
   }, []);
 
   return (
@@ -967,45 +927,41 @@ export function BackHandlerExample() {
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [2] <code>DrawerLayoutAndroid</code> &amp; [3] <code>ToastAndroid</code> (교안 p.4~7)
         </div>
-        <pre class="code-block">// [2] DrawerLayoutAndroid: 화면 좌/우에서 슬라이드로 열리는 네이티브 서랍 메뉴
-// - drawer.current.openDrawer() 로 열고, drawer.current.closeDrawer() 로 닫음!
-// - renderNavigationView 속성에 서랍 안에 들어갈 화면 함수를 전달함!
-import React, { useRef } from "react";
+        <pre class="code-block">import React, { useRef } from "react";
 import { DrawerLayoutAndroid, ToastAndroid, View, Text, Button } from "react-native";
 
 export function DrawerAndToastExample() {
-  const drawer = useRef(null);
+  const drawer = useRef(null);                                          // 서랍(Drawer) 제어용 ref 객체 생성
 
-  // [3] ToastAndroid: 안드로이드 하단/중앙에 잠깐 나타났다 사라지는 짧은 알림 메시지
   const showToast = () =&gt; {
-    ToastAndroid.show("기본 토스트 메시지입니다!", ToastAndroid.SHORT);
+    ToastAndroid.show("기본 토스트 메시지입니다!", ToastAndroid.SHORT); // 안드로이드 짧은 토스트 알림 표시
   };
   const showToastWithGravity = () =&gt; {
     ToastAndroid.showWithGravityAndOffset(
       "화면 중앙 토스트!",
-      ToastAndroid.LONG,
-      ToastAndroid.CENTER,
+      ToastAndroid.LONG,                                                // 긴 시간 표시
+      ToastAndroid.CENTER,                                              // 화면 정중앙 배치
       25,
       50
     );
   };
 
-  const navigationView = () =&gt; (
+  const navigationView = () =&gt; (                                        // 서랍 내부에 렌더링할 메뉴 화면
     &lt;View style={{ flex: 1, padding: 20, backgroundColor: "#fff" }}&gt;
       &lt;Text&gt;서랍(Drawer) 내부 메뉴입니다.&lt;/Text&gt;
-      &lt;Button title="서랍 닫기" onPress={() =&gt; drawer.current.closeDrawer()} /&gt;
+      &lt;Button title="서랍 닫기" onPress={() =&gt; drawer.current.closeDrawer()} /&gt; // closeDrawer()로 서랍 닫기
     &lt;/View&gt;
   );
 
   return (
     &lt;DrawerLayoutAndroid
-      ref={drawer}
-      drawerWidth={300}
-      drawerPosition="left"
-      renderNavigationView={navigationView}
+      ref={drawer}                                                      // ref 연결
+      drawerWidth={300}                                                 // 서랍 가로 너비 300
+      drawerPosition="left"                                             // 왼쪽에서 열리는 서랍
+      renderNavigationView={navigationView}                             // 서랍 내부 화면 함수 연결
     &gt;
       &lt;View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}&gt;
-        &lt;Button title="서랍 열기" onPress={() =&gt; drawer.current.openDrawer()} /&gt;
+        &lt;Button title="서랍 열기" onPress={() =&gt; drawer.current.openDrawer()} /&gt; // openDrawer()로 서랍 열기
         &lt;Button title="토스트 띄우기" onPress={showToast} /&gt;
         &lt;Button title="중앙 토스트 띄우기" onPress={showToastWithGravity} /&gt;
       &lt;/View&gt;
@@ -1016,48 +972,43 @@ export function DrawerAndToastExample() {
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [4] <code>Animated</code> (Fade In / Fade Out) &amp; [5] <code>Dimensions</code> (화면 크기 감지) (교안 p.8~11)
         </div>
-        <pre class="code-block">// [4] Animated 핵심 3단계:
-// ① useRef(new Animated.Value(0)).current 로 애니메이션 값 생성 (리렌더링 되어도 값 유지)
-// ② Animated.timing(fadeAnim, { toValue: 1, duration: 5000, useNativeDriver: true }).start() 호출
-// ③ 일반 &lt;View&gt; 대신 반드시 &lt;Animated.View style={{ opacity: fadeAnim }}&gt; 에 바인딩!
-import React, { useRef, useState, useEffect } from "react";
+        <pre class="code-block">import React, { useRef, useState, useEffect } from "react";
 import { Animated, Dimensions, View, Text, Button } from "react-native";
 
 export function AnimatedAndDimensionsExample() {
-  const fadeAnim = useRef(new Animated.Value(0)).current; // 초기 투명도 0 (안 보임)
+  const fadeAnim = useRef(new Animated.Value(0)).current;         // 초기 투명도 0 (리렌더링되어도 애니메이션 값 유지)
 
-  // [5] Dimensions: 'window'(상태바·소프트키 제외 실제 앱 표시 영역) vs 'screen'(기기 물리 전체 화면)
-  const [ dims, setDims ] = useState({
-    window: Dimensions.get("window"),
-    screen: Dimensions.get("screen"),
+  const [dims, setDims] = useState({
+    window: Dimensions.get("window"),                             // 실제 앱 표시 영역 크기
+    screen: Dimensions.get("screen"),                             // 상태바 포함 기기 물리 전체 화면 크기
   });
 
   useEffect(() =&gt; {
     const subscription = Dimensions.addEventListener("change", ({ window, screen }) =&gt; {
-      setDims({ window, screen }); // 화면 회전 시 해상도 자동 갱신
+      setDims({ window, screen });                                // 화면 회전 시 해상도 자동 갱신
     });
-    return () =&gt; subscription?.remove();
+    return () =&gt; subscription?.remove();                          // 언마운트 시 리스너 해제
   }, []);
 
   const fadeIn = () =&gt; {
     Animated.timing(fadeAnim, {
-      toValue: 1,           // 불투명도 1까지 서서히 나타남
-      duration: 5000,       // 5000ms (5초) 동안 진행
-      useNativeDriver: true, // 네이티브 UI 스레드에서 끊김 없이 실행
+      toValue: 1,                                                 // 불투명도 1까지 서서히 나타남
+      duration: 5000,                                             // 5000ms (5초) 동안 진행
+      useNativeDriver: true,                                      // 네이티브 UI 스레드에서 끊김 없이 실행
     }).start();
   };
 
   const fadeOut = () =&gt; {
     Animated.timing(fadeAnim, {
-      toValue: 0,           // 불투명도 0으로 서서히 사라짐
-      duration: 3000,       // 3000ms (3초) 동안 진행
+      toValue: 0,                                                 // 불투명도 0으로 서서히 사라짐
+      duration: 3000,                                             // 3000ms (3초) 동안 진행
       useNativeDriver: true,
     }).start();
   };
 
   return (
     &lt;View&gt;
-      &lt;Animated.View style={{ opacity: fadeAnim, padding: 20, backgroundColor: "powderblue" }}&gt;
+      &lt;Animated.View style={{ opacity: fadeAnim, padding: 20, backgroundColor: "powderblue" }}&gt; // 반드시 Animated.View에 바인딩!
         &lt;Text&gt;Fading View! Window 가로: {dims.window.width}&lt;/Text&gt;
       &lt;/Animated.View&gt;
       &lt;Button title="Fade In (나타나기)" onPress={fadeIn} /&gt;
@@ -1073,11 +1024,7 @@ export function AnimatedAndDimensionsExample() {
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
           💻 [6] <code>KeyboardAvoidingView</code> &amp; [7] <code>Linking</code> &amp; [8] <code>Modal</code> (교안 p.12~17)
         </div>
-        <pre class="code-block">// [6] KeyboardAvoidingView: 가상 키보드가 올라올 때 TextInput이 가려지지 않도록 자동으로 패딩/높이 조절
-//     + TouchableWithoutFeedback onPress={Keyboard.dismiss} 로 빈 화면 터치 시 키보드 닫기!
-// [7] Linking.openURL(url): 외부 웹 브라우저나 전화/메일 등 외부 앱 실행 (교안: https://blog.naver.com/jongsoo67)
-// [8] Modal: 현재 화면 위에 덮어씌워지는 팝업 창 (visible, animationType, transparent, onRequestClose)
-import React, { useState } from "react";
+        <pre class="code-block">import React, { useState } from "react";
 import {
   KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Platform,
   Linking, Modal, View, Text, TextInput, Button
@@ -1088,26 +1035,24 @@ export function KeyboardLinkingModalExample() {
 
   return (
     &lt;KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}             // 가상 키보드가 올라올 때 입력창이 가려지지 않게 자동 조절
       style={{ flex: 1 }}
     &gt;
-      &lt;TouchableWithoutFeedback onPress={Keyboard.dismiss}&gt;
+      &lt;TouchableWithoutFeedback onPress={Keyboard.dismiss}&gt;               // 빈 화면 터치 시 가상 키보드 닫기!
         &lt;View style={{ flex: 1, justifyContent: "space-around", padding: 24 }}&gt;
           &lt;TextInput placeholder="터치하면 키보드가 입력창을 가리지 않고 올라옵니다" /&gt;
 
-          {/* Linking으로 외부 웹페이지 열기 */}
           &lt;Button
             title="교수님 블로그 열기"
-            onPress={() =&gt; Linking.openURL("https://blog.naver.com/jongsoo67")}
+            onPress={() =&gt; Linking.openURL("https://blog.naver.com/jongsoo67")} // 외부 웹 브라우저로 URL 열기
           /&gt;
 
-          {/* Modal 팝업창 제어 */}
           &lt;Button title="모달 팝업 열기" onPress={() =&gt; setModalVisible(true)} /&gt;
           &lt;Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() =&gt; setModalVisible(false)}
+            animationType="slide"                                         // 아래에서 위로 슬라이드 등장
+            transparent={true}                                            // 배경 투명 처리
+            visible={modalVisible}                                        // 모달 표시 여부 상태
+            onRequestClose={() =&gt; setModalVisible(false)}                 // 안드로이드 뒤로가기 시 모달 닫기
           &gt;
             &lt;View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}&gt;
               &lt;Text&gt;모달 팝업 창 내용입니다!&lt;/Text&gt;
@@ -1123,11 +1068,7 @@ export function KeyboardLinkingModalExample() {
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [9] <code>PixelRatio</code> &amp; [10] <code>RefreshControl</code> 당겨서 새로고침 (교안 p.18~22)
         </div>
-        <pre class="code-block">// [9] PixelRatio: 기기의 픽셀 밀도(DPI 배율)와 폰트 배율을 조회하거나 레이아웃 크기(dp)를 실제 픽셀(px)로 변환
-//     - PixelRatio.get(): 기기 픽셀 밀도 반환 / PixelRatio.getFontScale(): 글꼴 크기 배율 반환
-//     - PixelRatio.getPixelSizeForLayoutSize(size): 레이아웃 사이즈를 실제 픽셀 크기로 변환 (size * PixelRatio.get())
-// [10] RefreshControl: ScrollView 나 FlatList 내부에서 화면을 아래로 당겨 새로고침(Pull-to-Refresh) 구현!
-import React, { useState, useRef, useCallback, useEffect } from "react";
+        <pre class="code-block">import React, { useState, useRef, useCallback, useEffect } from "react";
 import { ScrollView, RefreshControl, PixelRatio, Text, View } from "react-native";
 
 export function PixelAndRefreshExample() {
@@ -1135,29 +1076,29 @@ export function PixelAndRefreshExample() {
   const timeoutRef = useRef(null);
 
   const onRefresh = useCallback(() =&gt; {
-    if (refreshing) return; // 이미 새로고침 중이면 중복 실행 방지
-    setRefreshing(true);
+    if (refreshing) return;                                       // 이미 새로고침 중이면 중복 실행 방지
+    setRefreshing(true);                                          // 새로고침 로딩 스피너 표시 시작
     timeoutRef.current = setTimeout(() =&gt; {
-      setRefreshing(false);
+      setRefreshing(false);                                       // 2초 후 새로고침 스피너 종료
       timeoutRef.current = null;
-    }, 2000); // 2초 후 새로고침 스피너 종료
+    }, 2000);
   }, [refreshing]);
 
   useEffect(() =&gt; {
     return () =&gt; {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current); // 언마운트 시 타이머 정리
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);   // 언마운트 시 타이머 메모리 누수 방지
     };
   }, []);
 
-  const dpi = PixelRatio.get();
-  const fontScale = PixelRatio.getFontScale();
-  const realPx = PixelRatio.getPixelSizeForLayoutSize(50);
+  const dpi = PixelRatio.get();                                   // 기기 픽셀 밀도(DPI 배율) 조회
+  const fontScale = PixelRatio.getFontScale();                    // 기기 글꼴 크기 배율 조회
+  const realPx = PixelRatio.getPixelSizeForLayoutSize(50);        // 50dp를 실제 물리 픽셀(px) 크기로 변환
 
   return (
     &lt;ScrollView
       contentContainerStyle={{ flex: 1, justifyContent: "center", alignItems: "center" }}
       refreshControl={
-        &lt;RefreshControl refreshing={refreshing} onRefresh={onRefresh} /&gt;
+        &lt;RefreshControl refreshing={refreshing} onRefresh={onRefresh} /&gt; // 당겨서 새로고침(Pull-to-Refresh) 연결
       }
     &gt;
       &lt;Text&gt;아래로 당겨서 새로고침(Pull to Refresh) 해보세요!&lt;/Text&gt;
@@ -1240,20 +1181,18 @@ export function PixelAndRefreshExample() {
           &nbsp;&nbsp;👉 <b><code>countVar</code></b>: 함수 내부의 일반 지역 변수(<code>let countVar = 5;</code>)는 컴포넌트 함수가 다시 실행될 때 <b>초기값 <code>5</code>로 다시 초기화</b>되므로 이전에 더했던 <code>9</code>가 날아가고 화면에 <b style="color: var(--tag-danger-ink);"><code>CountVar: 5</code></b>가 출력됩니다!
         </div>
 
-        <pre class="code-block">// [교안 7주차 p.10 원본 코드] useState(리렌더링 트리거) vs useRef(값 유지) vs let(리렌더링 시 초기화)
-import React, { useState, useRef } from "react";
+        <pre class="code-block">import React, { useState, useRef } from "react";
 import { View, Text, Button } from "react-native";
 
 export function RefVsVarExample() {
-  const [render, setRender] = useState(false);
-  const countRef = useRef(0); // 리렌더링되어도 .current 값 유지!
-  let countVar = 5;           // 일반 지역변수: 리렌더링될 때마다 5로 다시 초기화됨!
+  const [render, setRender] = useState(false);  // 강제 리렌더링을 일으키기 위한 상태
+  const countRef = useRef(0);                   // 리렌더링되어도 .current 값 유지!
+  let countVar = 5;                             // 일반 지역변수: 리렌더링될 때마다 5로 다시 초기화됨!
 
   const increaseRefAndVar = () =&gt; {
-    countRef.current = countRef.current + 1;
-    countVar = countVar + 1;
+    countRef.current = countRef.current + 1;    // 값만 증가하고 화면 리렌더링은 발생하지 않음
+    countVar = countVar + 1;                    // 지역변수 증가 (리렌더링 시 5로 증발)
     console.log("Ref:", countRef.current, "Var:", countVar);
-    // 주의: 여기서는 setState를 호출하지 않았으므로 화면(UI)은 아직 바뀌지 않음!
   };
 
   return (
@@ -1261,7 +1200,7 @@ export function RefVsVarExample() {
       &lt;Text&gt;CountRef: {countRef.current}&lt;/Text&gt;
       &lt;Text&gt;CountVar: {countVar}&lt;/Text&gt;
       &lt;Button title="Increase Ref &amp; Variable" onPress={increaseRefAndVar} /&gt;
-      &lt;Button title="Re-render (화면 갱신)" onPress={() =&gt; setRender(!render)} /&gt;
+      &lt;Button title="Re-render (화면 갱신)" onPress={() =&gt; setRender(!render)} /&gt; // 클릭 시 리렌더링 발생!
     &lt;/View&gt;
   );
 }</pre>
@@ -1269,35 +1208,30 @@ export function RefVsVarExample() {
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [코드 7-2] <code>useState</code> + <code>useRef</code>를 결합한 <code>A × B</code> 곱셈 계산기 및 자동 포커스 이동 (교안 p.8, p.11~13 통합)
         </div>
-        <pre class="code-block">// [교안 7주차 p.8 &amp; p.12~13] A * B 계산 후 첫 번째 입력창(inputRef)으로 커서(포커스) 자동 이동!
-import React, { useState, useRef } from "react";
+        <pre class="code-block">import React, { useState, useRef } from "react";
 import { StyleSheet, View, Text, TextInput, Button } from "react-native";
 
 export default function MultiplyWithFocus() {
   const [a, setA] = useState("");
   const [b, setB] = useState("");
   const [result, setResult] = useState(null);
-
-  // 1. 포커스를 제어할 ref 객체 생성
-  const inputRef = useRef(null);
+  const inputRef = useRef(null);                          // 1. 포커스를 제어할 ref 객체 생성
 
   const handleMultiply = () =&gt; {
     const numA = parseFloat(a);
     const numB = parseFloat(b);
     if (!isNaN(numA) &amp;&amp; !isNaN(numB)) {
-      setResult(numA * numB);
+      setResult(numA * numB);                             // A * B 곱셈 결과를 상태에 저장
     } else {
       setResult("올바른 숫자를 입력하세요");
     }
-    // 2. 계산 완료 후 첫 번째 TextInput(A)으로 커서 포커스 즉시 이동!
-    inputRef.current?.focus(); // (또는 inputRef.current.focus();)
+    inputRef.current?.focus();                            // 2. 계산 완료 후 첫 번째 TextInput(A)으로 커서 포커스 즉시 이동!
   };
 
   return (
     &lt;View style={styles.container}&gt;
-      {/* 3. ref={inputRef} 속성으로 TextInput 컴포넌트와 ref 연결! */}
       &lt;TextInput
-        ref={inputRef}
+        ref={inputRef}                                    // 3. ref={inputRef} 속성으로 TextInput 컴포넌트와 ref 연결!
         style={styles.input}
         placeholder="첫 번째 숫자 (A)"
         keyboardType="numeric"
@@ -1354,23 +1288,17 @@ const styles = StyleSheet.create({
           </tbody>
         </table>
 
-        <pre class="code-block">// [교안 7주차 p.18~19] useMemo를 활용한 불필요한 재계산 방지 완벽 코드
-// ★ 핵심 포인트:
-// - text 입력창에 글자를 칠 때마다 컴포넌트가 리렌더링되지만, count 값은 바뀌지 않았으므로
-//   useMemo 내부의 console.log("계산 중...")은 다시 실행되지 않고 이전 캐시 결과값을 그대로 재사용함!
-// - 오직 [+1] 버튼을 눌러 count가 바뀔 때만 useMemo 콜백이 다시 실행됨!
-import React, { useState, useMemo } from "react";
+        <pre class="code-block">import React, { useState, useMemo } from "react";
 import { View, Text, TextInput, Button } from "react-native";
 
 export default function UseMemoExample() {
   const [count, setCount] = useState(0);
   const [text, setText] = useState("");
 
-  // count가 변경될 때만 (count * 2) 연산을 수행하고, text만 바뀔 때는 캐싱된 값을 그대로 반환!
-  const double = useMemo(() =&gt; {
+  const double = useMemo(() =&gt; {                          // count가 바뀔 때만 재계산하고, text만 바뀔 때는 캐시값 재사용!
     console.log("계산 중... (count가 변경되었을 때만 찍힘!)");
     return count * 2;
-  }, [count]);
+  }, [count]);                                            // 의존성 배열에 [count] 지정
 
   return (
     &lt;View style={{ flex: 1, justifyContent: "center", padding: 20 }}&gt;
@@ -1379,7 +1307,7 @@ export default function UseMemoExample() {
 
       &lt;TextInput
         value={text}
-        onChangeText={setText}
+        onChangeText={setText}                            // 글자를 입력해 리렌더링되어도 useMemo는 재실행되지 않음!
         placeholder="여기에 글자를 입력해도 useMemo는 재계산되지 않습니다!"
         style={{ borderWidth: 1, marginTop: 16, padding: 8 }}
       /&gt;
@@ -1443,14 +1371,13 @@ export default function UseMemoExample() {
           </tbody>
         </table>
 
-        <pre class="code-block">// [교안 7주차 p.20~21] 상세 조건을 100% 준수한 계산기(Calculator) 핵심 구현 코드
-import React, { useState } from "react";
+        <pre class="code-block">import React, { useState } from "react";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 
 export default function CalculatorApp() {
-  const [displayValue, setDisplayValue] = useState("0");
-  const [prevValue, setPrevValue] = useState(null);
-  const [operator, setOperator] = useState(null);
+  const [displayValue, setDisplayValue] = useState("0");    // 화면 표시 숫자 문자열
+  const [prevValue, setPrevValue] = useState(null);         // 이전 입력 피연산자 저장
+  const [operator, setOperator] = useState(null);           // 선택된 사칙연산자 저장
 
   const handleNumberPress = (num) =&gt; {
     setDisplayValue(displayValue === "0" ? String(num) : displayValue + num);
@@ -1510,15 +1437,15 @@ export default function CalculatorApp() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "black", justifyContent: "flex-end", padding: 12 },
+  container: { flex: 1, backgroundColor: "black", justifyContent: "flex-end", padding: 12 },   // 전체 배경 'black' 필수!
   displayContainer: { padding: 16, justifyContent: "flex-end" },
-  displayText: { color: "white", fontSize: 84, fontWeight: "300", textAlign: "right" },
+  displayText: { color: "white", fontSize: 84, fontWeight: "300", textAlign: "right" },        // 결과 글자 84, 우측 정렬!
   row: { flexDirection: "row", marginBottom: 8 },
-  button: { flex: 1, height: 64, margin: 4, borderRadius: 32, justifyContent: "center", alignItems: "center" },
-  numberButton: { backgroundColor: "#2f2f2f" },
-  operatorButton: { backgroundColor: "#F5A623" },
-  utilityButton: { backgroundColor: "#555" },
-  buttonText: { color: "white", fontSize: 30, fontWeight: "500" },
+  button: { flex: 1, height: 64, margin: 4, borderRadius: 32, justifyContent: "center", alignItems: "center" }, // 높이 64!
+  numberButton: { backgroundColor: "#2f2f2f" },                                                // 숫자 버튼 '#2f2f2f'
+  operatorButton: { backgroundColor: "#F5A623" },                                              // 연산자 버튼 '#F5A623'
+  utilityButton: { backgroundColor: "#555" },                                                  // 기능 버튼 '#555'
+  buttonText: { color: "white", fontSize: 30, fontWeight: "500" },                             // 버튼 글자 크기 30
 });</pre>
       </div>
     </section>
