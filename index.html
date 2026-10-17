@@ -18,23 +18,22 @@
   <div class="nav-container">
     <!-- Row 1: Brand, Mode Switcher, Controls -->
     <div class="nav-top-row">
-      <!-- Brand Title -->
-      <div class="brand-box" onclick="location.reload()">
-        <div class="brand-code">DOSSIER</div>
-        <div>
-          <h1 class="brand-title">EXAM MASTER <span class="badge badge-accent">ARCHIVE</span></h1>
-          <div class="brand-sub">대학 시험 전용 개념 총정리 &amp; 실전 모의고사 평가 시스템</div>
+      <div class="nav-left-group">
+        <!-- Brand Title -->
+        <div class="brand-box" onclick="location.reload()">
+          <div class="brand-code">DOSSIER</div>
+          <h1 class="brand-title">EXAM MASTER</h1>
         </div>
-      </div>
 
-      <!-- Mode Switcher -->
-      <div class="mode-switcher">
-        <button class="mode-btn active" id="modeBtnConcept" onclick="switchMainMode('concept')">
-          <span>개념 총정리</span>
-        </button>
-        <button class="mode-btn" id="modeBtnExam" onclick="switchMainMode('exam')">
-          <span>실전 모의고사</span>
-        </button>
+        <!-- Mode Switcher -->
+        <div class="mode-switcher">
+          <button class="mode-btn active" id="modeBtnConcept" onclick="switchMainMode('concept')">
+            <span>개념 총정리</span>
+          </button>
+          <button class="mode-btn" id="modeBtnExam" onclick="switchMainMode('exam')">
+            <span>실전 모의고사</span>
+          </button>
+        </div>
       </div>
 
       <!-- Controls -->
@@ -48,25 +47,10 @@
           <option value="__add__">+ 새 과목 추가 / 가이드...</option>
         </select>
 
-        <!-- 7-min Open Book Timer -->
-        <div class="timer-pill" title="오픈북 7분 실전 타이머">
-          <span class="timer-tag">TIMER</span>
-          <span id="timerDisplay" class="timer-val">07:00</span>
-          <button class="timer-btn" onclick="toggleTimer()" id="timerToggleBtn">시작</button>
-          <button class="timer-btn" onclick="resetTimer()">리셋</button>
-        </div>
-
         <!-- Self Test Masking Toggle -->
         <button class="icon-btn" id="quizModeBtn" onclick="toggleQuizMode()" title="정답을 가려 실전 자가 테스트 진행">
           <span id="quizBtnLabel">자가 테스트</span>
         </button>
-
-        <!-- Font Size Controls -->
-        <button class="icon-btn" onclick="changeFontSize(-1)" title="글자 축소">A-</button>
-        <button class="icon-btn" onclick="changeFontSize(1)" title="글자 확대">A+</button>
-
-        <!-- Print / PDF -->
-        <button class="icon-btn" onclick="window.print()" title="A4 치트시트 인쇄 또는 PDF 저장">인쇄</button>
 
         <!-- Theme Toggle -->
         <button class="icon-btn" onclick="toggleTheme()" id="themeBtn">DARK</button>
