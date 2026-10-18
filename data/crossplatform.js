@@ -1,15 +1,15 @@
 // ========================================================
 // 📱 [DATA MODULE] 크로스플랫폼 프로그래밍 (Cross-Platform Programming)
 // 담당 교수: 정종수 (jungjongsoo@yahoo.com)
-// 2주차 ~ 7주차 전범위 개념 총정리 & 교수님 공지 10대 적중 모의고사
+// 3주차 ~ 7주차 교안 PDF 원문 및 교수님 공지 100% 전수 반영
 // ========================================================
 window.CONCEPT_DATABASE = window.CONCEPT_DATABASE || {};
 window.EXAM_DATABASE = window.EXAM_DATABASE || {};
 
-// 1. 크로스플랫폼 프로그래밍 개념 총정리
+// 1. 크로스플랫폼 프로그래밍 개념 총정리 (3주차~7주차)
 window.CONCEPT_DATABASE.crossplatform = {
   id: "crossplatform",
-  title: "📱 크로스플랫폼 프로그래밍 (정종수 교수) 2~7주차 전범위 핵심 총정리 & 시험대비 치트시트",
+  title: "📱 크로스플랫폼 프로그래밍 (정종수 교수) 3~7주차 핵심 총정리 & 시험대비 치트시트",
   filterChips: [
     { id: "all", label: "전체보기" },
     { id: "cp-cheat", label: "⚡ 1초 정답 치트키 (15선)", class: "amber-chip" },
@@ -27,98 +27,98 @@ window.CONCEPT_DATABASE.crossplatform = {
         <div class="section-banner-title">
           <span>⚡ 크로스플랫폼 1초 정답 치트키 (시험 빈출 & 핵심 키워드 15선)</span>
         </div>
-        <span style="font-size: 13.5px; opacity: 0.95;">시험 문제 지문 확인 즉시 작성할 단답형 핵심 키워드 모음</span>
+        <span style="font-size: 13.5px; opacity: 0.95;">교안 PDF 원문 기반 단답형/빈칸 출제 1순위 키워드 모음</span>
       </div>
 
       <div class="qa-grid">
         <div class="qa-card">
           <div class="qa-q"><span class="q-icon">Q1</span><span>리액트 네이티브에서 레이아웃의 기본 주축 정렬 방향(flexDirection) 기본값은?</span></div>
           <div class="qa-a"><span class="ans-target">column (세로 방향)</span><button class="copy-btn" onclick="copyText('column')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 일반 웹 CSS(row)와 달리 모바일 환경이므로 세로(column)가 기본값임</div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 일반 웹 CSS(row)와 달리 모바일 환경이므로 세로(column)가 기본값임 (3주차 p.5)</div>
         </div>
 
         <div class="qa-card">
           <div class="qa-q"><span class="q-icon">Q2</span><span>두 개 이상의 스타일 객체를 병합하여 컴포넌트에 동시 적용할 때 사용하는 표기법은?</span></div>
           <div class="qa-a"><span class="ans-target">배열 표기법 [styles.a, styles.b]</span><button class="copy-btn" onclick="copyText('[styles.a, styles.b]')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 배열 뒤쪽에 위치한 스타일이 앞쪽 스타일을 덮어씀(오버라이드)</div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 배열 뒤쪽에 위치한 스타일이 앞쪽 스타일을 덮어씀(오버라이드) (3주차 p.13)</div>
         </div>
 
         <div class="qa-card">
-          <div class="qa-q"><span class="q-icon">Q3</span><span>대용량 목록을 최적화하여 화면에 보이는 부분만 지연 렌더링하는 컴포넌트의 3대 필수 Props는?</span></div>
+          <div class="qa-q"><span class="q-icon">Q3</span><span>대용량 목록을 최적화하여 화면에 보이는 부분만 지연 렌더링하는 FlatList의 3대 필수 Props는?</span></div>
           <div class="qa-a"><span class="ans-target">data, renderItem, keyExtractor</span><button class="copy-btn" onclick="copyText('data, renderItem, keyExtractor')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* ScrollView와 달리 FlatList는 화면 밖의 메모리를 효율적으로 재활용함</div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* data: 데이터 배열, renderItem: 렌더링 콜백, keyExtractor: 고유키 추출 (5주차 p.12)</div>
         </div>
 
         <div class="qa-card">
           <div class="qa-q"><span class="q-icon">Q4</span><span>값 변경 시 컴포넌트 리렌더링을 유발하지 않고 유지되는 Hook과 값 접근 프로퍼티는?</span></div>
           <div class="qa-a"><span class="ans-target">useRef / .current</span><button class="copy-btn" onclick="copyText('useRef / .current')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* useState는 세터 호출 시 리렌더링 유발, useRef는 리렌더링 없이 값 유지 및 DOM 제어</div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* useState는 세터 호출 시 리렌더링 유발, useRef는 리렌더링 없이 값 유지 및 DOM/TextInput 제어 (7주차 p.8)</div>
         </div>
 
         <div class="qa-card">
           <div class="qa-q"><span class="q-icon">Q5</span><span>useEffect에서 컴포넌트가 화면에 '최초 마운트될 때 딱 1번만 실행'되게 하는 의존성 배열 인자는?</span></div>
           <div class="qa-a"><span class="ans-target">빈 배열 [] (Empty Dependency Array)</span><button class="copy-btn" onclick="copyText('[]')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 의존성 배열 생략 시 매 렌더링마다 실행, [count] 전달 시 count 변경 시마다 실행</div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 의존성 배열 생략 시 매 렌더링마다 실행, [count] 전달 시 count 변경 시마다 실행 (7주차 p.14)</div>
         </div>
 
         <div class="qa-card">
           <div class="qa-q"><span class="q-icon">Q6</span><span>연산 비용이 큰 계산 결과값을 메모리에 캐싱하여 불필요한 재계산을 방지하는 최적화 Hook은?</span></div>
           <div class="qa-a"><span class="ans-target">useMemo</span><button class="copy-btn" onclick="copyText('useMemo')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 의존성 배열의 값이 변경되었을 때만 계산 함수를 다시 실행함</div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 의존성 배열의 값이 변경되었을 때만 계산 함수를 다시 실행함 (7주차 p.16)</div>
         </div>
 
         <div class="qa-card">
           <div class="qa-q"><span class="q-icon">Q7</span><span>안드로이드의 하드웨어 뒤로가기 버튼을 감지하고 기본 시스템 동작을 차단할 때 반환하는 boolean 값은?</span></div>
           <div class="qa-a"><span class="ans-target">true</span><button class="copy-btn" onclick="copyText('true')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* false 반환 시 기본 뒤로가기 실행, true 반환 시 커스텀 로직(Alert 등) 수행</div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* false 반환 시 기본 뒤로가기(즉시종료) 실행, true 반환 시 커스텀 로직(Alert 등) 수행 (6주차 p.4)</div>
         </div>
 
         <div class="qa-card">
           <div class="qa-q"><span class="q-icon">Q8</span><span>상태바와 소프트키를 제외한 실제 앱 가용 영역의 해상도를 픽셀 단위로 구하는 API 메서드는?</span></div>
           <div class="qa-a"><span class="ans-target">Dimensions.get('window')</span><button class="copy-btn" onclick="copyText('Dimensions.get(\\'window\\')')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 'screen'은 기기의 물리적 전체 화면 크기를 반환함</div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 'screen'은 기기의 물리적 전체 화면 크기를 반환함 (6주차 p.11)</div>
         </div>
 
         <div class="qa-card">
           <div class="qa-q"><span class="q-icon">Q9</span><span>TextInput에서 비밀번호를 별표(***)나 점으로 숨겨주는 boolean 속성(Prop)은?</span></div>
-          <div class="qa-a"><span class="ans-target">secureTextEntry={true}</span><button class="copy-btn" onclick="copyText('secureTextEntry')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 숫자 키패드만 띄우려면 keyboardType='numeric' 사용</div>
+          <div class="qa-a"><span class="ans-target">secureTextEntry</span><button class="copy-btn" onclick="copyText('secureTextEntry')">복사</button></div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 교안 4주차 p.15 및 6주차: secureTextEntry={true/false}</div>
         </div>
 
         <div class="qa-card">
           <div class="qa-q"><span class="q-icon">Q10</span><span>인터넷 URL에서 가져오는 원격 네트워크 이미지(&lt;Image /&gt;)에 반드시 명시해야 하는 2가지 스타일은?</span></div>
           <div class="qa-a"><span class="ans-target">width, height (가로 및 세로 크기)</span><button class="copy-btn" onclick="copyText('width, height')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 로컬 require 이미지는 크기 자동 추론되나, 원격 uri 이미지는 크기 미지정 시 렌더링 안 됨</div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 로컬 require 이미지는 크기 자동 추론되나, 원격 uri 이미지는 크기 미지정 시 렌더링 안 됨 (6주차 p.18 PixelRatio)</div>
         </div>
 
         <div class="qa-card">
-          <div class="qa-q"><span class="q-icon">Q11</span><span>가상 키보드가 폼 입력창을 가리지 않도록 뷰를 자동으로 밀어올려주는 컴포넌트는?</span></div>
-          <div class="qa-a"><span class="ans-target">KeyboardAvoidingView</span><button class="copy-btn" onclick="copyText('KeyboardAvoidingView')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 바깥 영역 터치 시 키보드를 닫는 API는 Keyboard.dismiss</div>
+          <div class="qa-q"><span class="q-icon">Q11</span><span>가상 키보드가 폼 입력창을 가리지 않도록 뷰를 자동으로 밀어올려주는 컴포넌트와 키보드 닫기 API는?</span></div>
+          <div class="qa-a"><span class="ans-target">KeyboardAvoidingView / Keyboard.dismiss</span><button class="copy-btn" onclick="copyText('KeyboardAvoidingView / Keyboard.dismiss')">복사</button></div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 빈 화면 터치 시 TouchableWithoutFeedback에 Keyboard.dismiss 연결 (6주차 p.13~14)</div>
         </div>
 
         <div class="qa-card">
           <div class="qa-q"><span class="q-icon">Q12</span><span>외부 웹 브라우저나 타 애플리케이션을 URL 스킴으로 호출하여 실행하는 API는?</span></div>
           <div class="qa-a"><span class="ans-target">Linking (Linking.openURL)</span><button class="copy-btn" onclick="copyText('Linking.openURL')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 예: Linking.openURL('https://blog.naver.com/jongsoo67')</div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 교안 예제: Linking.openURL('https://blog.naver.com/jongsoo67') (6주차 p.15)</div>
         </div>
 
         <div class="qa-card">
-          <div class="qa-q"><span class="q-icon">Q13</span><span>교안에서 명시한 React Native 안드로이드 빌드용 필수 JDK 버전은?</span></div>
-          <div class="qa-a"><span class="ans-target">JDK 21</span><button class="copy-btn" onclick="copyText('JDK 21')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 2주차 교안 슬라이드 20페이지 명시: '주의: JDK 21 설치'</div>
+          <div class="qa-q"><span class="q-icon">Q13</span><span>JSX 텍스트 내부에서 강제 줄바꿈(개행)을 처리하기 위한 표현식은?</span></div>
+          <div class="qa-a"><span class="ans-target">{"\\n"}</span><button class="copy-btn" onclick="copyText('{\\\"\\\\n\\\"}')">복사</button></div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 3주차 p.9 교안: 학과: 소프트웨어공학 {"\\n"}학번: 123456{"\\n"}이름: 홍길동</div>
         </div>
 
         <div class="qa-card">
-          <div class="qa-q"><span class="q-icon">Q14</span><span>React Hook의 2대 사용 제한 규칙은?</span></div>
-          <div class="qa-a"><span class="ans-target">1) 최상위(Top-level)에서만 호출 / 2) React 함수형 컴포넌트 내에서만 호출</span><button class="copy-btn" onclick="copyText('최상위에서만 호출, 함수형 컴포넌트 내에서만 호출')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* if 조건문, for 반복문, 일반 JS 함수 안에서는 Hook을 호출할 수 없음</div>
+          <div class="qa-q"><span class="q-icon">Q14</span><span>React Hook의 3대 사용 제한 규칙은?</span></div>
+          <div class="qa-a"><span class="ans-target">1) 'use' 접두사 / 2) 최상위(Top-level) 호출 / 3) React 함수 컴포넌트 및 커스텀 Hook 내에서만 호출</span><button class="copy-btn" onclick="copyText('use 접두사, 최상위 호출, 함수 컴포넌트 내에서만 호출')">복사</button></div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* if 조건문, for 반복문, 일반 JS 함수 안에서는 Hook을 호출할 수 없음 (7주차 p.3)</div>
         </div>
 
         <div class="qa-card">
-          <div class="qa-q"><span class="q-icon">Q15</span><span>7주차 계산기 실습 교안에서 제시된 숫자 버튼의 배경색(backgroundColor) Hex 코드는?</span></div>
-          <div class="qa-a"><span class="ans-target">#2f2f2f</span><button class="copy-btn" onclick="copyText('#2f2f2f')">복사</button></div>
-          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 연산자 버튼: #F5A623, 유틸리티 버튼: #555, 배경: black</div>
+          <div class="qa-q"><span class="q-icon">Q15</span><span>7주차 계산기 실습 교안에서 제시된 3종 버튼의 배경색(backgroundColor) Hex 코드는?</span></div>
+          <div class="qa-a"><span class="ans-target">숫자: #2f2f2f / 연산자: #F5A623 / 유틸리티: #555</span><button class="copy-btn" onclick="copyText('숫자: #2f2f2f, 연산자: #F5A623, 유틸리티: #555')">복사</button></div>
+          <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">* 전체 배경: black, displayText: color white, fontSize 84, textAlign right, button height: 64 (7주차 p.19)</div>
         </div>
       </div>
     </section>
@@ -129,7 +129,7 @@ window.CONCEPT_DATABASE.crossplatform = {
         <div class="section-banner-title">
           <span>🎯 교수님 공지 시험 개요 & 감점 방지 필수 채점 기준</span>
         </div>
-        <span style="font-size: 13.5px; opacity: 0.95;">수업 녹음본(새로운 노트 (1).txt) 발췌 및 정밀 분석</span>
+        <span style="font-size: 13.5px; opacity: 0.95;">수업 녹음본(새로운 노트 (1).txt) 및 7주차 교안 p.20 직접 발췌 정밀 분석</span>
       </div>
 
       <div class="concept-card">
@@ -150,12 +150,12 @@ window.CONCEPT_DATABASE.crossplatform = {
             <tr>
               <td style="font-weight: 800; color: var(--accent);">시험 장소</td>
               <td><b>후관 103호 (후 103)</b></td>
-              <td>원래 강의실에서 실시</td>
+              <td>원래 강의실에서 실시 (7주차 교안 p.20 명시)</td>
             </tr>
             <tr>
               <td style="font-weight: 800; color: var(--accent);">시험 범위</td>
-              <td><b>2주차 ~ 7주차 교안 전 범위</b></td>
-              <td>2장 개발환경 구축부터 7장 Hook(useState, useMemo 등)까지</td>
+              <td><b>3주차 ~ 7주차 교안 전 범위</b></td>
+              <td>스타일링부터 7장 Hook(useState, useMemo 등) 및 계산기 실습까지</td>
             </tr>
             <tr>
               <td style="font-weight: 800; color: var(--accent);">문항 수 & 형식</td>
@@ -171,47 +171,49 @@ window.CONCEPT_DATABASE.crossplatform = {
         </table>
 
         <div class="callout-box" style="margin-top: 16px; border-left: 4px solid var(--tag-gold-ink);">
-          <div class="callout-title">💡 시험에 출제되는 4대 주관식 유형</div>
+          <div class="callout-title">💡 시험에 출제되는 4대 주관식 유형 (교수님 직접 언급)</div>
           <ul style="margin-left: 20px; font-size: 14.5px; line-height: 1.8; color: var(--ink-secondary);">
-            <li><b>1) 코드 빈칸 채우기</b>: 주요 컴포넌트 선언문, Props 속성명, Hook 선언부의 빈칸 완성</li>
-            <li><b>2) 코드 동작 원리 및 개념 설명 서술형</b>: 코드가 어떻게 동작하는지 설명 (useState vs useRef, useEffect 의존성 배열 동작 등)</li>
-            <li><b>3) 코드 실행 결과 예측 및 값 도출형</b>: 특정 조건이나 이벤트(버튼 클릭) 발생 후 화면에 어떤 값이 출력되는지 예측</li>
-            <li><b>4) 조건 기반 컴포넌트 완성형</b>: 제시된 기능과 상세 스타일 조건에 맞추어 주관식 컴포넌트 코드 완성</li>
+            <li><b>1) 코드 빈칸 채우기</b>: <i>"예를 들어서 코드를 채워 넣으시오."</i> (컴포넌트 선언문, Props 속성명, Hook 빈칸)</li>
+            <li><b>2) 코드 동작 원리 및 개념 설명 서술형</b>: <i>"이 코드가 어떤 의미를 하는지 어떻게 동작하는지 설명하시오."</i> (useState vs useRef, useEffect 의존성 배열, useMemo 목적)</li>
+            <li><b>3) 코드 실행 결과 예측 및 값 도출형</b>: <i>"이 부분을 썼을 때 이러한 조건을 했을 때 어떤 답이 나옵니까?"</i> (클릭 이벤트 후 화면 출력값 예측)</li>
+            <li><b>4) 조건 기반 컴포넌트 완성형</b>: <i>"다 앱을 완성하시오 하는 다 주관식으로 낼 예정입니다."</i> (계산기, 포커스 이동, 버튼 카운터 등)</li>
           </ul>
         </div>
       </div>
     </section>
+
     <!-- SECTION 3: 3주차 스타일링 & Flexbox -->
     <section id="cp-w3" class="concept-section">
       <div class="section-banner danger-banner">
         <div class="section-banner-title">
-          <span>📂 3주차: 컴포넌트 스타일링 &amp; Flexbox 레이아웃 완벽 마스터 (교안 p.1~19)</span>
+          <span>📂 3주차: 컴포넌트 스타일링 & Flexbox 레이아웃 완벽 마스터 (교안 p.1~19)</span>
         </div>
-        <span class="badge badge-amber">주관식 서술형 &amp; 빈칸 100% 출제</span>
+        <span class="badge badge-amber">주관식 서술형 & 빈칸 100% 출제</span>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">3-1. 웹 CSS vs React Native 스타일링의 결정적 차이점</div>
+        <div class="concept-card-title">3-1. 웹 CSS vs React Native 스타일링의 결정적 차이점 (교안 p.3~10)</div>
         <ul style="font-size: 14.5px; color: var(--ink-secondary); line-height: 1.8; padding-left: 20px; margin-bottom: 14px;">
           <li><b>카멜 표기법(camelCase) 사용</b>: 하이픈(<code>-</code>) 대신 대문자로 연결합니다. (예: <code>background-color</code> → <b><code>backgroundColor</code></b>, <code>font-size</code> → <b><code>fontSize</code></b>, <code>justify-content</code> → <b><code>justifyContent</code></b>)</li>
-          <li><b>단위(px, pt) 생략</b>: 크기나 여백 수치에 <code>px</code>를 붙이지 않고 <b>숫자(Number)만 작성</b>합니다. (예: <code>padding: 10</code>, <code>fontSize: 20</code>, <code>height: 80</code>)</li>
-          <li><b>문자열 속성값</b>: 숫자가 아닌 키워드나 색상, <code>fontWeight</code> 두께 값은 따옴표 문자열로 감쌉니다. (예: <code>fontWeight: "600"</code>, <code>color: "#ff0000"</code>)</li>
-          <li><b>JSX 줄바꿈과 주석 (교안 p.2~4)</b>:
-            <ul style="padding-left: 18px; margin-top: 4px;">
-              <li>텍스트 안에서 강제 줄바꿈을 넣을 때는 <b><code>{"\\n"}</code></b> 표현식을 사용합니다!</li>
-              <li>JSX 태그 내부에서 주석을 달 때는 <b><code>{/* 주석 내용 */}</code></b> 형태를 사용합니다.</li>
-            </ul>
+          <li><b>단위(px, pt) 생략</b>: 크기나 여백 수치에 <code>px</code>를 붙이지 않고 <b>숫자(Number)만 작성</b>합니다. (예: <code>padding: 10</code>, <code>fontSize: 26</code>, <code>flex: 1</code>)</li>
+          <li><b>문자열 속성값</b>: 숫자가 아닌 색상명(<code>"black"</code>, <code>"red"</code>)이나 <code>fontWeight</code> 값은 <b>따옴표 문자열</b>로 감쌉니다. (예: <code>fontWeight: "600"</code>, <code>color: "#fff"</code>)</li>
+          <li><b style="color: var(--tag-danger-ink);">JSX 줄바꿈 (교안 p.9)</b>: 텍스트 내부에서 강제 개행(줄바꿈)을 수행할 때는 <b><code>{"\\n"}</code></b> 표현식을 사용합니다!
+            <br>• 교안 예문: <code>처음 시작하는 리액트 네이티브 프로그래밍 !{"\\n"} 학과: 소프트웨어공학 {"\\n"}학번: 123456{"\\n"}이름: 홍길동</code>
+          </li>
+          <li><b>JSX 주석 문법 (교안 p.10)</b>:
+            <br>• JSX 태그 내부 주석: <b><code>{ /* &lt;Text&gt;...&lt;/Text&gt; */ }</code></b> (중괄호 안에 슬래시-별 주석)
+            <br>• 일반 자바스크립트 영역 주석: <code>// 단일행 주석</code>, <code>/* 다중행 주석 */</code>
           </li>
         </ul>
 
-        <div class="concept-card-title">3-2. Flexbox 3대 정렬 속성과 기본값 (★ 시험 0순위 암기표)</div>
+        <div class="concept-card-title">3-2. Flexbox 3대 정렬 속성과 기본값 (교안 p.5~7 ★ 시험 0순위 암기표)</div>
         <table class="concept-table">
           <thead>
             <tr>
               <th style="width: 22%;">Flexbox 속성명</th>
               <th style="width: 22%;">RN 기본값 (Default)</th>
               <th style="width: 22%;">정렬 기준 축</th>
-              <th>세부 옵션값 및 정렬 동작 설명</th>
+              <th>세부 옵션값 및 정렬 동작 설명 (교안 원문)</th>
             </tr>
           </thead>
           <tbody>
@@ -231,12 +233,12 @@ window.CONCEPT_DATABASE.crossplatform = {
               <td><b style="color: var(--tag-gold-ink);"><code>flex-start</code></b></td>
               <td><b>주축(Main Axis)과 동일한 방향</b>으로 정렬</td>
               <td>
-                • <b><code>flex-start</code></b> (기본값): 주축의 시작점 정렬<br>
-                • <b><code>center</code></b>: 주축의 정중앙 정렬<br>
-                • <b><code>flex-end</code></b>: 주축의 끝점 정렬<br>
-                • <b><code>space-between</code></b>: 양 끝 밀착 후 사이 간격 균등 분배<br>
-                • <b><code>space-around</code></b>: 각 아이템 양옆에 동일한 여백 부여<br>
-                • <b><code>space-evenly</code></b>: 양 끝과 아이템 사이 모든 여백을 완전히 동일하게 분배
+                • <b><code>flex-start</code></b>: 시작점에서부터 정렬<br>
+                • <b><code>flex-end</code></b>: 끝에서부터 정렬<br>
+                • <b><code>center</code></b>: 중앙 정렬<br>
+                • <b><code>space-between</code></b>: 컴포넌트 사이 공간을 동일하게 정렬<br>
+                • <b><code>space-around</code></b>: 컴포넌트 각각의 주변 공간을 동일하게 정렬<br>
+                • <b><code>space-evenly</code></b>: 컴포넌트 사이와 양 끝에 동일한 공간 생성
               </td>
             </tr>
             <tr>
@@ -244,11 +246,11 @@ window.CONCEPT_DATABASE.crossplatform = {
               <td><b style="color: var(--tag-gold-ink);"><code>stretch</code></b></td>
               <td>주축과 수직인 <b>교차축(Cross Axis) 방향</b>으로 정렬</td>
               <td>
-                • <b><code>stretch</code></b> (기본값): 교차축 방향으로 끝까지 늘림 (자식의 고정 크기가 없을 때)<br>
-                • <b><code>flex-start</code></b>: 교차축의 시작점 정렬<br>
-                • <b><code>center</code></b>: 교차축의 중앙 정렬<br>
-                • <b><code>flex-end</code></b>: 교차축의 끝점 정렬<br>
-                • <b><code>baseline</code></b>: 텍스트 기준선에 맞춰 정렬
+                • <b><code>stretch</code></b>: alignItems의 방향으로 컴포넌트 확장 (자식 크기 미지정 시)<br>
+                • <b><code>flex-start</code></b>: 시작점에서부터 정렬<br>
+                • <b><code>flex-end</code></b>: 끝에서부터 정렬<br>
+                • <b><code>center</code></b>: 중앙 정렬<br>
+                • <b><code>baseline</code></b>: 컴포넌트 내부 텍스트 베이스라인 기준 정렬
               </td>
             </tr>
           </tbody>
@@ -256,1148 +258,965 @@ window.CONCEPT_DATABASE.crossplatform = {
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">3-3. 3주차 교안 전체 실습 코드 5종 완벽 수록 (p.2~19)</div>
+        <div class="concept-card-title">3-3. 3주차 교안 전체 실습 코드 (p.11~17)</div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
-          💻 [코드 3-1] 인라인 스타일링(Inline Styling)과 <code>{"\\n"}</code> 줄바꿈 (교안 p.2~4)
+          💻 [코드 3-1] 인라인 스타일링(Inline Styling) (교안 p.11 원문)
         </div>
         <div class="code-preview-grid">
           <div class="code-col">
             <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React from "react";
-import { View, Text } from "react-native";
-
-const App = () =&gt; {
+            <pre class="code-block">export default function App() {
   return (
     &lt;View
-      style={{                      // 이중 중괄호 {{ }}로 인라인 스타일 객체 전달
-        flex: 1,                    // 전체 화면 영역 차지
-        backgroundColor: "#fff",    // 카멜 표기법(camelCase) 배경색
-        alignItems: "center",       // 교차축(가로) 중앙 정렬
-        justifyContent: "center",   // 주축(세로) 중앙 정렬
-      }}
-    &gt;
+      style={{
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+      }}&gt;
       &lt;Text
         style={{
-          padding: 10,              // 숫자만 작성 (px 생략)
+          padding: 10,
           fontSize: 26,
-          fontWeight: "600",        // 두께는 문자열로 지정
+          fontWeight: "600", // 숫자가 아닌 문자열
           color: "black",
-        }}
-      &gt;
+        }}&gt;
         Inline Styling - Text
       &lt;/Text&gt;
       &lt;Text
         style={{
           padding: 10,
-          fontSize: 20,
-          fontWeight: "400",
+          fontSize: 26,
+          fontWeight: "400", // 숫자가 아닌 문자열
           color: "red",
-        }}
-      &gt;
-        Inline Styling - Error{"\\n"}새로운 줄입니다.  // {"\n"}으로 강제 줄바꿈
+        }}&gt;
+        Inline Styling - Error
       &lt;/Text&gt;
     &lt;/View&gt;
   );
-};
-
-export default App;</pre>
+}</pre>
           </div>
           <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.11)</div>
             <div class="phone-device-frame">
               <img src="assets/crossplatform/week3_p11_0_Image55.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">인라인 스타일 적용 결과<br>(Inline Styling - Text 및 Error 줄바꿈)</div>
+              <div class="phone-device-caption">인라인 스타일 적용 결과<br>Text(검정, 600) vs Error(빨강, 400)</div>
             </div>
           </div>
         </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
-          💻 [코드 3-2] 클래스 스타일링(<code>StyleSheet.create</code>)과 다중 스타일 배열 결합 (교안 p.12~14)
+          💻 [코드 3-2] 여러 개의 스타일 적용 (배열 문법) (교안 p.13 원문)
         </div>
         <div class="code-preview-grid">
           <div class="code-col">
             <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React from "react";
-import { StyleSheet, View, Text } from "react-native";
-
-const App = () =&gt; {
+            <pre class="code-block">export default function App() {
   return (
     &lt;View style={styles.container}&gt;
-      &lt;Text style={styles.text}&gt;StyleSheet - Text&lt;/Text&gt;
-      &lt;Text style={[styles.text, styles.error]}&gt;Multiple Styles - Error&lt;/Text&gt; // 배열 뒤쪽 styles.error가 앞쪽 styles.text 속성을 덮어씀!
+      &lt;Text style={styles.text}&gt;Inline Styling - Text&lt;/Text&gt;
+      {/* 배열 뒤쪽 styles.error가 앞쪽 styles.text의 fontWeight과 color를 덮어씀! */}
+      &lt;Text style={[styles.text, styles.error]}&gt;Inline Styling - Error&lt;/Text&gt;
     &lt;/View&gt;
   );
-};
+}
 
-const styles = StyleSheet.create({  // StyleSheet.create로 스타일 객체 분리 정의
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   text: {
     padding: 10,
     fontSize: 26,
-    fontWeight: "600",
-    color: "black",
+    fontWeight: '600',
+    color: 'black',
   },
   error: {
-    fontWeight: "400",              // styles.text의 fontWeight("600")를 덮어씀
-    color: "red",                   // styles.text의 color("black")를 덮어씀
+    fontWeight: '400', // 덮어쓰기
+    color: 'red',       // 덮어쓰기 (padding: 10, fontSize: 26은 styles.text로부터 유지됨)
   },
-});
-
-export default App;</pre>
-          </div>
-          <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
-            <div class="phone-device-frame">
-              <img src="assets/crossplatform/week3_p14_0_Image95.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">StyleSheet 다중 스타일 적용 결과<br>(배열 뒤쪽 styles.error 오버라이드)</div>
-            </div>
-          </div>
-        </div>
-
-        <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
-          💻 [코드 3-3] 외부 스타일 모듈 분리 (<code>src/styles.js</code> &amp; <code>App.js</code>) 및 <code>flex</code> 비율 분할 (교안 p.15~19)
-        </div>
-        <div class="code-preview-grid">
-          <div class="code-col">
-            <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import { StyleSheet } from "react-native";
-
-export const viewStyles = StyleSheet.create({   // [src/styles.js] 외부 파일로 스타일 객체를 분리하여 export
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
-
-export const textStyles = StyleSheet.create({
-  text: {
-    padding: 10,
-    fontSize: 26,
-    fontWeight: "600",
-    color: "black",
-  },
-  error: {
-    fontWeight: "400",
-    color: "red",
-  },
-});
-
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
-
-export const LayoutApp = () =&gt; {                // [App.js] Header(1) : Contents(3) : Footer(1) 비율 분할 레이아웃
-  return (
-    &lt;View style={layoutStyles.container}&gt;
-      &lt;View style={[layoutStyles.box, layoutStyles.header]}&gt;
-        &lt;Text style={layoutStyles.text}&gt;Header (flex: 1)&lt;/Text&gt;
-      &lt;/View&gt;
-      &lt;View style={[layoutStyles.box, layoutStyles.contents]}&gt;
-        &lt;Text style={layoutStyles.text}&gt;Left&lt;/Text&gt;
-        &lt;Text style={layoutStyles.text}&gt;Right&lt;/Text&gt;
-      &lt;/View&gt;
-      &lt;View style={[layoutStyles.box, layoutStyles.footer]}&gt;
-        &lt;Text style={layoutStyles.text}&gt;Footer (flex: 1)&lt;/Text&gt;
-      &lt;/View&gt;
-    &lt;/View&gt;
-  );
-};
-
-const layoutStyles = StyleSheet.create({
-  container: { flex: 1 },                       // 전체 화면 100% 차지
-  box: { alignItems: "center", justifyContent: "center" },
-  header: { flex: 1, backgroundColor: "#f1c40f" }, // 세로 비율 1/5 (20%) 차지
-  contents: {
-    flex: 3,                                    // 세로 비율 3/5 (60%) 차지
-    flexDirection: "row",                       // 내부 자식(Left, Right)을 가로(좌-&gt;우)로 배치
-    justifyContent: "space-around",             // 가로 간격 균등 배치
-    backgroundColor: "#1abc9c",
-  },
-  footer: { flex: 1, backgroundColor: "#3498db" }, // 세로 비율 1/5 (20%) 차지
-  text: { fontSize: 26, fontWeight: "700" },
 });</pre>
           </div>
           <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.14)</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week3_p14_0_Image95.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">다중 스타일 배열 결합 결과<br>[styles.text, styles.error]</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
+          💻 [코드 3-3] 외부 스타일 모듈 분리 및 Flex 비율 레이아웃 (교안 p.14~17 원문)
+        </div>
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 외부 파일 분리 (src/styles.js & App.js)</div>
+            <pre class="code-block">// [src/styles.js] 외부 파일로 스타일 객체 분리 정의
+import { StyleSheet } from "react-native";
+
+export const viewStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+});
+
+export const textStyles = StyleSheet.create({
+  text: { padding: 10, fontSize: 26, fontWeight: '600', color: 'black' },
+  error: { fontWeight: '400', color: 'red' },
+});
+
+// [App.js] Flex와 범위 레이아웃 (교안 p.16~17)
+// Header(1) : Contents(2 or 3) : Footer(1)
+// Contents 내부 가로 분할: contentsLeft(1) : contentsRight(1)
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+  header: { flex: 1, backgroundColor: '#f1c40f', alignItems: "center", justifyContent: "center" },
+  contents: {
+    flex: 2,
+    flexDirection: "row", // 가로 분할!
+  },
+  contentsLeft: { flex: 1, backgroundColor: "#16a085", alignItems: "center", justifyContent: "center" },
+  contentsRight: { flex: 1, backgroundColor: "#27ae60", alignItems: "center", justifyContent: "center" },
+  footer: { flex: 1, backgroundColor: '#3498db', alignItems: "center", justifyContent: "center" },
+  text: { fontSize: 26 },
+});</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.17)</div>
             <div class="phone-device-frame">
               <img src="assets/crossplatform/week3_p17_0_Image106.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">Flexbox 레이아웃 결과<br>(Header 1 : Contents 3 : Footer 1 분할)</div>
+              <div class="phone-device-caption">Flex 레이아웃 분할 결과<br>Header(노랑) / Contents(Left·Right) / Footer(파랑)</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 5: 4주차 컴포넌트 기초 -->
+    <!-- SECTION 4: 4주차 컴포넌트 기초 -->
     <section id="cp-w4" class="concept-section">
       <div class="section-banner">
         <div class="section-banner-title">
           <span>📂 4주차: 핵심 기초 컴포넌트 (View · Text · ScrollView · Button · Alert · TextInput) (교안 p.1~18)</span>
         </div>
-        <span class="badge badge-amber">코드 빈칸 &amp; Props 필수</span>
+        <span class="badge badge-amber">교안 원문 예제 · Props 상세 총정리</span>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">4-1. 함수형 컴포넌트 vs 클래스형 컴포넌트 및 기초 컴포넌트 핵심 요약 (p.2~18)</div>
+        <div class="concept-card-title">4-1. 함수형 vs 클래스형 컴포넌트 & 교안 핵심 컴포넌트 요약 (교안 p.3~18)</div>
         <ul style="font-size: 14.5px; color: var(--ink-secondary); line-height: 1.8; padding-left: 20px; margin-bottom: 12px;">
-          <li><b>함수형 컴포넌트(Functional Component)</b>: React 16.8에서 <b>Hook(<code>useState</code>, <code>useEffect</code> 등)</b>이 도입된 이후 현재 React Native의 표준 방식입니다. 코드가 간결하고 직관적입니다.</li>
-          <li><b>클래스형 컴포넌트(Class Component)</b>: <code>React.Component</code>를 상속받고 반드시 <b><code>render()</code> 메서드</b> 안에서 JSX를 반환하며, 상태를 <code>this.state</code>와 <code>this.setState()</code>로 관리하던 레거시 방식입니다.</li>
-          <li><b><code>&lt;View&gt;</code></b>: UI를 구성하는 가장 기본적인 컨테이너 컴포넌트 (웹의 <code>&lt;div&gt;</code> 역할). <b>주의: <code>&lt;View&gt;</code> 안에 글자를 바로 쓰면 에러가 나며, 모든 글자는 반드시 <code>&lt;Text&gt;</code> 안에 써야 합니다!</b></li>
-          <li><b><code>&lt;Text&gt;</code> 중첩과 스타일 상속</b>: <code>&lt;Text&gt;</code> 안에 또 다른 <code>&lt;Text&gt;</code>를 중첩(Nesting)하면, <b>안쪽 Text는 바깥쪽 부모 Text의 스타일(<code>fontSize</code>, <code>color</code> 등)을 그대로 상속(물려받음)</b>하며, 자신이 새로 지정한 속성만 덮어씁니다.</li>
-          <li><b><code>&lt;ScrollView&gt;</code></b>: 화면 영역을 넘어가는 긴 콘텐츠를 스크롤할 수 있게 감싸주는 컨테이너입니다.</li>
+          <li><b>함수(Function)형 컴포넌트</b>: 코드가 더 짧고 직관적이며, React 16.8 이후 <b>Hook이 도입되어 현재 표준</b>으로 사용됨. (교안 p.3)</li>
+          <li><b>클래스(Class)형 컴포넌트</b>: React 16.8 이전의 과거 기술/방식으로 레거시 코드 유지보수 위주로 사용됨. (교안 p.3)</li>
+          <li><b><code>&lt;View&gt;</code></b>: 화면 레이아웃을 구성하는 컨테이너 컴포넌트. (교안 p.4 중첩 레이아웃)</li>
+          <li><b style="color: var(--tag-danger-ink);"><code>&lt;Text&gt;</code> 중첩과 스타일 상속 (교안 p.5~6)</b>:
+            <br>• <code>&lt;Text style={styles.baseText}&gt;나는 강남대학교 &lt;Text style={styles.innerText}&gt; 학생 이다.&lt;/Text&gt;&lt;/Text&gt;</code>
+            <br>• 바깥 Text의 스타일(<code>fontWeight: 'bold', fontSize: 30</code>)을 안쪽 Text가 그대로 <b>상속</b>받고, 안쪽 Text는 <code>color: 'red'</code>만 추가 적용됨!
+          </li>
+          <li><b><code>&lt;ScrollView&gt;</code> (교안 p.7~9)</b>: 긴 텍스트나 화면을 스크롤할 수 있도록 감싸주는 컴포넌트. (교안 실습: 유치환 시인의 시 '행복' 전문 스크롤)</li>
         </ul>
 
-        <table class="concept-table">
-          <thead>
-            <tr>
-              <th style="width: 22%;">컴포넌트 / API</th>
-              <th style="width: 38%;">시험 필수 속성(Props) 총정리</th>
-              <th>핵심 동작 및 주의사항</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><b style="color: var(--accent);"><code>Text</code></b></td>
-              <td>• <b><code>onPress</code></b>: 텍스트 터치 시 실행할 함수<br>• <b><code>numberOfLines={5}</code></b>: 최대 표시 줄 수 제한</td>
-              <td><code>numberOfLines</code>를 초과하는 긴 문장은 자동으로 말줄임표(<code>...</code>) 처리됨</td>
-            </tr>
-            <tr>
-              <td><b style="color: var(--accent);"><code>Button</code></b></td>
-              <td>• <b><code>title</code></b>: 버튼에 표시할 문자열 (필수)<br>• <b><code>onPress</code></b>: 클릭 이벤트 핸들러 (필수)<br>• <b><code>color</code></b>: 버튼 색상</td>
-              <td>자체 닫는 태그(<code>&lt;Button title="..." onPress={...} /&gt;</code>)로 사용하며 자식 태그를 가질 수 없음</td>
-            </tr>
-            <tr>
-              <td><b style="color: var(--accent);"><code>Alert.alert</code></b></td>
-              <td><code>Alert.alert(제목, 메시지, [버튼배열])</code></td>
-              <td>네이티브 대화상자 팝업 표시. 취소 버튼에는 <code>style: "cancel"</code>, 확인 버튼에는 <code>onPress: () =&gt; ...</code> 지정</td>
-            </tr>
-            <tr>
-              <td><b style="color: var(--accent);"><code>TextInput</code></b></td>
-              <td>
-                • <b><code>value</code></b>: 현재 입력창에 표시할 상태 변수<br>
-                • <b><code>onChangeText</code></b>: 글자가 바뀔 때마다 새 문자열을 인자로 호출되는 콜백 함수<br>
-                • <b><code>placeholder</code></b> / <b><code>placeholderTextColor</code></b><br>
-                • <b><code>keyboardType="numeric"</code></b>: 숫자 키패드 표시<br>
-                • <b><code>secureTextEntry</code></b>: 비밀번호 마스킹(<code>•••</code>)<br>
-                • <b><code>editable</code></b>: 수정 가능 여부 (<code>true/false</code>)<br>
-                • <b><code>multiline</code></b>, <b><code>numberOfLines={4}</code></b>, <b><code>maxLength={40}</code></b>
-              </td>
-              <td>
-                • 숫자만 입력받기 필터링 정규식:<br>
-                <code>text.replace(/[^0-9]/g, "")</code><br>
-                • 입력값 확인 후 입력창 비우기:<br>
-                <code>setValue("")</code>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="concept-card">
-        <div class="concept-card-title">4-2. 4주차 교안 전체 실습 코드 5종 완벽 수록 (p.4~18)</div>
+        <div class="concept-card-title">4-2. 4주차 교안 전체 실습 코드 (교안 p.5~17 원문)</div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
-          💻 [코드 4-1] <code>Text</code> 중첩 스타일 상속 &amp; <code>onPress</code> 상태 변경 + <code>numberOfLines={5}</code> (교안 p.5, p.8)
+          💻 [코드 4-1] <code>Text</code> 중첩 상속 & <code>onPress</code> 상태 변경 + <code>numberOfLines={5}</code> (교안 p.5, p.10 원문)
         </div>
         <div class="code-preview-grid">
           <div class="code-col">
-            <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React, { useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+            <div class="code-col-header">💻 React Native 소스코드 (교안 p.10 원문)</div>
+            <pre class="code-block">import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
-export default function TextExample() {
-  const [titleText, setTitleText] = useState("산을 오르다 (터치해보세요)"); // 제목 상태 선언
-  const bodyText = "이것은 아주 긴 본문 텍스트입니다.\\n2번째 줄\\n3번째 줄\\n4번째 줄\\n5번째 줄\\n6번째 줄(숨겨짐)";
+export default function App() {
+  // 교안 원문 상태 문자열: "지금, 무슨 과목:[클릭 ㅋㅋ]"
+  const [titleText, setTitleText] = useState("지금, 무슨 과목:[클릭 ㅋㅋ]");
+  const bodyText = '미래를 준비하는 젊은 지성인의 새로운 세계';
 
-  const onPressTitle = () =&gt; {
-    setTitleText("산은 높고 골은 깊다 [변경완료]");                         // 제목 터치 시 텍스트 상태 변경
+  // 클릭 시 "크로스 플랫폼 과목 !!!"으로 상태 변경
+  const onPressTitle = () => {
+    setTitleText("크로스 플랫폼 과목 !!!");
   };
 
   return (
     &lt;View style={styles.container}&gt;
-      &lt;Text style={styles.baseText}&gt;                                        // 바깥 Text의 baseText 스타일을 안쪽 Text들이 상속받음!
-        &lt;Text style={styles.titleText} onPress={onPressTitle}&gt;              // 터치 시 onPressTitle 실행
-          {titleText}{"\\n"}{"\\n"}
+      &lt;Text style={styles.baseText}&gt;
+        {'\n'}{'\n'}
+        &lt;Text style={styles.titleText} onPress={onPressTitle}&gt;
+          {titleText}
         &lt;/Text&gt;
-        &lt;Text numberOfLines={5}&gt;{bodyText}&lt;/Text&gt;                           // 최대 5줄까지만 표시하고 초과분은 ... 말줄임 처리
+        &lt;Text numberOfLines={5}&gt;{bodyText}&lt;/Text&gt;
       &lt;/Text&gt;
     &lt;/View&gt;
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center", padding: 20 },
-  baseText: { fontFamily: "Cochin", fontSize: 16, color: "#333" },
-  titleText: { fontSize: 22, fontWeight: "bold", color: "blue" },
+  container: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  baseText: { fontFamily: 'Cochin', fontSize: 16 },
+  titleText: { fontSize: 24, fontWeight: 'bold', color: 'red' },
 });</pre>
           </div>
           <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.10)</div>
             <div class="phone-device-frame">
-              <img src="assets/crossplatform/week4_p8_0_Image85.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">Text 중첩 스타일 상속 및<br>numberOfLines={5} 말줄임(...) 렌더링 결과</div>
+              <img src="assets/crossplatform/week4_p10_0_Image90.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">Text onPress 상태 변경 결과<br>(클릭 시: "크로스 플랫폼 과목 !!!")</div>
             </div>
           </div>
         </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
-          💻 [코드 4-2] <code>Button</code>과 <code>Alert.alert</code> 2버튼(취소/확인) 대화상자 (교안 p.11~12 — ★ 시험 빈칸 출제!)
+          💻 [코드 4-2] <code>Button</code>과 <code>Alert.alert</code> 2버튼(취소/확인) 대화상자 (교안 p.11~13 원문)
         </div>
         <div class="code-preview-grid">
           <div class="code-col">
-            <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React from "react";
-import { StyleSheet, View, Button, Alert } from "react-native";
+            <div class="code-col-header">💻 React Native 소스코드 (교안 p.13 원문)</div>
+            <pre class="code-block">import React from 'react';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 
-export default function ButtonAlertExample() {
-  const showConfirmAlert = () =&gt; {
-    Alert.alert(                                        // Alert.alert(제목, 메시지, [취소버튼, 확인버튼])
-      "경고 타이틀",                                    // 1번째 인자: 대화상자 제목
-      "정말로 실행하시겠습니까?",                       // 2번째 인자: 본문 메시지
-      [                                                 // 3번째 인자: 버튼 객체 배열
-        {
-          text: "취소",
-          onPress: () =&gt; console.log("취소 클릭됨"),
-          style: "cancel",                              // 취소 버튼 스타일 지정
-        },
-        {
-          text: "확인",
-          onPress: () =&gt; console.log("확인 클릭됨"),
-        },
-      ]
-    );
-  };
-
+export default function App() {
   return (
     &lt;View style={styles.container}&gt;
-      &lt;Button title="2버튼 알림창 띄우기" color="#f194ff" onPress={showConfirmAlert} /&gt;
+      &lt;Button
+        title="버튼 만들기"
+        color="#f194ff"
+        onPress={() =&gt; Alert.alert(
+          '핑크버튼',          // 1번째 인자: 대화상자 제목
+          '핑크 버튼 누름',    // 2번째 인자: 본문 메시지
+          [                    // 3번째 인자: 버튼 배열
+            {
+              text: "취소",
+              onPress: () =&gt; console.log("취소 버튼 클릭"),
+              style: "cancel", // 취소 스타일
+            },
+            {
+              text: "확인",
+              onPress: () =&gt; console.log("확인 버튼 클릭"),
+            },
+          ]
+        )}
+      /&gt;
     &lt;/View&gt;
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center" },
+  container: { flex: 1, backgroundColor: '#fff', alignItems: 'stretch', justifyContent: 'center', padding: 20 },
 });</pre>
           </div>
           <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.12~13)</div>
             <div class="phone-device-frame">
               <img src="assets/crossplatform/week4_p12_0_Image101.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">Button 클릭 시 Alert.alert<br>네이티브 2버튼(취소/확인) 팝업 대화상자</div>
+              <div class="phone-device-caption">Button 클릭 시 Alert.alert<br>핑크버튼 네이티브 2버튼(취소/확인) 대화상자</div>
             </div>
           </div>
         </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
-          💻 [코드 4-3] <code>TextInput</code> 숫자 전용 필터링 &amp; 여러 줄 입력 + 확인 후 초기화 (교안 p.15~18)
+          💻 [코드 4-3] <code>TextInput</code>: 숫자 전용 필터링 및 여러 줄 입력 (교안 p.14~17 원문)
         </div>
         <div class="code-preview-grid">
           <div class="code-col">
-            <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React, { useState } from "react";
-import { StyleSheet, View, TextInput, Button, Alert } from "react-native";
+            <div class="code-col-header">💻 React Native 소스코드 (교안 p.15, p.17 원문)</div>
+            <pre class="code-block">// [교안 p.15] 숫자 전용 비밀번호 필터링 TextInput
+const [text, setText] = useState("");
+const [number, onNumber] = useState("");
 
-export default function TextInputMaster() {
-  const [numValue, setNumValue] = useState("");
-  const [multiValue, setMultiValue] = useState("");
+&lt;TextInput
+  style={styles.input}
+  placeholder="비밀번호"
+  keyboardType="numeric"
+  secureTextEntry={false}
+  value={number}
+  onChangeText={(value) => onNumber(value.replace(/[^0-9]/g, ""))} // 숫자가 아닌 문자 제거!
+/&gt;
 
-  const handleNumericChange = (inputText) =&gt; {
-    const filteredText = inputText.replace(/[^0-9]/g, ""); // 숫자가 아닌 문자는 모두 빈 문자열("")로 제거!
-    setNumValue(filteredText);
-  };
+// [교안 p.16~17] 여러 줄 입력(Multiline) & 결과 확인 후 초기화
+const [value, setValue] = useState("");
 
-  const handlePressConfirm = () =&gt; {
-    Alert.alert("입력된 값", multiValue || "(Empty)");     // 입력값 팝업 출력 (비어있으면 "(Empty)")
-    setMultiValue("");                                     // 확인 후 입력창 빈 문자열로 초기화!
-  };
-
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;TextInput
-        style={styles.input}
-        value={numValue}
-        onChangeText={handleNumericChange}                 // 입력될 때마다 숫자 필터링 함수 호출
-        placeholder="숫자 비밀번호만 입력"
-        keyboardType="numeric"                             // 숫자 키패드 표시
-        secureTextEntry={true}                             // 비밀번호 마스킹(•••) 처리
-      /&gt;
-
-      &lt;TextInput
-        style={styles.multiInput}
-        editable={true}                                    // 텍스트 편집 허용
-        multiline={true}                                   // 여러 줄 입력 허용
-        numberOfLines={4}                                  // 기본 4줄 높이 표시
-        maxLength={40}                                     // 최대 40자 제한
-        value={multiValue}
-        onChangeText={(text) =&gt; setMultiValue(text)}
-        placeholder="최대 40자까지 여러 줄 입력..."
-      /&gt;
-
-      &lt;Button title="입력 내용 확인 및 초기화" onPress={handlePressConfirm} /&gt;
-    &lt;/View&gt;
+const handlePress = () => {
+  Alert.alert(
+    "Input Data",
+    value || "(Empty)",
+    [{ text: "확인", onPress: () => setValue("") }] // 확인 누르면 입력창 초기화!
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", padding: 20 },
-  input: { height: 40, borderColor: "gray", borderWidth: 1, marginBottom: 12, paddingHorizontal: 10 },
-  multiInput: { borderColor: "#000", borderWidth: 1, marginBottom: 12, padding: 10 },
-});</pre>
+&lt;TextInput
+  editable={true}             // 편집 가능
+  multiline={true}            // 여러 줄 입력 가능
+  numberOfLines={4}           // 최대 4줄까지 보여주기
+  maxLength={40}              // 최대 40자 제한
+  onChangeText={(text) => setValue(text)}
+  value={value}
+  placeholder="여기에 입력하세요"
+  style={styles.textInput}
+/&gt;
+&lt;Button title="Press me" onPress={handlePress} /&gt;</pre>
           </div>
           <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.15~17)</div>
             <div class="phone-device-frame">
               <img src="assets/crossplatform/week4_p15_0_Image111.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">TextInput 숫자 전용 마스킹(•••)<br>및 여러 줄 입력 필드 결과</div>
+              <div class="phone-device-caption">TextInput 비밀번호 필터링 &<br>여러 줄 입력 폼 실행 결과</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 6: 5주차 JSX & 고급 컴포넌트 -->
+    <!-- SECTION 5: 5주차 JSX & 조건문 & 리스트 -->
     <section id="cp-w5" class="concept-section">
       <div class="section-banner danger-banner">
         <div class="section-banner-title">
           <span>📂 5주차: JSX 문법 · 조건부 렌더링 · Image · Switch · FlatList · SectionList (교안 p.1~14)</span>
         </div>
-        <span class="badge badge-amber">FlatList 3대 Props &amp; 단축평가 100% 출제</span>
+        <span class="badge badge-amber">교안 데이터 Beomjun 100% 일치 · FlatList 필수</span>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">5-1. JSX 개념과 장단점 및 조건부 렌더링 3대 기법 (p.2~7)</div>
-        <ul style="font-size: 14.5px; color: var(--ink-secondary); line-height: 1.8; padding-left: 20px; margin-bottom: 14px;">
-          <li><b>JSX(JavaScript XML)</b>: JavaScript 코드 안에서 UI 구조를 HTML/XML 태그 형태로 직관적으로 작성할 수 있게 해주는 확장 문법입니다. 빌드 시 Babel에 의해 <code>React.createElement(컴포넌트, props, 자식)</code> 호출 코드로 변환됩니다.</li>
-          <li><b>JSX의 장점</b>: ① 시각적으로 구조 파악이 쉽고 가독성이 높음, ② 컴파일 과정에서 문법 오류를 빠르게 감지함, ③ 중괄호 <code>{ }</code>를 통해 JavaScript 변수·수식·함수를 자유롭게 결합 가능.</li>
-          <li><b>JSX의 단점/주의점</b>: ① HTML과 완전히 같지 않아 고유 규칙(<code>camelCase</code>, 단일 부모 태그 등)을 배워야 함, ② 비즈니스 로직과 UI를 한 파일에 과도하게 섞으면 코드가 복잡해질 수 있음.</li>
-          <li><b style="color: var(--tag-danger-ink);">JSX 절대 규칙 — 단일 루트 부모</b>: 컴포넌트가 반환하는 JSX의 최상위는 <b>반드시 단 하나의 부모 태그(<code>&lt;View&gt;...&lt;/View&gt;</code> 또는 Fragment <code>&lt;&gt;...&lt;/&gt;</code>)</b>로 감싸져야 합니다!</li>
-        </ul>
+        <div class="concept-card-title">5-1. JSX 개념과 장단점 & 하나의 부모 규칙 (교안 p.3~4)</div>
+        <p style="font-size: 14.5px; color: var(--ink-secondary); line-height: 1.8; margin-bottom: 12px;">
+          <b>JSX(JavaScript XML)</b>란 객체 생성과 함수 호출을 위한 문법적 편의를 제공하기 위해 만들어진 확장 기능으로 리액트 프로젝트에서 사용됩니다.
+        </p>
 
-        <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
-          💻 [코드 5-1] 조건부 렌더링 3대 기법(<code>if-else</code> / 삼항 연산자 <code>? :</code> / 단축 평가 <code>&amp;&amp;, ||</code>) 및 실행 결과 완벽 추적 (교안 p.5~7)
-        </div>
-        <div class="code-preview-grid">
-          <div class="code-col">
-            <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React from "react";
-import { View, Text } from "react-native";
-
-export default function ConditionalRenderExample() {
-  const name = "React";
-  const falsyName = ""; // 빈 문자열("")은 JavaScript에서 거짓(Falsy)으로 평가됨!
-
-  return (
-    &lt;View&gt;
-      &lt;Text&gt;{name === "React" ? "리액트입니다!" : "리액트가 아닙니다."}&lt;/Text&gt; // 1) 삼항 연산자 -&gt; "리액트입니다!" 출력
-      {name === "React" &amp;&amp; &lt;Text&gt;환영합니다, React!&lt;/Text&gt;}                    // 2) &amp;&amp; 단축 평가(참) -&gt; "환영합니다, React!" 출력
-      {name === "Vue" &amp;&amp; &lt;Text&gt;이 문장은 절대 화면에 나타나지 않습니다.&lt;/Text&gt;} // 3) &amp;&amp; 단축 평가(거짓) -&gt; 아무것도 렌더링 안 됨
-      &lt;Text&gt;{falsyName || "이름이 비어있을 때 표시되는 기본값"}&lt;/Text&gt;          // 4) || 단축 평가(Falsy) -&gt; 뒤쪽 기본값 문자열 출력!
-    &lt;/View&gt;
-  );
-}</pre>
-          </div>
-          <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
-            <div class="phone-device-frame">
-              <img src="assets/crossplatform/week5_p8_0_Image85.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">조건부 렌더링 결과<br>(삼항 연산자 및 단축평가 참/거짓 실행 화면)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="concept-card">
-        <div class="concept-card-title">5-2. <code>&lt;Image&gt;</code> (로컬 vs 원격 URI) 및 <code>&lt;Switch&gt;</code> 다크모드 토글 (p.8~10)</div>
-        <div class="callout-box warning" style="margin-bottom: 12px;">
-          <div class="callout-title">🚨 [시험 단골 비교] 로컬 이미지(<code>require</code>) vs 원격 네트워크 이미지(<code>uri</code>)</div>
-          • <b>로컬 이미지</b>: <code>source={require("./kangnam.png")}</code> — 번들링 시점에 이미지 크기를 자동으로 알 수 있습니다.<br>
-          • <b>원격 URL 이미지</b>: <code>source={{ uri: "https://..." }}</code> — 다운로드하기 전까지 RN이 이미지 크기를 알 수 없으므로, <b style="color: var(--tag-danger-ink);">반드시 <code>style={{ width: 200, height: 200 }}</code>처럼 가로(<code>width</code>)와 세로(<code>height</code>) 크기를 명시해야 화면에 보입니다!</b> (지정하지 않으면 0×0으로 렌더링되어 보이지 않음)
-        </div>
-
-        <div class="code-preview-grid">
-          <div class="code-col">
-            <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React, { useState } from "react";
-import { StyleSheet, View, Text, Image, Switch } from "react-native";
-
-export default function ImageAndSwitchExample() {
-  const [isDark, setIsDark] = useState(false);                        // 다크모드 여부 불리언 상태
-  const toggleSwitch = () =&gt; setIsDark((prevState) =&gt; !prevState);    // 스위치 토글 시 상태 반전
-
-  return (
-    &lt;View
-      style={[
-        styles.container,
-        { backgroundColor: isDark ? "#222222" : "#ffffff" },          // 스위치 상태에 따라 배경색 동적 전환!
-      ]}
-    &gt;
-      &lt;Image source={require("./kangnam.png")} style={styles.image} /&gt; // 1. 로컬 이미지: require('경로') 사용
-
-      &lt;Image
-        source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }} // 2. 원격 이미지: {{ uri: '주소' }} 사용
-        style={{ width: 80, height: 80, marginVertical: 10 }}         // 원격 이미지는 반드시 width, height 지정!
-      /&gt;
-
-      &lt;Text style={{ color: isDark ? "#ffffff" : "#000000", fontSize: 18, marginBottom: 10 }}&gt;
-        현재 모드: {isDark ? "다크 모드 (ON)" : "라이트 모드 (OFF)"}
-      &lt;/Text&gt;
-
-      &lt;Switch
-        trackColor={{ false: "#767577", true: "#81b0ff" }}            // OFF/ON 트랙 배경색 지정
-        thumbColor={isDark ? "#f5dd4b" : "#f4f3f4"}                   // 동그란 스위치 버튼 색상
-        onValueChange={toggleSwitch}                                  // 값 변경 시 호출할 콜백 함수 (필수)
-        value={isDark}                                                // 현재 스위치 상태값 (필수)
-      /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center" },
-  image: { width: 120, height: 120, resizeMode: "contain" },
-});</pre>
-          </div>
-          <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
-            <div class="phone-device-frame">
-              <img src="assets/crossplatform/week5_p10_0_Image91.jpg" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">Image 컴포넌트(강남대/RN 로고)<br>및 Switch 다크모드 토글 결과</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="concept-card">
-        <div class="concept-card-title">5-3. <code>FlatList</code> vs <code>ScrollView</code> 및 <code>SectionList</code> 전체 코드 (p.11~14 — ★ 서술형 &amp; 빈칸 0순위!)</div>
         <table class="concept-table" style="margin-bottom: 12px;">
           <thead>
             <tr>
-              <th style="width: 20%;">비교 기준</th>
-              <th style="width: 38%;"><code>&lt;ScrollView&gt;</code></th>
-              <th><code>&lt;FlatList&gt;</code> (대용량 목록 표준)</th>
+              <th style="width: 25%;">구분</th>
+              <th>예시 코드 (교안 p.3 원문)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><b>렌더링 동작 원리</b></td>
-              <td>컴포넌트가 마운트될 때 화면에 보이지 않는 <b>모든 자식 항목을 한꺼번에 메모리에 렌더링</b>함</td>
-              <td>현재 <b>화면에 보이는 영역의 항목만 지연 렌더링(Lazy Rendering)</b>하고, 스크롤되어 화면 밖으로 나간 항목은 메모리에서 해제·재사용함</td>
+              <td><b>일반 JavaScript</b></td>
+              <td><code>React.createElement("h1", null, "Hello")</code></td>
             </tr>
             <tr>
-              <td><b>메모리 및 성능</b></td>
-              <td>데이터가 수백~수천 개로 많아지면 메모리 사용량이 급증하고 스크롤이 느려짐</td>
-              <td>데이터가 아무리 많아도 <b>메모리 사용량이 일정하게 유지되며 빠른 렌더링 성능</b>을 보장함</td>
-            </tr>
-            <tr>
-              <td><b>3대 필수 Props</b></td>
-              <td>없음 (내부에 자식 태그 직접 배치)</td>
-              <td>
-                1. <b style="color: var(--accent);"><code>data</code></b>: 렌더링할 데이터 배열<br>
-                2. <b style="color: var(--accent);"><code>renderItem</code></b>: 배열의 각 항목(<code>{ item }</code>)을 받아 JSX 컴포넌트로 반환하는 함수<br>
-                3. <b style="color: var(--accent);"><code>keyExtractor</code></b>: 각 항목마다 고유한 문자열 <code>key</code>를 추출하는 함수
-              </td>
+              <td><b>JSX 문법</b></td>
+              <td><code>&lt;h1&gt;Hello&lt;/h1&gt;</code></td>
             </tr>
           </tbody>
         </table>
 
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+          <div style="background: rgba(39, 174, 96, 0.08); border-left: 4px solid #27ae60; padding: 12px; border-radius: 4px;">
+            <div style="font-weight: 700; color: #27ae60; margin-bottom: 6px;">👍 JSX 4대 장점 (교안 p.3)</div>
+            <ul style="font-size: 13.5px; line-height: 1.7; padding-left: 18px; color: var(--ink);">
+              <li><b>가독성이 좋음</b></li>
+              <li><b>코드가 짧아짐</b></li>
+              <li><b>컴포넌트 구조 표현이 쉬움</b></li>
+              <li><b>JavaScript와 함께 사용 가능</b></li>
+            </ul>
+          </div>
+          <div style="background: rgba(231, 76, 60, 0.08); border-left: 4px solid #e74c3c; padding: 12px; border-radius: 4px;">
+            <div style="font-weight: 700; color: #e74c3c; margin-bottom: 6px;">👎 JSX 4대 단점 (교안 p.3)</div>
+            <ul style="font-size: 13.5px; line-height: 1.7; padding-left: 18px; color: var(--ink);">
+              <li><b>학습이 필요함</b></li>
+              <li><b>브라우저가 바로 이해하지 못함</b> (Babel 변환 필요)</li>
+              <li><b>JavaScript와 HTML이 섞여 보임</b></li>
+              <li><b>문법 오류에 민감</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout-box warning" style="margin-bottom: 14px;">
+          <div class="callout-title">🚨 [JSX 절대 규칙] 하나의 부모 (One Parent Element, 교안 p.4)</div>
+          여러 개의 JSX 요소를 반드시 <b>하나의 최상위 요소(부모 요소)</b>로 감싸야 합니다!<br>
+          • <b>잘못된 예</b>: <code>return ( &lt;Text&gt;...&lt;/Text&gt; &lt;StatusBar/&gt; );</code> ➜ 형제 태그가 최상위에 나열되어 문법 에러 발생!<br>
+          • <b>올바른 예</b>: <code>return ( &lt;View style={styles.container}&gt; &lt;Text&gt;...&lt;/Text&gt; &lt;StatusBar/&gt; &lt;/View&gt; );</code> ➜ 단일 최상위 부모(&lt;View&gt;)로 감쌈!
+        </div>
+
+        <div class="concept-card-title">5-2. 자바스크립트 변수 & 조건부 렌더링 3대 기법 (교안 p.5~9 원문)</div>
+
         <div class="code-preview-grid">
           <div class="code-col">
-            <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React from "react";
-import { StyleSheet, View, Text, FlatList, SectionList } from "react-native";
+            <div class="code-col-header">💻 자바스크립트 변수 & 조건문 소스코드 (교안 p.6~9 원문)</div>
+            <pre class="code-block">// [교안 p.6] 변수 사용
+const name = 'Beomjun';
+&lt;Text style={styles.text}&gt;My name is {name}&lt;/Text&gt; // "My name is Beomjun"
 
-const USERS = [
-  { id: "1", name: "홍길동", email: "hong@kangnam.ac.kr" },
-  { id: "2", name: "이순신", email: "lee@kangnam.ac.kr" },
-  { id: "3", name: "강감찬", email: "kang@kangnam.ac.kr" },
-];
-
-const SECTIONS = [
-  { title: "A그룹", data: ["김철수", "김영희"] },
-  { title: "B그룹", data: ["박민수", "최지우"] },
-];
-
-export default function ListMasterExample() {
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;FlatList
-        data={USERS}                                              // [FlatList 필수 1] 렌더링할 데이터 배열
-        keyExtractor={(item) =&gt; item.id}                          // [FlatList 필수 2] 각 항목의 고유 key 추출 함수
-        renderItem={({ item }) =&gt; (                               // [FlatList 필수 3] 각 항목을 JSX로 렌더링하는 함수
-          &lt;View style={styles.itemBox}&gt;
-            &lt;Text style={styles.name}&gt;{item.name}&lt;/Text&gt;
-            &lt;Text&gt;{item.email}&lt;/Text&gt;
-          &lt;/View&gt;
-        )}
-      /&gt;
-
-      &lt;SectionList
-        sections={SECTIONS}                                       // [SectionList] 섹션 배열 데이터 전달
-        keyExtractor={(item, index) =&gt; item + index}
-        renderItem={({ item }) =&gt; &lt;Text style={styles.item}&gt;{item}&lt;/Text&gt;}
-        renderSectionHeader={({ section: { title } }) =&gt; (        // 각 섹션 상단 제목 헤더 렌더링
-          &lt;Text style={styles.header}&gt;{title}&lt;/Text&gt;
-        )}
-      /&gt;
-    &lt;/View&gt;
-  );
+// [교안 p.7] if 조건문
+let message = '';
+if (name === 'Beomjun') {
+  message = 'My name is ' + name;
+} else {
+  message = "I'm not Beomjun";
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: 40, paddingHorizontal: 16 },
-  itemBox: { padding: 12, borderBottomWidth: 1, borderBottomColor: "#ddd" },
-  name: { fontSize: 18, fontWeight: "bold" },
-  header: { fontSize: 20, fontWeight: "bold", backgroundColor: "#eee", padding: 8 },
-  item: { padding: 10, fontSize: 16 },
-});</pre>
+// [교안 p.8] 삼항 연산자
+&lt;Text style={styles.text}&gt;
+  {name === 'Beomjun' ? "My name is Beomjun" : "I'm not Beomjun"}
+&lt;/Text&gt;
+
+// [교안 p.9] AND(&&) 및 OR(||) 연산자
+const name1 = 'Beomjun';
+const name2 = 'JongSoo';
+
+// AND 조건
+&lt;Text&gt;{name1 === 'Beomjun' &amp;&amp; 'My name is Beomjun'}&lt;/Text&gt;       // 출력됨: "My name is Beomjun"
+&lt;Text&gt;{name1 !== 'Beomjun' &amp;&amp; 'My name is not Beomjun'}&lt;/Text&gt;   // 출력 안 됨 (거짓)
+
+// OR 조건
+&lt;Text&gt;{name2 === 'JongSoo' || "I'm not Beomjun's friend"}&lt;/Text&gt; // 참이므로 앞쪽 불리언 true 출력 안 되고 앞의 식 평가
+&lt;Text&gt;{name2 !== 'JongSoo' || "I'm Beomjun's friend"}&lt;/Text&gt;     // 거짓이므로 뒤의 기본값 "I'm Beomjun's friend" 출력!</pre>
           </div>
           <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.8~9)</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week5_p8_0_Image85.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">삼항 연산자 & AND/OR 실행 결과<br>(Beomjun & JongSoo 조건문)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-card-title" style="margin-top: 16px;">5-3. Image · Switch · FlatList · SectionList (교안 p.10~13 원문)</div>
+
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 Image(로컬) & Switch(다크모드) (교안 p.10~11 원문)</div>
+            <pre class="code-block">// [교안 p.10] Image 컴포넌트: 로컬 require 이미지
+&lt;Image
+  source={require('./kangnam.png')} // 로컬 이미지 경로
+  style={{ width: 200, height: 200 }}
+/&gt;
+
+// [교안 p.11] Switch 컴포넌트: 다크모드 On/Off 토글
+const [darkMode, setDarkMode] = useState(false);
+
+&lt;View style={[styles.container, { backgroundColor: darkMode ? 'black' : 'white' }]}&gt;
+  &lt;Text style={[styles.text, { color: darkMode ? 'white' : 'black' }]}&gt;
+    {darkMode ? '스위치: ON' : '스위치: OFF'}
+  &lt;/Text&gt;
+  &lt;Switch
+    value={darkMode}
+    onValueChange={setDarkMode}
+    trackColor={{ false: '#767577', true: '#81b0ff' }}
+    thumbColor={darkMode ? '#f5dd4b' : '#f4f3f4'}
+  /&gt;
+&lt;/View&gt;</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.10~11)</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week5_p11_0_Image94.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">Switch 다크모드 토글 결과<br>(스위치: ON/OFF 및 배경색 전환)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-preview-grid" style="margin-top: 16px;">
+          <div class="code-col">
+            <div class="code-col-header">💻 FlatList & SectionList (교안 p.12~13 원문)</div>
+            <pre class="code-block">// [교안 p.12] FlatList 3대 필수 Props (data, keyExtractor, renderItem)
+const data = [
+  { id: '1', name: 'Beomjun' },
+  { id: '2', name: 'Jongsoo' },
+  { id: '3', name: 'Yuna' },
+  { id: '4', name: 'Minho' },
+  { id: '5', name: 'Hana' },
+];
+
+&lt;FlatList
+  data={data}                              // [필수 1] 리스트 데이터 배열
+  keyExtractor={(item) =&gt; item.id}          // [필수 2] 각 항목 고유 키
+  renderItem={({ item }) =&gt; (              // [필수 3] 각 항목 렌더링 함수
+    &lt;Text style={styles.item}&gt;{item.id} : {item.name}&lt;/Text&gt;
+  )}
+/&gt;
+
+// [교안 p.13] SectionList: 그룹별 리스트
+const DATA = [
+  { title: 'A', data: ['Alex', 'Amy', 'Andrew'] },
+  { title: 'B', data: ['Beomjun', 'Bella', 'Brian'] },
+  { title: 'C', data: ['Chris', 'Cindy', 'Clara'] },
+];
+
+&lt;SectionList
+  sections={DATA}
+  keyExtractor={(item, index) =&gt; item + index}
+  renderItem={({ item }) =&gt; &lt;Text style={styles.item}&gt; ▣ {item}&lt;/Text&gt;}
+  renderSectionHeader={({ section: { title } }) =&gt; (
+    &lt;Text style={styles.header}&gt;섹션: {title}&lt;/Text&gt;
+  )}
+/&gt;</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.12~13)</div>
             <div class="phone-device-frame">
               <img src="assets/crossplatform/week5_p12_0_Image97.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">FlatList 대용량 리스트 및<br>SectionList 섹션별 헤더 렌더링 결과</div>
+              <div class="phone-device-caption">FlatList 5명 목록 및<br>SectionList 섹션 헤더 렌더링 결과</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 7: 6주차 컴포넌트 응용 10대 API -->
+    <!-- SECTION 6: 6주차 컴포넌트 응용 10대 API -->
     <section id="cp-w6" class="concept-section">
       <div class="section-banner">
         <div class="section-banner-title">
-          <span>📂 6주차: 컴포넌트 응용 &amp; 10대 네이티브 API 전체 코드 해부 (교안 p.1~22)</span>
+          <span>📂 6주차: 컴포넌트 응용 & 10대 네이티브 API/컴포넌트 (교안 p.1~22)</span>
         </div>
-        <span class="badge badge-amber">각 API 목적 &amp; 핵심 코드 완벽 수록</span>
+        <span class="badge badge-amber">교안 원문 10종 API 완벽 수록</span>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">6-1. 1~5번 API: BackHandler · DrawerLayoutAndroid · ToastAndroid · Animated · Dimensions</div>
+        <div class="concept-card-title">6-1. 10대 네이티브 API/컴포넌트 일람표 (교안 p.2)</div>
+        <table class="concept-table" style="margin-bottom: 14px;">
+          <thead>
+            <tr>
+              <th style="width: 25%;">API / 컴포넌트명</th>
+              <th style="width: 25%;">플랫폼 구분</th>
+              <th>핵심 기능 및 교안 상세 내용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>1. BackHandler</b></td>
+              <td>Android 전용</td>
+              <td>안드로이드 하드웨어 뒤로가기 버튼 감지. <code>return true</code>로 시스템 기본 동작 차단 후 Alert 팝업 (p.4)</td>
+            </tr>
+            <tr>
+              <td><b>2. DrawerLayoutAndroid</b></td>
+              <td>Android 전용</td>
+              <td>화면 좌/우측에서 슬라이드로 열리는 서랍(Drawer) 메뉴. <code>drawerWidth={300}</code>, <code>openDrawer()</code>, <code>closeDrawer()</code> (p.5~6)</td>
+            </tr>
+            <tr>
+              <td><b>3. ToastAndroid</b></td>
+              <td>Android 전용</td>
+              <td>하단 플로팅 토스트 메시지. <code>show(msg, SHORT)</code> 및 <code>showWithGravityAndOffset(msg, LONG, CENTER, 25, 50)</code> (p.7)</td>
+            </tr>
+            <tr>
+              <td><b>4. Animated</b></td>
+              <td>공통</td>
+              <td>부드러운 애니메이션 구현. <code>fadeAnim = useRef(new Animated.Value(0)).current</code>, <code>Animated.timing</code> (p.9~10)</td>
+            </tr>
+            <tr>
+              <td><b>5. Dimensions</b></td>
+              <td>공통</td>
+              <td>기기 화면 크기 픽셀 측정. <code>Dimensions.get('window')</code> (가용 영역) vs <code>get('screen')</code> (물리 전체 화면) (p.11~12)</td>
+            </tr>
+            <tr>
+              <td><b>6. KeyboardAvoidingView</b></td>
+              <td>공통</td>
+              <td>가상 키보드가 입력창을 가리지 않도록 뷰를 자동 조절. <code>Keyboard.dismiss</code>로 빈 영역 터치 시 닫기 (p.13~14)</td>
+            </tr>
+            <tr>
+              <td><b>7. Linking</b></td>
+              <td>공통</td>
+              <td>외부 웹 브라우저나 타 앱 URL 스킴 열기. <code>Linking.openURL('https://blog.naver.com/jongsoo67')</code> (p.15)</td>
+            </tr>
+            <tr>
+              <td><b>8. Modal</b></td>
+              <td>공통</td>
+              <td>모달 팝업 창. <code>animationType="slide"</code>, <code>transparent={true}</code>, <code>onRequestClose</code> (p.16~17)</td>
+            </tr>
+            <tr>
+              <td><b>9. PixelRatio</b></td>
+              <td>공통</td>
+              <td>기기 픽셀 밀도 조회. <code>PixelRatio.get()</code>, <code>getFontScale()</code>, <code>getPixelSizeForLayoutSize(50)</code> (p.18~19)</td>
+            </tr>
+            <tr>
+              <td><b>10. RefreshControl</b></td>
+              <td>공통</td>
+              <td>ScrollView 당겨서 새로고침(Pull-to-Refresh). <code>refreshing</code>, <code>onRefresh</code> 콜백 및 타이머 해제 (p.20~21)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="concept-card-title">6-2. 6주차 핵심 실습 코드 (교안 p.4~21 원문)</div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
-          💻 [1] <code>BackHandler</code>: 안드로이드 하드웨어 뒤로가기 버튼 감지 및 종료 확인 팝업 (교안 p.2~3)
+          💻 [1] <code>BackHandler</code> (교안 p.4) & [3] <code>ToastAndroid</code> (교안 p.7)
         </div>
         <div class="code-preview-grid">
           <div class="code-col">
             <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React, { useEffect } from "react";
-import { View, Text, BackHandler, Alert } from "react-native";
+            <pre class="code-block">// [교안 p.4] BackHandler
+useEffect(() => {
+  const backAction = () => {
+    Alert.alert('잠깐!', '정말로 뒤로 가기를 원하십니까?', [
+      { text: 'Cancel: 아니오', onPress: () => null, style: 'cancel' },
+      { text: 'YES: 예', onPress: () => BackHandler.exitApp() }, // 앱 종료
+    ]);
+    return true; // 기본 뒤로가기 동작 차단!
+  };
+  const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+  return () => backHandler.remove(); // 언마운트 시 리스너 해제!
+}, []);
 
-export function BackHandlerExample() {
-  useEffect(() =&gt; {
-    const backAction = () =&gt; {
-      Alert.alert("잠깐만요!", "정말로 앱을 종료하시겠습니까?", [
-        { text: "취소", onPress: () =&gt; null, style: "cancel" },
-        { text: "종료", onPress: () =&gt; BackHandler.exitApp() },         // 확인 클릭 시 앱 완전 종료
-      ]);
-      return true;                                                      // true 반환 시 시스템 기본 뒤로가기(즉시 종료) 차단!
-    };
-
-    const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction); // 뒤로가기 이벤트 등록
-    return () =&gt; backHandler.remove();                                  // 언마운트 시 이벤트 리스너 반드시 해제!
-  }, []);
-
-  return (
-    &lt;View&gt;&lt;Text&gt;하드웨어 뒤로가기 버튼을 눌러보세요!&lt;/Text&gt;&lt;/View&gt;
-  );
-}</pre>
+// [교안 p.7] ToastAndroid
+ToastAndroid.show('기본 토스트 메세지 !', ToastAndroid.SHORT);
+ToastAndroid.showWithGravityAndOffset(
+  'TOGGLE TOAST WITH GRAVITY & OFFSET 메세지 !',
+  ToastAndroid.LONG,
+  ToastAndroid.CENTER,
+  25, // xOffset
+  50  // yOffset
+);</pre>
           </div>
           <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.4, p.7)</div>
             <div class="phone-device-frame">
               <img src="assets/crossplatform/week6_p4_0_Image56.jpg" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">BackHandler 뒤로가기 감지 시<br>시스템 종료 차단 및 커스텀 Alert 팝업</div>
+              <div class="phone-device-caption">BackHandler Alert 팝업 대화상자<br>(Cancel: 아니오 / YES: 예)</div>
             </div>
           </div>
         </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
-          💻 [2] <code>DrawerLayoutAndroid</code> &amp; [3] <code>ToastAndroid</code> (교안 p.4~7)
+          💻 [4] <code>Animated</code> & [5] <code>Dimensions</code> & [7] <code>Linking</code> (교안 p.9~15 원문)
         </div>
         <div class="code-preview-grid">
           <div class="code-col">
             <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React, { useRef } from "react";
-import { DrawerLayoutAndroid, ToastAndroid, View, Text, Button } from "react-native";
+            <pre class="code-block">// [교안 p.9] Animated: 5초 페이드인, 3초 페이드아웃
+const fadeAnim = useRef(new Animated.Value(0)).current;
+const fadeIn = () => {
+  Animated.timing(fadeAnim, { toValue: 1, duration: 5000, useNativeDriver: true }).start();
+};
+const fadeOut = () => {
+  Animated.timing(fadeAnim, { toValue: 0, duration: 3000, useNativeDriver: true }).start();
+};
+&lt;Animated.View style={[styles.fadingContainer, { opacity: fadeAnim }]}&gt;
+  &lt;Text style={styles.fadingText}&gt;Fading View!&lt;/Text&gt;
+&lt;/Animated.View&gt;
 
-export function DrawerAndToastExample() {
-  const drawer = useRef(null);                                          // 서랍(Drawer) 제어용 ref 객체 생성
+// [교안 p.11] Dimensions
+const [dimensions, setDimensions] = useState({
+  window: Dimensions.get('window'),
+  screen: Dimensions.get('screen'),
+});
 
-  const showToast = () =&gt; {
-    ToastAndroid.show("기본 토스트 메시지입니다!", ToastAndroid.SHORT); // 안드로이드 짧은 토스트 알림 표시
-  };
-  const showToastWithGravity = () =&gt; {
-    ToastAndroid.showWithGravityAndOffset(
-      "화면 중앙 토스트!",
-      ToastAndroid.LONG,                                                // 긴 시간 표시
-      ToastAndroid.CENTER,                                              // 화면 정중앙 배치
-      25,
-      50
-    );
-  };
-
-  const navigationView = () =&gt; (                                        // 서랍 내부에 렌더링할 메뉴 화면
-    &lt;View style={{ flex: 1, padding: 20, backgroundColor: "#fff" }}&gt;
-      &lt;Text&gt;서랍(Drawer) 내부 메뉴입니다.&lt;/Text&gt;
-      &lt;Button title="서랍 닫기" onPress={() =&gt; drawer.current.closeDrawer()} /&gt; // closeDrawer()로 서랍 닫기
-    &lt;/View&gt;
-  );
-
-  return (
-    &lt;DrawerLayoutAndroid
-      ref={drawer}                                                      // ref 연결
-      drawerWidth={300}                                                 // 서랍 가로 너비 300
-      drawerPosition="left"                                             // 왼쪽에서 열리는 서랍
-      renderNavigationView={navigationView}                             // 서랍 내부 화면 함수 연결
-    &gt;
-      &lt;View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}&gt;
-        &lt;Button title="서랍 열기" onPress={() =&gt; drawer.current.openDrawer()} /&gt; // openDrawer()로 서랍 열기
-        &lt;Button title="토스트 띄우기" onPress={showToast} /&gt;
-        &lt;Button title="중앙 토스트 띄우기" onPress={showToastWithGravity} /&gt;
-      &lt;/View&gt;
-    &lt;/DrawerLayoutAndroid&gt;
-  );
-}</pre>
+// [교안 p.15] Linking: 정종수 블로그 열기
+&lt;Button
+  title="확 인"
+  onPress={() =&gt; Linking.openURL('https://blog.naver.com/jongsoo67')}
+/&gt;</pre>
           </div>
           <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.11, p.15)</div>
             <div class="phone-device-frame">
-              <img src="assets/crossplatform/week6_p5_0_Image66.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">DrawerLayoutAndroid 좌측 서랍 메뉴<br>및 ToastAndroid 토스트 알림</div>
+              <img src="assets/crossplatform/week6_p15_0_Image103.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">Linking 블로그 링크 열기 화면<br>("정종수 블로그" / 확인 버튼)</div>
             </div>
           </div>
         </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
-          💻 [4] <code>Animated</code> (Fade In / Fade Out) &amp; [5] <code>Dimensions</code> (화면 크기 감지) (교안 p.8~11)
+          💻 [8] <code>Modal</code> & [10] <code>RefreshControl</code> (교안 p.16~21 원문)
         </div>
         <div class="code-preview-grid">
           <div class="code-col">
             <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React, { useRef, useState, useEffect } from "react";
-import { Animated, Dimensions, View, Text, Button } from "react-native";
-
-export function AnimatedAndDimensionsExample() {
-  const fadeAnim = useRef(new Animated.Value(0)).current;         // 초기 투명도 0 (리렌더링되어도 애니메이션 값 유지)
-
-  const [dims, setDims] = useState({
-    window: Dimensions.get("window"),                             // 실제 앱 표시 영역 크기
-    screen: Dimensions.get("screen"),                             // 상태바 포함 기기 물리 전체 화면 크기
-  });
-
-  useEffect(() =&gt; {
-    const subscription = Dimensions.addEventListener("change", ({ window, screen }) =&gt; {
-      setDims({ window, screen });                                // 화면 회전 시 해상도 자동 갱신
-    });
-    return () =&gt; subscription?.remove();                          // 언마운트 시 리스너 해제
-  }, []);
-
-  const fadeIn = () =&gt; {
-    Animated.timing(fadeAnim, {
-      toValue: 1,                                                 // 불투명도 1까지 서서히 나타남
-      duration: 5000,                                             // 5000ms (5초) 동안 진행
-      useNativeDriver: true,                                      // 네이티브 UI 스레드에서 끊김 없이 실행
-    }).start();
-  };
-
-  const fadeOut = () =&gt; {
-    Animated.timing(fadeAnim, {
-      toValue: 0,                                                 // 불투명도 0으로 서서히 사라짐
-      duration: 3000,                                             // 3000ms (3초) 동안 진행
-      useNativeDriver: true,
-    }).start();
-  };
-
-  return (
-    &lt;View&gt;
-      &lt;Animated.View style={{ opacity: fadeAnim, padding: 20, backgroundColor: "powderblue" }}&gt; // 반드시 Animated.View에 바인딩!
-        &lt;Text&gt;Fading View! Window 가로: {dims.window.width}&lt;/Text&gt;
-      &lt;/Animated.View&gt;
-      &lt;Button title="Fade In (나타나기)" onPress={fadeIn} /&gt;
-      &lt;Button title="Fade Out (사라지기)" onPress={fadeOut} /&gt;
+            <pre class="code-block">// [교안 p.16] Modal
+&lt;Modal
+  animationType="slide"
+  transparent={true}
+  visible={modalVisible}
+  onRequestClose={() => {
+    Alert.alert('Modal has been closed.');
+    setModalVisible(false);
+  }}&gt;
+  &lt;View style={styles.centeredView}&gt;
+    &lt;View style={styles.modalView}&gt;
+      &lt;Text style={styles.modalText}&gt;Hello World!&lt;/Text&gt;
+      &lt;Pressable style={[styles.button, styles.buttonClose]} onPress={() => setModalVisible(false)}&gt;
+        &lt;Text style={styles.textStyle}&gt;Hide Modal&lt;/Text&gt;
+      &lt;/Pressable&gt;
     &lt;/View&gt;
-  );
-}</pre>
+  &lt;/View&gt;
+&lt;/Modal&gt;
+
+// [교안 p.20~21] RefreshControl 당겨서 새로고침
+&lt;ScrollView
+  style={{ flex: 1, backgroundColor: 'pink' }}
+  contentContainerStyle={styles.scrollContent}
+  refreshControl={
+    &lt;RefreshControl refreshing={refreshing} onRefresh={onRefresh} /&gt;
+  }&gt;
+  &lt;Text&gt;아래로 당기면 새로고침됩니다.&lt;/Text&gt;
+&lt;/ScrollView&gt;</pre>
           </div>
           <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
-            <div class="phone-device-frame">
-              <img src="assets/crossplatform/week6_p11_0_Image93.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">Animated 페이드 인/아웃 및<br>Dimensions 실시간 해상도(window) 측정</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="concept-card">
-        <div class="concept-card-title">6-2. 6~10번 API: KeyboardAvoidingView · Linking · Modal · PixelRatio · RefreshControl</div>
-
-        <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
-          💻 [6] <code>KeyboardAvoidingView</code> &amp; [7] <code>Linking</code> &amp; [8] <code>Modal</code> (교안 p.12~17)
-        </div>
-        <div class="code-preview-grid">
-          <div class="code-col">
-            <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React, { useState } from "react";
-import {
-  KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Platform,
-  Linking, Modal, View, Text, TextInput, Button
-} from "react-native";
-
-export function KeyboardLinkingModalExample() {
-  const [modalVisible, setModalVisible] = useState(false);
-
-  return (
-    &lt;KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}             // 가상 키보드가 올라올 때 입력창이 가려지지 않게 자동 조절
-      style={{ flex: 1 }}
-    &gt;
-      &lt;TouchableWithoutFeedback onPress={Keyboard.dismiss}&gt;               // 빈 화면 터치 시 가상 키보드 닫기!
-        &lt;View style={{ flex: 1, justifyContent: "space-around", padding: 24 }}&gt;
-          &lt;TextInput placeholder="터치하면 키보드가 입력창을 가리지 않고 올라옵니다" /&gt;
-
-          &lt;Button
-            title="교수님 블로그 열기"
-            onPress={() =&gt; Linking.openURL("https://blog.naver.com/jongsoo67")} // 외부 웹 브라우저로 URL 열기
-          /&gt;
-
-          &lt;Button title="모달 팝업 열기" onPress={() =&gt; setModalVisible(true)} /&gt;
-          &lt;Modal
-            animationType="slide"                                         // 아래에서 위로 슬라이드 등장
-            transparent={true}                                            // 배경 투명 처리
-            visible={modalVisible}                                        // 모달 표시 여부 상태
-            onRequestClose={() =&gt; setModalVisible(false)}                 // 안드로이드 뒤로가기 시 모달 닫기
-          &gt;
-            &lt;View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}&gt;
-              &lt;Text&gt;모달 팝업 창 내용입니다!&lt;/Text&gt;
-              &lt;Button title="모달 닫기" onPress={() =&gt; setModalVisible(false)} /&gt;
-            &lt;/View&gt;
-          &lt;/Modal&gt;
-        &lt;/View&gt;
-      &lt;/TouchableWithoutFeedback&gt;
-    &lt;/KeyboardAvoidingView&gt;
-  );
-}</pre>
-          </div>
-          <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.16, p.21)</div>
             <div class="phone-device-frame">
               <img src="assets/crossplatform/week6_p16_0_Image106.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">Modal 슬라이드 팝업 대화상자<br>및 KeyboardAvoidingView 키보드 회피</div>
-            </div>
-          </div>
-        </div>
-
-        <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
-          💻 [9] <code>PixelRatio</code> &amp; [10] <code>RefreshControl</code> 당겨서 새로고침 (교안 p.18~22)
-        </div>
-        <div class="code-preview-grid">
-          <div class="code-col">
-            <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React, { useState, useRef, useCallback, useEffect } from "react";
-import { ScrollView, RefreshControl, PixelRatio, Text, View } from "react-native";
-
-export function PixelAndRefreshExample() {
-  const [refreshing, setRefreshing] = useState(false);
-  const timeoutRef = useRef(null);
-
-  const onRefresh = useCallback(() =&gt; {
-    if (refreshing) return;                                       // 이미 새로고침 중이면 중복 실행 방지
-    setRefreshing(true);                                          // 새로고침 로딩 스피너 표시 시작
-    timeoutRef.current = setTimeout(() =&gt; {
-      setRefreshing(false);                                       // 2초 후 새로고침 스피너 종료
-      timeoutRef.current = null;
-    }, 2000);
-  }, [refreshing]);
-
-  useEffect(() =&gt; {
-    return () =&gt; {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);   // 언마운트 시 타이머 메모리 누수 방지
-    };
-  }, []);
-
-  const dpi = PixelRatio.get();                                   // 기기 픽셀 밀도(DPI 배율) 조회
-  const fontScale = PixelRatio.getFontScale();                    // 기기 글꼴 크기 배율 조회
-  const realPx = PixelRatio.getPixelSizeForLayoutSize(50);        // 50dp를 실제 물리 픽셀(px) 크기로 변환
-
-  return (
-    &lt;ScrollView
-      contentContainerStyle={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-      refreshControl={
-        &lt;RefreshControl refreshing={refreshing} onRefresh={onRefresh} /&gt; // 당겨서 새로고침(Pull-to-Refresh) 연결
-      }
-    &gt;
-      &lt;Text&gt;아래로 당겨서 새로고침(Pull to Refresh) 해보세요!&lt;/Text&gt;
-      &lt;Text&gt;픽셀 밀도: {dpi} / 폰트 배율: {fontScale} / 50dp의 실제 픽셀: {realPx}px&lt;/Text&gt;
-    &lt;/ScrollView&gt;
-  );
-}</pre>
-          </div>
-          <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
-            <div class="phone-device-frame">
-              <img src="assets/crossplatform/week6_p21_0_Image116.jpg" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">RefreshControl 당겨서 새로고침<br>(Pull-to-Refresh) 인디케이터</div>
+              <div class="phone-device-caption">Modal 슬라이드 팝업 실행 결과<br>(Hello World! / Hide Modal)</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 8: 7주차 Hook 4총사 & 계산기 실습 -->
+    <!-- SECTION 7: 7주차 Hook 4총사 & 계산기 실습 -->
     <section id="cp-w7" class="concept-section">
       <div class="section-banner gold-banner">
         <div class="section-banner-title">
-          <span>📂 7주차: React Hook 4총사 (useState · useRef · useEffect · useMemo) &amp; 계산기 실습 (교안 p.1~21)</span>
+          <span>📂 7주차: React Hook 4총사 (useState · useRef · useEffect · useMemo) & 계산기 실습 (교안 p.1~21)</span>
         </div>
-        <span class="badge badge-amber">교수님 강조 최고 배점 단원!</span>
+        <span class="badge badge-amber">교수님 강조 최고 배점 단원 · 실습 상세조건 100% 반영</span>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">7-1. Hook의 개념과 3대 필수 작성 규칙 (p.2~3)</div>
+        <div class="concept-card-title">7-1. Hook의 개념과 대표적인 Hook 4종 & 3대 규칙 (교안 p.3)</div>
         <p style="font-size: 14.5px; color: var(--ink-secondary); line-height: 1.75; margin-bottom: 12px;">
-          <b>Hook(훅)</b>은 클래스형 컴포넌트를 작성하지 않고도 <b>함수형 컴포넌트 안에서 상태(State) 관리와 생명주기(Lifecycle) 기능을 연결(Hook into)하여 사용할 수 있게 해주는 함수</b>입니다.
+          <b>Hook(훅)</b>은 React의 함수형 컴포넌트에서 <b>상태(state)나 생명주기(lifecycle) 기능</b>을 사용할 수 있게 해주는 특별한 함수입니다.
         </p>
 
         <div class="callout-box warning" style="margin-bottom: 14px;">
-          <div class="callout-title">🚨 [서술형 &amp; 단답형 필수] Hook 사용 시 반드시 지켜야 할 3대 규칙</div>
-          <b>1. 이름은 반드시 <code>use</code>로 시작</b>: <code>useState</code>, <code>useRef</code>, <code>useEffect</code>, <code>useMemo</code>처럼 모든 Hook은 <code>use</code> 접두사로 시작합니다.<br>
-          <b>2. 최상위(Top-level)에서만 호출</b>: <b style="color: var(--tag-danger-ink);"><code>if</code> 조건문, <code>for</code> 반복문, 중첩된 일반 함수 안에서 Hook을 호출하면 절대 안 됩니다!</b> (렌더링할 때마다 Hook이 항상 동일한 순서로 호출되어야 React가 상태를 올바르게 추적할 수 있기 때문)<br>
-          <b>3. React 함수형 컴포넌트(또는 Custom Hook) 내부에서만 호출</b>: 일반 JavaScript 함수나 클래스형 컴포넌트 안에서는 호출할 수 없습니다.
+          <div class="callout-title">🚨 [교안 p.3 원문] Hook의 3대 필수 작성 규칙</div>
+          <b>1. 함수 컴포넌트와 커스텀 Hook에서만 사용 가능</b> (일반 JS 함수, 클래스 컴포넌트 호출 불가)<br>
+          <b>2. 함수 최상위(Top-level)에서만 사용 가능</b> (if 조건문, for 반복문, 중첩 함수 내부 호출 불가)<br>
+          <b>3. Hook 이름은 반드시 <code>use</code> 접두사로 시작</b> (useState, useRef, useEffect, useMemo)
         </div>
 
-        <table class="concept-table">
+        <table class="concept-table" style="margin-bottom: 14px;">
           <thead>
             <tr>
-              <th style="width: 16%;">Hook 이름</th>
-              <th style="width: 28%;">기본 선언 문법</th>
+              <th style="width: 16%;">Hook 종류</th>
+              <th style="width: 26%;">기본 선언 문법 (교안 원문)</th>
               <th style="width: 22%;">값 변경 시 리렌더링</th>
-              <th>핵심 역할 및 사용 시점</th>
+              <th>교안 명시 핵심 역할 (교안 p.3)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><b style="color: var(--accent);"><code>useState</code></b></td>
-              <td><code>const [state, setState] = useState(초기값);</code></td>
+              <td><code>const [state, setState] = useState(initialState);</code></td>
               <td><b style="color: var(--tag-danger-ink);">O (리렌더링 발생!)</b></td>
-              <td>화면 UI에 즉시 반영되어야 하는 동적 상태값을 저장하고 갱신할 때 사용</td>
+              <td><b>상태(state) 관리</b>: 값 저장 및 업데이트 (값을 바꾸면 화면이 자동으로 다시 렌더링 됨)</td>
             </tr>
             <tr>
               <td><b style="color: var(--accent);"><code>useRef</code></b></td>
-              <td><code>const ref = useRef(초기값);</code><br>(접근: <code>ref.current</code>)</td>
+              <td><code>const ref = useRef(initialValue);</code><br>(접근: <code>ref.current</code>)</td>
               <td><b style="color: var(--tag-green-ink);">X (리렌더링 안 됨!)</b></td>
-              <td>① 리렌더링을 유발하지 않고 렌더링 간에 값을 계속 유지할 때<br>② <code>TextInput</code> 포커스 이동(<code>inputRef.current.focus()</code>) 등 컴포넌트 인스턴스를 직접 제어할 때</td>
+              <td><b>참조 관리</b>: DOM 요소(TextInput 등)나 변수 값을 직접 제어 (리렌더링 유발하지 않음)</td>
             </tr>
             <tr>
               <td><b style="color: var(--accent);"><code>useEffect</code></b></td>
-              <td><code>useEffect(() =&gt; { ... }, [의존성]);</code></td>
+              <td><code>useEffect(() =&gt; { ... }, [dependency]);</code></td>
               <td>부수 효과(Side Effect) 실행</td>
-              <td>컴포넌트 마운트(처음 나타남), 상태 업데이트, 언마운트(사라짐) 시점에 타이머, 이벤트 리스너, 서버 통신 등을 수행</td>
+              <td><b>생명주기 제어</b>: 컴포넌트가 실행(마운트), 변경(업데이트), 종료(언마운트) 때 코드 실행</td>
             </tr>
             <tr>
               <td><b style="color: var(--accent);"><code>useMemo</code></b></td>
-              <td><code>const val = useMemo(() =&gt; 계산식, [의존성]);</code></td>
-              <td>계산 결과값 캐싱(재사용)</td>
-              <td>복잡하고 무거운 연산 결과값을 메모리에 기억(Memoization)해 두고, <b>의존성 배열의 값이 바뀔 때만 재계산</b>하여 렌더링 성능을 최적화함</td>
+              <td><code>const memoized = useMemo(() =&gt; 계산식, [dependency]);</code></td>
+              <td>계산 결과값 캐싱(메모이제이션)</td>
+              <td><b>참조 관리</b>: 불필요한 재계산 방지 (성능 최적화)</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">7-2. <code>useState</code> vs <code>useRef</code> vs 일반 변수(<code>let</code>) 결정적 차이 &amp; 포커스 제어 코드 (p.4~13)</div>
+        <div class="concept-card-title">7-2. <code>useState</code> & <code>useRef</code> 교안 실습 코드 해부 (교안 p.5~12 원문)</div>
 
         <div class="callout-box warning" style="margin-bottom: 12px;">
-          <div class="callout-title">🔥 [시험 100% 출제 유형] 교안 p.10 <code>useRef</code> vs <code>let countVar</code> 실행 결과 예측 완벽 해부!</div>
-          교안 10페이지 코드에서 <b><code>[Increase Ref &amp; Variable]</code> 버튼을 4번 연속 클릭</b>한 뒤, <b><code>[Re-render]</code> 버튼을 1번 클릭</b>하면 화면에 무엇이 찍힐까요?<br>
-          • <b>1단계 (Increase 버튼 4번 클릭 중)</b>: <code>countRef.current</code>는 <code>0 → 1 → 2 → 3 → 4</code>가 되고, <code>countVar</code>도 <code>5 → 6 → 7 → 8 → 9</code>가 됩니다. <b>하지만 둘 다 <code>useState</code> 세터 함수를 호출하지 않았으므로 화면 리렌더링이 일어나지 않아, 화면에는 여전히 초기값 <code>CountRef: 0</code>, <code>CountVar: 5</code>가 그대로 보입니다!</b><br>
-          • <b>2단계 (Re-render 버튼 1번 클릭 순간)</b>: <code>setRender(!render)</code>가 호출되면서 컴포넌트 함수 전체가 처음부터 다시 실행(리렌더링)됩니다!<br>
-          &nbsp;&nbsp;👉 <b><code>countRef.current</code></b>: <code>useRef</code> 객체는 컴포넌트가 리렌더링되어도 메모리에 값을 그대로 보존하므로 화면에 <b style="color: var(--accent);"><code>CountRef: 4</code></b>가 출력됩니다!<br>
-          &nbsp;&nbsp;👉 <b><code>countVar</code></b>: 함수 내부의 일반 지역 변수(<code>let countVar = 5;</code>)는 컴포넌트 함수가 다시 실행될 때 <b>초기값 <code>5</code>로 다시 초기화</b>되므로 이전에 더했던 <code>9</code>가 날아가고 화면에 <b style="color: var(--tag-danger-ink);"><code>CountVar: 5</code></b>가 출력됩니다!
+          <div class="callout-title">🔥 [시험 100% 출제] 교안 p.9: <code>useRef</code> vs <code>let countVar = 5</code> 실행 결과 완벽 분석!</div>
+          교안 9페이지에서 <b>[클릭] 버튼을 3번 연속 누른 후, [리랜더] 버튼을 1번 누르면</b> 화면에 무엇이 출력될까요?<br>
+          • <b>[클릭] 3번 누르는 동안</b>: <code>countRef.current</code>는 <code>0 → 1 → 2 → 3</code>이 되고, <code>countVar</code>는 <code>5 → 6 → 7 → 8</code>이 됩니다. <b>하지만 세터 함수를 호출하지 않아 화면은 리렌더링되지 않으므로, 화면에는 여전히 초기값 <code>CountRef: 0</code>, <code>CountVar: 5</code>가 그대로 보입니다!</b><br>
+          • <b>[리랜더] 버튼을 1번 누른 순간</b>: <code>setRender(!render)</code>로 컴포넌트 함수 전체가 재실행(리렌더링)됩니다!<br>
+          &nbsp;&nbsp;👉 <b><code>countRef.current</code></b>: <code>useRef</code>는 리렌더링되어도 값을 그대로 유지하므로 화면에 <b style="color: var(--accent);"><code>결과값 CountRef: 3</code></b>이 출력됩니다!<br>
+          &nbsp;&nbsp;👉 <b><code>countVar</code></b>: 일반 지역 변수(<code>let countVar = 5;</code>)는 컴포넌트가 다시 실행될 때 <b style="color: var(--tag-danger-ink);">초기값 5로 다시 재초기화</b>되므로 화면에 <b style="color: var(--tag-danger-ink);"><code>결과값 CountVar: 5</code></b>가 출력됩니다!
         </div>
 
         <div class="code-preview-grid">
           <div class="code-col">
-            <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React, { useState, useRef } from "react";
-import { View, Text, Button } from "react-native";
+            <div class="code-col-header">💻 React Native 소스코드 (교안 p.9 원문)</div>
+            <pre class="code-block">import React, { useRef, useState } from 'react';
+import { View, Button, Text } from 'react-native';
 
-export function RefVsVarExample() {
-  const [render, setRender] = useState(false);  // 강제 리렌더링을 일으키기 위한 상태
-  const countRef = useRef(0);                   // 리렌더링되어도 .current 값 유지!
-  let countVar = 5;                             // 일반 지역변수: 리렌더링될 때마다 5로 다시 초기화됨!
+export default function Example() {
+  const [render, setRender] = useState(false);
+  const countRef = useRef(0);
+  let countVar = 5; // 일반 지역변수 초기값 5!
 
-  const increaseRefAndVar = () =&gt; {
-    countRef.current = countRef.current + 1;    // 값만 증가하고 화면 리렌더링은 발생하지 않음
-    countVar = countVar + 1;                    // 지역변수 증가 (리렌더링 시 5로 증발)
-    console.log("Ref:", countRef.current, "Var:", countVar);
+  const handleClick = () => {
+    countRef.current += 1;
+    countVar += 1;
+    console.log('현재 count:', countRef.current, ": ", countVar);
+  };
+
+  const doRender = () => {
+    setRender(!render); // 리렌더링 유발
   };
 
   return (
-    &lt;View&gt;
-      &lt;Text&gt;CountRef: {countRef.current}&lt;/Text&gt;
-      &lt;Text&gt;CountVar: {countVar}&lt;/Text&gt;
-      &lt;Button title="Increase Ref &amp; Variable" onPress={increaseRefAndVar} /&gt;
-      &lt;Button title="Re-render (화면 갱신)" onPress={() =&gt; setRender(!render)} /&gt; // 클릭 시 리렌더링 발생!
+    &lt;View style={{ flex: 1, justifyContent: 'center', alignItems: 'stretch', padding: 30 }}&gt;
+      &lt;Text style={{ fontSize: 30, marginTop: 10, marginBottom: 30 }}&gt;
+        결과값 CountRef: {countRef.current}, {"\n"}결과값 CountVar: {countVar}
+      &lt;/Text&gt;
+      &lt;View style={{ marginBottom: 12 }}&gt;
+        &lt;Button title="클릭" onPress={handleClick} /&gt;
+      &lt;/View&gt;
+      &lt;View&gt;
+        &lt;Button title="리랜더" onPress={doRender} /&gt;
+      &lt;/View&gt;
     &lt;/View&gt;
   );
 }</pre>
           </div>
           <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.9)</div>
             <div class="phone-device-frame">
               <img src="assets/crossplatform/week7_p9_0_Image78.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">useRef vs let countVar 리렌더링 비교<br>(Ref: 4 유지, Var: 5 초기화)</div>
+              <div class="phone-device-caption">useRef vs let countVar 실행 결과<br>(CountRef 누적 보존 vs CountVar 초기값 5 리셋)</div>
             </div>
           </div>
         </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
-          💻 [코드 7-2] <code>useState</code> + <code>useRef</code>를 결합한 <code>A × B</code> 곱셈 계산기 및 자동 포커스 이동 (교안 p.8, p.11~13 통합)
+          💻 [코드 7-2] <code>useRef</code>를 이용한 <code>TextInput</code> 포커스 제어 & A × B 계산기 (교안 p.10~12 원문)
         </div>
         <div class="code-preview-grid">
           <div class="code-col">
-            <div class="code-col-header">💻 React Native 소스코드</div>
-            <pre class="code-block">import React, { useState, useRef } from "react";
-import { StyleSheet, View, Text, TextInput, Button } from "react-native";
+            <div class="code-col-header">💻 React Native 소스코드 (교안 p.10~12 원문)</div>
+            <pre class="code-block">export default function App() {
+  const inputRef = useRef(null);
+  const focusInput = () => {
+    inputRef.current?.focus(); // ref가 존재할 때 첫 번째 TextInput으로 포커스 이동!
+  };
 
-export default function MultiplyWithFocus() {
-  const [a, setA] = useState("");
-  const [b, setB] = useState("");
+  const [a, setA] = useState('');
+  const [b, setB] = useState('');
   const [result, setResult] = useState(null);
-  const inputRef = useRef(null);                          // 1. 포커스를 제어할 ref 객체 생성
 
-  const handleMultiply = () =&gt; {
+  const multiply = () => {
     const numA = parseFloat(a);
     const numB = parseFloat(b);
-    if (!isNaN(numA) &amp;&amp; !isNaN(numB)) {
-      setResult(numA * numB);                             // A * B 곱셈 결과를 상태에 저장
+    if (isNaN(numA) || isNaN(numB)) {
+      setResult('숫자를 입력하세요!');
     } else {
-      setResult("올바른 숫자를 입력하세요");
+      setResult(numA * numB);
     }
-    inputRef.current?.focus();                            // 2. 계산 완료 후 첫 번째 TextInput(A)으로 커서 포커스 즉시 이동!
+  };
+
+  const handlePress = () => {
+    multiply();   // 1. 곱셈 계산
+    focusInput(); // 2. A 입력창으로 커서 자동 포커스 이동
   };
 
   return (
     &lt;View style={styles.container}&gt;
+      &lt;Text style={{ fontSize: 20, marginBottom: 10 }}&gt;A × B 계산기&lt;/Text&gt;
       &lt;TextInput
-        ref={inputRef}                                    // 3. ref={inputRef} 속성으로 TextInput 컴포넌트와 ref 연결!
+        ref={inputRef}                                    // inputRef 바인딩
         style={styles.input}
-        placeholder="첫 번째 숫자 (A)"
         keyboardType="numeric"
+        placeholder="A 입력"
         value={a}
         onChangeText={setA}
+        returnKeyType="next"
       /&gt;
       &lt;TextInput
         style={styles.input}
-        placeholder="두 번째 숫자 (B)"
         keyboardType="numeric"
+        placeholder="B 입력"
         value={b}
         onChangeText={setB}
       /&gt;
-      &lt;Button title="A × B 계산하기" onPress={handleMultiply} /&gt;
-      {result !== null &amp;&amp; &lt;Text style={styles.resultText}&gt;결과: {result}&lt;/Text&gt;}
+      &lt;Button title="A × B 계산" onPress={handlePress} /&gt;
+      {result !== null &amp;&amp; (
+        &lt;Text style={{ fontSize: 22, marginTop: 20 }}&gt;결과: {result}&lt;/Text&gt;
+      )}
     &lt;/View&gt;
   );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", padding: 20 },
-  input: { borderWidth: 1, borderColor: "#ccc", padding: 10, marginBottom: 10 },
-  resultText: { fontSize: 22, fontWeight: "bold", marginTop: 15 },
-});</pre>
+}</pre>
           </div>
           <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.11~12)</div>
             <div class="phone-device-frame">
               <img src="assets/crossplatform/week7_p11_0_Image84.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">A × B 곱셈 계산기 실행 및<br>useRef 자동 포커스 이동 결과</div>
+              <div class="phone-device-caption">A × B 계산기 및<br>useRef 커서 자동 포커스 이동 결과</div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">7-3. <code>useEffect</code> 의존성 배열 3가지 패턴과 <code>useMemo</code> 최적화 코드 (p.14~19)</div>
+        <div class="concept-card-title">7-3. <code>useEffect</code> 의존성 배열 동작 & <code>useMemo</code> 연산 캐싱 (교안 p.13~18 원문)</div>
 
         <table class="concept-table" style="margin-bottom: 12px;">
           <thead>
             <tr>
-              <th style="width: 28%;"><code>useEffect</code> 두 번째 인자 (의존성 배열)</th>
-              <th style="width: 34%;">코드 작성 형태</th>
-              <th>실행되는 정확한 시점 (시험 필수!)</th>
+              <th style="width: 28%;"><code>useEffect</code> 두 번째 인자</th>
+              <th style="width: 32%;">코드 형태 (교안 원문)</th>
+              <th>실행 시점 및 로그 출력 설명</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><b>1) 의존성 배열 생략</b></td>
-              <td><code>useEffect(() =&gt; { ... });</code></td>
-              <td>컴포넌트가 <b>최초 마운트될 때 1회 + 어떤 상태든 바뀌어 리렌더링될 때마다 매번</b> 실행됨</td>
-            </tr>
-            <tr>
-              <td><b style="color: var(--accent);">2) 빈 배열 <code>[]</code> 전달</b></td>
+              <td><b style="color: var(--accent);">1) 빈 배열 <code>[]</code> 전달</b></td>
               <td><code>useEffect(() =&gt; { ... }, []);</code></td>
-              <td>컴포넌트가 화면에 <b>최초 마운트(처음 로드)될 때 단 1회만</b> 실행됨! (이후 리렌더링 시 실행 안 됨)</td>
+              <td>컴포넌트가 화면에 <b>최초 마운트될 때 단 1회만</b> 실행됨! (교안 p.14: "앱이 실행되었습니다! (처음 한 번만)")</td>
             </tr>
             <tr>
-              <td><b style="color: var(--tag-green-ink);">3) 특정 상태 <code>[count]</code> 전달</b></td>
+              <td><b style="color: var(--tag-green-ink);">2) 특정 상태 <code>[count]</code> 전달</b></td>
               <td><code>useEffect(() =&gt; { ... }, [count]);</code></td>
-              <td><b>최초 마운트될 때 1회 + 배열에 넣은 <code>count</code> 값이 변경될 때만</b> 실행됨! (다른 상태 변경 시에는 실행 안 됨)</td>
+              <td>최초 마운트 시 1회 + <b><code>count</code> 값이 바뀔 때마다</b> 실행됨 (교안 p.15: "count 값이 바뀌었습니다: {count}")</td>
+            </tr>
+            <tr>
+              <td><b>3) 의존성 배열 생략</b></td>
+              <td><code>useEffect(() =&gt; { ... });</code></td>
+              <td>컴포넌트가 최초 마운트될 때 + <b>어떤 상태든 바뀌어 리렌더링될 때마다 매번</b> 실행됨</td>
             </tr>
           </tbody>
         </table>
 
         <div class="code-preview-grid">
           <div class="code-col">
-            <div class="code-col-header">💻 React Native 소스코드</div>
+            <div class="code-col-header">💻 useMemo 연산 최적화 (교안 p.17 원문)</div>
             <pre class="code-block">import React, { useState, useMemo } from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import { StyleSheet, View, Text, Button } from "react-native";
 
-export default function UseMemoExample() {
+export default function App() {
   const [count, setCount] = useState(0);
   const [text, setText] = useState("");
 
-  const double = useMemo(() =&gt; {                          // count가 바뀔 때만 재계산하고, text만 바뀔 때는 캐시값 재사용!
-    console.log("계산 중... (count가 변경되었을 때만 찍힘!)");
+  // count가 변경되었을 때만 double 계산 함수 재실행!
+  const double = useMemo(() => {
+    console.log("double 계산 실행!");
     return count * 2;
-  }, [count]);                                            // 의존성 배열에 [count] 지정
+  }, [count]); // 의존성 배열에 count 지정
 
   return (
-    &lt;View style={{ flex: 1, justifyContent: "center", padding: 20 }}&gt;
-      &lt;Text style={{ fontSize: 20 }}&gt;Count: {count} / 2배 값(double): {double}&lt;/Text&gt;
-      &lt;Button title="Count +1 증가" onPress={() =&gt; setCount(count + 1)} /&gt;
-
-      &lt;TextInput
-        value={text}
-        onChangeText={setText}                            // 글자를 입력해 리렌더링되어도 useMemo는 재실행되지 않음!
-        placeholder="여기에 글자를 입력해도 useMemo는 재계산되지 않습니다!"
-        style={{ borderWidth: 1, marginTop: 16, padding: 8 }}
-      /&gt;
+    &lt;View style={styles.container}&gt;
+      &lt;Text style={styles.text}&gt;Count: {count}&lt;/Text&gt;
+      &lt;Text style={styles.text}&gt;Double: {double}&lt;/Text&gt;
+      &lt;Text style={{ marginBottom: 1 }} /&gt;
+      &lt;Button title="카운트 +1" onPress={() =&gt; setCount(count + 1)} /&gt;
+      &lt;Text style={{ marginBottom: 1 }} /&gt;
+      {/* 텍스트가 변경되어 리렌더링되어도 useMemo는 재실행되지 않음! */}
+      &lt;Button title="텍스트 변경" onPress={() =&gt; setText(text + '강남대 ')} /&gt;
+      &lt;Text style={{ marginBottom: 1 }} /&gt;
+      &lt;Text style={styles.text}&gt;Character: {text}&lt;/Text&gt;
     &lt;/View&gt;
   );
 }</pre>
           </div>
           <div class="preview-col">
-            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="preview-col-header">📱 실제 앱 실행 화면 (교안 p.17)</div>
             <div class="phone-device-frame">
               <img src="assets/crossplatform/week7_p17_0_Image99.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
-              <div class="phone-device-caption">useMemo 연산 캐싱 최적화<br>(count 변경 시에만 double 재계산)</div>
+              <div class="phone-device-caption">useMemo 연산 캐싱 최적화<br>(Count / Double / Character: 강남대)</div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="concept-card">
-        <div class="concept-card-title">7-4. 7주차 실습 과제: 계산기(Calculator) 앱 상세 조건 &amp; 전체 코드 (p.20~21)</div>
+        <div class="concept-card-title">7-4. 7주차 계산기 실습 7대 상세조건 & 전체 코드 (교안 p.19 원문)</div>
         <div class="callout-box warning" style="margin-bottom: 12px;">
-          <div class="callout-title">🚨 [교수님 녹음본 직접 경고] 과제 상세 조건(색상·폰트 크기·높이) 불일치 시 0점/감점!</div>
+          <div class="callout-title">🚨 [교수님 녹음본 직접 경고] 교안 p.19 상세조건 불일치 시 0점/감점!</div>
           교수님 말씀: <i>"과제에 상세 조건이 있어. 블랙 대신 회색을 쓰거나 조건 안 지키면 점수가 안 나갑니다!"</i><br>
           아래 표의 <b>7대 상세 스타일 조건 수치와 색상 코드</b>를 토씨 하나 틀리지 않고 그대로 기억하세요!
         </div>
@@ -1405,46 +1224,54 @@ export default function UseMemoExample() {
         <table class="concept-table" style="margin-bottom: 14px;">
           <thead>
             <tr>
-              <th style="width: 28%;">스타일 대상 (Style 객체명)</th>
-              <th style="width: 42%;">교안 지정 필수 속성 &amp; 정확한 값</th>
+              <th style="width: 30%;">스타일 대상 (교안 p.19)</th>
+              <th style="width: 40%;">교안 지정 필수 속성 & 정확한 값</th>
               <th>역할 설명</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><b>1. 전체 배경 (<code>container</code>)</b></td>
-              <td><b style="color: var(--accent);"><code>backgroundColor: 'black'</code></b>, <code>flex: 1</code></td>
+              <td><b>1. 전체 배경</b></td>
+              <td><b style="color: var(--accent);"><code>backgroundColor: 'black'</code></b></td>
               <td>계산기 전체 화면 배경색 (반드시 <code>'black'</code>)</td>
             </tr>
             <tr>
-              <td><b>2. 결과 표시 텍스트 (<code>displayText</code>)</b></td>
-              <td><b style="color: var(--accent);"><code>color: 'white'</code>, <code>fontSize: 84</code>, <code>textAlign: 'right'</code>, <code>fontWeight: '300'</code></b></td>
+              <td><b>2. 결과 표시 (displayText)</b></td>
+              <td>
+                • <b style="color: var(--accent);"><code>Color: 'white'</code></b><br>
+                • <b style="color: var(--accent);"><code>FontSize: 84</code></b><br>
+                • <b style="color: var(--accent);"><code>textAlign: 'right'</code></b>
+              </td>
               <td>상단 계산 결과 숫자 표시 (우측 정렬, 크기 84)</td>
             </tr>
             <tr>
-              <td><b>3. 버튼 공통 높이 (<code>button</code>)</b></td>
-              <td><b style="color: var(--accent);"><code>height: 64</code></b>, <code>flex: 1</code>, <code>margin: 4</code></td>
+              <td><b>3. 버튼 높이 (Button)</b></td>
+              <td><b style="color: var(--accent);"><code>height: 64</code></b></td>
               <td>모든 계산기 버튼의 기본 높이 64</td>
             </tr>
             <tr>
-              <td><b>4. 숫자 버튼 (<code>numberButton</code>)</b></td>
+              <td><b>4. 숫자 버튼 (number Button)</b></td>
               <td><b style="color: var(--tag-gold-ink);"><code>backgroundColor: '#2f2f2f'</code></b></td>
               <td><code>0~9</code>, <code>.</code> 숫자 키패드 배경색 (짙은 회색)</td>
             </tr>
             <tr>
-              <td><b>5. 연산자 버튼 (<code>operatorButton</code>)</b></td>
+              <td><b>5. 연산자 버튼 (operatorButton)</b></td>
               <td><b style="color: var(--tag-gold-ink);"><code>backgroundColor: '#F5A623'</code></b></td>
               <td><code>÷, ×, -, +, =</code> 우측 사칙연산 버튼 배경색 (오렌지색)</td>
             </tr>
             <tr>
-              <td><b>6. 유틸리티 버튼 (<code>utilityButton</code>)</b></td>
+              <td><b>6. 유틸리티 버튼 (utilityButton)</b></td>
               <td><b style="color: var(--tag-gold-ink);"><code>backgroundColor: '#555'</code></b></td>
               <td><code>AC, +/-, %</code> 상단 기능 버튼 배경색 (중간 회색)</td>
             </tr>
             <tr>
-              <td><b>7. 버튼 내부 글자 (<code>buttonText</code>)</b></td>
-              <td><b style="color: var(--accent);"><code>color: 'white'</code>, <code>fontSize: 30</code>, <code>fontWeight: '500'</code></b></td>
-              <td>모든 버튼 안에 적히는 텍스트 스타일</td>
+              <td><b>7. 버튼 텍스트 (buttonText)</b></td>
+              <td>
+                • <b style="color: var(--accent);"><code>color: 'white'</code></b><br>
+                • <b style="color: var(--accent);"><code>fontSize: 30</code></b><br>
+                • <b style="color: var(--accent);"><code>fontweight: '500'</code></b>
+              </td>
+              <td>모든 버튼 안에 적히는 텍스트 스타일 규격</td>
             </tr>
           </tbody>
         </table>
@@ -1453,21 +1280,21 @@ export default function UseMemoExample() {
 import { StyleSheet, View, Text, Pressable } from "react-native";
 
 export default function CalculatorApp() {
-  const [displayValue, setDisplayValue] = useState("0");    // 화면 표시 숫자 문자열
-  const [prevValue, setPrevValue] = useState(null);         // 이전 입력 피연산자 저장
-  const [operator, setOperator] = useState(null);           // 선택된 사칙연산자 저장
+  const [displayValue, setDisplayValue] = useState("0");
+  const [prevValue, setPrevValue] = useState(null);
+  const [operator, setOperator] = useState(null);
 
-  const handleNumberPress = (num) =&gt; {
+  const handleNumberPress = (num) => {
     setDisplayValue(displayValue === "0" ? String(num) : displayValue + num);
   };
 
-  const handleOperatorPress = (op) =&gt; {
+  const handleOperatorPress = (op) => {
     setPrevValue(parseFloat(displayValue));
     setOperator(op);
     setDisplayValue("0");
   };
 
-  const handleEqualPress = () =&gt; {
+  const handleEqualPress = () => {
     const current = parseFloat(displayValue);
     if (prevValue === null || !operator) return;
     let res = 0;
@@ -1480,7 +1307,7 @@ export default function CalculatorApp() {
     setOperator(null);
   };
 
-  const handleClear = () =&gt; {
+  const handleClear = () => {
     setDisplayValue("0");
     setPrevValue(null);
     setOperator(null);
@@ -1514,16 +1341,17 @@ export default function CalculatorApp() {
   );
 }
 
+// 7주차 교안 p.19 상세조건 100% 반영 스타일시트
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "black", justifyContent: "flex-end", padding: 12 },   // 전체 배경 'black' 필수!
+  container: { flex: 1, backgroundColor: "black", justifyContent: "flex-end", padding: 12 },   // 전체 배경 'black'
   displayContainer: { padding: 16, justifyContent: "flex-end" },
-  displayText: { color: "white", fontSize: 84, fontWeight: "300", textAlign: "right" },        // 결과 글자 84, 우측 정렬!
+  displayText: { color: "white", fontSize: 84, textAlign: "right" },                           // 결과 폰트 84, 우측정렬
   row: { flexDirection: "row", marginBottom: 8 },
-  button: { flex: 1, height: 64, margin: 4, borderRadius: 32, justifyContent: "center", alignItems: "center" }, // 높이 64!
+  button: { flex: 1, height: 64, margin: 4, borderRadius: 32, justifyContent: "center", alignItems: "center" }, // 높이 64
   numberButton: { backgroundColor: "#2f2f2f" },                                                // 숫자 버튼 '#2f2f2f'
   operatorButton: { backgroundColor: "#F5A623" },                                              // 연산자 버튼 '#F5A623'
   utilityButton: { backgroundColor: "#555" },                                                  // 기능 버튼 '#555'
-  buttonText: { color: "white", fontSize: 30, fontWeight: "500" },                             // 버튼 글자 크기 30
+  buttonText: { color: "white", fontSize: 30, fontWeight: "500" },                             // 버튼 폰트 30, 굵기 500
 });</pre>
       </div>
     </section>
@@ -1543,7 +1371,7 @@ window.EXAM_DATABASE.crossplatform = {
       tag: "All 주관식 10문항 (100점)",
       questions: [
         {
-          id: 1, type: "short", score: 10, origin: "Part 2 & Part 4: JSX 부모 태그 & 스타일 배열 결합",
+          id: 1, type: "short", score: 10, origin: "3주차 & 5주차: JSX 부모 태그 & 스타일 배열 결합",
           text: "다음 리액트 네이티브 코드에서 빈칸 (A)와 (B)에 들어갈 코드를 순서대로 쓰시오.<br><br>" +
                 "• (A): JSX는 반드시 하나의 최상위 부모 엘리먼트로 감싸야 한다.<br>" +
                 "• (B): styles.baseText와 styles.boldText 두 스타일을 동시에 결합 적용하는 배열 문법<br><br>" +
@@ -1557,7 +1385,7 @@ window.EXAM_DATABASE.crossplatform = {
           explanation: "<b>정답: (A) View, (B) [styles.baseText, styles.boldText]</b><br>JSX는 반드시 하나의 루트 부모 엘리먼트(&lt;View&gt; 또는 &lt;&gt;)로 감싸야 하며, 리액트 네이티브에서 여러 개의 스타일을 병합할 때는 배열 표기법 [style1, style2]를 사용합니다."
         },
         {
-          id: 2, type: "essay", score: 10, origin: "Part 2: Flexbox 핵심 3대 정렬 속성의 기본값과 역할",
+          id: 2, type: "essay", score: 10, origin: "3주차: Flexbox 핵심 3대 정렬 속성의 기본값과 역할",
           text: "리액트 네이티브에서 레이아웃을 배치할 때 사용하는 Flexbox의 다음 3가지 속성의 <b>기본값(Default Value)</b>과 <b>정렬 기준</b>을 각각 명확히 서술하시오.<br><br>1) flexDirection<br>2) justifyContent<br>3) alignItems",
           placeholder: "3가지 속성의 기본값과 정렬 축을 나누어 서술하세요.",
           rubric: "1. flexDirection 기본값 column 명시 (3점)\n2. justifyContent 기본값 flex-start 및 주축(Main Axis) 정렬 명시 (3점)\n3. alignItems 기본값 stretch 및 교차축(Cross Axis) 정렬 명시 (4점)",
@@ -1565,15 +1393,15 @@ window.EXAM_DATABASE.crossplatform = {
           explanation: "일반 웹 CSS와 달리 모바일 환경인 리액트 네이티브는 flexDirection 기본값이 세로(column)라는 점이 가장 중요한 채점 포인트입니다."
         },
         {
-          id: 3, type: "short", score: 10, origin: "Part 3: Alert 대화상자 컴포넌트 빈칸",
+          id: 3, type: "short", score: 10, origin: "4주차: Alert 대화상자 컴포넌트 빈칸",
           text: "버튼을 클릭했을 때 다음과 같은 취소/확인 팝업 경고창을 띄우고자 한다. 빈칸 (가)에 들어갈 리액트 네이티브 내장 API 이름을 쓰시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>import { View, Button, (가) } from 'react-native';\n\nconst handlePress = () => {\n    (가).alert('로그아웃', '정말 로그아웃 하시겠습니까?', [\n        { text: '취소', style: 'cancel' },\n        { text: '확인', onPress: () => console.log('로그아웃') }\n    ]);\n};</pre>",
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>import { View, Button, (가) } from 'react-native';\n\nconst handlePress = () => {\n    (가).alert('핑크버튼', '핑크 버튼 누름', [\n        { text: '취소', style: 'cancel' },\n        { text: '확인', onPress: () => console.log('확인 클릭') }\n    ]);\n};</pre>",
           placeholder: "API 이름 입력 (예: Alert)",
           answers: ["Alert", "alert"],
-          explanation: "<b>정답: Alert</b><br>react-native 패키지에서 제공하는 Alert API의 Alert.alert(제목, 메시지, 버튼배열) 메서드를 사용하여 네이티브 확인/취소 팝업 대화상자를 구현합니다."
+          explanation: "<b>정답: Alert</b><br>react-native 패키지에서 제공하는 Alert API의 Alert.alert(제목, 메시지, 버튼배열) 메서드를 사용하여 네이티브 확인/취소 팝업 대화상자를 구현합니다. (4주차 교안 p.13 원문)"
         },
         {
-          id: 4, type: "essay", score: 10, origin: "Part 4: FlatList와 ScrollView의 차이점 및 사용 이유",
+          id: 4, type: "essay", score: 10, origin: "5주차: FlatList와 ScrollView의 차이점 및 사용 이유",
           text: "리액트 네이티브에서 대량의 목록 데이터를 화면에 출력할 때 ScrollView 대신 <b>FlatList를 사용하는 이유</b>를 메모리 관리 및 렌더링 동작 메커니즘 관점에서 서술하시오.",
           placeholder: "ScrollView와 FlatList의 렌더링 방식 및 메모리 차이를 서술하세요.",
           rubric: "1. ScrollView가 모든 데이터를 한꺼번에 렌더링하여 메모리 과부하를 유발함을 명시 (5점)\n2. FlatList가 화면에 보이는 항목만 지연 렌더링(Lazy)하고 화면 밖 뷰를 재사용하여 성능을 최적화함을 명시 (5점)",
@@ -1581,19 +1409,19 @@ window.EXAM_DATABASE.crossplatform = {
           explanation: "지연 렌더링(Lazy Loading)과 뷰 재활용을 통한 메모리 최적화가 핵심 키워드입니다."
         },
         {
-          id: 5, type: "short", score: 10, origin: "Part 4: FlatList의 3대 필수 속성(Props)",
+          id: 5, type: "short", score: 10, origin: "5주차: FlatList의 3대 필수 속성(Props)",
           text: "다음 FlatList 컴포넌트에서 빈칸 (1), (2), (3)에 들어갈 필수 Props 명칭을 순서대로 쉼표로 구분하여 작성하시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;FlatList\n    (1)={USERS}\n    (2)={(item) =&gt; item.id}\n    (3)={({ item }) =&gt; &lt;Text&gt;{item.name}&lt;/Text&gt;}\n/&gt;</pre>",
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;FlatList\n    (1)={data}\n    (2)={(item) =&gt; item.id}\n    (3)={({ item }) =&gt; &lt;Text&gt;{item.id} : {item.name}&lt;/Text&gt;}\n/&gt;</pre>",
           placeholder: "순서대로 입력 (예: data, keyExtractor, renderItem)",
           answers: [
             "data, keyExtractor, renderItem",
             "data,keyExtractor,renderItem",
             "data, keyExtractor, renderitem"
           ],
-          explanation: "<b>정답: data, keyExtractor, renderItem</b><br>FlatList는 1) 데이터 배열을 받는 data, 2) 고유 키를 추출하는 keyExtractor, 3) 항목을 화면에 그리는 renderItem의 3대 필수 속성이 반드시 지정되어야 합니다."
+          explanation: "<b>정답: data, keyExtractor, renderItem</b><br>FlatList는 1) 데이터 배열을 받는 data, 2) 고유 키를 추출하는 keyExtractor, 3) 항목을 화면에 그리는 renderItem의 3대 필수 속성이 반드시 지정되어야 합니다. (5주차 교안 p.12 원문)"
         },
         {
-          id: 6, type: "essay", score: 10, origin: "Part 6: useState와 useRef의 렌더링 관점 결정적 차이",
+          id: 6, type: "essay", score: 10, origin: "7주차: useState와 useRef의 렌더링 관점 결정적 차이",
           text: "리액트 Hook인 <b>useState</b>와 <b>useRef</b>의 가장 결정적인 차이점을 <b>컴포넌트 리렌더링(Re-rendering) 발생 여부</b>와 <b>값 유지</b> 측면에서 비교하여 설명하시오.",
           placeholder: "리렌더링 발생 여부 및 값 유지 관점에서 서술하세요.",
           rubric: "1. useState는 값 변경(세터 호출) 시 컴포넌트가 다시 렌더링됨을 명시 (5점)\n2. useRef는 .current 값을 변경해도 컴포넌트가 다시 렌더링되지 않고 값을 유지함을 명시 (5점)",
@@ -1601,15 +1429,15 @@ window.EXAM_DATABASE.crossplatform = {
           explanation: "값 변경이 화면 리렌더링을 트리거하는지 여부가 핵심 차이점입니다."
         },
         {
-          id: 7, type: "short", score: 10, origin: "Part 6: useState, useRef, 일반 변수 실행 결과 예측",
-          text: "다음 컴포넌트에서 사용자가 <b>[+1 증가]</b> 버튼을 <b>3번 연속 클릭</b>한 후, <b>[화면 갱신]</b> 버튼을 <b>1번 클릭</b>하였다.<br>화면에 최종적으로 출력되는 <b>State, Ref, Var</b>의 값을 순서대로 쓰시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>export default function CounterTest() {\n    const [render, setRender] = useState(false);\n    const [countState, setCountState] = useState(0);\n    const countRef = useRef(0);\n    let countVar = 0;\n\n    const handleIncrease = () => {\n        countRef.current += 1;\n        countVar += 1;\n    };\n    const handleReRender = () => {\n        setRender(!render);\n    };\n    return (\n        &lt;View&gt;\n            &lt;Text&gt;State: {countState}&lt;/Text&gt;\n            &lt;Text&gt;Ref: {countRef.current}&lt;/Text&gt;\n            &lt;Text&gt;Var: {countVar}&lt;/Text&gt;\n            &lt;Button title=\"+1 증가\" onPress={handleIncrease} /&gt;\n            &lt;Button title=\"화면 갱신\" onPress={handleReRender} /&gt;\n        &lt;/View&gt;\n    );\n}</pre>",
-          placeholder: "순서대로 정수 입력 (예: 0, 3, 0)",
-          answers: ["0, 3, 0", "0,3,0", "State: 0, Ref: 3, Var: 0"],
-          explanation: "<b>정답: 0, 3, 0</b><br>1) [+1 증가] 3번 누르는 동안: countRef.current는 3, countVar는 3이 되지만 리렌더링이 발생하지 않음.<br>2) [화면 갱신]을 1번 누르면: setRender로 인해 컴포넌트가 리렌더링됨.<br>• countState: 변경된 적 없으므로 초기값 0.<br>• countRef.current: 리렌더링되어도 값이 유지되므로 3.<br>• countVar: 일반 로컬 변수이므로 함수 재실행 시 let countVar = 0으로 초기화되어 0.<div class=\"exam-result-preview\"><div class=\"exam-result-preview-header\">📱 교안 실제 실행 결과 화면</div><img src=\"assets/crossplatform/week7_p9_0_Image78.png\" alt=\"실행 화면\" class=\"exam-result-img\" loading=\"lazy\"></div>"
+          id: 7, type: "short", score: 10, origin: "7주차 교안 p.9: useRef vs let countVar = 5 실행 결과 예측",
+          text: "7주차 교안 p.9 원문 코드이다. 사용자가 <b>[클릭]</b> 버튼을 <b>3번 연속 클릭</b>한 후, <b>[리랜더]</b> 버튼을 <b>1번 클릭</b>하였다.<br>화면에 최종적으로 출력되는 <b>CountRef</b>와 <b>CountVar</b>의 값을 순서대로 쓰시오.<br><br>" +
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>export default function Example() {\n    const [render, setRender] = useState(false);\n    const countRef = useRef(0);\n    let countVar = 5; // 일반 지역변수 초기값 5\n\n    const handleClick = () => {\n        countRef.current += 1;\n        countVar += 1;\n    };\n    const doRender = () => {\n        setRender(!render);\n    };\n    return (\n        &lt;View&gt;\n            &lt;Text&gt;결과값 CountRef: {countRef.current}, 결과값 CountVar: {countVar}&lt;/Text&gt;\n            &lt;Button title=\"클릭\" onPress={handleClick} /&gt;\n            &lt;Button title=\"리랜더\" onPress={doRender} /&gt;\n        &lt;/View&gt;\n    );\n}</pre>",
+          placeholder: "순서대로 정수 입력 (예: 3, 5)",
+          answers: ["3, 5", "3,5", "CountRef: 3, CountVar: 5"],
+          explanation: "<b>정답: 3, 5</b><br>1) [클릭] 3번 누르는 동안: countRef.current는 3, countVar는 8이 되지만 화면 리렌더링이 일어나지 않음.<br>2) [리랜더]를 1번 누르면: setRender로 인해 컴포넌트 함수가 다시 실행됨.<br>• countRef.current: useRef는 리렌더링되어도 값을 유지하므로 3.<br>• countVar: 함수가 다시 호출되면서 let countVar = 5로 재초기화되므로 5.<div class=\"exam-result-preview\"><div class=\"exam-result-preview-header\">📱 교안 실제 실행 결과 화면</div><img src=\"assets/crossplatform/week7_p9_0_Image78.png\" alt=\"실행 화면\" class=\"exam-result-img\" loading=\"lazy\"></div>"
         },
         {
-          id: 8, type: "short", score: 10, origin: "Part 6: useEffect 의존성 배열에 따른 콘솔 출력 순서",
+          id: 8, type: "short", score: 10, origin: "7주차: useEffect 의존성 배열에 따른 콘솔 출력 순서",
           text: "다음 컴포넌트가 화면에 <b>최초 마운트(처음 로드)</b>된 직후 콘솔(Console)에 출력되는 로그 기호(A, B, C)를 실행 순서대로 쓰시오.<br><br>" +
                 "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>export default function EffectTest() {\n    const [count, setCount] = useState(0);\n\n    useEffect(() => { console.log('A'); });\n    useEffect(() => { console.log('B'); }, []);\n    useEffect(() => { console.log('C'); }, [count]);\n\n    return &lt;View&gt;&lt;Text&gt;{count}&lt;/Text&gt;&lt;/View&gt;;\n}</pre>",
           placeholder: "출력 순서 입력 (예: A, B, C)",
@@ -1617,17 +1445,17 @@ window.EXAM_DATABASE.crossplatform = {
           explanation: "<b>정답: A, B, C</b><br>컴포넌트가 최초 마운트될 때 모든 useEffect는 의존성 배열의 유무와 관계없이 무조건 최소 1회 실행됩니다. 따라서 코드에 작성된 순서대로 A, B, C가 차례대로 출력됩니다. (만약 이후 count 값이 변경되면 매번 실행되는 A와 count를 의존하는 C만 실행되고, 빈 배열을 가진 B는 실행되지 않습니다.)"
         },
         {
-          id: 9, type: "essay", score: 10, origin: "Part 6: useMemo의 목적 및 의존성 배열 동작 메커니즘",
+          id: 9, type: "essay", score: 10, origin: "7주차: useMemo의 목적 및 의존성 배열 동작 메커니즘",
           text: "React Hook인 <b>useMemo</b>를 사용하는 목적을 설명하고, 컴포넌트 내의 다른 상태(state)가 변경되어 화면이 리렌더링될 때 useMemo의 의존성 배열에 등록된 값이 바뀌지 않았다면 내부 계산 함수가 다시 실행되는지 여부와 그 이유를 서술하시오.",
           placeholder: "useMemo의 목적과 의존성 배열 미변경 시의 동작을 서술하세요.",
           rubric: "1. 고비용 연산 결과 메모이제이션(캐싱)을 통한 불필요한 재계산 방지 목적 명시 (5점)\n2. 의존성 배열 값이 변경되지 않으면 재계산하지 않고 기존 캐시값을 그대로 반환함을 명시 (5점)",
           sampleAnswer: "useMemo는 복잡하거나 비용이 큰 연산 결과를 메모리에 캐싱(메모이제이션)하여 렌더링 성능을 최적화하기 위해 사용합니다.\n의존성 배열에 등록된 값이 변경되지 않았다면 컴포넌트가 다른 이유로 리렌더링되더라도 내부 연산 함수를 다시 실행하지 않고 이전에 기억해 둔 캐시 결과값을 그대로 재사용합니다.",
-          explanation: "불필요한 재계산 방지 및 이전 캐시값 재사용이 핵심 키워드입니다."
+          explanation: "불필요한 재계산 방지 및 이전 캐시값 재사용이 핵심 키워드입니다. (7주차 교안 p.16~17 원문)"
         },
         {
-          id: 10, type: "short", score: 10, origin: "Part 6: A × B 계산기 및 useRef 포커스 제어 코드 완성",
+          id: 10, type: "short", score: 10, origin: "7주차 교안 p.11~12: A × B 계산기 및 useRef 포커스 제어 코드 완성",
           text: "두 숫자 A와 B를 입력받아 곱한 결과를 상태에 저장하고, 계산 후 첫 번째 입력창(A)으로 커서를 자동 이동시키고자 한다. 빈칸 (1), (2), (3)에 들어갈 코드를 순서대로 쓰시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>export default function Calc() {\n    const [a, setA] = useState('');\n    const [b, setB] = useState('');\n    const [result, setResult] = useState(null);\n    const inputRef = (1); // ref 생성\n\n    const multiply = () => {\n        setResult(parseFloat(a) * parseFloat(b));\n        (2); // inputRef를 통해 첫 번째 TextInput으로 포커스 이동\n    };\n    return (\n        &lt;View&gt;\n            &lt;TextInput (3)={inputRef} value={a} onChangeText={setA} /&gt;\n            &lt;TextInput value={b} onChangeText={setB} /&gt;\n            &lt;Button title=\"계산\" onPress={multiply} /&gt;\n        &lt;/View&gt;\n    );\n}</pre>",
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>export default function Calc() {\n    const [a, setA] = useState('');\n    const [b, setB] = useState('');\n    const [result, setResult] = useState(null);\n    const inputRef = (1); // ref 생성\n\n    const focusInput = () => {\n        (2); // inputRef를 통해 첫 번째 TextInput으로 포커스 이동\n    };\n    return (\n        &lt;View&gt;\n            &lt;TextInput (3)={inputRef} value={a} onChangeText={setA} /&gt;\n            &lt;TextInput value={b} onChangeText={setB} /&gt;\n            &lt;Button title=\"계산\" onPress={() => { setResult(parseFloat(a) * parseFloat(b)); focusInput(); }} /&gt;\n        &lt;/View&gt;\n    );\n}</pre>",
           placeholder: "순서대로 입력 (예: useRef(null), inputRef.current.focus(), ref)",
           answers: [
             "useRef(null), inputRef.current.focus(), ref",
@@ -1635,7 +1463,7 @@ window.EXAM_DATABASE.crossplatform = {
             "useRef(null), inputRef.current?.focus(), ref",
             "useRef(null),inputRef.current?.focus(),ref"
           ],
-          explanation: "<b>정답: (1) useRef(null), (2) inputRef.current.focus(), (3) ref</b><br>DOM/컴포넌트 인스턴스를 제어하기 위해 useRef(null)로 ref를 생성하고, TextInput에 ref={inputRef}로 연결한 후 inputRef.current.focus()를 호출하여 포커스를 이동시킵니다.<div class=\"exam-result-preview\"><div class=\"exam-result-preview-header\">📱 교안 실제 실행 결과 화면</div><img src=\"assets/crossplatform/week7_p11_0_Image84.png\" alt=\"실행 화면\" class=\"exam-result-img\" loading=\"lazy\"></div>"
+          explanation: "<b>정답: (1) useRef(null), (2) inputRef.current?.focus() (또는 inputRef.current.focus()), (3) ref</b><br>DOM/컴포넌트 인스턴스를 제어하기 위해 useRef(null)로 ref를 생성하고, TextInput에 ref={inputRef}로 연결한 후 inputRef.current?.focus()를 호출하여 포커스를 이동시킵니다. (7주차 교안 p.10~12 원문)<div class=\"exam-result-preview\"><div class=\"exam-result-preview-header\">📱 교안 실제 실행 결과 화면</div><img src=\"assets/crossplatform/week7_p11_0_Image84.png\" alt=\"실행 화면\" class=\"exam-result-img\" loading=\"lazy\"></div>"
         }
       ]
     },
@@ -1647,11 +1475,11 @@ window.EXAM_DATABASE.crossplatform = {
       tag: "코드 빈칸 & 1초 단답 10선 (100점)",
       questions: [
         {
-          id: 1, type: "short", score: 10, origin: "3주차 교안 p.4: JSX 강제 개행(줄바꿈)",
+          id: 1, type: "short", score: 10, origin: "3주차 교안 p.9: JSX 강제 개행(줄바꿈)",
           text: "React Native의 &lt;Text&gt; 컴포넌트 내부에서 강제로 줄바꿈(개행)을 수행할 때 사용하는 JSX 중괄호 표현식은 무엇인가?",
           placeholder: "JSX 표현식 입력 (예: {\"\\n\"})",
           answers: ["{\"\\n\"}", "{\"\\n\"} ", "{\\n}", "\\n"],
-          explanation: "<b>정답: {\"\\n\"}</b><br>React Native의 JSX 텍스트 내부에서 강제 줄바꿈을 넣을 때는 <code>{\\\"\\\\n\\\"}</code> 표현식을 사용합니다."
+          explanation: "<b>정답: {\"\\n\"}</b><br>React Native의 JSX 텍스트 내부에서 강제 줄바꿈을 넣을 때는 <code>{\\\"\\\\n\\\"}</code> 표현식을 사용합니다. (3주차 p.9)"
         },
         {
           id: 2, type: "short", score: 10, origin: "3주차 교안 p.5: Flexbox 주축 기본값",
@@ -1661,25 +1489,25 @@ window.EXAM_DATABASE.crossplatform = {
           explanation: "React Native의 flexDirection 기본값은 column입니다."
         },
         {
-          id: 3, type: "short", score: 10, origin: "4주차 교안 p.5: Text 중첩",
-          text: "Text 컴포넌트 안에 또 다른 Text 컴포넌트를 중첩(Nesting)했을 때, 안쪽 텍스트가 바깥쪽 텍스트로부터 물려받는 특성은 무엇인가?",
+          id: 3, type: "short", score: 10, origin: "4주차 교안 p.5: Text 중첩 스타일 상속",
+          text: "Text 컴포넌트 안에 또 다른 Text 컴포넌트를 중첩(Nesting)했을 때, 안쪽 텍스트가 바깥쪽 부모 텍스트로부터 물려받는 고유한 특성은 무엇인가?",
           placeholder: "특성 단어 입력 (예: 스타일 상속)",
           answers: ["스타일 상속", "상속", "스타일상속", "style inheritance"],
-          explanation: "중첩된 Text 컴포넌트는 부모 Text 컴포넌트의 폰트 크기, 패밀리 등 스타일을 상속받습니다."
+          explanation: "중첩된 Text 컴포넌트는 부모 Text 컴포넌트의 폰트 크기, 패밀리, 굵기 등 스타일을 상속받습니다. (4주차 교안 p.5)"
         },
         {
           id: 4, type: "short", score: 10, origin: "4주차 교안 p.15: TextInput 속성",
           text: "TextInput에서 비밀번호 입력창처럼 사용자가 입력하는 글자를 별표(***)나 점으로 숨겨주는 속성(Prop)은?",
           placeholder: "속성명 입력 (예: secureTextEntry)",
           answers: ["secureTextEntry", "secureTextEntry={true}"],
-          explanation: "secureTextEntry={true} 속성을 적용하면 텍스트가 마스킹 처리됩니다."
+          explanation: "secureTextEntry 속성을 적용하면 텍스트가 마스킹 처리됩니다. (4주차 교안 p.15)"
         },
         {
           id: 5, type: "short", score: 10, origin: "5주차 교안 p.10: Image 컴포넌트",
-          text: "웹 URL에서 이미지를 불러오는 원격 이미지(&lt;Image source={{ uri: '...' }} /&gt;)를 화면에 렌더링하기 위해 스타일에서 <b>반드시 명시해야 하는 2가지 속성</b>은?",
-          placeholder: "2가지 속성 입력 (예: width, height)",
-          answers: ["width, height", "width,height", "가로, 세로", "가로,세로"],
-          explanation: "로컬 require 이미지와 달리 원격 네트워크 이미지는 크기를 자동으로 계산할 수 없으므로 반드시 width와 height를 명시해야 합니다.<div class=\"exam-result-preview\"><div class=\"exam-result-preview-header\">📱 교안 실제 실행 결과 화면</div><img src=\"assets/crossplatform/week5_p10_0_Image91.jpg\" alt=\"실행 화면\" class=\"exam-result-img\" loading=\"lazy\"></div>"
+          text: "교안 5주차 10페이지에서 Image 컴포넌트로 로컬에 위치한 kangnam.png 이미지를 불러올 때 source 속성에 사용하는 함수 호출 구문은?",
+          placeholder: "호출 구문 입력 (예: require('./kangnam.png'))",
+          answers: ["require('./kangnam.png')", "require(\"./kangnam.png\")", "require('./kangnam.png') "],
+          explanation: "<b>정답: require('./kangnam.png')</b><br>로컬 이미지를 불러올 때는 require('경로') 문법을 사용합니다."
         },
         {
           id: 6, type: "short", score: 10, origin: "6주차 교안 p.4: BackHandler",
@@ -1726,86 +1554,81 @@ window.EXAM_DATABASE.crossplatform = {
       tag: "All 주관식 10문항 (100점)",
       questions: [
         {
-          id: 1, type: "short", score: 10, origin: "7주차 교안 p.5: useEffect 의존성 배열",
+          id: 1, type: "short", score: 10, origin: "7주차 교안 p.14: useEffect 의존성 배열",
           text: "리액트의 useEffect Hook에서 두 번째 인자인 의존성 배열(Dependency Array)에 빈 배열(<code>[]</code>)을 전달했을 때 effect 함수가 실행되는 시점은 언제인가?",
           placeholder: "실행 시점 입력 (예: 마운트 시 1회)",
           answers: ["마운트 시 1회", "마운트 시 1회만", "마운트 시", "컴포넌트 마운트 시 1회", "최초 렌더링 시 1회", "마운트", "최초 렌더링"],
-          explanation: "<b>정답: 마운트 시 1회 (최초 렌더링 완료 직후 1회만 실행)</b><br>의존성 배열을 생략하면 매 렌더링마다 실행되고, 빈 배열 []을 넘기면 컴포넌트가 처음 화면에 나타나는 마운트(Mount) 시점에 단 한 번만 실행됩니다."
+          explanation: "<b>정답: 마운트 시 1회 (최초 렌더링 완료 직후 1회만 실행)</b><br>의존성 배열을 생략하면 매 렌더링마다 실행되고, 빈 배열 []을 넘기면 컴포넌트가 처음 화면에 나타나는 마운트(Mount) 시점에 단 한 번만 실행됩니다. (7주차 교안 p.14 원문: '앱이 실행되었습니다! (처음 한 번만)')"
         },
         {
-          id: 2, type: "essay", score: 10, origin: "7주차 교안 p.7: useEffect 클린업(Cleanup) 함수",
+          id: 2, type: "essay", score: 10, origin: "6주차 교안 p.4, p.20: 클린업(Cleanup) 함수",
           text: "useEffect 내부에서 함수를 반환(<code>return () => { ... }</code>)하는 <b>클린업(Cleanup) 함수</b>의 주된 목적과 이 함수가 실제로 실행되는 <b>2가지 시점</b>을 서술하시오.",
           placeholder: "클린업 함수의 목적과 실행되는 2가지 시점을 서술하세요.",
-          rubric: "1. 타이머 해제(clearInterval), 이벤트 리스너 제거, 구독 해제 등 메모리 누수 방지 목적 명시 (4점)\n2. 컴포넌트가 화면에서 사라지는 언마운트(Unmount) 시점 명시 (3점)\n3. 의존성 값이 바뀌어 다음 effect 함수가 실행되기 직전 시점 명시 (3점)",
-          sampleAnswer: "목적: 컴포넌트 언마운트 시 타이머 해제(clearInterval), 이벤트 리스너 제거, 네트워크 구독 취소 등을 수행하여 메모리 누수(Memory Leak)를 방지하는 정리 작업을 수행한다.\n실행 시점: 1) 컴포넌트가 언마운트(Unmount)되어 화면에서 제거될 때, 2) 의존성 배열의 값이 변경되어 다음 effect가 실행되기 바로 직전.",
-          explanation: "클린업 함수는 메모리 누수를 막기 위한 필수적인 정리 루틴이며, 언마운트 시점뿐 아니라 의존성 변경으로 새 effect가 돌기 직전에도 이전 effect를 정리하기 위해 실행됩니다."
+          rubric: "1. 타이머 해제(clearTimeout), 이벤트 리스너 제거(backHandler.remove), 구독 해제 등 메모리 누수 방지 목적 명시 (4점)\n2. 컴포넌트가 화면에서 사라지는 언마운트(Unmount) 시점 명시 (3점)\n3. 의존성 값이 바뀌어 다음 effect 함수가 실행되기 직전 시점 명시 (3점)",
+          sampleAnswer: "목적: 컴포넌트 언마운트 시 타이머 해제(clearTimeout), 이벤트 리스너 제거(remove), 구독 취소 등을 수행하여 메모리 누수(Memory Leak)를 방지하는 정리 작업을 수행한다.\n실행 시점: 1) 컴포넌트가 언마운트(Unmount)되어 화면에서 제거될 때, 2) 의존성 배열의 값이 변경되어 다음 effect가 실행되기 바로 직전.",
+          explanation: "교안 6주차 p.4(BackHandler remove)와 p.20(RefreshControl clearTimeout)에 클린업 구현 패턴이 직접 등장합니다."
         },
         {
-          id: 3, type: "short", score: 10, origin: "7주차 교안 p.4: useState 함수형 업데이트",
-          text: "useState 상태 변경 시 비동기 일괄 처리(Batching)로 인한 값 덮어쓰기 오류를 방지하고 최신 이전 상태값을 보장받기 위해 사용하는 빈칸 (A)의 함수형 업데이트 코드를 작성하시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>const [count, setCount] = useState(0);\n\nconst handleIncrement = () => {\n    setCount((A) => (A) + 1);\n};</pre>",
-          placeholder: "콜백 매개변수 표현 (예: prev, prevCount, prev => prev + 1)",
-          answers: ["prev", "prevCount", "prev => prev + 1", "(prev) => prev + 1", "count => count + 1"],
-          explanation: "<b>정답: prev (또는 prevCount)</b><br>setState에 값을 직접 넘기지 않고 콜백 함수 <code>prev => prev + 1</code>를 넘기는 함수형 업데이트를 사용하면 항상 가장 최신의 상태값을 기반으로 안전하게 갱신됩니다."
+          id: 3, type: "short", score: 10, origin: "4주차 교안 p.15: TextInput 숫자 키패드",
+          text: "TextInput에서 사용자에게 숫자 전용 가상 키패드를 띄워주기 위해 지정하는 keyboardType 속성값은 무엇인가?",
+          placeholder: "속성값 입력 (예: numeric)",
+          answers: ["numeric", "'numeric'", "\"numeric\""],
+          explanation: "<b>정답: numeric</b><br>keyboardType='numeric' 속성을 통해 숫자 입력 키패드를 활성화합니다. (4주차 p.15)"
         },
         {
-          id: 4, type: "essay", score: 10, origin: "7주차 교안 p.10: useMemo vs useCallback 차이",
-          text: "React의 성능 최적화 Hook인 <b>useMemo</b>와 <b>useCallback</b>의 <b>공통적인 목적</b>을 적고, 두 Hook이 <b>캐싱(메모이제이션)하는 대상의 결정적 차이점</b>을 비교 설명하시오.",
-          placeholder: "공통 목적과 캐싱 대상의 차이점을 서술하세요.",
-          rubric: "1. 공통 목적: 불필요한 재계산/재생성을 방지하는 메모이제이션(성능 최적화) 명시 (3점)\n2. useMemo 캐싱 대상: 함수의 '연산 결과값(리턴값)'을 캐싱함을 명시 (3.5점)\n3. useCallback 캐싱 대상: '함수 인스턴스(함수 자체)'를 캐싱하여 자식 컴포넌트의 불필요한 리렌더링을 방지함을 명시 (3.5점)",
-          sampleAnswer: "공통 목적: 의존성 배열의 값이 변경되지 않는 한 이전 결과를 재사용하여 불필요한 연산과 리렌더링을 방지하는 메모이제이션 최적화 Hook이다.\n차이점: useMemo는 복잡한 함수의 '연산 결과값(반환값)'을 캐싱하여 재계산을 방지하고, useCallback은 '함수 인스턴스 자체'를 캐싱하여 컴포넌트가 리렌더링될 때 동일한 함수 참조를 유지함으로써 자식 컴포넌트의 불필요한 리렌더링을 방지한다.",
-          explanation: "useMemo는 값(Value)을, useCallback은 함수(Function) 참조를 캐싱한다는 점이 핵심입니다."
+          id: 4, type: "essay", score: 10, origin: "7주차 교안 p.16~17: useMemo 연산 최적화 원리",
+          text: "7주차 교안 p.17에서 <code>double = useMemo(() => count * 2, [count]);</code> 코드가 작성되어 있다. 사용자가 [텍스트 변경] 버튼을 눌러 <code>text</code> 상태를 바꾸어 화면이 리렌더링될 때, <code>double</code> 계산 함수가 다시 실행되지 않는 이유를 의존성 배열 관점에서 설명하시오.",
+          placeholder: "useMemo의 의존성 배열과 재계산 여부를 서술하세요.",
+          rubric: "1. useMemo의 의존성 배열에 [count]만 지정되어 있음을 명시 (5점)\n2. text 상태가 바뀌어 리렌더링되어도 count 값이 바뀌지 않았으므로 이전 캐시값을 재사용하여 재계산되지 않음을 명시 (5점)",
+          sampleAnswer: "useMemo의 의존성 배열에 [count]만 등록되어 있기 때문입니다. [텍스트 변경] 버튼을 눌러 text 상태가 변경되면 컴포넌트 자체는 리렌더링되지만, 의존성 배열에 등록된 count 값은 변하지 않았으므로 useMemo는 내부 연산 함수를 다시 실행하지 않고 이전에 계산하여 기억해 둔 캐시값을 그대로 재사용합니다.",
+          explanation: "의존성 배열에 등록된 상태값의 변경 여부만이 useMemo의 재계산 트리거 조건입니다."
         },
         {
-          id: 5, type: "short", score: 10, origin: "7주차 교안 p.12: Custom Hook 네이밍 규칙",
-          text: "개발자가 직접 비즈니스 로직을 분리하여 재사용하기 위해 만드는 <b>사용자 정의 Hook(Custom Hook)</b>의 함수 이름 맨 앞에 React 규칙상 반드시 붙여야 하는 표준 접두어(Prefix)는 무엇인가?",
+          id: 5, type: "short", score: 10, origin: "7주차 교안 p.3: Hook 네이밍 규칙",
+          text: "React에서 Hook 함수를 정의하거나 식별할 때 이름 맨 앞에 반드시 붙여야 하는 표준 접두어(Prefix)는 무엇인가?",
           placeholder: "접두어 입력 (예: use)",
           answers: ["use", "use-", "useXxx"],
-          explanation: "<b>정답: use</b><br>React의 린터와 엔진은 'use'로 시작하는 함수(예: useCounter, useAuth)만을 커스텀 훅으로 인식하고 Hook 호출 규칙을 강제 검증합니다."
+          explanation: "<b>정답: use</b><br>React의 모든 Hook은 'use' 접두사로 시작해야 엔진이 Hook 호출 규칙을 검증할 수 있습니다."
         },
         {
-          id: 6, type: "short", score: 10, origin: "5주차 교안 p.14: Modal 컴포넌트 속성",
+          id: 6, type: "short", score: 10, origin: "6주차 교안 p.16: Modal 컴포넌트 속성",
           text: "리액트 네이티브의 Modal 컴포넌트에서 모달 창의 화면 표시 여부를 제어하는 필수 boolean 속성 (1)과, 안드로이드 기기의 물리적 뒤로가기 버튼을 눌렀을 때 호출되는 필수 콜백 함수 속성 (2)의 이름을 순서대로 쓰시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;Modal\n    (1)={isModalVisible}\n    (2)={() =&gt; setIsModalVisible(false)}\n    animationType=\"slide\"\n&gt;</pre>",
+                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;Modal\n    (1)={modalVisible}\n    (2)={() =&gt; {\n        Alert.alert('Modal has been closed.');\n        setModalVisible(false);\n    }}\n    animationType=\"slide\"\n&gt;</pre>",
           placeholder: "순서대로 입력 (예: visible, onRequestClose)",
           answers: ["visible, onRequestClose", "visible,onRequestClose", "visible, onrequestclose"],
-          explanation: "<b>정답: visible, onRequestClose</b><br>Modal은 화면 표시 여부를 결정하는 visible={boolean}과 안드로이드 하드웨어 뒤로가기 처리를 위한 onRequestClose={callback}이 필수 속성입니다.<div class=\"exam-result-preview\"><div class=\"exam-result-preview-header\">📱 교안 실제 실행 결과 화면</div><img src=\"assets/crossplatform/week6_p16_0_Image106.png\" alt=\"실행 화면\" class=\"exam-result-img\" loading=\"lazy\"></div>"
+          explanation: "<b>정답: visible, onRequestClose</b><br>Modal은 화면 표시 여부를 결정하는 visible과 안드로이드 하드웨어 뒤로가기 처리를 위한 onRequestClose가 핵심 속성입니다. (6주차 교안 p.16 원문)<div class=\"exam-result-preview\"><div class=\"exam-result-preview-header\">📱 교안 실제 실행 결과 화면</div><img src=\"assets/crossplatform/week6_p16_0_Image106.png\" alt=\"실행 화면\" class=\"exam-result-img\" loading=\"lazy\"></div>"
         },
         {
-          id: 7, type: "essay", score: 10, origin: "7주차 교안 p.4: 상태 불변성(Immutability)",
-          text: "리액트에서 배열이나 객체 상태를 변경할 때 <code>items.push(newItem)</code>과 같이 기존 객체를 직접 수정하지 않고 <code>setItems([...items, newItem])</code>처럼 <b>새로운 객체로 복사하여 상태를 갱신(불변성 유지)해야 하는 이유</b>를 렌더링 감지 원리 관점에서 서술하시오.",
-          placeholder: "얕은 비교와 리렌더링 감지 메커니즘을 서술하세요.",
-          rubric: "1. 리액트는 상태 변경 여부를 참조 주소값(Shallow Compare, 얕은 비교)으로 감지함을 명시 (5점)\n2. 직접 수정 시 메모리 주소가 동일하여 변경을 감지하지 못하고 화면 리렌더링이 일어나지 않음을 명시 (5점)",
-          sampleAnswer: "리액트는 성능 최적화를 위해 상태 객체의 내부 속성을 깊게 비교하지 않고, 객체의 메모리 참조 주소값만 비교하는 '얕은 비교(Shallow Compare)'를 수행합니다.\n따라서 items.push()처럼 기존 배열을 직접 변경하면 내부 데이터는 바뀌어도 메모리 주소는 동일하므로 리액트는 상태가 바뀌지 않았다고 판단하여 화면을 리렌더링하지 않습니다. 스프레드 연산자([...items, newItem])로 새로운 배열 참조를 생성해야 리액트가 변경을 감지하고 정상적으로 리렌더링을 수행합니다.",
-          explanation: "불변성(Immutability) 유지는 리액트의 참조 주소 기반 얕은 비교 메커니즘에서 화면 리렌더링을 트리거하기 위한 핵심 규칙입니다."
+          id: 7, type: "short", score: 10, origin: "6주차 교안 p.7: ToastAndroid 지속시간 상수",
+          text: "ToastAndroid에서 짧은 시간 동안 토스트 메시지를 표시하기 위해 두 번째 인자로 전달하는 상수의 이름은 무엇인가?",
+          placeholder: "상수 이름 입력 (예: ToastAndroid.SHORT)",
+          answers: ["ToastAndroid.SHORT", "SHORT", "ToastAndroid.SHORT "],
+          explanation: "<b>정답: ToastAndroid.SHORT</b><br>ToastAndroid.show('메시지', ToastAndroid.SHORT) 형태로 사용합니다. (6주차 p.7)"
         },
         {
-          id: 8, type: "short", score: 10, origin: "6주차 교안 p.7: Platform.select 구문",
-          text: "운영체제에 따라 다른 스타일 수치를 적용하고자 한다. iOS에서는 상단 여백을 20, 안드로이드에서는 0을 적용하기 위해 빈칸에 들어갈 리액트 네이티브 API 코드를 완성하시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>import { StyleSheet, Platform } from 'react-native';\n\nconst styles = StyleSheet.create({\n    container: {\n        marginTop: (빈칸)({\n            ios: 20,\n            android: 0,\n        }),\n    },\n});</pre>",
-          placeholder: "API 코드 입력 (예: Platform.select)",
-          answers: ["Platform.select", "Platform.select()", "platform.select"],
-          explanation: "<b>정답: Platform.select</b><br>Platform.select({ ios: ..., android: ... }) 메서드를 활용하면 플랫폼별로 객체 키를 매핑하여 깔끔하게 분기 처리할 수 있습니다."
-        },
-        {
-          id: 9, type: "short", score: 10, origin: "6주차 교안 p.12: useWindowDimensions Hook",
-          text: "Dimensions.get('window')와 달리, 화면 회전(가로/세로 모드)이나 분할 화면 등으로 화면 크기가 변경될 때 이벤트 리스너를 수동 등록하지 않아도 컴포넌트 안에서 <b>자동으로 최신 너비와 높이를 반영하여 리렌더링해주는 리액트 네이티브 내장 Hook</b>의 이름은?",
-          placeholder: "Hook 이름 입력 (예: useWindowDimensions)",
-          answers: ["useWindowDimensions", "useWindowDimensions()"],
-          explanation: "<b>정답: useWindowDimensions</b><br>useWindowDimensions Hook은 화면의 width, height, scale, fontScale을 반환하며 화면 크기 변경 시 컴포넌트를 자동으로 리렌더링해 줍니다."
-        },
-        {
-          id: 10, type: "short", score: 10, origin: "6주차 교안 p.15: KeyboardAvoidingView",
-          text: "가상 키보드가 활성화되었을 때 입력창(TextInput)이 키보드에 가려지지 않도록 화면을 자동으로 밀어 올려주는 리액트 네이티브 내장 컴포넌트 (1)의 이름과, iOS 환경에서 가장 보편적으로 권장되는 behavior 속성값 (2)를 순서대로 쓰시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;(1) behavior=\"(2)\" style={{ flex: 1 }}&gt;\n    &lt;TextInput placeholder=\"메시지 입력\" /&gt;\n&lt;/(1)&gt;</pre>",
-          placeholder: "순서대로 입력 (예: KeyboardAvoidingView, padding)",
+          id: 8, type: "short", score: 10, origin: "6주차 교안 p.15: Linking API",
+          text: "교안 6주차 15페이지에서 버튼을 눌렀을 때 교수님 블로그 URL을 열기 위해 호출한 Linking 메서드와 전달 인자 URL을 쓰시오.",
+          placeholder: "호출 코드 입력 (예: Linking.openURL('https://blog.naver.com/jongsoo67'))",
           answers: [
-            "KeyboardAvoidingView, padding",
-            "KeyboardAvoidingView,padding",
-            "KeyboardAvoidingView, 'padding'",
-            "KeyboardAvoidingView, \"padding\""
+            "Linking.openURL('https://blog.naver.com/jongsoo67')",
+            "Linking.openURL(\"https://blog.naver.com/jongsoo67\")",
+            "Linking.openURL"
           ],
-          explanation: "<b>정답: KeyboardAvoidingView, padding</b><br>KeyboardAvoidingView 컴포넌트는 키보드가 화면을 가리지 않도록 위치를 조정해주며, iOS에서는 behavior='padding' 속성이 가장 자연스럽게 동작합니다."
+          explanation: "<b>정답: Linking.openURL('https://blog.naver.com/jongsoo67')</b><br>외부 URL을 열기 위해 Linking.openURL(url) 메서드를 사용합니다."
+        },
+        {
+          id: 9, type: "short", score: 10, origin: "5주차 교안 p.11: Switch 토글 콜백",
+          text: "Switch 컴포넌트에서 사용자가 스위치를 켜거나 끌 때 상태 변경 함수를 호출하기 위해 연결하는 이벤트 콜백 속성의 이름은?",
+          placeholder: "속성명 입력 (예: onValueChange)",
+          answers: ["onValueChange", "onvaluechange"],
+          explanation: "<b>정답: onValueChange</b><br>Switch는 onValueChange={setDarkMode} 속성을 통해 값 변경 콜백을 전달받습니다. (5주차 p.11)"
+        },
+        {
+          id: 10, type: "short", score: 10, origin: "6주차 교안 p.13~14: KeyboardAvoidingView",
+          text: "가상 키보드가 활성화되었을 때 입력창(TextInput)이 키보드에 가려지지 않도록 화면을 자동으로 밀어 올려주는 리액트 네이티브 내장 컴포넌트의 이름은?",
+          placeholder: "컴포넌트 이름 입력 (예: KeyboardAvoidingView)",
+          answers: ["KeyboardAvoidingView", "<KeyboardAvoidingView>", "<KeyboardAvoidingView />"],
+          explanation: "<b>정답: KeyboardAvoidingView</b><br>KeyboardAvoidingView 컴포넌트는 키보드가 화면을 가리지 않도록 위치를 조정해 줍니다. (6주차 교안 p.13)"
         }
       ]
     },
@@ -1817,278 +1640,91 @@ window.EXAM_DATABASE.crossplatform = {
       tag: "All 주관식 10문항 (100점)",
       questions: [
         {
-          id: 1, type: "short", score: 10, origin: "2주차 교안 p.32: App.js 모듈 내보내기",
-          text: "리액트 네이티브 프로젝트의 루트 파일인 App.js에서 정의한 함수형 컴포넌트를 Metro 번들러와 네이티브 런타임이 진입점으로 읽어들일 수 있도록 내보내는 자바스크립트 표준 키워드 2단어를 쓰시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>(빈칸) function App() {\n    return &lt;View&gt;&lt;Text&gt;Hello Expo&lt;/Text&gt;&lt;/View&gt;;\n}</pre>",
-          placeholder: "2단어 입력 (예: export default)",
-          answers: ["export default", "export default "],
-          explanation: "<b>정답: export default</b><br>App.js의 메인 컴포넌트는 export default 구문을 통해 기본 내보내기되어야 런타임 진입점으로 등록됩니다."
+          id: 1, type: "short", score: 10, origin: "4주차 교안 p.10: numberOfLines 속성",
+          text: "Text 컴포넌트에서 긴 본문 내용이 있을 때 화면에 최대 5줄까지만 표시하고 초과분을 말줄임표(...)로 처리하기 위해 지정하는 속성과 값은?",
+          placeholder: "속성 입력 (예: numberOfLines={5})",
+          answers: ["numberOfLines={5}", "numberOfLines=5", "numberOfLines"],
+          explanation: "<b>정답: numberOfLines={5}</b><br>numberOfLines 속성에 정수를 전달하여 최대 줄 수를 제한합니다. (4주차 p.10)"
         },
         {
-          id: 2, type: "essay", score: 10, origin: "4주차 교안 p.3: Props vs State 완벽 비교",
-          text: "리액트 및 리액트 네이티브에서 컴포넌트의 데이터를 다루는 <b>Props</b>와 <b>State</b>의 차이점을 <b>1) 데이터의 소유 및 전달 주체</b>, <b>2) 컴포넌트 내부에서의 값 수정 가능 여부(가변성)</b>, <b>3) 변경 시 리렌더링 발생 여부</b>의 3가지 관점에서 비교 서술하시오.",
-          placeholder: "Props와 State의 3대 차이점을 서술하세요.",
-          rubric: "1. 소유/전달: Props는 부모가 자식에게 전달, State는 컴포넌트 내부에서 자체 생성/관리 명시 (3점)\n2. 가변성: Props는 읽기 전용(불변), State는 setState를 통해 컴포넌트 내부에서 변경 가능 명시 (3.5점)\n3. 리렌더링: Props 변경(부모 전달 시) 및 State 변경 시 해당 컴포넌트 리렌더링 트리거 명시 (3.5점)",
-          sampleAnswer: "1. 데이터 소유/전달: Props는 부모 컴포넌트가 자식 컴포넌트에게 전달하는 외부 데이터이며, State는 컴포넌트 내부에서 직접 선언하고 관리하는 자체 데이터이다.\n2. 가변성: Props는 자식 컴포넌트 입장에서 읽기 전용(Read-only, 불변)이므로 직접 수정할 수 없고, State는 setState 함수를 통해 컴포넌트 내부에서 능동적으로 값을 수정할 수 있다.\n3. 리렌더링: State가 변경되거나 부모로부터 새로운 Props를 전달받으면 컴포넌트의 화면(UI)이 자동으로 리렌더링된다.",
-          explanation: "Props는 외부에서 주입되는 읽기 전용 데이터, State는 내부에서 능동적으로 관리하고 화면 갱신을 주도하는 가변 데이터입니다."
+          id: 2, type: "essay", score: 10, origin: "4주차 & 7주차: 함수형 컴포넌트 vs 클래스형 컴포넌트",
+          text: "리액트 네이티브에서 함수형 컴포넌트(Functional Component)가 클래스형 컴포넌트(Class Component)를 대체하여 표준이 된 배경과 장점을 <b>Hook의 도입</b> 관점에서 서술하시오.",
+          placeholder: "함수형 컴포넌트의 장점과 Hook 도입 배경을 서술하세요.",
+          rubric: "1. React 16.8에서 Hook(useState, useEffect 등)이 도입되어 함수형에서도 상태와 생명주기 관리가 가능해졌음을 명시 (5점)\n2. 코드가 더 짧고 직관적이며 가독성이 뛰어남을 명시 (5점)",
+          sampleAnswer: "과거 클래스형 컴포넌트는 상태 관리를 위해 복잡한 boilerplate 코드와 this 바인딩이 필요했습니다. 하지만 React 16.8 이후 Hook(useState, useEffect 등)이 도입되면서 함수형 컴포넌트에서도 상태 관리와 컴포넌트 생명주기 제어가 가능해졌으며, 코드가 훨씬 짧고 직관적이어서 현재 리액트 네이티브의 표준 방식으로 사용되고 있습니다.",
+          explanation: "4주차 교안 3페이지 원문: '함수형: 코드가 더 짧고 직관적, React 16.8 이후 Hook 도입, 현재 표준'"
         },
         {
-          id: 3, type: "short", score: 10, origin: "3주차 교안 p.4: StyleSheet.create 장점",
-          text: "인라인 스타일(<code>style={{ ... }}</code>) 대신 <code>StyleSheet.create({ ... })</code>를 사용하는 가장 핵심적인 성능상 이점은 매 렌더링마다 새로운 자바스크립트 객체를 생성하지 않고, 스타일 객체를 등록하여 네이티브 브릿지(Bridge)로 전달할 때 무엇(정수형 식별자)으로 참조를 전달하기 때문인가?",
-          placeholder: "이점 키워드 입력 (예: ID 참조, 캐싱, 객체 재사용)",
-          answers: ["ID", "ID 참조", "id", "캐싱", "스타일 ID", "객체 재사용"],
-          explanation: "<b>정답: ID (또는 ID 참조, 캐싱)</b><br>StyleSheet.create는 정의된 스타일에 고유 정수 ID를 부여하고 캐싱하여 네이티브 브릿지로 객체 전체가 아닌 ID 참조만 전달하므로 메모리와 통신 비용을 대폭 절감합니다."
+          id: 3, type: "short", score: 10, origin: "3주차 교안 p.12: StyleSheet.create",
+          text: "인라인 스타일(<code>style={{ ... }}</code>) 대신 <code>StyleSheet.create({ ... })</code>를 사용하여 스타일을 객체화하여 분리 선언하는 리액트 네이티브 전용 모듈의 이름은 무엇인가?",
+          placeholder: "모듈 이름 입력 (예: StyleSheet)",
+          answers: ["StyleSheet", "stylesheet"],
+          explanation: "<b>정답: StyleSheet</b><br>StyleSheet.create() 메서드를 사용하여 컴포넌트 태그 외부에서 스타일 객체를 깔끔하게 선언하고 재사용합니다. (3주차 p.12)"
         },
         {
-          id: 4, type: "short", score: 10, origin: "3주차 교안 p.12: alignSelf 속성",
-          text: "Flexbox 레이아웃에서 부모 컨테이너에 지정된 <code>alignItems</code> 교차축 정렬 설정을 무시하고, <b>특정 단일 자식 컴포넌트 혼자서만 다른 정렬(예: center, flex-end)을 지정</b>하고자 할 때 해당 자식의 스타일에 부여하는 속성은 무엇인가?",
-          placeholder: "속성명 입력 (예: alignSelf)",
-          answers: ["alignSelf", "align-self"],
-          explanation: "<b>정답: alignSelf</b><br>alignItems는 부모가 모든 자식의 교차축 정렬을 결정하지만, 특정 자식에서 alignSelf를 선언하면 부모의 설정을 덮어쓰고 개별 정렬을 적용할 수 있습니다."
+          id: 4, type: "short", score: 10, origin: "5주차 교안 p.11: Switch 컴포넌트",
+          text: "Switch 컴포넌트에서 스위치가 켜졌을 때(ON)와 꺼졌을 때(OFF)의 트랙(배경) 색상을 각각 지정하는 객체형 속성(Prop)의 이름은?",
+          placeholder: "속성명 입력 (예: trackColor)",
+          answers: ["trackColor", "trackColor={{ false: ..., true: ... }}"],
+          explanation: "<b>정답: trackColor</b><br>trackColor={{ false: '#767577', true: '#81b0ff' }} 속성을 통해 ON/OFF 트랙 색상을 설정합니다. (5주차 p.11)"
         },
         {
-          id: 5, type: "essay", score: 10, origin: "4주차 교안 p.14: 제어 컴포넌트(Controlled Component)",
-          text: "리액트 네이티브의 TextInput에서 사용자가 키보드로 글자를 입력할 때 리액트의 상태(State)와 완벽히 동기화되는 <b>제어 컴포넌트(Controlled Component)</b>를 구성하는 메커니즘을 <code>value</code>와 <code>onChangeText</code> 속성의 상호작용 관점에서 서술하시오.",
-          placeholder: "value와 onChangeText의 동작 상호작용을 서술하세요.",
-          rubric: "1. TextInput의 value 속성에 state 변수를 바인딩하여 단일 진실 공급원(Single Source of Truth)을 유지함을 명시 (5점)\n2. 키보드 입력 발생 시 onChangeText 콜백이 실행되어 setState로 상태를 갱신하고, 변경된 상태가 다시 value로 반영되는 단방향 흐름을 명시 (5점)",
-          sampleAnswer: "제어 컴포넌트는 TextInput의 value 속성에 컴포넌트의 State 값을 직접 연결(바인딩)하여 화면에 표시되는 텍스트를 리액트 상태로 완벽히 통제하는 패턴입니다.\n사용자가 키보드를 타이핑하면 TextInput의 onChangeText 이벤트 콜백이 호출되어 입력된 최신 문자열을 매개변수로 받아 setState 함수를 실행합니다. 상태가 갱신되면 컴포넌트가 리렌더링되면서 갱신된 state 값이 다시 TextInput의 value로 반영되는 선순환 단방향 데이터 흐름을 갖습니다.",
-          explanation: "value={text}와 onChangeText={setText}의 유기적 결합을 통해 React State가 입력 필드의 단일 진실 공급원이 됩니다."
+          id: 5, type: "short", score: 10, origin: "5주차 교안 p.13: SectionList",
+          text: "SectionList 컴포넌트에서 각 섹션(그룹)의 상단 제목 헤더를 렌더링하기 위해 전달하는 필수 렌더링 콜백 함수 속성의 이름은?",
+          placeholder: "속성명 입력 (예: renderSectionHeader)",
+          answers: ["renderSectionHeader", "rendersectionheader"],
+          explanation: "<b>정답: renderSectionHeader</b><br>renderSectionHeader={({ section: { title } }) => <Text>{title}</Text>} 속성으로 각 섹션 헤더를 출력합니다. (5주차 p.13)"
         },
         {
-          id: 6, type: "short", score: 10, origin: "7주차 실습 교안 p.19: 계산기 상세조건 스포",
-          text: "7주차 계산기 실습 교안의 상세조건에서 명시된 <b>연산자 버튼(+, -, ×, ÷)의 배경색(backgroundColor) Hex 코드</b> (1)과 <b>결과 출력 텍스트의 글자 크기(fontSize)</b> (2)를 순서대로 쓰시오.",
-          placeholder: "순서대로 입력 (예: #F5A623, 84)",
+          id: 6, type: "short", score: 10, origin: "6주차 교안 p.5: DrawerLayoutAndroid",
+          text: "DrawerLayoutAndroid 컴포넌트에서 서랍(Drawer)이 화면의 어느 쪽에서 열릴지를 지정하는 속성(Prop) 이름과 기본 좌측 설정값은?",
+          placeholder: "속성명과 값 입력 (예: drawerPosition, left)",
+          answers: ["drawerPosition, left", "drawerPosition, 'left'", "drawerPosition, \"left\"", "drawerPosition='left'"],
+          explanation: "<b>정답: drawerPosition, left</b><br>drawerPosition 속성에 'left' 또는 'right'를 전달하여 서랍 개폐 방향을 결정합니다. (6주차 p.5)"
+        },
+        {
+          id: 7, type: "short", score: 10, origin: "6주차 교안 p.18~19: PixelRatio",
+          text: "PixelRatio API에서 50dp와 같은 레이아웃 크기를 현재 기기의 실제 물리 픽셀(px) 크기로 변환 계산해 주는 메서드는?",
+          placeholder: "메서드명 입력 (예: PixelRatio.getPixelSizeForLayoutSize)",
           answers: [
-            "#F5A623, 84",
-            "#f5a623, 84",
-            "#F5A623,84",
-            "#f5a623,84"
+            "PixelRatio.getPixelSizeForLayoutSize",
+            "getPixelSizeForLayoutSize",
+            "PixelRatio.getPixelSizeForLayoutSize()"
           ],
-          explanation: "<b>정답: #F5A623, 84</b><br>교안 7주차 19페이지 계산기 실습 상세조건: operatorButton backgroundColor: #F5A623, resultText fontSize: 84, numberButton backgroundColor: #2f2f2f, utilityButton: #555"
+          explanation: "<b>정답: PixelRatio.getPixelSizeForLayoutSize</b><br>PixelRatio.getPixelSizeForLayoutSize(size)를 통해 dp 단위를 실제 기기 물리 픽셀 크기로 변환합니다. (6주차 p.18~19)"
         },
         {
-          id: 7, type: "short", score: 10, origin: "4주차 교안 p.5: 스타일 상속 유일 컴포넌트",
-          text: "일반적인 리액트 네이티브 컴포넌트들은 웹 CSS와 달리 부모의 스타일을 자식에게 상속하지 않는다. 하지만 컴포넌트 내부에 동일한 컴포넌트를 <b>중첩(Nesting)했을 때 예외적으로 글자 폰트, 색상 등의 스타일을 자식에게 상속해주는 유일한 내장 컴포넌트</b>의 이름은?",
-          placeholder: "컴포넌트 이름 입력 (예: Text)",
-          answers: ["Text", "<Text>", "<Text></Text>"],
-          explanation: "<b>정답: Text</b><br>리액트 네이티브에서는 원칙적으로 스타일 상속이 지원되지 않으나, &lt;Text&gt; 태그 내부에 또 다른 &lt;Text&gt;를 중첩한 경우에 한하여 폰트 계열 및 색상 스타일이 부모로부터 상속됩니다."
+          id: 8, type: "essay", score: 10, origin: "7주차 교안 p.19: 계산기 실습 7대 조건",
+          text: "교수님이 강조한 7주차 계산기 실습 교안 p.19의 상세조건 중 <b>전체 배경색(container)</b>, <b>숫자 버튼(numberButton) 배경색</b>, <b>연산자 버튼(operatorButton) 배경색</b>, <b>유틸리티 버튼(utilityButton) 배경색</b>의 4가지 색상값을 정확히 서술하시오.",
+          placeholder: "4가지 배경 색상을 서술하세요.",
+          rubric: "1. 전체 배경: 'black' 명시 (2.5점)\n2. 숫자 버튼: '#2f2f2f' 명시 (2.5점)\n3. 연산자 버튼: '#F5A623' 명시 (2.5점)\n4. 유틸리티 버튼: '#555' 명시 (2.5점)",
+          sampleAnswer: "1. 전체 배경: 'black'\n2. 숫자 버튼: '#2f2f2f'\n3. 연산자 버튼: '#F5A623'\n4. 유틸리티 버튼: '#555'",
+          explanation: "교안 7주차 19페이지 실습 상세조건에 명시된 필수 Hex 색상 코드입니다. (감점 방지 필수 암기)"
         },
         {
-          id: 8, type: "essay", score: 10, origin: "교수님 출제스포: A × B 곱셈기 컴포넌트 작성",
-          text: "두 개의 TextInput에 각각 숫자 A와 숫자 B를 입력받고, Button을 클릭했을 때 두 수의 곱(A × B)을 계산하여 Text 컴포넌트에 출력하는 리액트 네이티브 컴포넌트 코드를 작성하시오.<br>(단, useState를 사용하여 상태를 선언하고 곱셈 계산 로직을 포함할 것)",
-          placeholder: "함수형 컴포넌트 전체 또는 핵심 상태 선언 및 계산 로직을 작성하세요.",
-          rubric: "1. useState를 활용하여 두 입력값(numA, numB)과 결과값(result) 상태 선언 (3점)\n2. 버튼 클릭 핸들러에서 parseFloat 또는 Number()로 형변환 후 곱셈 수행 및 결과 상태 갱신 (4점)\n3. TextInput 2개와 Button(onPress), Text(결과 출력)를 JSX로 정상 구성 (3점)",
-          sampleAnswer: "<pre style='margin: 0; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; white-space: pre-wrap;'>import React, { useState } from 'react';\nimport { View, TextInput, Button, Text } from 'react-native';\n\nexport default function Multiplier() {\n    const [numA, setNumA] = useState('');\n    const [numB, setNumB] = useState('');\n    const [result, setResult] = useState(0);\n\n    const handleMultiply = () =&gt; {\n        const a = parseFloat(numA) || 0;\n        const b = parseFloat(numB) || 0;\n        setResult(a * b);\n    };\n\n    return (\n        &lt;View style={{ padding: 20 }}&gt;\n            &lt;TextInput value={numA} onChangeText={setNumA} keyboardType=\"numeric\" placeholder=\"숫자 A\" /&gt;\n            &lt;TextInput value={numB} onChangeText={setNumB} keyboardType=\"numeric\" placeholder=\"숫자 B\" /&gt;\n            &lt;Button title=\"곱하기 계산\" onPress={handleMultiply} /&gt;\n            &lt;Text style={{ fontSize: 24, marginTop: 10 }}&gt;결과: {result}&lt;/Text&gt;\n        &lt;/View&gt;\n    );\n}</pre>",
-          explanation: "교수님이 총정리에서 직접 스포한 곱셈기 문제입니다. 문자열로 들어오는 TextInput의 값을 숫자로 변환(parseFloat/Number)하여 곱한 뒤 상태에 저장하는 로직이 핵심입니다."
-        },
-        {
-          id: 9, type: "short", score: 10, origin: "5주차 교안 p.11: FlatList 구분선 속성",
-          text: "FlatList 컴포넌트에서 아이템 항목들 사이에 가로 경계선(Divider)을 깔끔하게 렌더링하기 위해 컴포넌트 또는 JSX 함수를 전달받는 FlatList의 내장 속성(Prop) 이름은?",
-          placeholder: "속성명 입력 (예: ItemSeparatorComponent)",
-          answers: ["ItemSeparatorComponent", "itemSeparatorComponent"],
-          explanation: "<b>정답: ItemSeparatorComponent</b><br>ItemSeparatorComponent={Divider}를 전달하면 아이템과 아이템 사이에만 구분선 컴포넌트를 삽입해주며, 맨 처음 항목 위나 맨 마지막 항목 밑에는 렌더링되지 않아 유용합니다."
-        },
-        {
-          id: 10, type: "short", score: 10, origin: "5주차 교안 p.12: ActivityIndicator 속성",
-          text: "데이터 로딩 상태를 시각적으로 보여주는 리액트 네이티브의 로딩 스피너 컴포넌트 (1)의 이름과, 스피너의 크기를 크게 설정하기 위해 <code>size</code> 속성에 전달하는 문자열 값 (2)를 순서대로 쓰시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;(1) (2)=\"large\" color=\"#0000ff\" /&gt;</pre>",
-          placeholder: "순서대로 입력 (예: ActivityIndicator, size)",
+          id: 9, type: "short", score: 10, origin: "5주차 교안 p.8: 삼항 연산자 조건부 렌더링",
+          text: "교안 5주차 8페이지에서 name 변수가 'Beomjun'일 때 화면에 출력되는 문자열은 무엇인가?<br><br><code>{name === 'Beomjun' ? 'My name is Beomjun' : \"I'm not Beomjun\"}</code>",
+          placeholder: "출력 문자열 입력 (예: My name is Beomjun)",
           answers: [
-            "ActivityIndicator, size",
-            "ActivityIndicator,size",
-            "ActivityIndicator, large"
+            "My name is Beomjun",
+            "My name is Beomjun ",
+            "'My name is Beomjun'"
           ],
-          explanation: "<b>정답: ActivityIndicator, size</b><br>ActivityIndicator 컴포넌트는 앱 로딩 중 원형 스피너를 보여주며, size 속성에 'small' 또는 'large'를 전달하여 크기를 지정할 수 있습니다."
-        }
-      ]
-    },
-    // [회차 5] 전 범위 소스코드 빈칸완성 & 코드작성 마스터 모의고사 (20문항 / 100점)
-    {
-      id: "cp_exam5",
-      name: "제5회 [올코드 빈칸 마스터] 2~7주차 전 범위 소스코드 빈칸완성 & 코드작성 특훈 (20문항)",
-      tag: "올코드 빈칸 20문항 (100점)",
-      desc: "교안 2주차 환경구축부터 7주차 Hook 및 계산기 실습까지 전 강의 교안에 등장하는 모든 React Native 핵심 소스코드의 키워드, 속성, Hook 선언문, 이벤트 핸들러 빈칸 뚫기 전수 수록!",
-      questions: [
-        {
-          id: 1, type: "short", score: 5, origin: "2주차 교안 p.8: React Native 루트 컴포넌트 & 스타일시트 생성",
-          text: "다음은 Expo 프로젝트의 엔트리 포인트인 <code>App.js</code> 기본 구조이다. 문자열 출력을 위한 표준 컴포넌트 <b>(A)</b>와 스타일 객체를 생성하는 메서드 <b>(B)</b>를 순서대로 쓰시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>import { StyleSheet, (A), View } from 'react-native';\n\nexport default function App() {\n    return (\n        &lt;View style={styles.container}&gt;\n            &lt;(A)&gt;크로스플랫폼 중간고사 대비&lt;/(A)&gt;\n        &lt;/View&gt;\n    );\n}\n\nconst styles = StyleSheet.(B)({\n    container: { flex: 1, justifyContent: 'center', alignItems: 'center' }\n});</pre>",
-          placeholder: "순서대로 입력 (예: Text, create)",
-          answers: ["Text, create", "Text,create", "Text, Create"],
-          explanation: "<b>정답: Text, create</b><br>리액트 네이티브에서는 웹의 p나 span 태그 대신 반드시 &lt;Text&gt; 컴포넌트로 문자를 감싸야 하며, 스타일 객체는 StyleSheet.create({ ... })로 생성합니다."
+          explanation: "<b>정답: My name is Beomjun</b><br>조건식이 참이므로 삼항 연산자의 앞쪽 'My name is Beomjun'이 평가되어 화면에 출력됩니다. (5주차 p.8)"
         },
         {
-          id: 2, type: "short", score: 5, origin: "3주차 교안 p.4: 레이아웃 기본 주축(flexDirection) 기본값",
-          text: "리액트 네이티브의 레이아웃 모델인 Flexbox에서 <b>주축(Main Axis)의 방향을 결정하는 <code>flexDirection</code>의 기본값(Default Value)</b>은 무엇인가?",
-          placeholder: "기본값 입력 (예: column)",
-          answers: ["column", "Column", "'column'"],
-          explanation: "<b>정답: column (세로 방향)</b><br>일반 웹 CSS에서는 가로(row)가 기본값이지만, 스마트폰 세로 화면에 최적화된 리액트 네이티브는 세로(column)가 기본값입니다."
-        },
-        {
-          id: 3, type: "short", score: 5, origin: "3주차 교안 p.13: 여러 스타일 동시 적용 문법",
-          text: "다음 코드에서 <code>styles.box</code>와 <code>styles.active</code> 두 스타일을 하나의 컴포넌트에 결합 적용하기 위한 빈칸 <b>(A)</b>의 배열 문법을 완성하여 작성하시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;View style={(A)}&gt;\n    &lt;Text&gt;다중 스타일 적용&lt;/Text&gt;\n&lt;/View&gt;</pre>",
-          placeholder: "배열 표기법 작성 (예: [styles.box, styles.active])",
+          id: 10, type: "short", score: 10, origin: "4주차 교안 p.10: onPress 텍스트 상태 변경",
+          text: "교안 4주차 10페이지에서 초기 상태가 \"지금, 무슨 과목:[클릭 ㅋㅋ]\"인 제목 텍스트를 터치(onPress)했을 때 변경되는 텍스트 문자열은 무엇인가?",
+          placeholder: "변경 텍스트 입력 (예: 크로스 플랫폼 과목 !!!)",
           answers: [
-            "[styles.box, styles.active]",
-            "[styles.box,styles.active]",
-            "[styles.box, styles.active ]"
+            "크로스 플랫폼 과목 !!!",
+            "크로스 플랫폼 과목!!!",
+            "크로스 플랫폼 과목",
+            "크로스플랫폼 과목 !!!"
           ],
-          explanation: "<b>정답: [styles.box, styles.active]</b><br>리액트 네이티브에서 둘 이상의 스타일을 병합할 때는 배열 [style1, style2]를 사용하며, 뒤에 오는 스타일이 앞의 스타일 속성을 덮어씁니다(오버라이드)."
-        },
-        {
-          id: 4, type: "short", score: 5, origin: "3주차 교안 p.14~15: 외부 스타일 파일 export/import",
-          text: "외부 파일 <code>src/styles.js</code>에 선언된 <code>viewStyles</code> 객체를 다른 컴포넌트에서 가져다 쓸 수 있도록 내보낼 때 사용하는 자바스크립트 키워드는 무엇인가?",
-          placeholder: "키워드 입력 (예: export)",
-          answers: ["export", "export const"],
-          explanation: "<b>정답: export</b><br>export const viewStyles = StyleSheet.create({ ... }) 형태로 선언하여 내보내고, 사용하는 파일에서 import { viewStyles } from './src/styles'로 가져옵니다."
-        },
-        {
-          id: 5, type: "short", score: 5, origin: "4주차 교안 p.5: Text 컴포넌트 중첩(Nesting)과 스타일 상속",
-          text: "다음 코드의 렌더링 결과에서 '강조된 텍스트'의 <b>글자 크기(fontSize)</b> (1)과 <b>글자 색상(color)</b> (2)를 순서대로 쓰시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;Text style={{ fontSize: 24, color: 'gray' }}&gt;\n    일반 텍스트와 &lt;Text style={{ color: 'red', fontWeight: 'bold' }}&gt;강조된 텍스트&lt;/Text&gt;\n&lt;/Text&gt;</pre>",
-          placeholder: "순서대로 입력 (예: 24, red)",
-          answers: ["24, red", "24,red", "24, 'red'"],
-          explanation: "<b>정답: 24, red</b><br>리액트 네이티브는 원칙적으로 스타일 상속을 지원하지 않으나, &lt;Text&gt; 내부에 또 다른 &lt;Text&gt;를 중첩한 경우 자식 텍스트는 부모의 fontSize(24)를 상속받고 자신의 color('red')를 적용합니다."
-        },
-        {
-          id: 6, type: "short", score: 5, origin: "4주차 교안 p.11: Button 컴포넌트 2대 필수 Props",
-          text: "리액트 네이티브의 기본 <code>&lt;Button /&gt;</code> 컴포넌트에 반드시 작성해야 하는 <b>버튼에 표시될 텍스트 속성</b> (1)과 <b>클릭 이벤트 핸들러 속성</b> (2)를 순서대로 쓰시오.",
-          placeholder: "순서대로 입력 (예: title, onPress)",
-          answers: ["title, onPress", "title,onPress", "title, onPress"],
-          explanation: "<b>정답: title, onPress</b><br>&lt;Button /&gt; 컴포넌트는 자체 닫는 태그 형태로 자식 엘리먼트를 가질 수 없으며, title과 onPress 속성을 필수로 지정해야 합니다."
-        },
-        {
-          id: 7, type: "short", score: 5, origin: "4주차 교안 p.13: Alert 다이얼로그 취소/확인 팝업",
-          text: "다음 Alert 대화상자 코드에서 빈칸 <b>(A)</b>와 <b>(B)</b>에 들어갈 키워드를 순서대로 쓰시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>Alert.alert(\n    '삭제 확인',\n    '데이터를 삭제하시겠습니까?',\n    [\n        { text: '취소', style: '(A)' },\n        { text: '삭제', (B): () => deleteItem() }\n    ]\n);</pre>",
-          placeholder: "순서대로 입력 (예: cancel, onPress)",
-          answers: ["cancel, onPress", "cancel,onPress", "cancel, onPress"],
-          explanation: "<b>정답: cancel, onPress</b><br>Alert 버튼 배열에서 취소 버튼 스타일은 style: 'cancel'이며, 버튼 클릭 시 실행할 동작 함수는 onPress 속성에 콜백을 바인딩합니다."
-        },
-        {
-          id: 8, type: "short", score: 5, origin: "4주차 교안 p.14~15: TextInput 텍스트 입력과 비밀번호 마스킹",
-          text: "TextInput에서 사용자가 타이핑할 때마다 호출되는 <b>텍스트 변경 이벤트 속성</b> (1)과, 비밀번호 입력창처럼 글자를 점이나 별표로 가려주는 <b>마스킹 속성</b> (2)를 순서대로 쓰시오.",
-          placeholder: "순서대로 입력 (예: onChangeText, secureTextEntry)",
-          answers: [
-            "onChangeText, secureTextEntry",
-            "onChangeText,secureTextEntry",
-            "onChangeText, secureTextEntry={true}"
-          ],
-          explanation: "<b>정답: onChangeText, secureTextEntry</b><br>웹의 onChange(e => ...)와 달리 리액트 네이티브는 입력된 텍스트 문자열이 바로 전달되는 onChangeText를 사용하며, 비밀번호 숨김은 secureTextEntry={true}입니다."
-        },
-        {
-          id: 9, type: "short", score: 5, origin: "5주차 교안 p.10: Image 원격 네트워크 로드 필수 스타일",
-          text: "원격 인터넷 URL로부터 이미지를 가져올 때(<code>source={{ uri: '...' }}</code>), 화면에 이미지가 정상적으로 출력되기 위해 <b>스타일(style) 객체에 반드시 명시해야 하는 2가지 속성</b>은 무엇인가?",
-          placeholder: "속성 2가지 쉼표 구분 (예: width, height)",
-          answers: ["width, height", "width,height", "height, width", "height,width"],
-          explanation: "<b>정답: width, height</b><br>로컬 require() 이미지는 이미지 파일 헤더에서 원본 크기를 자동 인식하지만, 원격 네트워크 uri 이미지는 크기(width, height)를 지정하지 않으면 크기가 0이 되어 화면에 나타나지 않습니다."
-        },
-        {
-          id: 10, type: "short", score: 5, origin: "5주차 교안 p.11: Switch 토글 상태 변경 속성",
-          text: "토글 스위치 컴포넌트인 <code>&lt;Switch /&gt;</code>에서 스위치 상태가 On/Off로 전환될 때 호출되는 <b>이벤트 속성(Prop)</b>의 이름은?",
-          placeholder: "속성명 입력 (예: onValueChange)",
-          answers: ["onValueChange", "onvaluechange"],
-          explanation: "<b>정답: onValueChange</b><br>Switch 컴포넌트의 토글 핸들러는 onChange가 아닌 onValueChange={(val) => setEnabled(val)}입니다."
-        },
-        {
-          id: 11, type: "short", score: 5, origin: "5주차 교안 p.12: FlatList 3대 필수 Props",
-          text: "다음 FlatList 컴포넌트의 빈칸 <b>(A), (B), (C)</b>에 들어갈 3대 필수 속성 명칭을 순서대로 작성하시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;FlatList\n    (A)={userList}\n    (B)={(item) =&gt; item.id}\n    (C)={({ item }) =&gt; &lt;Text&gt;{item.name}&lt;/Text&gt;}\n/&gt;</pre>",
-          placeholder: "순서대로 입력 (예: data, keyExtractor, renderItem)",
-          answers: [
-            "data, keyExtractor, renderItem",
-            "data,keyExtractor,renderItem",
-            "data, keyExtractor, renderitem"
-          ],
-          explanation: "<b>정답: data, keyExtractor, renderItem</b><br>FlatList는 1) 원본 배열 데이터(data), 2) 각 항목의 고유 키 추출(keyExtractor), 3) 항목을 화면에 그릴 JSX 함수(renderItem)의 3가지 속성이 필수입니다."
-        },
-        {
-          id: 12, type: "short", score: 5, origin: "6주차 교안 p.4: BackHandler 기본동작 차단 반환값",
-          text: "안드로이드 뒤로가기 버튼 리스너(<code>hardwareBackPress</code>)에서 OS의 기본 뒤로가기 동작을 차단하고 <b>개발자가 정의한 커스텀 로직만 실행되게 하려면 콜백 함수에서 어떤 boolean 값을 반환(return)</b>해야 하는가?",
-          placeholder: "boolean 값 입력 (예: true)",
-          answers: ["true", "True"],
-          explanation: "<b>정답: true</b><br>BackHandler 콜백 함수에서 true를 반환하면 시스템의 기본 뒤로가기(화면 닫기나 앱 종료) 동작이 무시되고 차단됩니다. (false 반환 시 기본 뒤로가기 실행)"
-        },
-        {
-          id: 13, type: "short", score: 5, origin: "6주차 교안 p.7: ToastAndroid 토스트 팝업 API",
-          text: "화면 하단에 잠시 나타났다 사라지는 토스트 메시지를 출력하기 위해 사용하는 리액트 네이티브 내장 API의 이름은?",
-          placeholder: "API 이름 입력 (예: ToastAndroid)",
-          answers: ["ToastAndroid", "toastAndroid"],
-          explanation: "<b>정답: ToastAndroid</b><br>ToastAndroid.show('메시지', ToastAndroid.SHORT); 형태로 호출하여 안드로이드 네이티브 토스트 팝업을 띄웁니다."
-        },
-        {
-          id: 14, type: "short", score: 5, origin: "6주차 교안 p.9: Animated API와 useNativeDriver",
-          text: "Animated API로 부드러운 60fps 애니메이션을 구현할 때, 자바스크립트 스레드를 거치지 않고 네이티브 UI 스레드에서 직접 애니메이션을 구동시키기 위해 <code>Animated.timing</code> 설정 객체에 명시하는 <b>boolean 속성</b>은 무엇인가?",
-          placeholder: "속성명: 값 형태 또는 속성명 (예: useNativeDriver: true)",
-          answers: [
-            "useNativeDriver: true",
-            "useNativeDriver",
-            "useNativeDriver:true",
-            "useNativeDriver = true"
-          ],
-          explanation: "<b>정답: useNativeDriver: true</b><br>useNativeDriver: true를 설정하면 애니메이션 계산을 네이티브 스레드로 위임하여 JS 스레드가 바쁘더라도 프레임 드랍 없이 부드러운 애니메이션을 제공합니다."
-        },
-        {
-          id: 15, type: "short", score: 5, origin: "6주차 교안 p.11: Dimensions 가용 영역 해상도",
-          text: "모바일 기기의 상단 상태바(Status Bar)나 하단 소프트키를 제외한 <b>실제 앱 가용 화면 해상도를 픽셀 단위로 구하는 API 메서드 호출 구문</b>은 무엇인가?",
-          placeholder: "호출 구문 입력 (예: Dimensions.get('window'))",
-          answers: [
-            "Dimensions.get('window')",
-            "Dimensions.get(\"window\")",
-            "Dimensions.get('window')",
-            "Dimensions.get('window')"
-          ],
-          explanation: "<b>정답: Dimensions.get('window')</b><br>Dimensions.get('window')는 소프트키 등을 제외한 앱 가용 영역의 width와 height를 반환하고, Dimensions.get('screen')은 기기 물리적 전체 화면 크기를 반환합니다."
-        },
-        {
-          id: 16, type: "short", score: 5, origin: "7주차 교안 p.5: useState 상태 선언 및 리렌더링",
-          text: "다음 컴포넌트에서 <code>useState</code>의 상태 변경 함수인 <b>세터 함수(setCount)가 호출되었을 때 컴포넌트에 일어나는 핵심 동작 메커니즘</b>을 한 단어로 쓰시오.",
-          placeholder: "한 단어로 작성 (예: 리렌더링)",
-          answers: ["리렌더링", "재렌더링", "다시 렌더링", "re-rendering", "rerendering"],
-          explanation: "<b>정답: 리렌더링 (Re-rendering)</b><br>useState의 세터 함수가 호출되면 리액트는 상태 변화를 감지하고 해당 컴포넌트 함수를 다시 실행하여 화면 UI를 새로 고치는 리렌더링을 수행합니다."
-        },
-        {
-          id: 17, type: "short", score: 5, origin: "7주차 교안 p.10: useRef와 DOM 포커스 이동",
-          text: "다음 코드에서 사용자가 버튼을 눌렀을 때 TextInput으로 커서 포커스를 이동시키고자 한다. 빈칸 <b>(A)</b>와 <b>(B)</b>에 들어갈 코드를 순서대로 쓰시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>const inputRef = useRef(null);\nconst focusInput = () => {\n    inputRef.(A).focus();\n};\nreturn (\n    &lt;View&gt;\n        &lt;TextInput (B)={inputRef} placeholder=\"이름\" /&gt;\n        &lt;Button title=\"포커스\" onPress={focusInput} /&gt;\n    &lt;/View&gt;\n);</pre>",
-          placeholder: "순서대로 입력 (예: current, ref)",
-          answers: ["current, ref", "current,ref", "current, ref"],
-          explanation: "<b>정답: current, ref</b><br>useRef로 생성된 참조 객체는 TextInput의 ref 속성에 연결되며, 실제 DOM 요소는 inputRef.current 프로퍼티를 통해 접근하므로 inputRef.current.focus()를 호출합니다."
-        },
-        {
-          id: 18, type: "short", score: 5, origin: "7주차 교안 p.9: useState vs useRef vs let 변수 실행 결과 예측",
-          text: "다음 컴포넌트에서 <b>[클릭]</b> 버튼을 <b>5번 연속 클릭</b>한 직후, <b>[리랜더]</b> 버튼을 <b>1번 클릭</b>하였다.<br>화면 UI에 최종 표시되는 <b>CountRef</b> 값 (1)과 <b>CountVar</b> 값 (2)를 순서대로 쓰시오.<br><br>" +
-                "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>export default function StateVsRef() {\n    const [render, setRender] = useState(false);\n    const countRef = useRef(0);\n    let countVar = 5;\n\n    const handleClick = () => {\n        countRef.current += 1;\n        countVar += 1;\n    };\n    const doRender = () => setRender(!render);\n    return (\n        &lt;View&gt;\n            &lt;Text&gt;CountRef: {countRef.current}&lt;/Text&gt;\n            &lt;Text&gt;CountVar: {countVar}&lt;/Text&gt;\n            &lt;Button title=\"클릭\" onPress={handleClick} /&gt;\n            &lt;Button title=\"리랜더\" onPress={doRender} /&gt;\n        &lt;/View&gt;\n    );\n}</pre>",
-          placeholder: "순서대로 정수 입력 (예: 5, 5)",
-          answers: ["5, 5", "5,5"],
-          explanation: "<b>정답: 5, 5</b><br>[클릭] 5번 누를 때: countRef.current는 5, countVar는 10이 되지만 리렌더링이 발생하지 않음.<br>[리랜더] 1번 누를 때: 컴포넌트가 다시 렌더링되면서 useRef는 값을 보존하여 5가 출력되고, countVar는 일반 로컬 변수이므로 let countVar = 5; 구문에 의해 5로 다시 초기화되어 5가 출력됩니다!"
-        },
-        {
-          id: 19, type: "short", score: 5, origin: "7주차 교안 p.16: useMemo의 메모이제이션 최적화 목적",
-          text: "연산 비용이 큰 함수의 반환값을 메모리에 캐싱(메모이제이션)하여, 의존성 배열의 값이 바뀌지 않는 한 불필요한 재계산을 방지하고 성능을 최적화하는 <b>React Hook의 이름</b>은?",
-          placeholder: "Hook 이름 입력 (예: useMemo)",
-          answers: ["useMemo", "usememo"],
-          explanation: "<b>정답: useMemo</b><br>useMemo(() => expensiveCalc(a), [a]) 형태로 사용하며, 의존성 배열 a가 변경되었을 때만 계산 함수를 다시 실행하고 그 외의 리렌더링 시에는 캐시된 값을 즉시 재사용합니다."
-        },
-        {
-          id: 20, type: "short", score: 5, origin: "7주차 교안 p.19: 계산기 실습 상세조건 (교수님 감점방지 스포)",
-          text: "7주차 계산기 실습 교안 상세조건에서 명시된 <b>전체 컨테이너 배경색(backgroundColor)</b> (1), <b>디스플레이 텍스트 글자 크기(fontSize)</b> (2), <b>숫자 버튼 배경색 Hex 코드</b> (3)을 순서대로 쓰시오.<br><br>" +
-                "• (1): 컨테이너 배경색 영문명<br>" +
-                "• (2): displayText fontSize 정수값<br>" +
-                "• (3): number Button backgroundColor 16진수 코드",
-          placeholder: "순서대로 입력 (예: black, 84, #2f2f2f)",
-          answers: [
-            "black, 84, #2f2f2f",
-            "black,84,#2f2f2f",
-            "'black', 84, '#2f2f2f'",
-            "black, 84, #2F2F2F"
-          ],
-          explanation: "<b>정답: black, 84, #2f2f2f</b><br>교수님이 음성 녹음본에서 '상세조건 안 맞추면 점수 안 나간다. 블랙 대신 회색 쓰면 감점'이라고 직접 강조한 부분입니다. 전체 배경은 'black', 결과 글자 크기는 84, 숫자 버튼 배경은 #2f2f2f, 연산자 버튼은 #F5A623입니다."
+          explanation: "<b>정답: 크로스 플랫폼 과목 !!!</b><br>4주차 교안 10페이지 Text onPress 예제에서 setTitleText(\"크로스 플랫폼 과목 !!!\")로 상태가 변경됩니다.<div class=\"exam-result-preview\"><div class=\"exam-result-preview-header\">📱 교안 실제 실행 결과 화면</div><img src=\"assets/crossplatform/week4_p10_0_Image90.png\" alt=\"실행 화면\" class=\"exam-result-img\" loading=\"lazy\"></div>"
         }
       ]
     }
   ]
 };
-
-
