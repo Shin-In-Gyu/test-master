@@ -1984,8 +1984,8 @@ I am a parallel region.</pre>
               </div>
               <div class="gantt-time-labels"><span>0</span><span>24</span><span>27</span><span>30</span></div>
               <div style="font-size: 12.5px; margin-top: 6px;">
-                • 대기시간: P1=0, P2=24, P3=27<br>
-                • <b>평균 대기시간(AWT)</b> = <code>(0 + 24 + 27) / 3 =</code> <b style="color: var(--tag-danger-ink);">17 ms</b><br>
+                • 대기시간: P1=0, P2=24, P3=27 → <b>평균 대기시간(AWT)</b> = <code>(0 + 24 + 27) / 3 =</code> <b style="color: var(--tag-danger-ink);">17 ms</b><br>
+                • 반환시간(종료-도착): P1=24, P2=27, P3=30 → <b>평균 반환시간(ATT)</b> = <code>(24 + 27 + 30) / 3 = 81 / 3 =</code> <b style="color: var(--accent);">27 ms</b><br>
                 • <b>콘보이 효과 발생!</b> (앞선 긴 P1 때문에 짧은 P2, P3가 24ms 이상 대기)
               </div>
             </div>
@@ -1999,9 +1999,9 @@ I am a parallel region.</pre>
               </div>
               <div class="gantt-time-labels"><span>0</span><span>3</span><span>6</span><span>30</span></div>
               <div style="font-size: 12.5px; margin-top: 6px;">
-                • 대기시간: P2=0, P3=3, P1=6 (번호순: P1=6, P2=0, P3=3)<br>
-                • <b>평균 대기시간(AWT)</b> = <code>(6 + 0 + 3) / 3 =</code> <b style="color: var(--tag-green-ink);">3 ms</b><br>
-                • 짧은 작업이 먼저 오자 평균 대기시간이 <b>17ms → 3ms로 대폭 단축!</b>
+                • 대기시간: P2=0, P3=3, P1=6 → <b>평균 대기시간(AWT)</b> = <code>(6 + 0 + 3) / 3 =</code> <b style="color: var(--tag-green-ink);">3 ms</b><br>
+                • 반환시간: P2=3, P3=6, P1=30 → <b>평균 반환시간(ATT)</b> = <code>(3 + 6 + 30) / 3 = 39 / 3 =</code> <b style="color: var(--accent);">13 ms</b><br>
+                • 짧은 작업이 먼저 오자 평균 대기시간이 <b>17ms → 3ms</b>, 평균 반환시간도 <b>27ms → 13ms로 대폭 단축!</b>
               </div>
             </div>
 
@@ -2040,8 +2040,10 @@ I am a parallel region.</pre>
               <div style="font-size: 12.5px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
                 • 버스트 오름차순 실행: <b>P4(3) → P1(6) → P3(7) → P2(8)</b><br>
                 • 대기 시간: P4 = 0, P1 = 3, P3 = 9, P2 = 16<br>
-                • <b>평균 대기 시간(AWT)</b> = <code>(3 + 16 + 9 + 0) / 4 = 28 / 4 =</code> <b>7 ms</b><br>
-                • (만약 FCFS로 실행했다면 AWT = <code>(0 + 6 + 14 + 21) / 4 = 10.25 ms</code>)
+                • <b>평균 대기 시간(AWT)</b> = <code>(3 + 16 + 9 + 0) / 4 = 28 / 4 =</code> <b style="color: var(--tag-green-ink);">7 ms</b><br>
+                • 반환 시간(완료-도착): P4 = 3, P1 = 9, P3 = 16, P2 = 24<br>
+                • <b>평균 반환 시간(ATT)</b> = <code>(3 + 9 + 16 + 24) / 4 = 52 / 4 =</code> <b style="color: var(--accent);">13 ms</b><br>
+                • (만약 FCFS로 실행했다면 AWT = <code>10.25 ms</code>, ATT = <code>16.25 ms</code>)
               </div>
             </div>
 
@@ -2060,9 +2062,11 @@ I am a parallel region.</pre>
                 • <code>t = 5</code>: P2 종료 후 남은 P1(7), P3(9), P4(5) 중 <b>P4 → P1 → P3 순 실행</b><br>
                 • <b>SRTF 대기 시간</b>: P1 = <code>(10 - 1) = 9</code>, P2 = <code>1 - 1 = 0</code>, P3 = <code>17 - 2 = 15</code>, P4 = <code>5 - 3 = 2</code><br>
                 &nbsp;&nbsp;→ <b>SRTF 평균 대기 시간(AWT)</b> = <code>(9 + 0 + 15 + 2) / 4 = 26 / 4 =</code> <b style="color: var(--tag-danger-ink);">6.5 ms</b><br>
+                • <b>SRTF 반환 시간(종료-도착)</b>: P1=<code>17-0=17</code>, P2=<code>5-1=4</code>, P3=<code>26-2=24</code>, P4=<code>10-3=7</code><br>
+                &nbsp;&nbsp;→ <b>SRTF 평균 반환 시간(ATT)</b> = <code>(17 + 4 + 24 + 7) / 4 = 52 / 4 =</code> <b style="color: var(--accent);">13 ms</b><br>
                 • <b>[참고] 만약 문제 5를 비선점형 SJF로 풀면?</b><br>
                 &nbsp;&nbsp;- 간트 차트: <code>P1(0~8) → P2(8~12) → P4(12~17) → P3(17~26)</code><br>
-                &nbsp;&nbsp;- 대기 시간: P1=<code>0</code>, P2=<code>8-1=7</code>, P4=<code>12-3=9</code>, P3=<code>17-2=15</code> → <b>비선점 AWT = <code>31 / 4 =</code> 7.75 ms</b>
+                &nbsp;&nbsp;- 대기: P1=0, P2=7, P4=9, P3=15 → <b>비선점 AWT = 7.75 ms / ATT = 14.25 ms</b>
               </div>
             </div>
           </div>
@@ -2090,7 +2094,9 @@ I am a parallel region.</pre>
               <div style="font-size: 12.5px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
                 • P1이 0~4 실행 후 선점 → P2(4~7, 3ms 완주) → P3(7~10, 3ms 완주) → 이후 남은 작업은 P1뿐이므로 10~30까지 P1이 4ms씩 연속 실행<br>
                 • 대기 시간: P1 = <code>10 - 4 = 6</code>, P2 = <code>4</code>, P3 = <code>7</code><br>
-                • <b>평균 대기 시간(AWT)</b> = <code>(6 + 4 + 7) / 3 = 17 / 3 =</code> <b>5.66 ms</b>
+                • <b>평균 대기 시간(AWT)</b> = <code>(6 + 4 + 7) / 3 = 17 / 3 =</code> <b>5.66 ms</b><br>
+                • 반환 시간: P1 = <code>30</code>, P2 = <code>7</code>, P3 = <code>10</code><br>
+                • <b>평균 반환 시간(ATT)</b> = <code>(30 + 7 + 10) / 3 = 47 / 3 =</code> <b style="color: var(--accent);">15.67 ms</b>
               </div>
             </div>
 
@@ -2110,7 +2116,9 @@ I am a parallel region.</pre>
               <div style="font-size: 12.5px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
                 • 우선순위 순서(1→2→3→4→5): <b>P2(1) → P5(5) → P1(10) → P3(2) → P4(1)</b><br>
                 • 대기 시간: P2 = <code>0</code>, P5 = <code>1</code>, P1 = <code>6</code>, P3 = <code>16</code>, P4 = <code>18</code><br>
-                • <b>평균 대기 시간(AWT)</b> = <code>(0 + 1 + 6 + 16 + 18) / 5 = 41 / 5 =</code> <b>8.2 ms</b>
+                • <b>평균 대기 시간(AWT)</b> = <code>(0 + 1 + 6 + 16 + 18) / 5 = 41 / 5 =</code> <b>8.2 ms</b><br>
+                • 반환 시간: P2 = <code>1</code>, P5 = <code>6</code>, P1 = <code>16</code>, P3 = <code>18</code>, P4 = <code>19</code><br>
+                • <b>평균 반환 시간(ATT)</b> = <code>(1 + 6 + 16 + 18 + 19) / 5 = 60 / 5 =</code> <b style="color: var(--accent);">12.0 ms</b>
               </div>
             </div>
           </div>
@@ -2131,7 +2139,7 @@ window.EXAM_DATABASE.os = {
       id: "os_exam1",
       name: "제1회 운영체제 중간고사 실전 모의고사 (24문항)",
       tag: "녹음본 19대 유형 전수 반영 · 24문항 100점",
-      desc: "수업 녹음본(09/23, 6주차, 7주차) 정밀 분석 100% 반영: fork() 리턴값·전역변수 독립성(5)·연쇄fork(), execlp 메모리 완전 대체, IPC 환형버퍼 수식, FCFS/SJF/SRTF/RR 간트 차트 및 평균 대기 시간(AWT) 계산, 지수 이동평균 버스트 예측, 에이징, 타임 퀀텀",
+      desc: "수업 녹음본(09/23, 6주차, 7주차) 정밀 분석 100% 반영: fork() 리턴값·전역변수 독립성(5)·연쇄fork(), execlp 메모리 완전 대체, IPC 환형버퍼 수식, FCFS/SJF/SRTF/RR 간트 차트 및 평균 대기 시간(AWT)·평균 반환 시간(ATT) 계산, 지수 이동평균 버스트 예측, 에이징, 타임 퀀텀",
       questions: [
         // [객관식 3문항: 각 3점 = 9점]
         {
@@ -2290,9 +2298,9 @@ window.EXAM_DATABASE.os = {
                 "<tr><td><b>P2</b></td><td>0 ms</td><td><b>3 ms</b></td></tr>" +
                 "<tr><td><b>P3</b></td><td>0 ms</td><td><b>3 ms</b></td></tr>" +
                 "</table>" +
-                "<b>FCFS 알고리즘</b>을 적용할 때의 <b>평균 대기 시간(Average Waiting Time)</b>을 밀리초(ms) 단위 숫자로 계산하시오.",
-          placeholder: "평균 대기시간 숫자만 입력 (예: 17)",
-          answers: ["17", "17ms", "17.0"],
+                "<b>FCFS 알고리즘</b>을 적용할 때의 <b>평균 대기 시간(AWT)</b>과 <b>평균 반환 시간(ATT: Average Turnaround Time)</b>을 밀리초(ms) 단위 숫자로 각각 계산하시오. (대기시간, 반환시간 순서로 입력)",
+          placeholder: "평균 대기시간, 평균 반환시간 순서로 입력 (예: 17, 27)",
+          answers: ["17, 27", "17,27", "17/27", "17 27", "17ms, 27ms", "17ms/27ms", "17ms 27ms", "대기17반환27", "AWT17ATT27", "17", "27"],
           explanation: "<b>[간트 차트 작성]</b><br>" +
                        "<div class='gantt-chart-vis'>" +
                        "  <div class='gantt-block' style='flex: 24;'>P1 (0 ~ 24)</div>" +
@@ -2300,11 +2308,14 @@ window.EXAM_DATABASE.os = {
                        "  <div class='gantt-block' style='flex: 3;'>P3 (27 ~ 30)</div>" +
                        "</div>" +
                        "<div class='gantt-time-labels'><span>0</span><span>24</span><span>27</span><span>30</span></div><br>" +
-                       "• P1 대기시간: 0 ms<br>" +
-                       "• P2 대기시간: 24 ms<br>" +
-                       "• P3 대기시간: 27 ms<br>" +
-                       "• <b>총 대기시간</b>: 0 + 24 + 27 = 51 ms<br>" +
-                       "• <b>평균 대기시간(AWT)</b>: 51 / 3 = <b>17 ms</b>"
+                       "• <b>대기 시간(Waiting Time)</b>: P1=0 ms, P2=24 ms, P3=27 ms<br>" +
+                       "&nbsp;&nbsp;→ 총 대기시간: 0 + 24 + 27 = 51 ms<br>" +
+                       "&nbsp;&nbsp;→ <b>평균 대기시간(AWT)</b>: 51 / 3 = <b>17 ms</b><br><br>" +
+                       "• <b>반환 시간(Turnaround Time = 종료 시각 - 도착 시각)</b>:<br>" +
+                       "&nbsp;&nbsp;P1 = 24 - 0 = 24 ms, P2 = 27 - 0 = 27 ms, P3 = 30 - 0 = 30 ms<br>" +
+                       "&nbsp;&nbsp;→ 총 반환시간: 24 + 27 + 30 = 81 ms<br>" +
+                       "&nbsp;&nbsp;→ <b>평균 반환시간(ATT)</b>: 81 / 3 = <b>27 ms</b><br>" +
+                       "(검증 공식: ATT = AWT(17) + 평균 버스트(10) = <b>27 ms</b>)"
         },
         {
           id: 19, type: "calc", score: 7, origin: "Part 4 유형 16: 비선점형 SJF 계산",
@@ -2316,9 +2327,9 @@ window.EXAM_DATABASE.os = {
                 "<tr><td><b>P3</b></td><td>0 ms</td><td><b>7 ms</b></td></tr>" +
                 "<tr><td><b>P4</b></td><td>0 ms</td><td><b>3 ms</b></td></tr>" +
                 "</table>" +
-                "<b>비선점형 SJF(Shortest-Job-First)</b> 알고리즘을 적용할 때의 <b>평균 대기 시간(AWT)</b>을 밀리초(ms) 단위 숫자로 계산하시오.",
-          placeholder: "평균 대기시간 숫자 입력 (예: 7)",
-          answers: ["7", "7ms", "7.0"],
+                "<b>비선점형 SJF(Shortest-Job-First)</b> 알고리즘을 적용할 때의 <b>평균 대기 시간(AWT)</b>과 <b>평균 반환 시간(ATT)</b>을 밀리초(ms) 단위 숫자로 각각 계산하시오. (대기시간, 반환시간 순서로 입력)",
+          placeholder: "평균 대기시간, 평균 반환시간 순서로 입력 (예: 7, 13)",
+          answers: ["7, 13", "7,13", "7/13", "7 13", "7ms, 13ms", "7ms/13ms", "7.0, 13.0", "7.0,13.0", "대기7반환13", "AWT7ATT13", "7", "13"],
           explanation: "<b>[실행 순서 선정]</b> 버스트가 가장 짧은 순서: <b>P4(3) → P1(6) → P3(7) → P2(8)</b><br>" +
                        "<div class='gantt-chart-vis'>" +
                        "  <div class='gantt-block' style='flex: 3;'>P4 (0~3)</div>" +
@@ -2327,16 +2338,18 @@ window.EXAM_DATABASE.os = {
                        "  <div class='gantt-block' style='flex: 8;'>P2 (16~24)</div>" +
                        "</div>" +
                        "<div class='gantt-time-labels'><span>0</span><span>3</span><span>9</span><span>16</span><span>24</span></div><br>" +
-                       "• P4 대기: 0 ms<br>" +
-                       "• P1 대기: 3 ms<br>" +
-                       "• P3 대기: 9 ms<br>" +
-                       "• P2 대기: 16 ms<br>" +
-                       "• <b>총 대기시간</b>: 0 + 3 + 9 + 16 = 28 ms<br>" +
-                       "• <b>평균 대기시간(AWT)</b>: 28 / 4 = <b>7 ms</b>"
+                       "• <b>대기 시간</b>: P4=0 ms, P1=3 ms, P3=9 ms, P2=16 ms<br>" +
+                       "&nbsp;&nbsp;→ 총 대기시간: 0 + 3 + 9 + 16 = 28 ms<br>" +
+                       "&nbsp;&nbsp;→ <b>평균 대기시간(AWT)</b>: 28 / 4 = <b>7 ms</b><br><br>" +
+                       "• <b>반환 시간(종료 시각 - 도착 시각)</b>:<br>" +
+                       "&nbsp;&nbsp;P4 = 3 - 0 = 3 ms, P1 = 9 - 0 = 9 ms, P3 = 16 - 0 = 16 ms, P2 = 24 - 0 = 24 ms<br>" +
+                       "&nbsp;&nbsp;→ 총 반환시간: 3 + 9 + 16 + 24 = 52 ms<br>" +
+                       "&nbsp;&nbsp;→ <b>평균 반환시간(ATT)</b>: 52 / 4 = <b>13 ms</b><br>" +
+                       "(검증 공식: ATT = AWT(7) + 평균 버스트(24/4=6) = <b>13 ms</b>)"
         },
         {
           id: 20, type: "calc", score: 7, origin: "Part 4 유형 18: SRTF (선점형 SJF) 스케줄링 계산 (7주차 필수)",
-          text: "다음 4개 프로세스 집합에 대해 <b>SRTF (선점형 SJF)</b> 스케줄링을 적용할 때의 <b>평균 대기 시간(Average Waiting Time)</b>을 밀리초(ms) 단위 숫자로 구하시오.<br><br>" +
+          text: "다음 4개 프로세스 집합에 대해 <b>SRTF (선점형 SJF)</b> 스케줄링을 적용할 때의 <b>평균 대기 시간(AWT)</b>과 <b>평균 반환 시간(ATT)</b>을 밀리초(ms) 단위 숫자로 각각 구하시오. (대기시간, 반환시간 순서로 입력)<br><br>" +
                 "<table class='gantt-table'>" +
                 "<tr><th>프로세스</th><th>도착 시간 (Arrival)</th><th>CPU 버스트 시간 (Burst)</th></tr>" +
                 "<tr><td><b>P1</b></td><td>0 ms</td><td><b>8 ms</b></td></tr>" +
@@ -2344,8 +2357,8 @@ window.EXAM_DATABASE.os = {
                 "<tr><td><b>P3</b></td><td>2 ms</td><td><b>9 ms</b></td></tr>" +
                 "<tr><td><b>P4</b></td><td>3 ms</td><td><b>5 ms</b></td></tr>" +
                 "</table>",
-          placeholder: "평균 대기시간 숫자 입력 (예: 6.5)",
-          answers: ["6.5", "6.5ms"],
+          placeholder: "평균 대기시간, 평균 반환시간 순서로 입력 (예: 6.5, 13)",
+          answers: ["6.5, 13", "6.5,13", "6.5/13", "6.5 13", "6.5ms, 13ms", "6.5ms/13ms", "6.5, 13.0", "대기6.5반환13", "AWT6.5ATT13", "6.5", "13"],
           explanation: "<b>[간트 차트 작성 및 실행 추적]</b><br>" +
                        "• t = 0: P1 실행 시작<br>" +
                        "• t = 1: P2 도착(버스트 4). P1 남은 시간 7ms. P2(4) &lt; P1(7)이므로 <b>P2가 선점!</b><br>" +
@@ -2363,12 +2376,21 @@ window.EXAM_DATABASE.os = {
                        "  <div class='gantt-block' style='flex: 9;'>P3 (17~26)</div>" +
                        "</div>" +
                        "<div class='gantt-time-labels'><span>0</span><span>1</span><span>5</span><span>10</span><span>17</span><span>26</span></div><br>" +
-                       "• P1 대기시간: (0 - 0) + (10 - 1) = <b>9 ms</b><br>" +
-                       "• P2 대기시간: 1 - 1 = <b>0 ms</b><br>" +
-                       "• P3 대기시간: 17 - 2 = <b>15 ms</b><br>" +
-                       "• P4 대기시간: 5 - 3 = <b>2 ms</b><br>" +
-                       "• <b>총 대기시간</b>: 9 + 0 + 15 + 2 = 26 ms<br>" +
-                       "• <b>평균 대기시간(AWT)</b>: 26 / 4 = <b>6.5 ms</b>"
+                       "• <b>대기 시간(시작 전 대기 + 선점 후 재진입 대기)</b>:<br>" +
+                       "&nbsp;&nbsp;• P1 대기시간: (0 - 0) + (10 - 1) = <b>9 ms</b><br>" +
+                       "&nbsp;&nbsp;• P2 대기시간: 1 - 1 = <b>0 ms</b><br>" +
+                       "&nbsp;&nbsp;• P3 대기시간: 17 - 2 = <b>15 ms</b><br>" +
+                       "&nbsp;&nbsp;• P4 대기시간: 5 - 3 = <b>2 ms</b><br>" +
+                       "&nbsp;&nbsp;→ 총 대기시간: 9 + 0 + 15 + 2 = 26 ms<br>" +
+                       "&nbsp;&nbsp;→ <b>평균 대기시간(AWT)</b>: 26 / 4 = <b>6.5 ms</b><br><br>" +
+                       "• <b>반환 시간(종료 시각 - 도착 시각)</b>:<br>" +
+                       "&nbsp;&nbsp;• P1 반환시간: 17 - 0 = <b>17 ms</b><br>" +
+                       "&nbsp;&nbsp;• P2 반환시간: 5 - 1 = <b>4 ms</b><br>" +
+                       "&nbsp;&nbsp;• P3 반환시간: 26 - 2 = <b>24 ms</b><br>" +
+                       "&nbsp;&nbsp;• P4 반환시간: 10 - 3 = <b>7 ms</b><br>" +
+                       "&nbsp;&nbsp;→ 총 반환시간: 17 + 4 + 24 + 7 = 52 ms<br>" +
+                       "&nbsp;&nbsp;→ <b>평균 반환시간(ATT)</b>: 52 / 4 = <b>13 ms</b><br>" +
+                       "(검증 공식: ATT = AWT(6.5) + 평균 버스트((8+4+9+5)/4 = 6.5) = <b>13 ms</b>)"
         },
         {
           id: 21, type: "calc", score: 7, origin: "Part 4 유형 19: Round Robin (RR) 스케줄링 계산",
@@ -2379,9 +2401,9 @@ window.EXAM_DATABASE.os = {
                 "<tr><td><b>P2</b></td><td>0 ms</td><td><b>3 ms</b></td></tr>" +
                 "<tr><td><b>P3</b></td><td>0 ms</td><td><b>3 ms</b></td></tr>" +
                 "</table>" +
-                "이때 <b>P2 프로세스의 대기 시간(Waiting Time)</b>은 몇 ms인가?",
-          placeholder: "대기시간 숫자 입력 (예: 4)",
-          answers: ["4", "4ms"],
+                "이때 <b>P2 프로세스의 대기 시간(Waiting Time)</b>과 <b>반환 시간(Turnaround Time)</b>을 밀리초(ms) 단위 숫자로 순서대로 쓰시오. (예: 4, 7)",
+          placeholder: "P2 대기시간, P2 반환시간 순서로 입력 (예: 4, 7)",
+          answers: ["4, 7", "4,7", "4/7", "4 7", "4ms, 7ms", "4ms/7ms", "4ms 7ms", "대기4반환7", "4", "7"],
           explanation: "<b>[간트 차트 작성]</b><br>" +
                        "• 0 ~ 4 ms: P1 실행 (남은 시간 20 ms, 퀀텀 소진으로 선점되어 큐 맨 뒤로 이동)<br>" +
                        "• 4 ~ 7 ms: P2 실행 (3 ms 실행 후 종료!)<br>" +
@@ -2395,7 +2417,10 @@ window.EXAM_DATABASE.os = {
                        "</div>" +
                        "<div class='gantt-time-labels'><span>0</span><span>4</span><span>7</span><span>10</span><span>30</span></div><br>" +
                        "• <b>P2의 대기시간</b>: 0에 도착하여 4 ms에 처음이자 마지막으로 실행되었으므로 <b>4 ms</b><br>" +
-                       "(참고: P3 대기시간 = 7 ms, P1 대기시간 = 4(P2)+3(P3) = 6 ms, AWT = (6+4+7)/3 = 5.67 ms)"
+                       "• <b>P2의 반환시간</b>: 0에 도착하여 7 ms에 최종 완료되었으므로 <code>7 - 0 =</code> <b>7 ms</b><br><br>" +
+                       "<b>[전체 프로세스 스케줄링 평가 척도 참고]</b><br>" +
+                       "• 대기 시간: P1 = 10 - 4 = 6 ms, P2 = 4 ms, P3 = 7 ms → <b>평균 대기시간(AWT)</b>: (6 + 4 + 7) / 3 = <b>5.67 ms</b><br>" +
+                       "• 반환 시간: P1 = 30 ms, P2 = 7 ms, P3 = 10 ms → <b>평균 반환시간(ATT)</b>: (30 + 7 + 10) / 3 = <b>15.67 ms</b>"
         },
 
         // [개념 정의 서술형 3문항: 5+6+6 = 17점]
@@ -2442,7 +2467,7 @@ window.EXAM_DATABASE.os = {
       id: "os_exam2",
       name: "제2회 [적중 파이널] 교수님 파이널 모의고사 10선",
       tag: "기출 변형 & 핵심 적중 10문항 100점",
-      desc: "수업 정리자료 '파이널 모의고사 10선' 100% 반영: fork() 전역변수 서술(value=10), fork() 리턴값, 스레드 자원 분리, 콘보이 효과, 기아&에이징, 디스패처, 비선점 SJF(4.25ms), SRTF(3.0ms), RR 퀀텀 영향, 환형버퍼 수식",
+      desc: "수업 정리자료 '파이널 모의고사 10선' 100% 반영: fork() 전역변수 서술(value=10), fork() 리턴값, 스레드 자원 분리, 콘보이 효과, 기아&에이징, 디스패처, 비선점 SJF(AWT 4.25ms / ATT 9.25ms), SRTF(AWT 3.0ms / ATT 7.0ms), RR 퀀텀 영향, 환형버퍼 수식",
       questions: [
         {
           id: 1, type: "essay", score: 10, origin: "파이널 문제 1: fork() 메모리 구조 & 전역 변수",
@@ -2501,7 +2526,7 @@ window.EXAM_DATABASE.os = {
         },
         {
           id: 7, type: "calc", score: 10, origin: "파이널 문제 7: 비선점형 SJF 계산 (수치 변형)",
-          text: "다음 프로세스 집합에 대해 <b>비선점형 SJF</b> 스케줄링을 적용할 때, 간트 차트를 그리고 <b>평균 대기 시간(AWT)</b>을 밀리초(ms) 단위 숫자로 구하시오. (도착 시간은 모두 0ms)<br><br>" +
+          text: "다음 프로세스 집합에 대해 <b>비선점형 SJF</b> 스케줄링을 적용할 때, 간트 차트를 그리고 <b>평균 대기 시간(AWT)</b>과 <b>평균 반환 시간(ATT: Average Turnaround Time)</b>을 밀리초(ms) 단위 숫자로 각각 구하시오. (도착 시간은 모두 0ms, 대기시간, 반환시간 순서로 입력)<br><br>" +
                 "<table class='gantt-table'>" +
                 "<tr><th>프로세스</th><th>도착 시간</th><th>CPU 버스트 시간</th></tr>" +
                 "<tr><td><b>P1</b></td><td>0 ms</td><td><b>9 ms</b></td></tr>" +
@@ -2509,8 +2534,8 @@ window.EXAM_DATABASE.os = {
                 "<tr><td><b>P3</b></td><td>0 ms</td><td><b>1 ms</b></td></tr>" +
                 "<tr><td><b>P4</b></td><td>0 ms</td><td><b>6 ms</b></td></tr>" +
                 "</table>",
-          placeholder: "평균 대기시간 숫자 입력 (예: 4.25)",
-          answers: ["4.25", "4.25ms"],
+          placeholder: "평균 대기시간, 평균 반환시간 순서로 입력 (예: 4.25, 9.25)",
+          answers: ["4.25, 9.25", "4.25,9.25", "4.25/9.25", "4.25 9.25", "4.25ms, 9.25ms", "4.25ms/9.25ms", "대기4.25반환9.25", "4.25", "9.25"],
           explanation: "<b>[실행 순서 선정]</b> 버스트가 짧은 순서: <b>P3(1) → P2(4) → P4(6) → P1(9)</b><br>" +
                        "<div class='gantt-chart-vis'>" +
                        "  <div class='gantt-block' style='flex: 1;'>P3 (0~1)</div>" +
@@ -2519,16 +2544,18 @@ window.EXAM_DATABASE.os = {
                        "  <div class='gantt-block' style='flex: 9;'>P1 (11~20)</div>" +
                        "</div>" +
                        "<div class='gantt-time-labels'><span>0</span><span>1</span><span>5</span><span>11</span><span>20</span></div><br>" +
-                       "• P3 대기시간: 0 ms<br>" +
-                       "• P2 대기시간: 1 ms<br>" +
-                       "• P4 대기시간: 5 ms<br>" +
-                       "• P1 대기시간: 11 ms<br>" +
-                       "• <b>총 대기시간</b>: 0 + 1 + 5 + 11 = 17 ms<br>" +
-                       "• <b>평균 대기시간(AWT)</b>: 17 / 4 = <b>4.25 ms</b>"
+                       "• <b>대기 시간</b>: P3=0 ms, P2=1 ms, P4=5 ms, P1=11 ms<br>" +
+                       "&nbsp;&nbsp;→ 총 대기시간: 0 + 1 + 5 + 11 = 17 ms<br>" +
+                       "&nbsp;&nbsp;→ <b>평균 대기시간(AWT)</b>: 17 / 4 = <b>4.25 ms</b><br><br>" +
+                       "• <b>반환 시간(종료 시각 - 도착 시각)</b>:<br>" +
+                       "&nbsp;&nbsp;P3 = 1 - 0 = 1 ms, P2 = 5 - 0 = 5 ms, P4 = 11 - 0 = 11 ms, P1 = 20 - 0 = 20 ms<br>" +
+                       "&nbsp;&nbsp;→ 총 반환시간: 1 + 5 + 11 + 20 = 37 ms<br>" +
+                       "&nbsp;&nbsp;→ <b>평균 반환시간(ATT)</b>: 37 / 4 = <b>9.25 ms</b><br>" +
+                       "(검증 공식: ATT = AWT(4.25) + 평균 버스트(20/4=5.0) = <b>9.25 ms</b>)"
         },
         {
           id: 8, type: "calc", score: 10, origin: "파이널 문제 8: SRTF (선점형 SJF) 계산 (수치 변형)",
-          text: "다음 프로세스들에 대해 <b>SRTF (선점형 SJF)</b> 스케줄링을 적용할 때, 간트 차트를 그리고 <b>평균 대기 시간(AWT)</b>을 밀리초(ms) 단위 숫자로 계산하시오.<br><br>" +
+          text: "다음 프로세스들에 대해 <b>SRTF (선점형 SJF)</b> 스케줄링을 적용할 때, 간트 차트를 그리고 <b>평균 대기 시간(AWT)</b>과 <b>평균 반환 시간(ATT)</b>을 밀리초(ms) 단위 숫자로 각각 계산하시오. (대기시간, 반환시간 순서로 입력)<br><br>" +
                 "<table class='gantt-table'>" +
                 "<tr><th>프로세스</th><th>도착 시간 (Arrival)</th><th>CPU 버스트 시간 (Burst)</th></tr>" +
                 "<tr><td><b>P1</b></td><td>0 ms</td><td><b>7 ms</b></td></tr>" +
@@ -2536,8 +2563,8 @@ window.EXAM_DATABASE.os = {
                 "<tr><td><b>P3</b></td><td>4 ms</td><td><b>1 ms</b></td></tr>" +
                 "<tr><td><b>P4</b></td><td>5 ms</td><td><b>4 ms</b></td></tr>" +
                 "</table>",
-          placeholder: "평균 대기시간 숫자 입력 (예: 3)",
-          answers: ["3", "3ms", "3.0", "3.0ms"],
+          placeholder: "평균 대기시간, 평균 반환시간 순서로 입력 (예: 3, 7)",
+          answers: ["3, 7", "3,7", "3/7", "3 7", "3.0, 7.0", "3.0,7.0", "3.0/7.0", "3ms, 7ms", "3.0ms, 7.0ms", "대기3반환7", "AWT3ATT7", "3", "7", "3.0", "7.0"],
           explanation: "<b>[실행 과정 추적]</b><br>" +
                        "• t = 0: P1 시작 (남은 7)<br>" +
                        "• t = 2: P2 도착(버스트 4). P1 남은 시간 5. P2(4) &lt; P1(5) → <b>P2 선점!</b><br>" +
@@ -2555,12 +2582,21 @@ window.EXAM_DATABASE.os = {
                        "  <div class='gantt-block' style='flex: 5;'>P1 (11~16)</div>" +
                        "</div>" +
                        "<div class='gantt-time-labels'><span>0</span><span>2</span><span>4</span><span>5</span><span>7</span><span>11</span><span>16</span></div><br>" +
-                       "• P1 대기시간: (0 - 0) + (11 - 2) = <b>9 ms</b><br>" +
-                       "• P2 대기시간: (2 - 2) + (5 - 4) = <b>1 ms</b><br>" +
-                       "• P3 대기시간: 4 - 4 = <b>0 ms</b><br>" +
-                       "• P4 대기시간: 7 - 5 = <b>2 ms</b><br>" +
-                       "• <b>총 대기시간</b>: 9 + 1 + 0 + 2 = 12 ms<br>" +
-                       "• <b>평균 대기시간(AWT)</b>: 12 / 4 = <b>3.0 ms</b>"
+                       "• <b>대기 시간</b>:<br>" +
+                       "&nbsp;&nbsp;• P1 대기시간: (0 - 0) + (11 - 2) = <b>9 ms</b><br>" +
+                       "&nbsp;&nbsp;• P2 대기시간: (2 - 2) + (5 - 4) = <b>1 ms</b><br>" +
+                       "&nbsp;&nbsp;• P3 대기시간: 4 - 4 = <b>0 ms</b><br>" +
+                       "&nbsp;&nbsp;• P4 대기시간: 7 - 5 = <b>2 ms</b><br>" +
+                       "&nbsp;&nbsp;→ 총 대기시간: 9 + 1 + 0 + 2 = 12 ms<br>" +
+                       "&nbsp;&nbsp;→ <b>평균 대기시간(AWT)</b>: 12 / 4 = <b>3.0 ms</b><br><br>" +
+                       "• <b>반환 시간(종료 시각 - 도착 시각)</b>:<br>" +
+                       "&nbsp;&nbsp;• P1 반환시간: 16 - 0 = <b>16 ms</b><br>" +
+                       "&nbsp;&nbsp;• P2 반환시간: 7 - 2 = <b>5 ms</b><br>" +
+                       "&nbsp;&nbsp;• P3 반환시간: 5 - 4 = <b>1 ms</b><br>" +
+                       "&nbsp;&nbsp;• P4 반환시간: 11 - 5 = <b>6 ms</b><br>" +
+                       "&nbsp;&nbsp;→ 총 반환시간: 16 + 5 + 1 + 6 = 28 ms<br>" +
+                       "&nbsp;&nbsp;→ <b>평균 반환시간(ATT)</b>: 28 / 4 = <b>7.0 ms</b><br>" +
+                       "(검증 공식: ATT = AWT(3.0) + 평균 버스트((7+4+1+4)/4 = 4.0) = <b>7.0 ms</b>)"
         },
         {
           id: 9, type: "essay", score: 10, origin: "파이널 문제 9: Round Robin 타임 퀀텀의 극단적 크기 영향",
@@ -2597,7 +2633,7 @@ window.EXAM_DATABASE.os = {
       id: "os_exam3",
       name: "제3회 CPU 스케줄링 계산 & 임계구역 동기화 심화 모의고사",
       tag: "스케줄링·동기화 14문 (100점)",
-      desc: "FCFS/SJF AWT 계산, 지수이동평균 버스트 예측 수식, 디스패처, 임계구역 3대 조건, 피터슨 알고리즘, 뮤텍스 락 vs 세마포어, 스핀락",
+      desc: "FCFS/SJF AWT 및 ATT 계산, 지수이동평균 버스트 예측 수식, 디스패처, 임계구역 3대 조건, 피터슨 알고리즘, 뮤텍스 락 vs 세마포어, 스핀락",
       questions: [
         // [객관식 5문항: 각 5점 = 25점]
         {
@@ -2705,11 +2741,20 @@ window.EXAM_DATABASE.os = {
 
         // [계산 2문항: 각 10점 = 20점]
         {
-          id: 11, type: "calc", score: 10, origin: "비선점 SJF 평균 대기 시간(AWT) 계산",
-          text: "4개의 프로세스가 모두 시간 0에 동시에 도착하였으며, 각 프로세스의 CPU 버스트 시간은 다음과 같다:\n• P1: 6 ms\n• P2: 8 ms\n• P3: 7 ms\n• P4: 3 ms\n\n비선점형 SJF(Shortest Job First) 스케줄링을 적용했을 때, 4개 프로세스의 평균 대기 시간(AWT: Average Waiting Time)은 몇 ms인가?",
-          placeholder: "정수 또는 소수점 숫자 입력 (예: 7)",
-          answers: ["7", "7.0", "7ms"],
-          explanation: "버스트 시간 오름차순 실행: P4(3) → P1(6) → P3(7) → P2(8)\n• P4 대기시간: 0 ms (0~3 실행)\n• P1 대기시간: 3 ms (3~9 실행)\n• P3 대기시간: 9 ms (9~16 실행)\n• P2 대기시간: 16 ms (16~24 실행)\n• 총 대기시간 = 0 + 3 + 9 + 16 = 28 ms\n• 평균 대기시간(AWT) = 28 / 4 = 7.0 ms입니다."
+          id: 11, type: "calc", score: 10, origin: "비선점 SJF 평균 대기 시간(AWT) 및 평균 반환 시간(ATT) 계산",
+          text: "4개의 프로세스가 모두 시간 0에 동시에 도착하였으며, 각 프로세스의 CPU 버스트 시간은 다음과 같다:\n• P1: 6 ms\n• P2: 8 ms\n• P3: 7 ms\n• P4: 3 ms\n\n비선점형 SJF(Shortest Job First) 스케줄링을 적용했을 때, 4개 프로세스의 <b>평균 대기 시간(AWT: Average Waiting Time)</b>과 <b>평균 반환 시간(ATT: Average Turnaround Time)</b>은 각각 몇 ms인가? (대기시간, 반환시간 순서로 입력)",
+          placeholder: "평균 대기시간, 평균 반환시간 순서로 입력 (예: 7, 13)",
+          answers: ["7, 13", "7,13", "7/13", "7 13", "7.0, 13.0", "7.0,13.0", "7.0/13.0", "7ms, 13ms", "7.0ms, 13.0ms", "대기7반환13", "AWT7ATT13", "7", "13", "7.0", "13.0"],
+          explanation: "<b>[실행 순서 선정]</b> 버스트 시간 오름차순 실행: <b>P4(3) → P1(6) → P3(7) → P2(8)</b>\n" +
+                       "• <b>간트 차트</b>: P4 (0~3) | P1 (3~9) | P3 (9~16) | P2 (16~24)\n" +
+                       "• <b>대기 시간</b>: P4=0 ms, P1=3 ms, P3=9 ms, P2=16 ms\n" +
+                       "&nbsp;&nbsp;→ 총 대기시간 = 0 + 3 + 9 + 16 = 28 ms\n" +
+                       "&nbsp;&nbsp;→ <b>평균 대기시간(AWT)</b> = 28 / 4 = <b>7.0 ms</b>\n<br>" +
+                       "• <b>반환 시간(종료 시각 - 도착 시각)</b>:\n" +
+                       "&nbsp;&nbsp;P4 = 3 - 0 = 3 ms, P1 = 9 - 0 = 9 ms, P3 = 16 - 0 = 16 ms, P2 = 24 - 0 = 24 ms\n" +
+                       "&nbsp;&nbsp;→ 총 반환시간 = 3 + 9 + 16 + 24 = 52 ms\n" +
+                       "&nbsp;&nbsp;→ <b>평균 반환시간(ATT)</b> = 52 / 4 = <b>13.0 ms</b>\n" +
+                       "(검증 공식: ATT = AWT(7.0) + 평균 버스트(24/4=6.0) = <b>13.0 ms</b>)"
         },
         {
           id: 12, type: "calc", score: 10, origin: "지수 이동평균 버스트 예측 계산",
