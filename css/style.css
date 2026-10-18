@@ -57,7 +57,7 @@
 
   --font-display: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'Consolas', 'Courier New', monospace; /* taste-skill-ignore */
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; /* taste-skill-ignore */
 
   --base-font-size: 16px;
   --radius-sm: 4px;
@@ -1407,25 +1407,155 @@ p, div, span, li, button, input, select, textarea {
   margin-bottom: 12px;
 }
 
-pre, .code-block {
-  background-color: var(--bg-base);
-  border: 1px solid var(--border-color);
-  padding: 14px 16px;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-mono);
-  font-size: 13.5px;
-  color: var(--ink);
-  overflow-x: auto;
-  white-space: pre;
-  line-height: 1.55;
-  max-width: 100%;
+/* ========================================================
+   Code & Preformatted Text Typography (High-readability)
+   ======================================================== */
+code {
+  font-family: var(--font-mono) !important;
+  font-size: 0.9em;
+  font-weight: 600;
+  letter-spacing: -0.035em !important;
+  word-spacing: -0.05em;
+  padding: 2.5px 7px;
+  margin: 1px 3px;
+  border-radius: 5px;
+  background-color: rgba(90, 155, 252, 0.14) !important;
+  color: #93c5fd !important;
+  border: 1px solid rgba(90, 155, 252, 0.3) !important;
+  display: inline-block;
+  line-height: 1.35;
+  vertical-align: baseline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  font-feature-settings: "calt" 1, "zero" 1;
 }
 
-pre code {
-  font-family: inherit;
-  font-size: inherit;
-  color: inherit;
-  background: transparent;
+/* 라이트 모드 인라인 코드 (또렷하고 눈이 편안한 인디고/블루 칩) */
+[data-theme="light"] code {
+  background-color: #eef4ff !important;
+  color: #1d4ed8 !important;
+  border: 1px solid #bfdbfe !important;
+  font-weight: 650;
+  letter-spacing: -0.035em !important;
+}
+
+/* 볼드 태그 안의 코드 */
+b code, strong code {
+  font-weight: 700;
+  letter-spacing: -0.03em !important;
+}
+
+/* 강조 색상별 칩 테마 자동 연동 (Red / Gold / Green / Accent) */
+/* 1) Red / Danger 강조 코드 (예: column 세로방향 등) */
+b[style*="tag-danger-ink"] code,
+span[style*="tag-danger-ink"] code {
+  color: #ef4444 !important;
+  background-color: rgba(239, 68, 68, 0.15) !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
+}
+[data-theme="light"] b[style*="tag-danger-ink"] code,
+[data-theme="light"] span[style*="tag-danger-ink"] code {
+  color: #b91c1c !important;
+  background-color: #fef2f2 !important;
+  border-color: #fecaca !important;
+}
+
+/* 2) Gold / Warning 강조 코드 (예: flex-start, stretch 등) */
+b[style*="tag-gold-ink"] code,
+span[style*="tag-gold-ink"] code {
+  color: #fbbf24 !important;
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  border-color: rgba(245, 158, 11, 0.35) !important;
+}
+[data-theme="light"] b[style*="tag-gold-ink"] code,
+[data-theme="light"] span[style*="tag-gold-ink"] code {
+  color: #b45309 !important;
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+}
+
+/* 3) Green / Success 강조 코드 */
+b[style*="tag-green-ink"] code,
+span[style*="tag-green-ink"] code {
+  color: #34d399 !important;
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+[data-theme="light"] b[style*="tag-green-ink"] code,
+[data-theme="light"] span[style*="tag-green-ink"] code {
+  color: #047857 !important;
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+}
+
+/* 4) 기타 인라인 색상이 지정된 코드 */
+b[style*="color: #"] code,
+span[style*="color: #"] code {
+  color: inherit !important;
+}
+
+/* 테이블 내부 코드 스타일 최적화 (칩/배지 형태) */
+table td code,
+table th code,
+.concept-table td code,
+.concept-table th code {
+  font-size: 0.88em;
+  padding: 3px 8px;
+  letter-spacing: -0.035em !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  white-space: nowrap;
+}
+
+[data-theme="light"] table td code,
+[data-theme="light"] .concept-table td code {
+  background-color: #edf4fe !important;
+  border-color: #cbdcfc !important;
+  color: #1e40af !important;
+}
+
+/* pre 코드 블록 */
+pre, .code-block, pre[style] {
+  background-color: #0d1117 !important;
+  border: 1px solid var(--border-color) !important;
+  padding: 16px 20px !important;
+  border-radius: var(--radius-md) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+  color: #e6edf3 !important;
+  overflow-x: auto !important;
+  white-space: pre !important;
+  line-height: 1.65 !important;
+  max-width: 100% !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25) !important;
+}
+
+[data-theme="light"] pre,
+[data-theme="light"] .code-block,
+[data-theme="light"] pre[style] {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* pre 블록 내부의 code는 인라인 스타일 덮어쓰기 방지 */
+pre code,
+.code-block code,
+pre[style] code {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  color: inherit !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  display: inline !important;
+  letter-spacing: inherit !important;
+  box-shadow: none !important;
 }
 
 /* Toast */
