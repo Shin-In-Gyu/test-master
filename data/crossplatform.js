@@ -14,7 +14,6 @@ window.CONCEPT_DATABASE.crossplatform = {
     { id: "all", label: "전체보기" },
     { id: "cp-cheat", label: "⚡ 1초 정답 치트키 (15선)", class: "amber-chip" },
     { id: "cp-prof", label: "🎯 교수님 시험공지 & 감점방지 기준", class: "danger-chip" },
-    { id: "cp-w2", label: "2주: 환경구축·Expo·프로젝트" },
     { id: "cp-w3", label: "3주: 스타일링·Flexbox 정렬" },
     { id: "cp-w4", label: "4주: View·Text·Button·Input" },
     { id: "cp-w5", label: "5주: JSX·조건문·FlatList" },
@@ -182,132 +181,7 @@ window.CONCEPT_DATABASE.crossplatform = {
         </div>
       </div>
     </section>
-
-    <!-- SECTION 3: 2주차 개발환경 구축 -->
-    <section id="cp-w2" class="concept-section">
-      <div class="section-banner">
-        <div class="section-banner-title">
-          <span>📂 2주차: React Native 개요 · 개발환경 구축 · Expo 기초 (교안 p.1~39 완벽 총정리)</span>
-        </div>
-        <span class="badge badge-amber">환경변수 & 도구 역할 필수</span>
-      </div>
-
-      <div class="concept-card">
-        <div class="concept-card-title">2-1. React Native 개요 및 장단점 (p.2~3)</div>
-        <p style="font-size: 14.5px; color: var(--ink-secondary); line-height: 1.75; margin-bottom: 12px;">
-          <b>React Native(RN)</b>는 Facebook(Meta)이 개발한 오픈 소스 모바일 애플리케이션 프레임워크로, <b>JavaScript와 React</b>를 사용하여 iOS와 Android 앱을 동시에 개발할 수 있는 크로스플랫폼 기술입니다. 웹뷰(WebView)만 띄우는 하이브리드 앱과 달리 <b>네이티브 브릿지(Bridge)</b>를 통해 실제 OS 고유의 네이티브 UI 컴포넌트로 렌더링됩니다.
-        </p>
-
-        <table class="concept-table">
-          <thead>
-            <tr>
-              <th style="width: 50%;">⭕ React Native의 6대 장점</th>
-              <th>⚠️ React Native의 6대 단점</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                1. <b>단일 코드베이스(코드 재사용)</b>로 iOS와 Android 동시 개발 (시간·비용 절감)<br>
-                2. 웹 개발자(JavaScript, React)가 모바일 앱 개발로 쉽게 진입 가능<br>
-                3. <b>Fast Refresh(Hot Reloading)</b>를 통해 코드 변경사항을 즉시 화면에서 확인<br>
-                4. 방대한 오픈소스 생태계(npm)와 활발한 커뮤니티 지원<br>
-                5. 네이티브 컴포넌트로 변환되어 하이브리드(웹뷰) 대비 <b>높은 네이티브급 성능</b><br>
-                6. 소규모 팀에 적합하며 유지보수가 단일화됨
-              </td>
-              <td>
-                1. 고성능 3D 게임, 복잡한 애니메이션, 대규모 연산에서는 순수 네이티브보다 성능 저하 가능<br>
-                2. 카메라/블루투스/센서 등 <b>특수 하드웨어 기능</b> 사용 시 네이티브 코드(Java/Kotlin, Swift/Obj-C) 지식이 필요할 수 있음<br>
-                3. OS의 최신 기능이 출시되었을 때 RN 프레임워크에 반영되기까지 시차 발생<br>
-                4. 서드파티 외부 라이브러리의 버전 충돌 및 의존성 관리 부담<br>
-                5. JS 런타임과 브릿지 포함으로 인한 <b>앱 설치 용량 및 메모리 사용량 증가</b><br>
-                6. JS-네이티브 간 브릿지 영역에서의 디버깅 난이도
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="concept-card">
-        <div class="concept-card-title">2-2. 운영체제별 필수 설치 도구 및 Node.js 핵심 개념 (p.4~19)</div>
-        <table class="concept-table" style="margin-bottom: 14px;">
-          <thead>
-            <tr>
-              <th style="width: 22%;">개발 도구 / 기술</th>
-              <th style="width: 20%;">대상 OS</th>
-              <th>교안 핵심 역할 및 시험 출제 포인트</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><b style="color: var(--accent);">Homebrew</b></td>
-              <td>macOS</td>
-              <td>맥OS용 오픈소스 <b>패키지 관리자</b>. 터미널 명령어로 개발 도구(Node, Watchman 등)를 간편하게 설치/관리</td>
-            </tr>
-            <tr>
-              <td><b style="color: var(--accent);">Watchman</b></td>
-              <td>macOS</td>
-              <td>Facebook이 개발한 <b>파일 시스템 변경 감시 도구</b>.<br><b style="color: var(--tag-danger-ink);">• 핵심 역할: 소스 파일이나 폴더의 변경을 실시간 감지하여 자동으로 리빌드(Fast Refresh)를 트리거함!</b></td>
-            </tr>
-            <tr>
-              <td><b style="color: var(--accent);">Node.js &amp; npm</b></td>
-              <td>공통 (Mac/Win)</td>
-              <td>
-                • <b>Chrome V8 JavaScript 엔진</b>으로 빌드된 서버/로컬 JavaScript 런타임 환경<br>
-                • <b>비동기 이벤트 기반(Event-driven)</b> 및 <b>Non-blocking I/O</b> 구조<br>
-                • <b>단일 스레드(Single Thread) 이벤트 루프</b> 방식으로 동작<br>
-                • <b>npm (Node Package Manager)</b>: 전 세계 오픈소스 패키지를 설치·관리하는 기본 패키지 매니저 (<code>node -v</code>, <code>npm -v</code>)
-              </td>
-            </tr>
-            <tr>
-              <td><b style="color: var(--accent);">REST API vs GraphQL</b><br>(교안 p.8~9)</td>
-              <td>백엔드 통신</td>
-              <td>
-                • <b>REST API</b>: URL(자원의 위치)과 HTTP 메서드(<code>GET</code> 조회, <code>POST</code> 생성, <code>PUT</code> 수정, <code>DELETE</code> 삭제)를 조합해 JSON 데이터를 주고받는 아키텍처<br>
-                • <b>GraphQL</b>: Facebook이 개발한 쿼리 언어로, <b>클라이언트가 자신이 필요한 데이터 구조만 정확히 요청</b>하여 Over-fetching(불필요한 데이터 수신)과 Under-fetching을 해결하고 <b>단일 엔드포인트(Single Endpoint)</b>를 사용함
-              </td>
-            </tr>
-            <tr>
-              <td><b style="color: var(--accent);">Xcode / VS Code</b></td>
-              <td>macOS / Windows</td>
-              <td>• <b>Xcode</b>: macOS 전용 iOS 앱 빌드 도구 및 iOS 시뮬레이터 제공<br>• <b>VS Code</b>: 크로스플랫폼 소스 코드 에디터</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="callout-box warning">
-          <div class="callout-title">🚨 [2주차 단답형 1순위] JDK 버전 &amp; Android 환경변수 설정 (p.20~31)</div>
-          <b>1. JDK(Java Development Kit) 설치 버전</b>: 교안 20페이지 명시 — 반드시 <b style="color: var(--tag-danger-ink);"><code>JDK 21</code></b> 설치!<br>
-          <b>2. Java 시스템 환경변수</b>:<br>
-          &nbsp;&nbsp;• 변수 이름: <b><code>JAVA_HOME</code></b> (예: <code>C:\Program Files\Java\jdk-21</code>)<br>
-          &nbsp;&nbsp;• Path 추가: <b><code>%JAVA_HOME%\bin</code></b> / 확인 명령어: <code>java -version</code>, <code>javac -version</code><br>
-          <b>3. Android Studio로 개발 가능한 6가지 영역 (p.23)</b>:<br>
-          &nbsp;&nbsp;① 안드로이드 스마트폰/태블릿 네이티브 앱 (Java/Kotlin), ② <b>Wear OS</b>(스마트워치), ③ <b>Android TV</b>, ④ <b>Android Auto</b>(차량용), ⑤ 크로스플랫폼/하이브리드 앱 빌드 및 에뮬레이터(AVD) 실행, ⑥ <b>Android NDK</b>(C/C++ 고성능 게임·라이브러리)<br>
-          <b>4. Android SDK 시스템 환경변수 (p.28~31)</b>:<br>
-          &nbsp;&nbsp;• 변수 이름: <b><code>ANDROID_HOME</code></b> (또는 <code>ANDROID_SDK_ROOT</code>) → 경로: <code>C:\Users\사용자\AppData\Local\Android\Sdk</code><br>
-          &nbsp;&nbsp;• Path 추가: <b><code>%ANDROID_HOME%\platform-tools</code></b> (<code>adb</code> 명령어 실행을 위해 필수!)
-        </div>
-      </div>
-
-      <div class="concept-card">
-        <div class="concept-card-title">2-3. Expo 프레임워크 5대 핵심 개념 &amp; 프로젝트 생성·실행 명령어 (p.32~39)</div>
-        <ul style="font-size: 14.5px; color: var(--ink-secondary); line-height: 1.8; padding-left: 20px; margin-bottom: 12px;">
-          <li><b>1) React Native 기반 프레임워크</b>: 복잡한 네이티브 설정(Xcode/Android Studio 초기 빌드 설정) 없이 빠르게 RN 앱을 개발·실행할 수 있게 해주는 도구 모음.</li>
-          <li><b>2) 개발 환경 간편화</b>: 프로젝트 생성 즉시 JavaScript/TypeScript 코드 작성에 집중 가능.</li>
-          <li><b>3) 실시간 테스트 (Expo Go 앱)</b>: 스마트폰에 <b>Expo Go</b> 앱을 설치하고 터미널의 <b>QR 코드</b>를 스캔하면 실기기에서 즉시 실시간 화면 확인 가능.</li>
-          <li><b>4) 풍부한 내장 API 제공</b>: 카메라, 위치(GPS), 알림, 센서, 파일 시스템 등 모바일 기기 제어 API 기본 내장.</li>
-          <li><b>5) 클라우드 빌드 및 배포 지원 (EAS)</b>: Windows PC에서도 클라우드를 통해 iOS/Android 스토어 배포용 앱 빌드 가능.</li>
-        </ul>
-
-        <pre class="code-block">npm install -g expo-cli     # 1. Expo CLI 전역(-g) 설치
-expo init myApp             # 2. 'myApp'이라는 이름의 새 Expo 프로젝트 생성 (Blank 템플릿 선택)
-cd myApp                    # 3. 생성된 프로젝트 폴더로 이동
-code .                      # 4. 현재 폴더를 VS Code 에디터로 열기
-npm start                   # 5. Metro 개발 서버 실행 (또는 npx expo start)</pre>
-      </div>
-    </section>
-
-    <!-- SECTION 4: 3주차 스타일링 & Flexbox -->
+    <!-- SECTION 3: 3주차 스타일링 & Flexbox -->
     <section id="cp-w3" class="concept-section">
       <div class="section-banner danger-banner">
         <div class="section-banner-title">
@@ -387,7 +261,10 @@ npm start                   # 5. Metro 개발 서버 실행 (또는 npx expo sta
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
           💻 [코드 3-1] 인라인 스타일링(Inline Styling)과 <code>{"\\n"}</code> 줄바꿈 (교안 p.2~4)
         </div>
-        <pre class="code-block">import React from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React from "react";
 import { View, Text } from "react-native";
 
 const App = () =&gt; {
@@ -425,11 +302,23 @@ const App = () =&gt; {
 };
 
 export default App;</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week3_p11_0_Image55.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">인라인 스타일 적용 결과<br>(Inline Styling - Text 및 Error 줄바꿈)</div>
+            </div>
+          </div>
+        </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [코드 3-2] 클래스 스타일링(<code>StyleSheet.create</code>)과 다중 스타일 배열 결합 (교안 p.12~14)
         </div>
-        <pre class="code-block">import React from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 
 const App = () =&gt; {
@@ -461,11 +350,23 @@ const styles = StyleSheet.create({  // StyleSheet.create로 스타일 객체 분
 });
 
 export default App;</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week3_p14_0_Image95.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">StyleSheet 다중 스타일 적용 결과<br>(배열 뒤쪽 styles.error 오버라이드)</div>
+            </div>
+          </div>
+        </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [코드 3-3] 외부 스타일 모듈 분리 (<code>src/styles.js</code> &amp; <code>App.js</code>) 및 <code>flex</code> 비율 분할 (교안 p.15~19)
         </div>
-        <pre class="code-block">import { StyleSheet } from "react-native";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import { StyleSheet } from "react-native";
 
 export const viewStyles = StyleSheet.create({   // [src/styles.js] 외부 파일로 스타일 객체를 분리하여 export
   container: {
@@ -522,6 +423,15 @@ const layoutStyles = StyleSheet.create({
   footer: { flex: 1, backgroundColor: "#3498db" }, // 세로 비율 1/5 (20%) 차지
   text: { fontSize: 26, fontWeight: "700" },
 });</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week3_p17_0_Image106.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">Flexbox 레이아웃 결과<br>(Header 1 : Contents 3 : Footer 1 분할)</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -596,7 +506,10 @@ const layoutStyles = StyleSheet.create({
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
           💻 [코드 4-1] <code>Text</code> 중첩 스타일 상속 &amp; <code>onPress</code> 상태 변경 + <code>numberOfLines={5}</code> (교안 p.5, p.8)
         </div>
-        <pre class="code-block">import React, { useState } from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 
 export default function TextExample() {
@@ -624,11 +537,23 @@ const styles = StyleSheet.create({
   baseText: { fontFamily: "Cochin", fontSize: 16, color: "#333" },
   titleText: { fontSize: 22, fontWeight: "bold", color: "blue" },
 });</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week4_p8_0_Image85.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">Text 중첩 스타일 상속 및<br>numberOfLines={5} 말줄임(...) 렌더링 결과</div>
+            </div>
+          </div>
+        </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [코드 4-2] <code>Button</code>과 <code>Alert.alert</code> 2버튼(취소/확인) 대화상자 (교안 p.11~12 — ★ 시험 빈칸 출제!)
         </div>
-        <pre class="code-block">import React from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React from "react";
 import { StyleSheet, View, Button, Alert } from "react-native";
 
 export default function ButtonAlertExample() {
@@ -660,11 +585,23 @@ export default function ButtonAlertExample() {
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", alignItems: "center" },
 });</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week4_p12_0_Image101.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">Button 클릭 시 Alert.alert<br>네이티브 2버튼(취소/확인) 팝업 대화상자</div>
+            </div>
+          </div>
+        </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [코드 4-3] <code>TextInput</code> 숫자 전용 필터링 &amp; 여러 줄 입력 + 확인 후 초기화 (교안 p.15~18)
         </div>
-        <pre class="code-block">import React, { useState } from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React, { useState } from "react";
 import { StyleSheet, View, TextInput, Button, Alert } from "react-native";
 
 export default function TextInputMaster() {
@@ -713,6 +650,15 @@ const styles = StyleSheet.create({
   input: { height: 40, borderColor: "gray", borderWidth: 1, marginBottom: 12, paddingHorizontal: 10 },
   multiInput: { borderColor: "#000", borderWidth: 1, marginBottom: 12, padding: 10 },
 });</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week4_p15_0_Image111.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">TextInput 숫자 전용 마스킹(•••)<br>및 여러 줄 입력 필드 결과</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -737,7 +683,10 @@ const styles = StyleSheet.create({
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
           💻 [코드 5-1] 조건부 렌더링 3대 기법(<code>if-else</code> / 삼항 연산자 <code>? :</code> / 단축 평가 <code>&amp;&amp;, ||</code>) 및 실행 결과 완벽 추적 (교안 p.5~7)
         </div>
-        <pre class="code-block">import React from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React from "react";
 import { View, Text } from "react-native";
 
 export default function ConditionalRenderExample() {
@@ -753,6 +702,15 @@ export default function ConditionalRenderExample() {
     &lt;/View&gt;
   );
 }</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week5_p8_0_Image85.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">조건부 렌더링 결과<br>(삼항 연산자 및 단축평가 참/거짓 실행 화면)</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="concept-card">
@@ -763,7 +721,10 @@ export default function ConditionalRenderExample() {
           • <b>원격 URL 이미지</b>: <code>source={{ uri: "https://..." }}</code> — 다운로드하기 전까지 RN이 이미지 크기를 알 수 없으므로, <b style="color: var(--tag-danger-ink);">반드시 <code>style={{ width: 200, height: 200 }}</code>처럼 가로(<code>width</code>)와 세로(<code>height</code>) 크기를 명시해야 화면에 보입니다!</b> (지정하지 않으면 0×0으로 렌더링되어 보이지 않음)
         </div>
 
-        <pre class="code-block">import React, { useState } from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React, { useState } from "react";
 import { StyleSheet, View, Text, Image, Switch } from "react-native";
 
 export default function ImageAndSwitchExample() {
@@ -802,6 +763,15 @@ const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", alignItems: "center" },
   image: { width: 120, height: 120, resizeMode: "contain" },
 });</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week5_p10_0_Image91.jpg" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">Image 컴포넌트(강남대/RN 로고)<br>및 Switch 다크모드 토글 결과</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="concept-card">
@@ -837,7 +807,10 @@ const styles = StyleSheet.create({
           </tbody>
         </table>
 
-        <pre class="code-block">import React from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React from "react";
 import { StyleSheet, View, Text, FlatList, SectionList } from "react-native";
 
 const USERS = [
@@ -884,6 +857,15 @@ const styles = StyleSheet.create({
   header: { fontSize: 20, fontWeight: "bold", backgroundColor: "#eee", padding: 8 },
   item: { padding: 10, fontSize: 16 },
 });</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week5_p12_0_Image97.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">FlatList 대용량 리스트 및<br>SectionList 섹션별 헤더 렌더링 결과</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -902,7 +884,10 @@ const styles = StyleSheet.create({
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
           💻 [1] <code>BackHandler</code>: 안드로이드 하드웨어 뒤로가기 버튼 감지 및 종료 확인 팝업 (교안 p.2~3)
         </div>
-        <pre class="code-block">import React, { useEffect } from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React, { useEffect } from "react";
 import { View, Text, BackHandler, Alert } from "react-native";
 
 export function BackHandlerExample() {
@@ -923,11 +908,23 @@ export function BackHandlerExample() {
     &lt;View&gt;&lt;Text&gt;하드웨어 뒤로가기 버튼을 눌러보세요!&lt;/Text&gt;&lt;/View&gt;
   );
 }</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week6_p4_0_Image56.jpg" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">BackHandler 뒤로가기 감지 시<br>시스템 종료 차단 및 커스텀 Alert 팝업</div>
+            </div>
+          </div>
+        </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [2] <code>DrawerLayoutAndroid</code> &amp; [3] <code>ToastAndroid</code> (교안 p.4~7)
         </div>
-        <pre class="code-block">import React, { useRef } from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React, { useRef } from "react";
 import { DrawerLayoutAndroid, ToastAndroid, View, Text, Button } from "react-native";
 
 export function DrawerAndToastExample() {
@@ -968,11 +965,23 @@ export function DrawerAndToastExample() {
     &lt;/DrawerLayoutAndroid&gt;
   );
 }</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week6_p5_0_Image66.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">DrawerLayoutAndroid 좌측 서랍 메뉴<br>및 ToastAndroid 토스트 알림</div>
+            </div>
+          </div>
+        </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [4] <code>Animated</code> (Fade In / Fade Out) &amp; [5] <code>Dimensions</code> (화면 크기 감지) (교안 p.8~11)
         </div>
-        <pre class="code-block">import React, { useRef, useState, useEffect } from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React, { useRef, useState, useEffect } from "react";
 import { Animated, Dimensions, View, Text, Button } from "react-native";
 
 export function AnimatedAndDimensionsExample() {
@@ -1016,6 +1025,15 @@ export function AnimatedAndDimensionsExample() {
     &lt;/View&gt;
   );
 }</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week6_p11_0_Image93.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">Animated 페이드 인/아웃 및<br>Dimensions 실시간 해상도(window) 측정</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="concept-card">
@@ -1024,7 +1042,10 @@ export function AnimatedAndDimensionsExample() {
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 6px;">
           💻 [6] <code>KeyboardAvoidingView</code> &amp; [7] <code>Linking</code> &amp; [8] <code>Modal</code> (교안 p.12~17)
         </div>
-        <pre class="code-block">import React, { useState } from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React, { useState } from "react";
 import {
   KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Platform,
   Linking, Modal, View, Text, TextInput, Button
@@ -1064,11 +1085,23 @@ export function KeyboardLinkingModalExample() {
     &lt;/KeyboardAvoidingView&gt;
   );
 }</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week6_p16_0_Image106.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">Modal 슬라이드 팝업 대화상자<br>및 KeyboardAvoidingView 키보드 회피</div>
+            </div>
+          </div>
+        </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [9] <code>PixelRatio</code> &amp; [10] <code>RefreshControl</code> 당겨서 새로고침 (교안 p.18~22)
         </div>
-        <pre class="code-block">import React, { useState, useRef, useCallback, useEffect } from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React, { useState, useRef, useCallback, useEffect } from "react";
 import { ScrollView, RefreshControl, PixelRatio, Text, View } from "react-native";
 
 export function PixelAndRefreshExample() {
@@ -1106,6 +1139,15 @@ export function PixelAndRefreshExample() {
     &lt;/ScrollView&gt;
   );
 }</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week6_p21_0_Image116.jpg" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">RefreshControl 당겨서 새로고침<br>(Pull-to-Refresh) 인디케이터</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1181,7 +1223,10 @@ export function PixelAndRefreshExample() {
           &nbsp;&nbsp;👉 <b><code>countVar</code></b>: 함수 내부의 일반 지역 변수(<code>let countVar = 5;</code>)는 컴포넌트 함수가 다시 실행될 때 <b>초기값 <code>5</code>로 다시 초기화</b>되므로 이전에 더했던 <code>9</code>가 날아가고 화면에 <b style="color: var(--tag-danger-ink);"><code>CountVar: 5</code></b>가 출력됩니다!
         </div>
 
-        <pre class="code-block">import React, { useState, useRef } from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React, { useState, useRef } from "react";
 import { View, Text, Button } from "react-native";
 
 export function RefVsVarExample() {
@@ -1204,11 +1249,23 @@ export function RefVsVarExample() {
     &lt;/View&gt;
   );
 }</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week7_p9_0_Image78.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">useRef vs let countVar 리렌더링 비교<br>(Ref: 4 유지, Var: 5 초기화)</div>
+            </div>
+          </div>
+        </div>
 
         <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin: 16px 0 6px 0;">
           💻 [코드 7-2] <code>useState</code> + <code>useRef</code>를 결합한 <code>A × B</code> 곱셈 계산기 및 자동 포커스 이동 (교안 p.8, p.11~13 통합)
         </div>
-        <pre class="code-block">import React, { useState, useRef } from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React, { useState, useRef } from "react";
 import { StyleSheet, View, Text, TextInput, Button } from "react-native";
 
 export default function MultiplyWithFocus() {
@@ -1256,6 +1313,15 @@ const styles = StyleSheet.create({
   input: { borderWidth: 1, borderColor: "#ccc", padding: 10, marginBottom: 10 },
   resultText: { fontSize: 22, fontWeight: "bold", marginTop: 15 },
 });</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week7_p11_0_Image84.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">A × B 곱셈 계산기 실행 및<br>useRef 자동 포커스 이동 결과</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="concept-card">
@@ -1288,7 +1354,10 @@ const styles = StyleSheet.create({
           </tbody>
         </table>
 
-        <pre class="code-block">import React, { useState, useMemo } from "react";
+        <div class="code-preview-grid">
+          <div class="code-col">
+            <div class="code-col-header">💻 React Native 소스코드</div>
+            <pre class="code-block">import React, { useState, useMemo } from "react";
 import { View, Text, TextInput, Button } from "react-native";
 
 export default function UseMemoExample() {
@@ -1314,6 +1383,15 @@ export default function UseMemoExample() {
     &lt;/View&gt;
   );
 }</pre>
+          </div>
+          <div class="preview-col">
+            <div class="preview-col-header">📱 실제 앱 실행 화면</div>
+            <div class="phone-device-frame">
+              <img src="assets/crossplatform/week7_p17_0_Image99.png" alt="실제 앱 실행 결과" class="phone-device-img" loading="lazy">
+              <div class="phone-device-caption">useMemo 연산 캐싱 최적화<br>(count 변경 시에만 double 재계산)</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="concept-card">
@@ -1528,7 +1606,7 @@ window.EXAM_DATABASE.crossplatform = {
                 "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>export default function CounterTest() {\n    const [render, setRender] = useState(false);\n    const [countState, setCountState] = useState(0);\n    const countRef = useRef(0);\n    let countVar = 0;\n\n    const handleIncrease = () => {\n        countRef.current += 1;\n        countVar += 1;\n    };\n    const handleReRender = () => {\n        setRender(!render);\n    };\n    return (\n        &lt;View&gt;\n            &lt;Text&gt;State: {countState}&lt;/Text&gt;\n            &lt;Text&gt;Ref: {countRef.current}&lt;/Text&gt;\n            &lt;Text&gt;Var: {countVar}&lt;/Text&gt;\n            &lt;Button title=\"+1 증가\" onPress={handleIncrease} /&gt;\n            &lt;Button title=\"화면 갱신\" onPress={handleReRender} /&gt;\n        &lt;/View&gt;\n    );\n}</pre>",
           placeholder: "순서대로 정수 입력 (예: 0, 3, 0)",
           answers: ["0, 3, 0", "0,3,0", "State: 0, Ref: 3, Var: 0"],
-          explanation: "<b>정답: 0, 3, 0</b><br>1) [+1 증가] 3번 누르는 동안: countRef.current는 3, countVar는 3이 되지만 리렌더링이 발생하지 않음.<br>2) [화면 갱신]을 1번 누르면: setRender로 인해 컴포넌트가 리렌더링됨.<br>• countState: 변경된 적 없으므로 초기값 0.<br>• countRef.current: 리렌더링되어도 값이 유지되므로 3.<br>• countVar: 일반 로컬 변수이므로 함수 재실행 시 let countVar = 0으로 초기화되어 0."
+          explanation: "<b>정답: 0, 3, 0</b><br>1) [+1 증가] 3번 누르는 동안: countRef.current는 3, countVar는 3이 되지만 리렌더링이 발생하지 않음.<br>2) [화면 갱신]을 1번 누르면: setRender로 인해 컴포넌트가 리렌더링됨.<br>• countState: 변경된 적 없으므로 초기값 0.<br>• countRef.current: 리렌더링되어도 값이 유지되므로 3.<br>• countVar: 일반 로컬 변수이므로 함수 재실행 시 let countVar = 0으로 초기화되어 0.<div class=\"exam-result-preview\"><div class=\"exam-result-preview-header\">📱 교안 실제 실행 결과 화면</div><img src=\"assets/crossplatform/week7_p9_0_Image78.png\" alt=\"실행 화면\" class=\"exam-result-img\" loading=\"lazy\"></div>"
         },
         {
           id: 8, type: "short", score: 10, origin: "Part 6: useEffect 의존성 배열에 따른 콘솔 출력 순서",
@@ -1557,7 +1635,7 @@ window.EXAM_DATABASE.crossplatform = {
             "useRef(null), inputRef.current?.focus(), ref",
             "useRef(null),inputRef.current?.focus(),ref"
           ],
-          explanation: "<b>정답: (1) useRef(null), (2) inputRef.current.focus(), (3) ref</b><br>DOM/컴포넌트 인스턴스를 제어하기 위해 useRef(null)로 ref를 생성하고, TextInput에 ref={inputRef}로 연결한 후 inputRef.current.focus()를 호출하여 포커스를 이동시킵니다."
+          explanation: "<b>정답: (1) useRef(null), (2) inputRef.current.focus(), (3) ref</b><br>DOM/컴포넌트 인스턴스를 제어하기 위해 useRef(null)로 ref를 생성하고, TextInput에 ref={inputRef}로 연결한 후 inputRef.current.focus()를 호출하여 포커스를 이동시킵니다.<div class=\"exam-result-preview\"><div class=\"exam-result-preview-header\">📱 교안 실제 실행 결과 화면</div><img src=\"assets/crossplatform/week7_p11_0_Image84.png\" alt=\"실행 화면\" class=\"exam-result-img\" loading=\"lazy\"></div>"
         }
       ]
     },
@@ -1569,11 +1647,11 @@ window.EXAM_DATABASE.crossplatform = {
       tag: "코드 빈칸 & 1초 단답 10선 (100점)",
       questions: [
         {
-          id: 1, type: "short", score: 10, origin: "2주차 교안 p.20: JDK 설치",
-          text: "2주차 교안 슬라이드에서 안드로이드 개발 환경 구축을 위해 명시적으로 설치를 권장한 자바 개발 키트(JDK)의 버전은 무엇인가?",
-          placeholder: "JDK 버전 입력 (예: JDK 21)",
-          answers: ["JDK 21", "JDK21", "21", "java 21"],
-          explanation: "교안 2주차 20페이지에 '주의: JDK 21 설치'라고 명시되어 있습니다."
+          id: 1, type: "short", score: 10, origin: "3주차 교안 p.4: JSX 강제 개행(줄바꿈)",
+          text: "React Native의 &lt;Text&gt; 컴포넌트 내부에서 강제로 줄바꿈(개행)을 수행할 때 사용하는 JSX 중괄호 표현식은 무엇인가?",
+          placeholder: "JSX 표현식 입력 (예: {\"\\n\"})",
+          answers: ["{\"\\n\"}", "{\"\\n\"} ", "{\\n}", "\\n"],
+          explanation: "<b>정답: {\"\\n\"}</b><br>React Native의 JSX 텍스트 내부에서 강제 줄바꿈을 넣을 때는 <code>{\\\"\\\\n\\\"}</code> 표현식을 사용합니다."
         },
         {
           id: 2, type: "short", score: 10, origin: "3주차 교안 p.5: Flexbox 주축 기본값",
@@ -1601,14 +1679,14 @@ window.EXAM_DATABASE.crossplatform = {
           text: "웹 URL에서 이미지를 불러오는 원격 이미지(&lt;Image source={{ uri: '...' }} /&gt;)를 화면에 렌더링하기 위해 스타일에서 <b>반드시 명시해야 하는 2가지 속성</b>은?",
           placeholder: "2가지 속성 입력 (예: width, height)",
           answers: ["width, height", "width,height", "가로, 세로", "가로,세로"],
-          explanation: "로컬 require 이미지와 달리 원격 네트워크 이미지는 크기를 자동으로 계산할 수 없으므로 반드시 width와 height를 명시해야 합니다."
+          explanation: "로컬 require 이미지와 달리 원격 네트워크 이미지는 크기를 자동으로 계산할 수 없으므로 반드시 width와 height를 명시해야 합니다.<div class=\"exam-result-preview\"><div class=\"exam-result-preview-header\">📱 교안 실제 실행 결과 화면</div><img src=\"assets/crossplatform/week5_p10_0_Image91.jpg\" alt=\"실행 화면\" class=\"exam-result-img\" loading=\"lazy\"></div>"
         },
         {
           id: 6, type: "short", score: 10, origin: "6주차 교안 p.4: BackHandler",
           text: "안드로이드의 BackHandler 이벤트 리스너 함수에서 시스템의 기본 뒤로가기 동작을 차단하고 앱 종료 확인 Alert 등 커스텀 로직을 수행하려면 반환해야 하는 boolean 값은?",
           placeholder: "boolean 값 입력 (예: true)",
           answers: ["true", "True", "TRUE"],
-          explanation: "hardwareBackPress 리스너에서 true를 반환하면 시스템의 기본 뒤로가기 동작이 차단됩니다."
+          explanation: "hardwareBackPress 리스너에서 true를 반환하면 시스템의 기본 뒤로가기 동작이 차단됩니다.<div class=\"exam-result-preview\"><div class=\"exam-result-preview-header\">📱 교안 실제 실행 결과 화면</div><img src=\"assets/crossplatform/week6_p4_0_Image56.jpg\" alt=\"실행 화면\" class=\"exam-result-img\" loading=\"lazy\"></div>"
         },
         {
           id: 7, type: "short", score: 10, origin: "6주차 교안 p.11: Dimensions",
@@ -1691,7 +1769,7 @@ window.EXAM_DATABASE.crossplatform = {
                 "<pre style='margin-top: 8px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.5; color: var(--ink);'>&lt;Modal\n    (1)={isModalVisible}\n    (2)={() =&gt; setIsModalVisible(false)}\n    animationType=\"slide\"\n&gt;</pre>",
           placeholder: "순서대로 입력 (예: visible, onRequestClose)",
           answers: ["visible, onRequestClose", "visible,onRequestClose", "visible, onrequestclose"],
-          explanation: "<b>정답: visible, onRequestClose</b><br>Modal은 화면 표시 여부를 결정하는 visible={boolean}과 안드로이드 하드웨어 뒤로가기 처리를 위한 onRequestClose={callback}이 필수 속성입니다."
+          explanation: "<b>정답: visible, onRequestClose</b><br>Modal은 화면 표시 여부를 결정하는 visible={boolean}과 안드로이드 하드웨어 뒤로가기 처리를 위한 onRequestClose={callback}이 필수 속성입니다.<div class=\"exam-result-preview\"><div class=\"exam-result-preview-header\">📱 교안 실제 실행 결과 화면</div><img src=\"assets/crossplatform/week6_p16_0_Image106.png\" alt=\"실행 화면\" class=\"exam-result-img\" loading=\"lazy\"></div>"
         },
         {
           id: 7, type: "essay", score: 10, origin: "7주차 교안 p.4: 상태 불변성(Immutability)",
