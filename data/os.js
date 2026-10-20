@@ -11,6 +11,7 @@ window.CONCEPT_DATABASE.os = {
   title: "💻 운영체제 1~7장 전범위 핵심 총정리 & 시험 오픈북 치트시트",
   filterChips: [
     { id: "all", label: "전체보기" },
+    { id: "os-final-must", label: "🚨 [시험직전 10분] 적어도 이것은 봐라!", class: "danger-chip" },
     { id: "os-fullcode", label: "💻 실습 코드 15선 전체 수록 (Full Code)", class: "amber-chip" },
     { id: "os-cheat", label: "⚡ 1초 정답 치트키 (26선)", class: "amber-chip" },
     { id: "os-sched", label: "📊 스케줄링 공식 & 간트 차트", class: "danger-chip" },
@@ -22,6 +23,229 @@ window.CONCEPT_DATABASE.os = {
     { id: "os-ch7", label: "7장: CPU 스케줄링 4대 알고리즘" }
   ],
   html: `
+    <!-- SECTION: 1초 정답 치트키 26선 -->
+    
+    <!-- ======================================================== -->
+    <!-- SECTION: 💻 [전체 수록] 실습 코드 15선 전수 분석 & Full Code 치트시트 -->
+    <!-- ======================================================== -->
+    <!-- ======================================================== -->
+    <!-- SECTION: 🚨 [시험 직전 10분] 운영체제 최종정리 — 적어도 이것은 무조건 보고 들어가라! -->
+    <!-- ======================================================== -->
+    <section id="os-final-must" class="concept-section">
+      <div class="section-banner danger-banner" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(185, 28, 28, 0.3) 100%); border: 1px solid rgba(239, 68, 68, 0.4); padding: 16px 20px; border-radius: 12px; margin-bottom: 24px;">
+        <div class="section-banner-title" style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 20px;">🚨</span>
+          <span style="font-size: 18px; font-weight: 800; color: #f87171;">[시험 직전 10분] 운영체제 최종정리 — 적어도 이것은 무조건 보고 들어가라!</span>
+        </div>
+        <div style="font-size: 12.5px; color: #fca5a5; margin-top: 6px; line-height: 1.5;">
+          1장~7장 강의 슬라이드 전수 분석 &amp; 09/23, 6주차, 7주차 녹음본 교수님 육성 출제 힌트 100% 반영 치트시트<br>
+          시험 범위: 1장(개요) ~ 7장(CPU 스케줄링 라운드 로빈까지, 우선순위 직전)
+        </div>
+      </div>
+
+      <!-- Part 0: 시험 규칙 & 감점 방지 십계명 -->
+      <div style="background: var(--bg-card); border: 2px solid #ef4444; border-radius: 12px; padding: 20px; margin-bottom: 24px; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.1);">
+        <h3 style="color: #ef4444; font-size: 17px; margin-top: 0; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+          <span>⏱️ Part 0. 시험 직전 1분 체크: 시험 규칙 &amp; 감점 방지 십계명</span>
+        </h3>
+        <ul style="font-size: 13.5px; line-height: 1.8; color: var(--text-primary); margin: 0; padding-left: 20px;">
+          <li><b>시험 시간</b>: <b>50분</b> (총 20~25문제로 시간이 매우 촉박함! 1분당 1문제 빠른 페이스 필요)</li>
+          <li><b>문항 구성</b>: 객관식 2~3문제 + 단답형/용어 정의형 다수 + 코드 출력/서술형 다수 + <b>간트 차트 계산형 4~6문제(배점 핵심)</b></li>
+          <li><b style="color: #ef4444; background: rgba(239,68,68,0.15); padding: 2px 6px; border-radius: 4px;">⚠️ 간트 차트 미작성 시 50% 즉시 감점</b>: 계산 문제에서 평균 대기시간 숫자만 맞고 간트 차트가 없으면 무조건 반점 처리됨!</li>
+          <li><b>수치 변형 100%</b>: 수업 예제 숫자가 그대로 나오지 않고 프로세스 버스트 시간, 도착 시간이 변경되어 출제됨. 공식과 메커니즘 숙지 필수!</li>
+          <li><b>코드 빈칸 채우기 없음</b>: 전체 C 소스코드를 제시하고 <b>출력 결과 예측</b> 또는 <b>메모리 독립성 이유 서술</b> 위주로 출제됨.</li>
+        </ul>
+      </div>
+
+      <!-- Part 1: 계산 공식 3대장 -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <h3 style="color: var(--accent); font-size: 17px; margin-top: 0; margin-bottom: 14px;">
+          📊 Part 1. [공식 &amp; 계산 킬러 3대장] 시험지 받자마자 여백에 적어야 할 핵심 공식
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+          <div style="background: rgba(15,23,42,0.5); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px;">
+            <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px; font-size: 14px;">1. 스케줄링 시간 계산 공식</div>
+            <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+              * <b>대기 시간(Waiting Time)</b>:<br>
+              <code style="color: #facc15; font-size: 12.5px;">대기시간 = 반환시간 - 버스트시간 = (종료시각 - 도착시각) - 버스트시간</code><br>
+              * <b>반환 시간(Turnaround Time)</b>:<br>
+              <code style="color: #4ade80; font-size: 12.5px;">반환시간 = 종료시각 - 도착시각 = 대기시간 + 버스트시간</code>
+            </div>
+          </div>
+          <div style="background: rgba(15,23,42,0.5); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px;">
+            <div style="font-weight: 700; color: #a78bfa; margin-bottom: 8px; font-size: 14px;">2. 다음 버스트 예측 (지수 이동평균)</div>
+            <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+              <code style="color: #f472b6; font-size: 13px; font-weight: 700;">τ(n+1) = α·t(n) + (1 - α)·τ(n)</code><br>
+              * <code>t(n)</code>: 직전 $n$번째 실제 버스트 시간<br>
+              * <code>τ(n)</code>: 직전 $n$번째 예측 버스트 시간 (보통 α=0.5)<br>
+              <span style="font-size: 12px; color: var(--text-muted);">암기: (가중치×실제값) + ((1-가중치)×직전예측치)</span>
+            </div>
+          </div>
+          <div style="background: rgba(15,23,42,0.5); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px;">
+            <div style="font-weight: 700; color: #34d399; margin-bottom: 8px; font-size: 14px;">3. 환형 버퍼 판별식 &amp; 연쇄 fork()</div>
+            <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+              * <b>버퍼 비어있음 (Empty)</b>: <code style="color: #38bdf8;">in == out</code><br>
+              * <b>버퍼 가득참 (Full)</b>: <code style="color: #ef4444;">(in + 1) % N == out</code><br>
+              * <b>연쇄 fork() $n$회 호출</b>: 총 프로세스 수 = <code style="color: #fbbf24;">2^n 개</code> (신규 자식: $2^n - 1$개)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Part 2: 교수님 육성 박제 킬러 5선 -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <h3 style="color: #f59e0b; font-size: 17px; margin-top: 0; margin-bottom: 14px;">
+          🔥 Part 2. [교수님 육성 박제] 시험 출제 100% 확정 코드 &amp; 서술형 킬러 5선
+        </h3>
+
+        <!-- 킬러 1 -->
+        <div style="border-left: 4px solid #ef4444; background: rgba(15,23,42,0.4); padding: 14px; margin-bottom: 14px; border-radius: 0 8px 8px 0;">
+          <div style="font-weight: 700; color: #f87171; font-size: 14.5px; margin-bottom: 6px;">
+            [킬러 1] fork() 후 자식이 전역 변수를 수정할 때 부모의 value 값 (출제 1순위)
+          </div>
+          <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+            * <b>문제 코드 요약</b>: 전역 변수 <code>int value = 5;</code> 선언 후 <code>fork()</code>. 자식이 <code>value += 15;</code> 실행 후 종료. 부모가 <code>wait(NULL);</code> 후 <code>printf("%d", value);</code> 실행 시 출력값은?<br>
+            * <b>정답</b>: <b style="color: #4ade80; font-size: 14px;">5 (부모 본래 값 그대로 유지)</b><br>
+            * <b>서술형 근거 키워드</b>: <code>fork()</code> 시 자식 프로세스는 부모의 메모리 주소 공간을 복제하여 <b>별도의 독립된 메모리 공간</b>을 가집니다 (Copy-on-Write). 따라서 자식이 전역 변수를 수정하더라도 자식 자신의 데이터 영역만 변경되며, <b>부모의 메모리 영역에는 아무런 영향을 주지 않습니다</b>.
+          </div>
+        </div>
+
+        <!-- 킬러 2 -->
+        <div style="border-left: 4px solid #38bdf8; background: rgba(15,23,42,0.4); padding: 14px; margin-bottom: 14px; border-radius: 0 8px 8px 0;">
+          <div style="font-weight: 700; color: #38bdf8; font-size: 14.5px; margin-bottom: 6px;">
+            [킬러 2] fork() 반환값 (pid 변수) vs getpid()의 차이
+          </div>
+          <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+            * <b>fork() 반환값</b>: 부모 프로세스에게는 <b>새로 생성된 자식의 PID (양의 정수)</b>가 반환되고, 자식 프로세스에게는 <b>숫자 0</b>이 반환됨 (실패 시 -1).<br>
+            * <b>getpid()</b>: 호출한 <b>자기 자신의 실제 고유 PID</b> 반환.<br>
+            * 자식 블록(pid==0): <code>pid=0, getpid()=자식실제PID</code> / 부모 블록(pid&gt;0): <code>pid=자식실제PID, getpid()=부모실제PID</code>.
+          </div>
+        </div>
+
+        <!-- 킬러 3 -->
+        <div style="border-left: 4px solid #a78bfa; background: rgba(15,23,42,0.4); padding: 14px; margin-bottom: 14px; border-radius: 0 8px 8px 0;">
+          <div style="font-weight: 700; color: #a78bfa; font-size: 14.5px; margin-bottom: 6px;">
+            [킬러 3] execlp() 시스템 콜 뒤에 작성된 코드의 실행 여부
+          </div>
+          <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+            * <b>코드</b>: <code>execlp("/bin/ls", "ls", NULL); printf("LINE J
+");</code><br>
+            * <b>정답</b>: 뒤따라오는 <code>LINE J</code>는 <b style="color: #ef4444;">절대로 실행되지 않음!</b><br>
+            * <b>이유</b>: <code>exec</code> 계열 시스템 콜은 현재 프로세스의 텍스트, 데이터, 힙, 스택 등 <b>메모리 공간 전체를 새 실행 바이너리(/bin/ls)로 완전히 대체(덮어쓰기)</b>하기 때문입니다.
+          </div>
+        </div>
+
+        <!-- 킬러 4 -->
+        <div style="border-left: 4px solid #34d399; background: rgba(15,23,42,0.4); padding: 14px; margin-bottom: 14px; border-radius: 0 8px 8px 0;">
+          <div style="font-weight: 700; color: #34d399; font-size: 14.5px; margin-bottom: 6px;">
+            [킬러 4] 스레드(Thread) vs 프로세스 메모리 자원 구조 (도식화 &amp; 서술)
+          </div>
+          <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+            * <b>공유 자원 (동일 프로세스 내 모든 스레드 공유)</b>: <b>코드(Code), 데이터(Data, 전역/정적 변수), 힙(Heap), 열린 파일(Open Files) 및 OS 자원</b><br>
+            * <b>독립 자원 (각 스레드 고유 소유)</b>: <b>스레드 ID (TID), 프로그램 카운터 (PC), 레지스터 집합 (Registers), 스택 (Stack)</b><br>
+            * ⚠️ <b>주의</b>: 멀티스레드는 데이터 영역을 공유하므로, 한 스레드가 전역 변수를 수정하면 <b>다른 모든 스레드에도 즉시 반영</b>됩니다! (프로세스의 fork와 정반대)
+          </div>
+        </div>
+
+        <!-- 킬러 5 -->
+        <div style="border-left: 4px solid #fbbf24; background: rgba(15,23,42,0.4); padding: 14px; border-radius: 0 8px 8px 0;">
+          <div style="font-weight: 700; color: #fbbf24; font-size: 14.5px; margin-bottom: 6px;">
+            [킬러 5] wait() 누락에 따른 좀비(Zombie) vs 고아(Orphan) 프로세스
+          </div>
+          <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+            * <b>좀비 (Zombie, &lt;defunct&gt;)</b>: 자식이 종료되었으나 <b>부모가 wait()를 호출하지 않아</b> 종료 상태와 PCB가 메모리에 계속 방치된 프로세스. (부모가 wait 호출 시 완전히 소멸)<br>
+            * <b>고아 (Orphan)</b>: 부모가 자식보다 먼저 종료되어 부모를 잃은 자식 프로세스. $ightarrow$ OS의 루트 프로세스(<b>init / systemd, PID 1</b>)가 양부모로 입양하여 종료 시 wait를 대신 수행해 회수함.
+          </div>
+        </div>
+      </div>
+
+      <!-- Part 3: 스케줄링 4대 알고리즘 30초 컷 -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <h3 style="color: #38bdf8; font-size: 17px; margin-top: 0; margin-bottom: 14px;">
+          📈 Part 3. [간트 차트 30초 컷] 스케줄링 4대 알고리즘 핵심 족보
+        </h3>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+            <thead>
+              <tr style="background: rgba(15,23,42,0.8); border-bottom: 2px solid var(--border-color);">
+                <th style="padding: 10px; color: var(--accent);">알고리즘</th>
+                <th style="padding: 10px; color: var(--accent);">선점 여부</th>
+                <th style="padding: 10px; color: var(--accent);">스케줄링 기준</th>
+                <th style="padding: 10px; color: var(--accent);">핵심 장단점 및 킬러 용어</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 10px; font-weight: 700;">FCFS</td>
+                <td style="padding: 10px; color: #f87171;">비선점형</td>
+                <td style="padding: 10px;">도착 순서대로</td>
+                <td style="padding: 10px;"><b>콘보이 효과 (Convoy Effect / 호소 효과)</b>: 긴 작업 독점으로 평균 대기시간 급증</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 10px; font-weight: 700;">SJF (비선점)</td>
+                <td style="padding: 10px; color: #f87171;">비선점형</td>
+                <td style="padding: 10px;">CPU 버스트 가장 짧은 순</td>
+                <td style="padding: 10px;"><b>최적(Optimal)</b> 평균 대기시간 달성 / <b>기아(Starvation)</b> 발생 가능 $ightarrow$ <b>에이징(Aging)</b>으로 해결</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 10px; font-weight: 700;">SRTF (선점형 SJF)</td>
+                <td style="padding: 10px; color: #4ade80;">선점형 (★빈출)</td>
+                <td style="padding: 10px;"><b>남은 버스트 시간(Remaining Time)</b> 최소인 것</td>
+                <td style="padding: 10px;">새 프로세스 도착 시마다 남은 시간 비교 $ightarrow$ 더 짧으면 즉시 CPU 선점!</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; font-weight: 700;">Round Robin (RR)</td>
+                <td style="padding: 10px; color: #4ade80;">선점형</td>
+                <td style="padding: 10px;">시간 할당량(Time Quantum, $q$) 순환</td>
+                <td style="padding: 10px;">$q$ 너무 크면 <b>FCFS와 동일</b>, $q$ 너무 작으면 <b>잦은 문맥교환으로 오버헤드 폭증</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Part 4: 1~6장 단답형 필수 용어 -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <h3 style="color: #a78bfa; font-size: 17px; margin-top: 0; margin-bottom: 14px;">
+          📚 Part 4. [1장~6장] 적어도 이 용어 모르면 들어가지 마라 (단답형 핵심 사전)
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; font-size: 13px;">
+          <div style="background: rgba(15,23,42,0.4); padding: 12px; border-radius: 8px;">
+            <b style="color: #38bdf8;">이중 모드 (Dual-Mode)</b>: 사용자 모드(Mode bit=1)와 커널 모드(Mode bit=0). 특권 명령(I/O, 인터럽트 제어 등)은 커널 모드에서만 실행.
+          </div>
+          <div style="background: rgba(15,23,42,0.4); padding: 12px; border-radius: 8px;">
+            <b style="color: #38bdf8;">하드웨어 타이머 (Timer)</b>: 특정 프로그램이 CPU를 무한 독점하지 못하도록 정기적으로 OS에 인터럽트를 발생시키는 필수 하드웨어.
+          </div>
+          <div style="background: rgba(15,23,42,0.4); padding: 12px; border-radius: 8px;">
+            <b style="color: #38bdf8;">문맥 교환 (Context Switch)</b>: 이전 프로세스의 상태를 PCB에 저장하고 새 프로세스의 PCB로부터 복원하는 과정. CPU 작업이 중단되므로 <b>오버헤드(Overhead)</b>임.
+          </div>
+          <div style="background: rgba(15,23,42,0.4); padding: 12px; border-radius: 8px;">
+            <b style="color: #38bdf8;">디스패처 &amp; 디스패치 지연</b>: 스케줄러가 선택한 프로세스에 실제 CPU 제어권을 넘겨주는 모듈(디스패처), 교체 시 소요되는 총 시간(디스패치 지연).
+          </div>
+          <div style="background: rgba(15,23,42,0.4); padding: 12px; border-radius: 8px;">
+            <b style="color: #38bdf8;">IPC 2대 방식 비교</b>: 공유 메모리(Shared Memory: 초고속, 커널 개입 없음, 동기화 프로그래머 책임) vs 메시지 전달(Message Passing: 안전, 커널 중계, 분산환경 적합).
+          </div>
+          <div style="background: rgba(15,23,42,0.4); padding: 12px; border-radius: 8px;">
+            <b style="color: #38bdf8;">멀티스레드 3대 모델</b>: 다대일(한 스레드 블록 시 전체 블록), 일대일(Linux/Windows 표준, 병렬 지원, 스레드 생성 비용 큼), 다대다(융통성 절충).
+          </div>
+        </div>
+      </div>
+
+      <!-- Part 5: 시험 직전 5대 최종 점검 문답 -->
+      <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid #3b82f6; border-radius: 12px; padding: 20px;">
+        <h3 style="color: #60a5fa; font-size: 17px; margin-top: 0; margin-bottom: 12px;">
+          🎯 Part 5. [자가 채점 3분 완성] 시험 직전 5대 최종 점검 문답
+        </h3>
+        <ol style="font-size: 13.5px; line-height: 1.8; color: var(--text-primary); margin: 0; padding-left: 20px;">
+          <li><b>Q. fork() 후 자식이 전역 변수를 수정하면 부모의 값은?</b> $ightarrow$ <b>A. 본래 값 그대로 유지됨 (독립된 주소 공간, Copy-on-Write)</b></li>
+          <li><b>Q. 계산 문제에서 간트 차트를 안 그리면?</b> $ightarrow$ <b>A. 답이 맞아도 50% 즉시 감점! 시간 눈금(Gantt Chart) 반드시 그릴 것</b></li>
+          <li><b>Q. SJF가 최적(Optimal) 알고리즘인 이유는?</b> $ightarrow$ <b>A. 주어진 프로세스들에 대해 '평균 대기 시간(Average Waiting Time)'을 최소화하기 때문</b></li>
+          <li><b>Q. FCFS에서 긴 작업 때문에 짧은 작업들이 대기하는 문제는?</b> $ightarrow$ <b>A. 콘보이 효과 (Convoy Effect / 호소 효과)</b></li>
+          <li><b>Q. Round Robin에서 $q$가 너무 클 때와 너무 작을 때의 문제는?</b> $ightarrow$ <b>A. 너무 크면 FCFS와 동일해지고, 너무 작으면 문맥 교환 오버헤드로 시스템 마비</b></li>
+        </ol>
+      </div>
+    </section>
+
     <!-- SECTION: 1초 정답 치트키 26선 -->
     
     <!-- ======================================================== -->
