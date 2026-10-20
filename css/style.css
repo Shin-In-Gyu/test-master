@@ -12,6 +12,8 @@
   --bg-surface-elevated: #182030;
   --bg-surface-active: #222b40;
   --bg-input: #0e121c;
+  --bg-card: #10141f;
+  --text-primary: #f8fafc;
 
   --ink: #f8fafc;
   --ink-secondary: #cbd5e1;
@@ -71,6 +73,8 @@
   --bg-surface-elevated: #e2e8f0;
   --bg-surface-active: #cbd5e1;
   --bg-input: #f8fafc;
+  --bg-card: #ffffff;
+  --text-primary: #0f172a;
 
   --ink: #0f172a;
   --ink-secondary: #1e293b;
@@ -1698,8 +1702,16 @@ html, body {
    Light Mode High-Contrast Safety Overrides
    ======================================================== */
 [data-theme="light"] .q-card,
-[data-theme="light"] .progress-card {
-  border: 1px solid var(--border-color);
+[data-theme="light"] .progress-card,
+[data-theme="light"] .code-study-card {
+  background-color: #ffffff !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  color: var(--ink) !important;
+}
+
+[data-theme="light"] .code-study-card h3 {
+  color: var(--accent) !important;
 }
 
 [data-theme="light"] .choice-item,
@@ -1711,18 +1723,32 @@ html, body {
   border: 1px solid var(--border-color);
 }
 
-[data-theme="light"] [style*="color: #fbbf24"],
-[data-theme="light"] [style*="color:#fbbf24"],
-[data-theme="light"] [style*="color: #f59e0b"],
-[data-theme="light"] [style*="color:#f59e0b"] {
-  color: #b45309 !important;
+/* 다크 인라인 배경 스타일을 라이트 고대비 서피스로 강제 자동 치환 */
+[data-theme="light"] div[style*="rgba(15,23,42"],
+[data-theme="light"] div[style*="rgba(15, 23, 42"],
+[data-theme="light"] div[style*="rgba(30, 41, 59"],
+[data-theme="light"] div[style*="rgba(30,41,59"] {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
 }
 
-[data-theme="light"] [style*="color: #34d399"],
-[data-theme="light"] [style*="color:#34d399"],
-[data-theme="light"] [style*="color: #10b981"],
-[data-theme="light"] [style*="color:#10b981"] {
-  color: #047857 !important;
+[data-theme="light"] tr[style*="rgba(15,23,42"],
+[data-theme="light"] tr[style*="rgba(15, 23, 42"] {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] tr[style*="rgba(15,23,42"] th,
+[data-theme="light"] tr[style*="rgba(15, 23, 42"] th {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+/* 라이트 모드 고대비 텍스트 색상 오버라이드 (눈부심 방지 및 100% 또렷한 가독성) */
+[data-theme="light"] [style*="color: #38bdf8"],
+[data-theme="light"] [style*="color:#38bdf8"] {
+  color: #0369a1 !important; /* 짙은 오션 블루 */
 }
 
 [data-theme="light"] [style*="color: #60a5fa"],
@@ -1730,21 +1756,62 @@ html, body {
   color: #1d4ed8 !important;
 }
 
+[data-theme="light"] [style*="color: #34d399"],
+[data-theme="light"] [style*="color:#34d399"],
+[data-theme="light"] [style*="color: #4ade80"],
+[data-theme="light"] [style*="color:#4ade80"],
+[data-theme="light"] [style*="color: #10b981"],
+[data-theme="light"] [style*="color:#10b981"] {
+  color: #15803d !important; /* 선명한 포레스트 그린 */
+}
+
+[data-theme="light"] [style*="color: #fbbf24"],
+[data-theme="light"] [style*="color:#fbbf24"],
+[data-theme="light"] [style*="color: #f59e0b"],
+[data-theme="light"] [style*="color:#f59e0b"],
+[data-theme="light"] [style*="color: #facc15"],
+[data-theme="light"] [style*="color:#facc15"] {
+  color: #a16207 !important; /* 짙은 앰버 브라운 */
+}
+
 [data-theme="light"] [style*="color: #f87171"],
 [data-theme="light"] [style*="color:#f87171"],
+[data-theme="light"] [style*="color: #fca5a5"],
+[data-theme="light"] [style*="color:#fca5a5"],
 [data-theme="light"] [style*="color: #fb7185"],
-[data-theme="light"] [style*="color:#fb7185"] {
-  color: #b91c1c !important;
+[data-theme="light"] [style*="color:#fb7185"],
+[data-theme="light"] [style*="color: #ef4444"],
+[data-theme="light"] [style*="color:#ef4444"] {
+  color: #b91c1c !important; /* 선명하고 진한 레드 */
 }
 
 [data-theme="light"] [style*="color: #a78bfa"],
 [data-theme="light"] [style*="color:#a78bfa"] {
-  color: #6d28d9 !important;
+  color: #6d28d9 !important; /* 짙은 바이올렛 */
+}
+
+[data-theme="light"] [style*="color: #f472b6"],
+[data-theme="light"] [style*="color:#f472b6"] {
+  color: #be185d !important; /* 진한 핑크 */
 }
 
 [data-theme="light"] [style*="color: #22d3ee"],
 [data-theme="light"] [style*="color:#22d3ee"] {
-  color: #0e7490 !important;
+  color: #0e7490 !important; /* 짙은 청록 */
+}
+
+[data-theme="light"] [style*="color: #94a3b8"],
+[data-theme="light"] [style*="color:#94a3b8"],
+[data-theme="light"] [style*="color: var(--text-muted)"] {
+  color: #475569 !important; /* 또렷한 슬레이트 그레이 */
+}
+
+[data-theme="light"] [style*="color: var(--text-secondary)"] {
+  color: #1e293b !important; /* 또렷한 짙은 네이비 */
+}
+
+[data-theme="light"] [style*="color: var(--text-primary)"] {
+  color: #0f172a !important; /* 진한 블랙 잉크 */
 }
 
 /* ========================================================
