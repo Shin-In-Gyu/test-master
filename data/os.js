@@ -3960,20 +3960,20 @@ window.EXAM_DATABASE.os = {
     },
 {
       "id": "os_exam_code",
-      "name": "제5회 [코드 분석 전문] C 실습 코드 & 간트 차트 실전 모의고사 (15문항)",
-      "tag": "실습 코드 100% 전수 분석 · 계산 및 간트 차트 15문항 (100점)",
-      "desc": "수업 시간 실습 코드(fork, exec, wait, pipe, shm_open, pthread, OpenMP)와 SRTF/RR 스케줄링 간트 차트 및 평균 대기 시간(AWT) 계산으로만 구성된 최고난도 실전 모의고사",
+      "name": "제5회 [코드 분석 전문] C 실습 코드 전체 & 출력값 예측 실전 모의고사 (15문항)",
+      "tag": "코드 전체(Full Code) 수록 · 100% 터미널 출력값 예측 & 해석 15문항 (100점)",
+      "desc": "시험에 출제될 실제 형태 그대로 C 소스코드 전체(#include, main, 시스템콜)를 지문으로 제시하고, 터미널 표준 출력(stdout) 결과값 예측 및 프로세스/스레드 메모리 동작 해석을 평가하는 실전 모의고사",
       "questions": [
             {
                   "id": 1,
                   "type": "essay",
                   "score": 7,
-                  "origin": "실습 02: fork() 반환값 및 getpid()",
-                  "text": "부모 프로세스의 실제 PID가 2500, 새로 생성된 자식 프로세스의 실제 PID가 2501일 때, 다음 C 코드의 표준 출력(stdout) 4줄을 순서대로 적고, pid 변수와 pid1 변수의 차이를 서술하시오.<br><pre><code>pid = fork();\nif (pid == 0) {\n    pid1 = getpid();\n    printf(\"child: pid = %d\\n\", pid);\n    printf(\"child: pid1 = %d\\n\", pid1);\n} else {\n    wait(NULL);\n    pid1 = getpid();\n    printf(\"parent: pid = %d\\n\", pid);\n    printf(\"parent: pid1 = %d\\n\", pid1);\n}</code></pre>",
-                  "placeholder": "4줄의 출력 내용과 pid vs pid1 차이 서술",
+                  "origin": "09/23 실습: fork() & getpid() 전체 코드 분석",
+                  "text": "다음은 프로세스를 생성하고 PID를 출력하는 <b>C 언어 프로그램 전체 소스 코드</b>이다. 부모 프로세스의 실제 PID가 <code>2500</code>이고, 새로 생성된 자식 프로세스의 실제 PID가 <code>2501</code>이라고 가정할 때 물음에 답하시오.\n<pre style=\"background: #0b1120; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #f8fafc; line-height: 1.45;\"><code>#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/types.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint main() {\n    pid_t pid, pid1;\n\n    pid = fork();\n\n    if (pid &lt; 0) {\n        fprintf(stderr, \"Fork Failed\\n\");\n        return 1;\n    }\n    else if (pid == 0) {\n        pid1 = getpid();\n        printf(\"child: pid = %d\\n\", pid);\n        printf(\"child: pid1 = %d\\n\", pid1);\n    }\n    else {\n        wait(NULL);\n        pid1 = getpid();\n        printf(\"parent: pid = %d\\n\", pid);\n        printf(\"parent: pid1 = %d\\n\", pid1);\n    }\n\n    return 0;\n}</code></pre>\n<b>[문항]</b><br>\n(1) 위 프로그램을 터미널에서 실행했을 때, <b>콘솔 화면에 출력되는 4줄의 문자열</b>을 순서대로 작성하시오.<br>\n(2) 코드 16행의 <code>pid</code>와 22행의 <code>pid</code>에 각각 출력되는 값이 다른 이유를 <code>fork()</code> 시스템 콜의 반환 규칙을 들어 해석하시오.",
+                  "placeholder": "(1) 콘솔에 출력되는 4줄 (줄바꿈 구분)\n(2) fork() 반환값 차이 해석",
                   "rubric": [
                         {
-                              "criteria": "자식 출력 2줄 정확: child: pid = 0, child: pid1 = 2501",
+                              "criteria": "자식 출력 2줄 정확: child: pid = 0, child: pid1 = 2501 (wait로 인해 먼저 출력)",
                               "points": "3점"
                         },
                         {
@@ -3981,94 +3981,97 @@ window.EXAM_DATABASE.os = {
                               "points": "2점"
                         },
                         {
-                              "criteria": "pid 변수는 fork 반환값(자식은 0, 부모는 자식PID), pid1은 getpid()의 자기자신 PID임을 명시",
+                              "criteria": "fork()는 자식에게 0, 부모에게는 생성된 자식 PID(2501)를 리턴한다는 반환 메커니즘을 명시",
                               "points": "2점"
                         }
                   ],
-                  "sampleAnswer": "child: pid = 0\nchild: pid1 = 2501\nparent: pid = 2501\nparent: pid1 = 2500\n[이유] fork() 반환값으로 자식에게는 0, 부모에게는 생성된 자식의 PID(2501)가 리턴되고, getpid()는 호출한 프로세스 자기 자신의 실제 PID를 반환하기 때문.",
-                  "explanation": "부모 프로세스가 wait(NULL)을 호출하므로 자식이 먼저 실행되어 종료된 후 부모가 실행됩니다."
+                  "sampleAnswer": "(1) 실제 터미널 출력 결과:\nchild: pid = 0\nchild: pid1 = 2501\nparent: pid = 2501\nparent: pid1 = 2500\n\n(2) 코드 해석:\n부모 프로세스가 wait(NULL)을 호출하여 자식이 끝날 때까지 대기 큐에서 대기하므로 자식 프로세스의 출력이 먼저 나타난다.\nfork() 시스템 콜이 성공했을 때 커널은 자식 프로세스에게는 숫자 0을 반환하므로 자식의 pid는 0이 출력된다. 반면 부모 프로세스에게는 생성된 자식을 제어할 수 있도록 자식의 실제 PID인 2501을 반환하므로 부모의 pid는 2501이 출력된다.",
+                  "explanation": "pid 변수는 fork()의 반환값을 담고, pid1 변수는 getpid() 시스템 콜로 조회한 프로세스 자기 자신의 실제 PID를 담습니다."
             },
             {
                   "id": 2,
                   "type": "essay",
                   "score": 7,
-                  "origin": "실습 03: fork() 후 전역 변수 Copy-on-Write",
-                  "text": "전역 변수 <code>int value = 12;</code>가 선언된 상태에서 자식 프로세스가 <code>value += 8;</code>을 수행하고 종료되었을 때, 부모 프로세스의 <code>printf(\"PARENT: value = %d\\n\", value);</code>에서 출력되는 값을 적고, 왜 그 값이 출력되는지 프로세스의 메모리 주소 공간 관점에서 구체적으로 서술하시오.",
-                  "placeholder": "출력값과 프로세스 메모리 독립성 이유 서술",
+                  "origin": "09/23 실습: 전역 변수 Copy-on-Write 전체 코드 분석",
+                  "text": "다음 <b>C 언어 프로그램 전체 소스 코드</b>를 보고 물음에 답하시오.\n<pre style=\"background: #0b1120; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #f8fafc; line-height: 1.45;\"><code>#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/types.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint value = 12;\n\nint main() {\n    pid_t pid;\n\n    pid = fork();\n\n    if (pid == 0) {\n        value += 8;\n        printf(\"CHILD: value = %d\\n\", value);\n        return 0;\n    }\n    else if (pid &gt; 0) {\n        wait(NULL);\n        printf(\"PARENT: value = %d\\n\", value);\n    }\n\n    return 0;\n}</code></pre>\n<b>[문항]</b><br>\n(1) 위 프로그램 실행 시 터미널에 출력되는 <code>CHILD: value</code>와 <code>PARENT: value</code>의 <b>출력값</b>을 각각 적으시오.<br>\n(2) 자식 프로세스가 코드 14행에서 <code>value += 8;</code>을 수행하여 20으로 수정했음에도 불구하고, 부모 프로세스의 20행에서 <code>value</code>가 그렇게 출력되는 이유를 <b>프로세스의 메모리 주소 공간(Copy-on-Write) 관점</b>에서 해석하시오.",
+                  "placeholder": "(1) CHILD 값, PARENT 값\n(2) 프로세스 메모리 독립성 이유 해석",
                   "rubric": [
                         {
-                              "criteria": "출력값 12 정확히 명시",
+                              "criteria": "CHILD: value = 20, PARENT: value = 12 정확히 명시",
                               "points": "3점"
                         },
                         {
-                              "criteria": "fork 시 부모와 자식은 독립된 가상 주소 공간을 가짐(Copy-on-Write) 명시",
+                              "criteria": "fork() 시 자식 프로세스는 부모와 완전히 독립된 별도의 메모리 주소 공간을 할당받음을 명시",
                               "points": "2점"
                         },
                         {
-                              "criteria": "자식의 수정은 자식 데이터 영역에만 적용되어 부모의 value는 불변임을 명시",
+                              "criteria": "자식이 수정한 것은 자식 전용 데이터 세그먼트에만 반영되어 부모의 메모리는 불변임을 명시",
                               "points": "2점"
                         }
                   ],
-                  "sampleAnswer": "출력값: PARENT: value = 12\n[이유] fork() 시스템 콜은 부모의 주소 공간을 복제하여 자식에게 완전히 독립된 별도의 메모리 공간을 할당한다. 자식이 value를 20으로 수정한 것은 자식 전용 메모리에만 반영되므로, 부모의 메모리 영역에 있는 value는 원본 값인 12를 그대로 유지한다.",
-                  "explanation": "교수님 강조: 자식 프로세스에서 전역 변수를 아무리 수정해도 부모 프로세스의 전역 변수는 절대로 변경되지 않습니다."
+                  "sampleAnswer": "(1) 출력 화면:\nCHILD: value = 20\nPARENT: value = 12\n\n(2) 코드 및 메모리 구조 해석:\nfork() 시스템 콜 호출 시 운영체제는 부모 프로세스의 가상 메모리 공간(코드, 데이터, 힙, 스택)을 복제하여 자식 프로세스에게 완전히 독립된 별도의 주소 공간을 할당한다(Copy-on-Write).\n자식 프로세스가 value += 8을 실행하여 20으로 바꾼 것은 자식 프로세스만의 데이터 세그먼트에만 쓰여진 것이며, 부모 프로세스의 메모리 영역에 있는 value는 아무런 영향을 받지 않고 초기값 12를 그대로 유지하기 때문이다.",
+                  "explanation": "교수님 09/23 강조: 프로세스는 메모리를 공유하지 않고 완전히 독립되어 복제됩니다!"
             },
             {
                   "id": 3,
                   "type": "short",
                   "score": 6,
-                  "origin": "실습 04: 배열 메모리 연산 추적",
-                  "text": "크기 4인 배열 <code>int nums[4] = {1, 2, 3, 4};</code>에 대해, 자식 프로세스가 <code>nums[i] *= 2</code>를 수행하여 <code>C:2 C:4 C:6 C:8 </code>을 출력한 뒤 종료되었다. 이후 부모 프로세스가 <code>wait(NULL)</code>을 마치고 <code>P:%d </code>로 자신의 배열을 출력할 때 출력되는 문자열을 쓰시오.",
-                  "placeholder": "예: P:1 P:2 P:3 P:4",
+                  "origin": "09/23 실습: 배열 메모리 연산 전체 코드 분석 (공룡책 3.1)",
+                  "text": "다음 <b>C 언어 프로그램 전체 코드</b>를 실행했을 때, 콘솔 화면에 최종 출력되는 <b>한 줄의 문자열 전체</b>를 공백을 포함하여 정확히 쓰시오.\n<pre style=\"background: #0b1120; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #f8fafc; line-height: 1.45;\"><code>#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/types.h&gt;\n#include &lt;sys/wait.h&gt;\n\n#define SIZE 4\nint nums[SIZE] = {1, 2, 3, 4};\n\nint main() {\n    int i;\n    pid_t pid = fork();\n\n    if (pid == 0) {\n        for (i = 0; i &lt; SIZE; i++) {\n            nums[i] = nums[i] * 2;\n            printf(\"C:%d \", nums[i]);\n        }\n    }\n    else if (pid &gt; 0) {\n        wait(NULL);\n        for (i = 0; i &lt; SIZE; i++) {\n            printf(\"P:%d \", nums[i]);\n        }\n        printf(\"\\n\");\n    }\n\n    return 0;\n}</code></pre>",
+                  "placeholder": "화면에 한 줄로 출력되는 전체 문자열 입력",
                   "answers": [
-                        "P:1 P:2 P:3 P:4",
-                        "P:1 P:2 P:3 P:4 ",
-                        "1 2 3 4",
-                        "1, 2, 3, 4"
+                        "C:2 C:4 C:6 C:8 P:1 P:2 P:3 P:4",
+                        "C:2 C:4 C:6 C:8 P:1 P:2 P:3 P:4 ",
+                        "C:2 C:4 C:6 C:8 P:1 P:2 P:3 P:4\n"
                   ],
-                  "explanation": "프로세스 간 메모리는 독립되어 있으므로 자식의 배열 수정은 부모에게 반영되지 않아 부모는 원본 {1, 2, 3, 4}를 출력합니다."
+                  "explanation": "자식 프로세스가 nums 배열을 2배로 수정하여 C:2 C:4 C:6 C:8 을 출력하고 종료합니다. 부모는 wait(NULL)로 대기한 뒤 자신의 배열을 출력하는데, 주소 공간이 독립되어 있으므로 부모의 배열은 원본인 P:1 P:2 P:3 P:4 가 출력됩니다."
             },
             {
                   "id": 4,
                   "type": "essay",
                   "score": 7,
-                  "origin": "실습 06: execlp() 시스템 콜",
-                  "text": "자식 프로세스에서 <code>execlp(\"/bin/echo\", \"echo\", \"Hello\", NULL);</code>을 호출한 뒤 바로 다음 줄에 <code>printf(\"STEP 2\\n\");</code>를 작성하였다. 이 프로그램 실행 시 \"STEP 2\"가 절대로 출력되지 않는 이유를 운영체제의 <code>exec</code> 계열 시스템 콜 동작 메커니즘 관점에서 서술하시오.",
-                  "placeholder": "exec 시스템 콜의 메모리 대체 메커니즘 서술",
+                  "origin": "09/23 실습: execlp() 시스템 콜 전체 코드 분석",
+                  "text": "다음 <b>C 언어 프로그램 전체 소스 코드</b>를 보고 물음에 답하시오.\n<pre style=\"background: #0b1120; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #f8fafc; line-height: 1.45;\"><code>#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/types.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint main() {\n    pid_t pid = fork();\n\n    if (pid == 0) {\n        printf(\"STEP 1\\n\");\n        execlp(\"/bin/echo\", \"echo\", \"Hello OS\", NULL);\n        printf(\"STEP 2\\n\");\n    }\n    else if (pid &gt; 0) {\n        wait(NULL);\n        printf(\"STEP 3\\n\");\n    }\n\n    return 0;\n}</code></pre>\n<b>[문항]</b><br>\n(1) 위 프로그램 실행 시 터미널에 출력되는 <b>문자열 전체를 순서대로</b> 작성하시오.<br>\n(2) 코드 12행의 <code>printf(\"STEP 2\\n\");</code>가 <b>절대로 화면에 출력되지 않는 이유</b>를 운영체제의 <code>exec</code> 계열 시스템 콜 동작 메커니즘 관점에서 해석하시오.",
+                  "placeholder": "(1) 콘솔에 출력되는 문자열 순서\n(2) STEP 2가 절대 출력되지 않는 이유 해석",
                   "rubric": [
                         {
-                              "criteria": "exec 계열 시스템 콜이 현재 프로세스의 메모리 공간 전체를 새 프로그램으로 대체(덮어쓰기)함을 명시",
-                              "points": "4점"
+                              "criteria": "출력 순서 정확: STEP 1 -> Hello OS -> STEP 3",
+                              "points": "3점"
                         },
                         {
-                              "criteria": "호출 성공 시 기존 코드가 소멸되어 다음 라인이 실행되지 않음을 명시",
-                              "points": "3점"
+                              "criteria": "execlp()가 현재 프로세스의 주소 공간(코드·데이터·스택·힙) 전체를 새 바이너리로 완전히 대체(덮어쓰기)함을 명시",
+                              "points": "2점"
+                        },
+                        {
+                              "criteria": "호출 성공 시 기존 코드는 메모리에서 소멸되므로 다음 라인이 실행되지 않음을 명시",
+                              "points": "2점"
                         }
                   ],
-                  "sampleAnswer": "execlp()를 비롯한 exec 계열 시스템 콜은 현재 프로세스의 주소 공간(텍스트, 데이터, 힙, 스택)을 새로운 실행 파일(/bin/echo)의 이미지로 완전히 대체(덮어쓰기)한다. 호출이 성공하면 기존 프로그램의 코드는 메모리에서 소멸되므로 뒤이어 작성된 STEP 2는 절대로 실행될 수 없다.",
-                  "explanation": "오직 execlp 호출이 실패했을 때만 에러 코드를 반환하며 다음 줄이 실행됩니다."
+                  "sampleAnswer": "(1) 터미널 출력 결과:\nSTEP 1\nHello OS\nSTEP 3\n\n(2) 코드 동작 메커니즘 해석:\nexeclp()를 비롯한 exec 계열 시스템 콜은 현재 프로세스의 가상 메모리 공간(텍스트, 데이터, 힙, 스택)을 새로운 실행 파일(/bin/echo)의 프로그램 이미지로 완전히 대체(덮어쓰기)한다.\n따라서 execlp() 호출이 성공하는 순간 기존 프로그램의 남아있던 C 코드는 메모리에서 완전히 소멸되며 새 프로그램의 시작점부터 실행되므로, 기존 파일의 12행에 작성된 printf(\"STEP 2\\n\");는 절대로 실행될 수 없다.",
+                  "explanation": "오직 execlp가 경로 오류 등으로 실행 실패했을 때만 에러를 반환하며 다음 라인(STEP 2)이 실행됩니다."
             },
             {
                   "id": 5,
                   "type": "short",
                   "score": 6,
-                  "origin": "실습 05: 연쇄 fork() 루프",
-                  "text": "루프 <code>for (int i = 0; i < 3; i++) fork();</code> 실행 후 <code>printf(\"Alive\\n\");</code>를 수행할 때, (1) 새로 생성된 자식 프로세스의 개수와, (2) Alive 문자열이 출력되는 총 횟수를 순서대로 쓰시오. (예: 7, 8)",
-                  "placeholder": "예: 7, 8",
+                  "origin": "09/23 실습: 연쇄 fork() 루프 전체 코드 분석",
+                  "text": "다음 <b>C 언어 프로그램 전체 코드</b>를 보고 물음에 답하시오.\n<pre style=\"background: #0b1120; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #f8fafc; line-height: 1.45;\"><code>#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n\nint main() {\n    int i;\n    for (i = 0; i &lt; 3; i++) {\n        fork();\n    }\n    printf(\"Process Alive\\n\");\n    return 0;\n}</code></pre>\n<b>[문항]</b><br>\n(1) 초기 부모 프로세스 1개를 제외하고, 이 프로그램으로 인해 <b>새로 생성된 자식 프로세스의 총 개수</b>는 몇 개인가?<br>\n(2) 터미널 화면에 <code>Process Alive</code> 문자열은 <b>총 몇 번</b> 출력되는가?<br>\n(답안 형식: <code>7, 8</code>)",
+                  "placeholder": "자식 프로세스 수, 출력 횟수 (예: 7, 8)",
                   "answers": [
                         "7, 8",
-                        "7개, 8번",
                         "7,8",
+                        "7개, 8번",
                         "7개, 8회",
                         "7개, 8개"
                   ],
-                  "explanation": "총 프로세스 수는 2^3 = 8개이며, 초기 부모 1개를 제외하면 새로 생성된 자식은 7개입니다. 8개의 모든 프로세스가 1번씩 출력하므로 8회 출력됩니다."
+                  "explanation": "루프가 3회 실행되므로 생성되는 총 프로세스 수는 2^3 = 8개입니다. 초기 부모 1개를 제외하면 새로 생성된 자식 프로세스는 8 - 1 = 7개입니다. 존재하는 모든 8개 프로세스가 printf를 1회씩 실행하므로 8번 출력됩니다."
             },
             {
                   "id": 6,
                   "type": "calc",
                   "score": 6,
-                  "origin": "실습 05: 조건부 fork() 분기",
-                  "text": "다음 C 코드 실행 시 \"Antigravity\" 문자열이 출력되는 총 횟수를 구하시오. (숫자만 입력)<br><pre><code>fork();\nif (fork() == 0) {\n    fork();\n}\nprintf(\"Antigravity\\n\");</code></pre>",
+                  "origin": "09/23 실습: 조건부 fork() 분기 전체 코드 분석",
+                  "text": "다음 <b>C 언어 프로그램 전체 코드</b>를 실행했을 때, 콘솔 화면에 <code>Antigravity</code> 문자열이 출력되는 <b>총 횟수</b>를 구하시오. (숫자만 입력)\n<pre style=\"background: #0b1120; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #f8fafc; line-height: 1.45;\"><code>#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n\nint main() {\n    fork();\n    if (fork() == 0) {\n        fork();\n    }\n    printf(\"Antigravity\\n\");\n    return 0;\n}</code></pre>",
                   "placeholder": "출력 횟수 숫자 입력 (예: 6)",
                   "answers": [
                         "6",
@@ -4076,137 +4079,157 @@ window.EXAM_DATABASE.os = {
                         "6회",
                         "6개"
                   ],
-                  "explanation": "첫 fork로 2개 -> if(fork()==0)에서 2개 자식만 if 진입 -> 진입한 2개가 각각 fork하여 2개 추가 -> 최종 2 + 2 + 2 = 6개의 프로세스가 살아남아 각각 1회씩 출력합니다."
+                  "explanation": "1. 첫 fork()로 2개 프로세스 (P0, P1) 생성.\n2. if(fork() == 0)에서 P0, P1이 각각 fork() 실행 -> 부모 P0, P1은 반환값이 양수이므로 if문 통과 안 함. 새로 생성된 자식 P2, P3만 반환값 0으로 if문 내부 진입!\n3. if문 내부의 fork()를 P2, P3가 각각 실행하여 P4, P5 생성(+2).\n4. 최종 살아있는 프로세스는 P0, P1, P2, P3, P4, P5 총 6개이므로 6회 출력됩니다."
             },
             {
                   "id": 7,
                   "type": "essay",
                   "score": 7,
-                  "origin": "실습 09: 일반 파이프 close()와 EOF",
-                  "text": "UNIX 일반 파이프(Ordinary Pipe) 통신에서, 부모가 자식에게 데이터를 전송할 때 사용하지 않는 파이프 끝단을 <code>close()</code> 함수로 닫아주는 이유를 수신 측의 <code>read()</code> 동기화(EOF 감지) 관점에서 서술하시오.",
-                  "placeholder": "쓰기 끝단 close 미수행 시 read의 무한 대기 문제 서술",
+                  "origin": "4장 IPC: UNIX 일반 파이프 전체 코드 분석",
+                  "text": "다음은 단방향 일반 파이프(Ordinary Pipe)를 이용해 부모가 자식에게 메시지를 전송하는 <b>C 언어 프로그램 전체 소스 코드</b>이다.\n<pre style=\"background: #0b1120; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #f8fafc; line-height: 1.45;\"><code>#include &lt;stdio.h&gt;\n#include &lt;string.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/types.h&gt;\n#include &lt;sys/wait.h&gt;\n\n#define BUFFER_SIZE 30\n#define READ_END 0\n#define WRITE_END 1\n\nint main() {\n    char write_msg[BUFFER_SIZE] = \"Operating System\";\n    char read_msg[BUFFER_SIZE];\n    int fd[2];\n    pid_t pid;\n\n    if (pipe(fd) == -1) return 1;\n\n    pid = fork();\n\n    if (pid &gt; 0) { /* 부모 프로세스 */\n        close(fd[READ_END]);\n        write(fd[WRITE_END], write_msg, strlen(write_msg) + 1);\n        close(fd[WRITE_END]); /* (A) */\n        wait(NULL);\n    }\n    else { /* 자식 프로세스 */\n        close(fd[WRITE_END]);\n        read(fd[READ_END], read_msg, BUFFER_SIZE); /* (B) */\n        printf(\"Received: %s\\n\", read_msg);\n        close(fd[READ_END]);\n    }\n\n    return 0;\n}</code></pre>\n<b>[문항]</b><br>\n(1) <code>fd[0]</code>과 <code>fd[1]</code>의 역할을 각각 쓰시오.<br>\n(2) 만약 부모 프로세스가 <code>(A)</code> 라인의 <code>close(fd[WRITE_END]);</code>를 실행하지 않고 계속 열어둔 채 다른 작업을 수행한다면, 자식 프로세스의 <code>(B)</code> 라인 <code>read()</code>에서 어떤 심각한 동기화 문제가 발생하는지 <b>EOF(End-of-File) 감지 관점</b>에서 해석하시오.",
+                  "placeholder": "(1) fd[0], fd[1] 역할\n(2) 쓰기 끝단 미종료 시 read 무한 대기 문제 해석",
                   "rubric": [
                         {
-                              "criteria": "쓰기 끝단이 열려 있으면 read()는 데이터가 더 올 수 있다고 판단하여 무한 대기(블록)함을 명시",
-                              "points": "4점"
+                              "criteria": "fd[0]은 읽기 끝단(READ_END), fd[1]은 쓰기 끝단(WRITE_END) 명시",
+                              "points": "2점"
                         },
                         {
-                              "criteria": "모든 쓰기 포트가 close되어야 read()가 EOF(반환값 0)를 감지하고 정상 종료함을 명시",
+                              "criteria": "파이프의 쓰기 끝단이 열려 있으면 read()는 데이터가 더 들어올 수 있다고 판단하여 무한 대기(블록)함을 명시",
                               "points": "3점"
+                        },
+                        {
+                              "criteria": "모든 쓰기 포트가 close되어야 read()가 EOF(반환값 0)를 감지하고 대기에서 빠져나옴을 명시",
+                              "points": "2점"
                         }
                   ],
-                  "sampleAnswer": "파이프의 쓰기 끝단(fd[1])이 열려 있는 프로세스가 하나라도 남아 있으면, 수신 프로세스의 read()는 추가 데이터가 들어올 수 있다고 판단하여 무한정 블록(대기) 상태에 빠진다. 모든 쓰기 끝단이 close()되어야만 read()가 파일의 끝(EOF, 0)을 감지하고 대기에서 빠져나올 수 있기 때문이다.",
-                  "explanation": "Ordinary pipe에서 fd[0]은 읽기 끝단, fd[1]은 쓰기 끝단입니다."
+                  "sampleAnswer": "(1) 파일 디스크립터 역할:\n- fd[0]: 파이프의 읽기 끝단 (READ_END)\n- fd[1]: 파이프의 쓰기 끝단 (WRITE_END)\n\n(2) 코드 동작 및 EOF 동기화 해석:\n파이프의 쓰기 끝단(fd[WRITE_END])을 닫지 않고 열어두면, 수신 프로세스의 read() 함수는 시스템 어딘가에서 추가 데이터가 더 쓰여질 수 있다고 판단하여 파일의 끝(EOF)을 인식하지 못하고 영원히 무한 블록(대기) 상태에 빠지게 된다.\n모든 송신 프로세스가 쓰기 끝단을 close()해야만 read() 함수가 파일의 끝(EOF, 반환값 0)을 정상적으로 감지하고 대기 상태에서 탈출할 수 있기 때문이다.",
+                  "explanation": "파이프 IPC에서 쓰지 않는 fd 끝단을 즉시 close()하는 것은 자원 누수 방지뿐 아니라 read() 함수의 EOF 감지를 위해 필수적입니다."
             },
             {
                   "id": 8,
                   "type": "short",
                   "score": 6,
-                  "origin": "실습 10: 환형 버퍼 판별 수식",
-                  "text": "크기가 N인 환형 버퍼에서 생산자가 버퍼가 가득 찼는지(Full) 검사하는 C 언어 while 조건식을 쓰시오. (포인터: in, out)",
-                  "placeholder": "while문 조건식 (예: ((in + 1) % N) == out)",
+                  "origin": "3장 IPC: 환형 버퍼 생산자-소비자 전체 코드 분석",
+                  "text": "다음은 공유 메모리 환경에서 생산자-소비자가 사용하는 <b>환형 버퍼(Circular Buffer) 동기화 C 코드</b>이다.\n<pre style=\"background: #0b1120; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #f8fafc; line-height: 1.45;\"><code>#define BUFFER_SIZE 8\n\ntypedef struct {\n    int data;\n} item;\n\nitem buffer[BUFFER_SIZE];\nint in = 0;\nint out = 0;\n\n/* [생산자 로직] */\nwhile ( [ 조건식 A ] )\n    ; /* 버퍼가 꽉 찼으면 busy wait */\nbuffer[in] = next_produced;\nin = (in + 1) % BUFFER_SIZE;\n\n/* [소비자 로직] */\nwhile ( [ 조건식 B ] )\n    ; /* 버퍼가 비었으면 busy wait */\nnext_consumed = buffer[out];\nout = (out + 1) % BUFFER_SIZE;</code></pre>\n<b>[문항]</b><br>\n(1) 생산자가 버퍼 가득 참(Full)을 검사하는 <b>[ 조건식 A ]</b>에 들어갈 C 언어 수식을 쓰시오.<br>\n(2) 소비자가 버퍼 비어 있음(Empty)을 검사하는 <b>[ 조건식 B ]</b>에 들어갈 C 언어 수식을 쓰시오.<br>\n(3) <code>BUFFER_SIZE</code>가 8일 때, 이 버퍼에 동시에 저장될 수 있는 <b>최대 아이템 개수</b>는 몇 개인가?<br>\n(답안 형식: <code>수식A, 수식B, 개수</code>)",
+                  "placeholder": "예: ((in + 1) % BUFFER_SIZE) == out, in == out, 7개",
                   "answers": [
-                        "((in + 1) % N) == out",
-                        "((in+1)%N)==out",
-                        "(in + 1) % N == out",
-                        "((in + 1) % BUFFER_SIZE) == out",
-                        "((in+1)%BUFFER_SIZE)==out"
+                        "((in + 1) % BUFFER_SIZE) == out, in == out, 7",
+                        "((in + 1) % BUFFER_SIZE) == out, in == out, 7개",
+                        "((in+1)%BUFFER_SIZE)==out, in==out, 7",
+                        "((in + 1) % 8) == out, in == out, 7",
+                        "((in + 1) % BUFFER_SIZE) == out, in == out, 7개"
                   ],
-                  "explanation": "버퍼가 가득 찬 조건은 ((in + 1) % N) == out 이며, 버퍼가 빈 조건은 in == out 입니다."
+                  "explanation": "Full 조건: ((in + 1) % BUFFER_SIZE) == out\nEmpty 조건: in == out\n최대 저장 개수: BUFFER_SIZE - 1 = 7개 (1칸을 비워두지 않고 8칸을 다 채우면 in == out이 되어 빈 상태와 꽉 찬 상태를 포인터로 구별할 수 없음)."
             },
             {
                   "id": 9,
-                  "type": "short",
-                  "score": 6,
-                  "origin": "실습 07 & 08: POSIX 공유 메모리 ftruncate & 삭제",
-                  "text": "POSIX 공유 메모리에서 shm_open()으로 생성된 객체의 크기를 실제 바이트 단위로 확정 및 할당하기 위해 호출하는 시스템 콜 함수명과, 사용 완료 후 객체를 삭제하는 함수명을 쉼표로 구분하여 쓰시오. (예: ftruncate, shm_unlink)",
-                  "placeholder": "크기 확정 함수명, 삭제 함수명",
-                  "answers": [
-                        "ftruncate, shm_unlink",
-                        "ftruncate,shm_unlink",
-                        "ftruncate / shm_unlink",
-                        "ftruncate(), shm_unlink()"
+                  "type": "essay",
+                  "score": 7,
+                  "origin": "4장 IPC: POSIX 공유 메모리 전체 코드 분석",
+                  "text": "다음은 POSIX 공유 메모리를 생성하고 매핑하는 <b>C 언어 프로그램 전체 소스 코드</b>이다.\n<pre style=\"background: #0b1120; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #f8fafc; line-height: 1.45;\"><code>#include &lt;stdio.h&gt;\n#include &lt;stdlib.h&gt;\n#include &lt;string.h&gt;\n#include &lt;fcntl.h&gt;\n#include &lt;sys/shm.h&gt;\n#include &lt;sys/mman.h&gt;\n#include &lt;unistd.h&gt;\n\nint main() {\n    const int SIZE = 4096;\n    const char *name = \"OS_SHM\";\n    int shm_fd;\n    void *ptr;\n\n    shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);\n    ftruncate(shm_fd, SIZE); /* (A) 라인 */\n    ptr = mmap(0, SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);\n\n    sprintf(ptr, \"%s\", \"Antigravity OS\");\n    return 0;\n}</code></pre>\n<b>[문항]</b><br>\n(1) 코드 16행의 <code>ftruncate(shm_fd, SIZE);</code>를 <b>반드시 호출해야 하는 이유</b>를 <code>shm_open()</code>의 초기 상태와 연관지어 해석하시오.<br>\n(2) 소비자가 이 공유 메모리를 다 읽은 후 시스템에서 <b>공유 메모리 객체를 완전히 해제(삭제)</b>하기 위해 호출해야 하는 POSIX 함수 이름과 인자를 작성하시오.",
+                  "placeholder": "(1) ftruncate 필수 이유 해석\n(2) 공유 메모리 삭제 함수 호출문",
+                  "rubric": [
+                        {
+                              "criteria": "shm_open()으로 새로 생성된 객체의 초기 크기가 0바이트임을 명시",
+                              "points": "2점"
+                        },
+                        {
+                              "criteria": "ftruncate()로 필요한 크기(4096바이트)를 물리적으로 할당 및 확정해야 함을 명시",
+                              "points": "3점"
+                        },
+                        {
+                              "criteria": "shm_unlink(name) 또는 shm_unlink(\"OS_SHM\") 정확히 작성",
+                              "points": "2점"
+                        }
                   ],
-                  "explanation": "초기 생성된 객체는 0바이트이므로 ftruncate()로 물리적 크기를 확정해야 하며, 사용 후에는 shm_unlink()로 객체를 삭제합니다."
+                  "sampleAnswer": "(1) ftruncate() 호출 이유 해석:\nshm_open() 시스템 콜로 최초 생성된 POSIX 공유 메모리 객체는 크기가 0바이트 상태이다. 따라서 ftruncate()를 호출하여 데이터를 실제로 읽고 쓸 수 있도록 필요한 크기(4096바이트)만큼 객체의 크기를 물리적으로 할당 및 확정해주어야 한다. (생략 시 버스 오류나 세그폴트 발생)\n\n(2) 공유 메모리 객체 삭제 함수:\nshm_unlink(\"OS_SHM\");",
+                  "explanation": "공유 메모리 객체는 프로세스가 종료되어도 커널에 남아있으므로 shm_unlink()를 통해 명시적으로 제거해야 합니다."
             },
             {
                   "id": 10,
                   "type": "essay",
                   "score": 7,
-                  "origin": "실습 11: Pthreads 전역 변수 공유",
-                  "text": "Pthreads 멀티스레드 프로그램에서 자식 스레드가 계산하여 전역 변수 <code>total</code>에 저장한 값을 메인(부모) 스레드가 IPC 없이 직접 읽을 수 있는 이유를 스레드의 메모리 구조 관점에서 서술하시오.",
-                  "placeholder": "스레드 간 메모리 공유(Data/Heap) 서술",
+                  "origin": "6주차 실습: Pthreads 1~N 합산 전체 코드 분석",
+                  "text": "다음은 Pthreads를 사용하여 자식 스레드를 생성하고 1부터 N까지의 합을 구하는 <b>C 언어 프로그램 전체 소스 코드</b>이다.\n<pre style=\"background: #0b1120; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #f8fafc; line-height: 1.45;\"><code>#include &lt;pthread.h&gt;\n#include &lt;stdio.h&gt;\n#include &lt;stdlib.h&gt;\n\nint sum = 0; /* 전역 변수 */\n\nvoid *runner(void *param) {\n    int i, upper = atoi((char *)param);\n    sum = 0;\n    for (i = 1; i &lt;= upper; i++) {\n        sum += i;\n    }\n    pthread_exit(0);\n}\n\nint main(int argc, char *argv[]) {\n    pthread_t tid;\n    pthread_attr_t attr;\n\n    pthread_attr_init(&attr);\n    pthread_create(&tid, &attr, runner, \"10\");\n    pthread_join(tid, NULL); /* (A) 라인 */\n\n    printf(\"sum = %d\\n\", sum);\n    return 0;\n}</code></pre>\n<b>[문항]</b><br>\n(1) 위 프로그램 실행 시 <code>printf(\"sum = %d\\n\", sum);</code>에 의해 <b>출력되는 최종 sum 값</b>은 얼마인가?<br>\n(2) 메인 스레드가 별도의 파이프나 공유 메모리(IPC) 없이도 <code>sum</code>의 결과를 정상적으로 읽을 수 있는 이유를 <b>스레드의 메모리 구조(Data 세그먼트)</b> 관점에서 해석하시오.<br>\n(3) 만약 <code>(A)</code> 라인의 <code>pthread_join(tid, NULL);</code>을 주석 처리하여 삭제한다면 실행 시 어떤 심각한 문제가 발생할 수 있는지 쓰시오.",
+                  "placeholder": "(1) sum 값\n(2) 스레드 전역 변수 공유 메모리 해석\n(3) pthread_join 누락 시 문제점",
                   "rubric": [
                         {
-                              "criteria": "동일 프로세스 내 스레드들은 프로세스의 Data 영역(전역 변수), Code, Heap을 공유함을 명시",
-                              "points": "4점"
+                              "criteria": "sum = 55 정확히 명시 (1부터 10까지의 합)",
+                              "points": "2점"
                         },
                         {
-                              "criteria": "독립된 주소 공간을 갖는 프로세스와 달리 동일 메모리 주소를 직접 읽을 수 있음을 명시",
+                              "criteria": "스레드들은 프로세스의 Data 영역(전역 변수 sum)을 공유하므로 IPC 없이 직접 접근 가능함을 명시",
                               "points": "3점"
+                        },
+                        {
+                              "criteria": "join이 없으면 메인 스레드가 자식 스레드 연산 완료 전에 sum을 읽어 0이 출력되거나 프로세스가 조기 종료됨을 명시",
+                              "points": "2점"
                         }
                   ],
-                  "sampleAnswer": "동일 프로세스 내에서 생성된 모든 스레드는 부모 프로세스의 코드(Code), 데이터(Data, 전역/정적 변수), 힙(Heap) 세그먼트를 완전히 공유한다. total은 데이터 영역에 선언된 전역 변수이므로 자식 스레드가 수정한 메모리를 메인 스레드가 동일한 주소를 통해 즉시 직접 읽을 수 있다.",
-                  "explanation": "스레드가 개별 독립적으로 소유하는 것은 Stack, Register Set, Program Counter(PC), Thread ID뿐입니다."
+                  "sampleAnswer": "(1) 최종 출력값:\nsum = 55 (1 + 2 + ... + 10 = 55)\n\n(2) 스레드 메모리 구조 관점 해석:\n동일 프로세스 내에서 생성된 모든 스레드는 부모 프로세스의 코드(Code), 데이터(Data, 전역/정적 변수), 힙(Heap) 세그먼트를 공유한다. sum은 데이터 세그먼트에 선언된 전역 변수이므로 자식 스레드가 계산한 결과를 메인 스레드가 동일한 메모리 주소를 통해 IPC 없이 직접 읽을 수 있다.\n\n(3) pthread_join() 누락 시 문제점:\n메인 스레드가 자식 스레드의 연산 완료를 기다리지 않고 곧바로 printf를 실행하므로 sum이 아직 계산되지 않은 0이나 불완전한 상태로 출력될 수 있으며, main 함수가 return 0으로 종료되면서 자식 스레드가 강제 종료될 수 있다.",
+                  "explanation": "스레드는 Stack, Registers, PC만 독립 소유하고 전역 변수(Data)를 공유합니다."
             },
             {
                   "id": 11,
                   "type": "essay",
                   "score": 7,
-                  "origin": "실습 12: fork() + pthread 결합 전역변수",
-                  "text": "전역 변수 <code>int value = 10;</code> 상태에서 fork()된 자식 프로세스가 스레드를 생성하여 <code>value += 20;</code>을 수행하고 종료하였다. 이때 자식 프로세스에서 출력되는 <code>CHILD: value</code>와 부모 프로세스에서 출력되는 <code>PARENT: value</code>의 값을 각각 적고 그 차이의 원인을 서술하시오.",
-                  "placeholder": "CHILD 값, PARENT 값 및 프로세스 vs 스레드 자원 공유 차이 서술",
+                  "origin": "6주차 실습 2번: fork() + pthread 혼합 전체 코드 분석 (출제 100%)",
+                  "text": "다음은 <code>fork()</code>와 <code>pthread_create()</code>를 결합한 <b>C 언어 프로그램 전체 소스 코드</b>이다.\n<pre style=\"background: #0b1120; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #f8fafc; line-height: 1.45;\"><code>#include &lt;pthread.h&gt;\n#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/types.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint value = 0;\n\nvoid *runner(void *param) {\n    value = 5;\n    pthread_exit(0);\n}\n\nint main() {\n    pid_t pid;\n    pthread_t tid;\n\n    pid = fork();\n\n    if (pid == 0) {\n        pthread_create(&tid, NULL, runner, NULL);\n        pthread_join(tid, NULL);\n        printf(\"CHILD: value = %d\\n\", value);\n        return 0;\n    }\n    else if (pid &gt; 0) {\n        wait(NULL);\n        printf(\"PARENT: value = %d\\n\", value);\n    }\n\n    return 0;\n}</code></pre>\n<b>[문항]</b><br>\n(1) 위 프로그램 실행 시 <code>CHILD: value</code>와 <code>PARENT: value</code>에 <b>출력되는 값</b>을 각각 쓰시오.<br>\n(2) 자식 프로세스의 출력값과 부모 프로세스의 출력값이 서로 다르게 나오는 근본적인 원인을 <b>프로세스와 스레드의 자원(메모리) 공유 차이</b>를 비교하여 줄별 코드를 근거로 정밀 해석하시오.",
+                  "placeholder": "(1) CHILD 값, PARENT 값\n(2) 프로세스 메모리 독립 vs 스레드 메모리 공유 비교 해석",
                   "rubric": [
                         {
-                              "criteria": "CHILD: value = 30, PARENT: value = 10 정확히 명시",
+                              "criteria": "CHILD: value = 5, PARENT: value = 0 정확히 명시",
                               "points": "3점"
                         },
                         {
-                              "criteria": "자식 내부에서는 스레드가 전역 변수를 공유하므로 30이 됨을 명시",
+                              "criteria": "자식 프로세스 내부에서는 스레드가 전역 변수 value를 공유하므로 5가 됨을 명시",
                               "points": "2점"
                         },
                         {
-                              "criteria": "부모와 자식은 독립된 주소 공간을 가지므로 부모의 value는 10 유지됨을 명시",
+                              "criteria": "부모와 자식은 fork()로 독립된 메모리 주소 공간을 가지므로 부모의 value는 0으로 유지됨을 명시",
                               "points": "2점"
                         }
                   ],
-                  "sampleAnswer": "CHILD: value = 30, PARENT: value = 10\n[원인] 자식 프로세스 내부에서는 메인 스레드와 runner 스레드가 동일 프로세스의 전역 변수 value를 공유하므로 30이 된다. 반면 부모와 자식 프로세스는 fork()에 의해 서로 완전히 독립된 메모리 주소 공간을 가지므로, 자식 내부 스레드의 수정이 부모의 메모리에는 전혀 영향을 주지 않아 부모는 초기값 10을 그대로 출력한다.",
-                  "explanation": "교수님 6주차 실습 2번 특급 문제: 프로세스는 메모리 독립, 스레드는 메모리 공유!"
+                  "sampleAnswer": "(1) 실제 터미널 출력 결과:\nCHILD: value = 5\nPARENT: value = 0\n\n(2) 코드 및 메모리 구조 비교 해석:\n- 자식 프로세스 내부: 메인 스레드와 runner 스레드는 동일한 자식 프로세스의 가상 주소 공간(전역 변수 value)을 완전히 공유한다. 따라서 runner 스레드가 value = 5를 대입한 결과가 즉시 반영되어 CHILD: value = 5가 출력된다.\n- 부모 프로세스: 부모와 자식 프로세스는 fork() 시스템 콜에 의해 서로 완전히 분리된 독립적인 주소 공간을 가진다. 자식 프로세스 내부의 스레드가 value를 변경한 것은 부모 프로세스의 주소 공간에 전혀 영향을 미치지 않으므로, 부모 프로세스는 초기값인 PARENT: value = 0을 그대로 출력한다.",
+                  "explanation": "교수님 6주차 강의 42분 강조: '프로세스는 각자 움직이고, 스레드는 같이 움직인다!'"
             },
             {
                   "id": 12,
                   "type": "short",
                   "score": 6,
-                  "origin": "실습 13: 복합 프로세스 및 스레드 생성 개수",
-                  "text": "다음 코드 실행 시 (1) 초기 프로세스를 제외하고 새로 생성된 고유 프로세스 수와, (2) 새로 생성된 고유 스레드 수를 쉼표로 구분하여 쓰시오. (예: 5, 2)<br><pre><code>pid = fork();\nif (pid == 0) {\n    fork();\n    pthread_create(&tid, NULL, runner, NULL);\n}\nfork();</code></pre>",
+                  "origin": "6주차 실습: fork() & pthread 복합 생성 트리 전체 코드 분석",
+                  "text": "다음 <b>C 언어 프로그램 전체 코드</b>를 보고 물음에 답하시오.\n<pre style=\"background: #0b1120; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #f8fafc; line-height: 1.45;\"><code>#include &lt;pthread.h&gt;\n#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n\nvoid *runner(void *param) {\n    pthread_exit(0);\n}\n\nint main() {\n    pid_t pid;\n    pthread_t tid;\n\n    pid = fork(); /* Line 1 */\n\n    if (pid == 0) {\n        fork();                             /* Line 2 */\n        pthread_create(&tid, NULL, runner, NULL); /* Line 3 */\n    }\n\n    fork(); /* Line 4 */\n\n    return 0;\n}</code></pre>\n<b>[문항]</b><br>\n(1) 초기 프로세스를 제외하고, 이 프로그램 실행으로 인해 <b>새로 생성된 고유 프로세스(Unique Processes) 수</b>는 총 몇 개인가?<br>\n(2) 이 프로그램 실행으로 인해 <b>새로 생성된 고유 스레드(Unique Threads) 수</b>는 총 몇 개인가?<br>\n(답안 형식: <code>5, 2</code>)",
                   "placeholder": "프로세스 수, 스레드 수 (예: 5, 2)",
                   "answers": [
                         "5, 2",
-                        "5개, 2개",
                         "5,2",
+                        "5개, 2개",
                         "5개, 2"
                   ],
-                  "explanation": "첫 fork로 P1 생성(1개) -> if문 안에서 P1이 P2 생성(1개) -> P1, P2가 각각 스레드 생성(스레드 2개) -> if문 밖에서 P0, P1, P2가 각각 fork하여 P3, P4, P5 생성(3개). 새로 생성된 프로세스는 총 5개, 스레드는 2개입니다."
+                  "explanation": "1. Line 1: 초기 부모 P0가 P1 생성 -> {P0, P1}\n2. Line 2: 자식 P1만 if문 진입하여 P2 생성 -> {P0, P1, P2}\n3. Line 3: P1, P2가 각각 pthread_create 실행 -> 고유 스레드 2개 생성!\n4. Line 4: if문 밖이므로 현재 존재하는 모든 프로세스 P0, P1, P2가 각각 fork 실행 -> P3, P4, P5 생성(+3개)\n따라서 새로 생성된 고유 프로세스는 P1, P2, P3, P4, P5 총 5개(초기 부모 포함 시 6개)이고, 고유 스레드는 2개입니다."
             },
             {
                   "id": 13,
                   "type": "short",
                   "score": 6,
-                  "origin": "실습 14 & 15: OpenMP 컴파일 옵션",
-                  "text": "GCC 컴파일러에서 OpenMP 병렬 지시어(<code>#pragma omp parallel</code>)를 활성화하기 위해 반드시 추가해야 하는 컴파일러 플래그를 쓰시오. (예: -fopenmp)",
-                  "placeholder": "-fopenmp",
+                  "origin": "6주차 실습: OpenMP 전체 코드 분석",
+                  "text": "다음은 OpenMP를 사용한 <b>C 언어 프로그램 전체 소스 코드</b>이다.\n<pre style=\"background: #0b1120; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #f8fafc; line-height: 1.45;\"><code>#include &lt;omp.h&gt;\n#include &lt;stdio.h&gt;\n\nint main() {\n    #pragma omp parallel num_threads(3)\n    {\n        int tid = omp_get_thread_num();\n        printf(\"Thread ID: %d\\n\", tid);\n    }\n    return 0;\n}</code></pre>\n<b>[문항]</b><br>\n(1) 위 코드를 GCC로 컴파일할 때 병렬 지시어를 활성화하기 위해 반드시 추가해야 하는 <b>컴파일러 옵션 플래그</b>를 쓰시오.<br>\n(2) 위 프로그램을 실행했을 때 <code>Thread ID: 0</code>, <code>Thread ID: 1</code>, <code>Thread ID: 2</code>가 <b>출력되는 순서가 매번 달라질 수 있는 이유</b>를 서술하시오.<br>\n(답안 형식: <code>-fopenmp, 운영체제 CPU 스케줄러의 비결정적 스케줄링</code>)",
+                  "placeholder": "컴파일 플래그, 순서 변경 이유",
                   "answers": [
                         "-fopenmp",
+                        "-fopenmp, 비결정적",
+                        "-fopenmp, 스케줄링",
+                        "-fopenmp, 비결정적 스케줄링",
                         "fopenmp"
                   ],
-                  "explanation": "OpenMP 라이브러리 및 pragma 지시어를 처리하기 위해 gcc에 -fopenmp 옵션을 반드시 지정해야 합니다."
+                  "explanation": "컴파일 시 -fopenmp 옵션을 주어야 pragma omp 지시어가 병렬 스레드로 동작합니다. 3개의 스레드는 멀티코어 환경에서 OS CPU 스케줄러에 의해 독립적으로 병렬 스케줄링되므로 어느 스레드가 CPU를 먼저 점유할지는 비결정적(Non-deterministic)이어서 출력 순서가 매번 달라집니다."
             },
             {
                   "id": 14,
                   "type": "calc",
                   "score": 8,
-                  "origin": "7주차 스케줄링: SRTF (선점형 SJF) AWT 계산",
-                  "text": "P1(도착 0ms, 버스트 7ms), P2(도착 2ms, 버스트 4ms), P3(도착 4ms, 버스트 1ms), P4(도착 5ms, 버스트 4ms)에 대해 <b>SRTF (선점형 SJF)</b> 알고리즘을 적용할 때, 시스템의 <b>평균 대기 시간(AWT)</b>을 소수점 첫째 자리까지 구하시오. (간트차트: P1[0-2], P2[2-4], P3[4-5], P2[5-7], P4[7-11], P1[11-16])",
+                  "origin": "7주차 스케줄링: SRTF (선점형 SJF) 간트 차트 및 AWT 계산",
+                  "text": "다음 표와 같은 프로세스들이 준비 큐에 도착할 때, <b>SRTF (Shortest Remaining Time First, 선점형 SJF)</b> 알고리즘을 적용하여 시스템의 <b>평균 대기 시간(AWT)</b>을 구하시오. (숫자만 입력)\n<table style=\"width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px;\">\n<tr style=\"background: rgba(255,255,255,0.05);\"><th style=\"border: 1px solid var(--border-color); padding: 6px;\">프로세스</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">도착 시간 (Arrival Time)</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">버스트 시간 (Burst Time)</th></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P1</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">7 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P2</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">2 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">4 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P3</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">4 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">1 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P4</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">5 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">4 ms</td></tr>\n</table>\n<b>[간트 차트 힌트]</b>: <code>| P1 (2) | P2 (2) | P3 (1) | P2 (2) | P4 (4) | P1 (5) |</code><br>\n(시간: 0 → 2 → 4 → 5 → 7 → 11 → 16)",
                   "placeholder": "평균 대기 시간 숫자 입력 (예: 3.0)",
                   "answers": [
                         "3",
@@ -4214,14 +4237,14 @@ window.EXAM_DATABASE.os = {
                         "3ms",
                         "3.0ms"
                   ],
-                  "explanation": "P1 대기시간 = (0-0) + (11-2) = 9ms\nP2 대기시간 = (2-2) + (5-4) = 1ms\nP3 대기시간 = 4-4 = 0ms\nP4 대기시간 = 7-5 = 2ms\n평균 대기 시간 = (9 + 1 + 0 + 2) / 4 = 12 / 4 = 3.0ms 입니다."
+                  "explanation": "P1 대기시간 = (0 - 0) + (11 - 2) = 9ms\nP2 대기시간 = (2 - 2) + (5 - 4) = 1ms\nP3 대기시간 = 4 - 4 = 0ms\nP4 대기시간 = 7 - 5 = 2ms\n평균 대기 시간(AWT) = (9 + 1 + 0 + 2) / 4 = 12 / 4 = 3.0ms 입니다."
             },
             {
                   "id": 15,
                   "type": "calc",
                   "score": 8,
-                  "origin": "7주차 스케줄링: Round Robin (q=4) AWT 계산",
-                  "text": "동시에 0ms에 도착한 P1(버스트 20ms), P2(버스트 4ms), P3(버스트 2ms)에 대해 타임 퀀텀 <b>q = 4ms</b>인 <b>Round Robin</b> 스케줄링을 적용할 때, 시스템의 <b>평균 대기 시간(AWT)</b>을 구하시오. (간트차트: P1[0-4], P2[4-8], P3[8-10], P1[10-26])",
+                  "origin": "7주차 스케줄링: Round Robin (q=4) 간트 차트 및 AWT 계산",
+                  "text": "동시에 0ms에 도착한 3개의 프로세스(준비 큐 도착 순서: P1 → P2 → P3)에 대해 시간 할당량 <b>q = 4ms</b>인 <b>Round Robin (RR)</b> 스케줄링을 적용할 때, 시스템의 <b>평균 대기 시간(AWT)</b>을 구하시오. (숫자만 입력)\n<table style=\"width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px;\">\n<tr style=\"background: rgba(255,255,255,0.05);\"><th style=\"border: 1px solid var(--border-color); padding: 6px;\">프로세스</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">도착 시간</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">버스트 시간</th></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P1</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">20 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P2</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">4 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P3</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">2 ms</td></tr>\n</table>\n<b>[간트 차트 힌트]</b>: <code>| P1 (4) | P2 (4) | P3 (2) | P1 (16) |</code><br>\n(시간: 0 → 4 → 8 → 10 → 26)",
                   "placeholder": "평균 대기 시간 숫자 입력 (예: 6.0)",
                   "answers": [
                         "6",
@@ -4229,7 +4252,7 @@ window.EXAM_DATABASE.os = {
                         "6ms",
                         "6.0ms"
                   ],
-                  "explanation": "P1 대기시간 = 0 + (10 - 4) = 6ms\nP2 대기시간 = 4 - 0 = 4ms\nP3 대기시간 = 8 - 0 = 8ms\n평균 대기 시간 = (6 + 4 + 8) / 3 = 18 / 3 = 6.0ms 입니다."
+                  "explanation": "P1 대기시간 = 0 + (10 - 4) = 6ms\nP2 대기시간 = 4 - 0 = 4ms\nP3 대기시간 = 8 - 0 = 8ms\n평균 대기 시간(AWT) = (6 + 4 + 8) / 3 = 18 / 3 = 6.0ms 입니다."
             }
       ]
 }
