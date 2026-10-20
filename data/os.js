@@ -11,6 +11,7 @@ window.CONCEPT_DATABASE.os = {
   title: "💻 운영체제 1~7장 전범위 핵심 총정리 & 시험 오픈북 치트시트",
   filterChips: [
     { id: "all", label: "전체보기" },
+    { id: "os-fullcode", label: "💻 실습 코드 15선 전체 수록 (Full Code)", class: "amber-chip" },
     { id: "os-cheat", label: "⚡ 1초 정답 치트키 (26선)", class: "amber-chip" },
     { id: "os-sched", label: "📊 스케줄링 공식 & 간트 차트", class: "danger-chip" },
     { id: "os-ch1", label: "1장: 개요·듀얼모드·폰노이만" },
@@ -22,7 +23,477 @@ window.CONCEPT_DATABASE.os = {
   ],
   html: `
     <!-- SECTION: 1초 정답 치트키 26선 -->
-    <section id="os-cheat" class="concept-section">
+    
+    <!-- ======================================================== -->
+    <!-- SECTION: 💻 [전체 수록] 실습 코드 15선 전수 분석 & Full Code 치트시트 -->
+    <!-- ======================================================== -->
+    <section id="os-fullcode" class="concept-section">
+      <div class="section-banner gold-banner">
+        <div class="section-banner-title">
+          <span>💻 [전체 수록] 운영체제 실습 코드 15선 전수 분석 (Full Code &amp; 핵심 해설)</span>
+        </div>
+        <span style="font-size: 11.5px; opacity: 0.9;">코드 일부분만 발췌하지 않고 #include부터 main()까지 동작 가능한 100% 전체 소스코드 수록</span>
+      </div>
+
+      <!-- 실습 1 -->
+      <div class="code-study-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+          <h3 style="color: var(--accent); font-size: 17px; margin: 0;">실습 01. 기본 fork() 생성 및 부모-자식 흐름 제어</h3>
+          <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700;">3장 프로세스 생성</span>
+        </div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          * <b>핵심 개념</b>: <code>fork()</code> 호출 시 부모는 자식 PID(양수)를 받고, 자식은 0을 받습니다. <code>wait(NULL)</code>은 자식이 끝날 때까지 부모를 Wait Queue로 전환시켜 좀비/고아 프로세스를 방지합니다.
+        </div>
+        <pre style="background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #f8fafc; line-height: 1.5;"><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/wait.h&gt;
+
+int main() {
+    pid_t pid = fork();
+
+    if (pid &lt; 0) {
+        fprintf(stderr, "Fork Failed\n");
+        exit(1);
+    }
+    else if (pid == 0) {
+        /* 자식 프로세스 */
+        printf("[Child] I am the child process. (PID from fork: %d)\n", pid);
+        printf("[Child] Child work finished, exiting.\n");
+        exit(0);
+    }
+    else {
+        /* 부모 프로세스 (pid &gt; 0) */
+        printf("[Parent] I am the parent. Child PID is %d\n", pid);
+        wait(NULL); /* 자식 프로세스 종료 대기 */
+        printf("[Parent] Child terminated. Parent resumes and exits.\n");
+    }
+    return 0;
+}</code></pre>
+        <div style="margin-top: 10px; background: rgba(15,23,42,0.6); padding: 10px; border-radius: 6px; font-size: 12.5px; color: var(--text-muted);">
+          💡 <b>시험 출제 포인트</b>: 부모가 <code>wait()</code>하지 않고 먼저 종료되면 자식은 <b>고아(Orphan)</b>가 되어 <code>init/systemd</code>가 입양하며, 자식이 끝났는데 부모가 <code>wait()</code>로 회수하지 않으면 자식은 <b>좀비(Zombie)</b>가 됩니다.
+        </div>
+      </div>
+
+      <!-- 실습 2 -->
+      <div class="code-study-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+          <h3 style="color: var(--accent); font-size: 17px; margin: 0;">실습 02. fork() 반환값과 getpid() 실제 PID 추적 (출제 1순위)</h3>
+          <span class="badge" style="background: rgba(245,158,11,0.15); color: #f59e0b; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700;">녹음본 46분 강조</span>
+        </div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          * <b>핵심 개념</b>: <code>pid</code> 변수에 저장된 값(fork 반환값)과 <code>getpid()</code> 시스템 콜 호출값(본인의 실제 고유 PID)의 차이를 완벽히 구분해야 합니다.
+        </div>
+        <pre style="background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #f8fafc; line-height: 1.5;"><code>#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/wait.h&gt;
+
+int main() {
+    pid_t pid, pid1;
+    pid = fork();
+
+    if (pid &lt; 0) {
+        fprintf(stderr, "Fork Failed\n");
+        return 1;
+    }
+    else if (pid == 0) {
+        pid1 = getpid();
+        printf("child: pid = %d\n", pid);   /* 출력: 0 */
+        printf("child: pid1 = %d\n", pid1); /* 출력: 자식 자신의 실제 PID (예: 7333) */
+    }
+    else {
+        wait(NULL);
+        pid1 = getpid();
+        printf("parent: pid = %d\n", pid);   /* 출력: 자식의 실제 PID (예: 7333) */
+        printf("parent: pid1 = %d\n", pid1); /* 출력: 부모 자신의 실제 PID (예: 7332) */
+    }
+    return 0;
+}</code></pre>
+        <div style="margin-top: 10px; background: rgba(15,23,42,0.6); padding: 10px; border-radius: 6px; font-size: 12.5px; color: var(--text-muted);">
+          💡 <b>출력 순서</b>: 부모의 <code>wait(NULL)</code>로 인해 <code>child: pid = 0</code>, <code>child: pid1 = 7333</code>이 먼저 출력되고, 그 후 <code>parent: pid = 7333</code>, <code>parent: pid1 = 7332</code>가 출력됩니다.
+        </div>
+      </div>
+
+      <!-- 실습 3 -->
+      <div class="code-study-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+          <h3 style="color: var(--accent); font-size: 17px; margin: 0;">실습 03. fork() 후 전역 변수 메모리 독립성 (Copy-on-Write)</h3>
+          <span class="badge" style="background: rgba(239,68,68,0.15); color: #ef4444; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700;">서술형 단골</span>
+        </div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          * <b>핵심 개념</b>: 자식 프로세스는 부모의 메모리 주소 공간을 독립적으로 복사(Copy-on-Write)하므로, 자식이 전역 변수를 수정해도 부모의 전역 변수는 본래 값을 유지합니다.
+        </div>
+        <pre style="background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #f8fafc; line-height: 1.5;"><code>#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
+
+int value = 5; /* 전역 변수 */
+
+int main() {
+    pid_t pid = fork();
+
+    if (pid == 0) {
+        value += 15;
+        printf("CHILD: value = %d\n", value); /* 20 출력 */
+        return 0;
+    }
+    else if (pid &gt; 0) {
+        wait(NULL);
+        printf("PARENT: value = %d\n", value); /* 5 출력! */
+    }
+    return 0;
+}</code></pre>
+        <div style="margin-top: 10px; background: rgba(15,23,42,0.6); padding: 10px; border-radius: 6px; font-size: 12.5px; color: var(--text-muted);">
+          💡 <b>서술형 모범 답안</b>: <code>fork()</code> 시 자식 프로세스는 부모의 가상 주소 공간을 복제하여 <b>완전히 독립된 별도의 메모리 주소 공간</b>을 가진다. 자식이 <code>value</code>를 20으로 수정한 것은 자식의 데이터 영역에만 반영되므로 부모의 <code>value</code>는 <b>5 그대로 유지</b>된다.
+        </div>
+      </div>
+
+      <!-- 실습 4 -->
+      <div class="code-study-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+          <h3 style="color: var(--accent); font-size: 17px; margin: 0;">실습 04. fork() 후 배열(Array) 메모리 독립성 추적 (공룡책 3.1)</h3>
+          <span class="badge" style="background: rgba(168,85,247,0.15); color: #a855f7; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700;">연습문제 3.1</span>
+        </div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          * <b>핵심 개념</b>: 배열 요소에 대한 수정 연산 역시 독립된 주소 공간에서 이루어지므로, 자식이 <code>nums[i] *= -i</code>를 실행해도 부모의 배열은 변경되지 않습니다.
+        </div>
+        <pre style="background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #f8fafc; line-height: 1.5;"><code>#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
+
+#define SIZE 5
+int nums[SIZE] = {0, 1, 2, 3, 4};
+
+int main() {
+    int i;
+    pid_t pid = fork();
+
+    if (pid == 0) {
+        for (i = 0; i &lt; SIZE; i++) {
+            nums[i] *= -i;
+            printf("CHILD: %d\n", nums[i]);
+        }
+    }
+    else if (pid &gt; 0) {
+        wait(NULL);
+        for (i = 0; i &lt; SIZE; i++) {
+            printf("PARENT: %d\n", nums[i]);
+        }
+    }
+    return 0;
+}</code></pre>
+        <div style="margin-top: 10px; background: rgba(15,23,42,0.6); padding: 10px; border-radius: 6px; font-size: 12.5px; color: var(--text-muted);">
+          💡 <b>출력 결과</b>: CHILD는 <code>0, -1, -4, -9, -16</code> 출력, PARENT는 원본인 <code>0, 1, 2, 3, 4</code>가 출력됩니다.
+        </div>
+      </div>
+
+      <!-- 실습 5 -->
+      <div class="code-study-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+          <h3 style="color: var(--accent); font-size: 17px; margin: 0;">실습 05. 연쇄 fork() 루프와 프로세스 생성 수 계산</h3>
+          <span class="badge" style="background: rgba(16,185,129,0.15); color: #10b981; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700;">계산 공식</span>
+        </div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          * <b>핵심 공식</b>: fork()가 n회 반복 호출되면 총 프로세스 수는 <b>2<sup>n</sup>개</b>, 새로 생성된 자식 프로세스는 <b>2<sup>n</sup> - 1개</b>입니다.
+        </div>
+        <pre style="background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #f8fafc; line-height: 1.5;"><code>#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+
+int main() {
+    for (int i = 0; i &lt; 4; i++) {
+        fork();
+    }
+    printf("Hello\n"); /* 총 몇 번 출력될까? */
+    return 0;
+}</code></pre>
+        <div style="margin-top: 10px; background: rgba(15,23,42,0.6); padding: 10px; border-radius: 6px; font-size: 12.5px; color: var(--text-muted);">
+          💡 <b>정답</b>: 총 프로세스 수 = 2<sup>4</sup> = <b>16개</b>이며, "Hello\n"은 총 <b>16번</b> 출력됩니다.
+        </div>
+      </div>
+
+      <!-- 실습 6 -->
+      <div class="code-study-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+          <h3 style="color: var(--accent); font-size: 17px; margin: 0;">실습 06. execlp() 시스템 콜에 의한 메모리 완전 대체</h3>
+          <span class="badge" style="background: rgba(239,68,68,0.15); color: #ef4444; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700;">LINE J 미실행</span>
+        </div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          * <b>핵심 개념</b>: <code>execlp()</code>는 현재 프로세스의 메모리 공간 전체를 새 프로그램으로 완전히 덮어쓰므로 호출 성공 후의 기존 C 코드는 절대 실행되지 않습니다.
+        </div>
+        <pre style="background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #f8fafc; line-height: 1.5;"><code>#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
+
+int main() {
+    pid_t pid = fork();
+
+    if (pid == 0) {
+        execlp("/bin/ls", "ls", NULL);
+        printf("LINE J\n"); /* 이 줄은 절대로 실행되지 않음! */
+    } else {
+        wait(NULL);
+        printf("Child Complete\n");
+    }
+    return 0;
+}</code></pre>
+        <div style="margin-top: 10px; background: rgba(15,23,42,0.6); padding: 10px; border-radius: 6px; font-size: 12.5px; color: var(--text-muted);">
+          💡 <b>이유</b>: <code>execlp()</code>가 현재 프로세스의 텍스트, 데이터, 스택, 힙을 <code>/bin/ls</code> 바이너리로 <b>완전히 대체(Overwrite)</b>하기 때문입니다.
+        </div>
+      </div>
+
+      <!-- 실습 7 & 8 -->
+      <div class="code-study-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+          <h3 style="color: var(--accent); font-size: 17px; margin: 0;">실습 07 &amp; 08. POSIX 공유 메모리 (Producer &amp; Consumer) 전체 코드</h3>
+          <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700;">IPC 공유 메모리</span>
+        </div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          * <b>핵심 함수 4총사</b>: <code>shm_open()</code>(생성), <code>ftruncate()</code>(크기 확정), <code>mmap()</code>(주소 매핑), <code>shm_unlink()</code>(객체 삭제). 컴파일 시 <code>-lrt</code> 필수.
+        </div>
+        <pre style="background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #f8fafc; line-height: 1.5;"><code>/* [Producer.c - 생산자 전체 코드] */
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;sys/shm.h&gt;
+#include &lt;sys/mman.h&gt;
+#include &lt;unistd.h&gt;
+
+int main() {
+    const int SIZE = 4096;
+    const char *name = "OS";
+    const char *msg = "Hello Shared Memory!\n";
+    int shm_fd;
+    void *ptr;
+
+    shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
+    ftruncate(shm_fd, SIZE); /* 크기를 4096바이트로 확정 */
+    ptr = mmap(0, SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
+
+    sprintf(ptr, "%s", msg);
+    printf("[Producer] Wrote to shared memory.\n");
+    return 0;
+}
+
+/* [Consumer.c - 소비자 전체 코드] */
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;sys/shm.h&gt;
+#include &lt;sys/mman.h&gt;
+#include &lt;unistd.h&gt;
+
+int main() {
+    const int SIZE = 4096;
+    const char *name = "OS";
+    int shm_fd = shm_open(name, O_RDONLY, 0666);
+    void *ptr = mmap(0, SIZE, PROT_READ, MAP_SHARED, shm_fd, 0);
+
+    printf("[Consumer] Read: %s", (char *)ptr);
+    shm_unlink(name); /* 객체 삭제 */
+    return 0;
+}</code></pre>
+        <div style="margin-top: 10px; background: rgba(15,23,42,0.6); padding: 10px; border-radius: 6px; font-size: 12.5px; color: var(--text-muted);">
+          💡 <b>Segfault 원인</b>: 소비자가 포인터를 계속 이동시켜 할당 범위를 넘어가거나, <code>shm_unlink()</code> 후 무효화된 메모리를 참조할 때 Segmentation fault가 발생합니다.
+        </div>
+      </div>
+
+      <!-- 실습 9 -->
+      <div class="code-study-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+          <h3 style="color: var(--accent); font-size: 17px; margin: 0;">실습 09. 단방향 일반 파이프(Ordinary Pipe) 부모-자식 통신</h3>
+          <span class="badge" style="background: rgba(245,158,11,0.15); color: #f59e0b; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700;">IPC 파이프</span>
+        </div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          * <b>핵심 규칙</b>: <code>fd[0]</code>은 읽기(READ_END), <code>fd[1]</code>은 쓰기(WRITE_END). 쓰지 않는 끝단은 반드시 <code>close()</code>해야 <code>read()</code>가 EOF(0)를 감지하고 대기에서 벗어납니다.
+        </div>
+        <pre style="background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #f8fafc; line-height: 1.5;"><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
+
+#define BUFFER_SIZE 25
+#define READ_END 0
+#define WRITE_END 1
+
+int main() {
+    char write_msg[BUFFER_SIZE] = "Greetings";
+    char read_msg[BUFFER_SIZE];
+    int fd[2];
+    pid_t pid;
+
+    if (pipe(fd) == -1) return 1; /* 파이프 생성 */
+
+    pid = fork();
+    if (pid &gt; 0) {
+        /* 부모 (송신): 읽기 끝단 닫기 */
+        close(fd[READ_END]);
+        write(fd[WRITE_END], write_msg, strlen(write_msg) + 1);
+        close(fd[WRITE_END]); /* 쓰기 완료 후 닫기 */
+        wait(NULL);
+    } else {
+        /* 자식 (수신): 쓰기 끝단 닫기 */
+        close(fd[WRITE_END]);
+        read(fd[READ_END], read_msg, BUFFER_SIZE);
+        printf("[Child] Read: %s\n", read_msg);
+        close(fd[READ_END]);
+    }
+    return 0;
+}</code></pre>
+      </div>
+
+      <!-- 실습 10 -->
+      <div class="code-study-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+          <h3 style="color: var(--accent); font-size: 17px; margin: 0;">실습 10. 환형 버퍼(Circular Buffer) 생산자-소비자 동기화 조건식</h3>
+          <span class="badge" style="background: rgba(16,185,129,0.15); color: #10b981; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700;">동기화 수식</span>
+        </div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          * <b>수식 암기 필수</b>: 버퍼 크기가 N일 때, 가득 참(Full) 조건은 <code>((in + 1) % N) == out</code>이고, 비어 있음(Empty) 조건은 <code>in == out</code>입니다.
+        </div>
+        <pre style="background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #f8fafc; line-height: 1.5;"><code>#define BUFFER_SIZE 10
+item buffer[BUFFER_SIZE];
+int in = 0, out = 0;
+
+/* 생산자 (Producer) */
+while (((in + 1) % BUFFER_SIZE) == out)
+    ; /* 버퍼가 꽉 찼으면 busy waiting */
+buffer[in] = next_produced;
+in = (in + 1) % BUFFER_SIZE;
+
+/* 소비자 (Consumer) */
+while (in == out)
+    ; /* 버퍼가 비었으면 busy waiting */
+next_consumed = buffer[out];
+out = (out + 1) % BUFFER_SIZE;</code></pre>
+        <div style="margin-top: 10px; background: rgba(15,23,42,0.6); padding: 10px; border-radius: 6px; font-size: 12.5px; color: var(--text-muted);">
+          💡 <b>최대 저장 아이템 개수</b>: <code>BUFFER_SIZE - 1</code> = <b>9개</b> (한 칸을 비워두지 않으면 빈 상태와 포화 상태를 구분할 수 없음).
+        </div>
+      </div>
+
+      <!-- 실습 11 -->
+      <div class="code-study-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+          <h3 style="color: var(--accent); font-size: 17px; margin: 0;">실습 11. POSIX Pthreads 스레드 생성 및 1~N 합산 전체 코드</h3>
+          <span class="badge" style="background: rgba(168,85,247,0.15); color: #a855f7; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700;">6주차 실습 1</span>
+        </div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          * <b>컴파일</b>: <code>gcc thread.c -lpthread</code>. 스레드 함수는 <code>void *func(void *arg)</code> 원형을 지키며, 전역 변수 <code>sum</code>을 공유합니다.
+        </div>
+        <pre style="background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #f8fafc; line-height: 1.5;"><code>#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int sum = 0; /* 모든 스레드가 공유하는 전역 변수 */
+
+void *runner(void *param) {
+    int i, upper = atoi((char *)param);
+    sum = 0;
+    for (i = 1; i &lt;= upper; i++) sum += i;
+    pthread_exit(0);
+}
+
+int main(int argc, char *argv[]) {
+    pthread_t tid;
+    pthread_attr_t attr;
+
+    if (argc != 2) return 1;
+
+    pthread_attr_init(&attr);
+    pthread_create(&tid, &attr, runner, argv[1]);
+    pthread_join(tid, NULL); /* 스레드 종료 대기 */
+
+    printf("sum = %d\n", sum);
+    return 0;
+}</code></pre>
+      </div>
+
+      <!-- 실습 12 -->
+      <div class="code-study-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+          <h3 style="color: var(--accent); font-size: 17px; margin: 0;">실습 12. fork()와 pthread_create() 혼합 시 전역 변수 공유 분석</h3>
+          <span class="badge" style="background: rgba(239,68,68,0.15); color: #ef4444; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700;">시험 적중 100%</span>
+        </div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          * <b>핵심 결과</b>: 자식 프로세스 안에서는 스레드가 <code>value = 5</code>로 바꾼 것이 공유되어 <b>CHILD: value = 5</b>가 되지만, 부모는 독립된 공간이므로 <b>PARENT: value = 0</b>이 출력됩니다!
+        </div>
+        <pre style="background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #f8fafc; line-height: 1.5;"><code>#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
+
+int value = 0;
+
+void *runner(void *param) {
+    value = 5;
+    pthread_exit(0);
+}
+
+int main() {
+    pid_t pid = fork();
+    pthread_t tid;
+
+    if (pid == 0) {
+        pthread_create(&tid, NULL, runner, NULL);
+        pthread_join(tid, NULL);
+        printf("CHILD: value = %d\n", value); /* 출력: 5 */
+        return 0;
+    } else if (pid &gt; 0) {
+        wait(NULL);
+        printf("PARENT: value = %d\n", value); /* 출력: 0 */
+    }
+    return 0;
+}</code></pre>
+      </div>
+
+      <!-- 실습 13 -->
+      <div class="code-study-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+          <h3 style="color: var(--accent); font-size: 17px; margin: 0;">실습 13. fork()와 pthread_create() 복합 트리 생성 개수 추적</h3>
+          <span class="badge" style="background: rgba(168,85,247,0.15); color: #a855f7; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700;">6주차 복합예제</span>
+        </div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          * <b>질문</b>: 신규 생성된 고유 프로세스 수와 고유 스레드 수는?
+        </div>
+        <pre style="background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #f8fafc; line-height: 1.5;"><code>pid = fork(); /* 1: P0가 P1 생성 -> {P0, P1} */
+if (pid == 0) {
+    fork(); /* 2: P1이 P2 생성 -> {P0, P1, P2} */
+    pthread_create(&tid, NULL, runner, NULL); /* 3: P1, P2가 각각 스레드 1개씩 생성 -> 스레드 2개 */
+}
+fork(); /* 4: P0, P1, P2가 각각 fork -> P3, P4, P5 생성 (+3) */</code></pre>
+        <div style="margin-top: 10px; background: rgba(15,23,42,0.6); padding: 10px; border-radius: 6px; font-size: 12.5px; color: var(--text-muted);">
+          💡 <b>정답</b>: 새로 생성된 고유 프로세스 수 = <b>5개</b> (초기 부모 포함 시 6개), 새로 생성된 고유 스레드 수 = <b>2개</b>.
+        </div>
+      </div>
+
+      <!-- 실습 14 & 15 -->
+      <div class="code-study-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+          <h3 style="color: var(--accent); font-size: 17px; margin: 0;">실습 14 &amp; 15. OpenMP 암묵적 멀티스레딩 전체 코드</h3>
+          <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700;">OpenMP API</span>
+        </div>
+        <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 12px;">
+          * <b>핵심</b>: 컴파일 시 <code>-fopenmp</code> 플래그 지정. 병렬 실행되는 스레드의 출력 순서는 운영체제 스케줄러에 따라 비결정적(Non-deterministic)으로 변경됩니다.
+        </div>
+        <pre style="background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #f8fafc; line-height: 1.5;"><code>#include &lt;omp.h&gt;
+#include &lt;stdio.h&gt;
+
+int main() {
+    /* 4개의 스레드를 생성하여 병렬 실행 */
+    #pragma omp parallel num_threads(4)
+    {
+        int tid = omp_get_thread_num();
+        int total = omp_get_num_threads();
+        printf("Hello World from thread %d of %d\n", tid, total);
+    }
+    return 0;
+}</code></pre>
+      </div>
+    </section>
+
+<section id="os-cheat" class="concept-section">
       <div class="section-banner gold-banner">
         <div class="section-banner-title">
           <span>⚡ 운영체제 1초 정답 치트키 (교수님 강조 &amp; 시험 빈출 26선)</span>
@@ -3486,6 +3957,281 @@ window.EXAM_DATABASE.os = {
           explanation: "(1) 단일 코어에서 스레드 사이를 시분할로 번갈아 끼워 넣는 기법은 <b>인터리빙 (Interleaving)</b>입니다.<br>(2) 데이터를 분할하여 동일 연산을 수행하는 것은 <b>데이터 병렬성 (Data Parallelism)</b>이며, 서로 다른 함수/작업을 분배하는 것은 태스크 병렬성(Task Parallelism)입니다."
         }
       ]
-    }
+    },
+{
+      "id": "os_exam_code",
+      "name": "제5회 [코드 분석 전문] C 실습 코드 & 간트 차트 실전 모의고사 (15문항)",
+      "tag": "실습 코드 100% 전수 분석 · 계산 및 간트 차트 15문항 (100점)",
+      "desc": "수업 시간 실습 코드(fork, exec, wait, pipe, shm_open, pthread, OpenMP)와 SRTF/RR 스케줄링 간트 차트 및 평균 대기 시간(AWT) 계산으로만 구성된 최고난도 실전 모의고사",
+      "questions": [
+            {
+                  "id": 1,
+                  "type": "essay",
+                  "score": 7,
+                  "origin": "실습 02: fork() 반환값 및 getpid()",
+                  "text": "부모 프로세스의 실제 PID가 2500, 새로 생성된 자식 프로세스의 실제 PID가 2501일 때, 다음 C 코드의 표준 출력(stdout) 4줄을 순서대로 적고, pid 변수와 pid1 변수의 차이를 서술하시오.<br><pre><code>pid = fork();\nif (pid == 0) {\n    pid1 = getpid();\n    printf(\"child: pid = %d\\n\", pid);\n    printf(\"child: pid1 = %d\\n\", pid1);\n} else {\n    wait(NULL);\n    pid1 = getpid();\n    printf(\"parent: pid = %d\\n\", pid);\n    printf(\"parent: pid1 = %d\\n\", pid1);\n}</code></pre>",
+                  "placeholder": "4줄의 출력 내용과 pid vs pid1 차이 서술",
+                  "rubric": [
+                        {
+                              "criteria": "자식 출력 2줄 정확: child: pid = 0, child: pid1 = 2501",
+                              "points": "3점"
+                        },
+                        {
+                              "criteria": "부모 출력 2줄 정확: parent: pid = 2501, parent: pid1 = 2500",
+                              "points": "2점"
+                        },
+                        {
+                              "criteria": "pid 변수는 fork 반환값(자식은 0, 부모는 자식PID), pid1은 getpid()의 자기자신 PID임을 명시",
+                              "points": "2점"
+                        }
+                  ],
+                  "sampleAnswer": "child: pid = 0\nchild: pid1 = 2501\nparent: pid = 2501\nparent: pid1 = 2500\n[이유] fork() 반환값으로 자식에게는 0, 부모에게는 생성된 자식의 PID(2501)가 리턴되고, getpid()는 호출한 프로세스 자기 자신의 실제 PID를 반환하기 때문.",
+                  "explanation": "부모 프로세스가 wait(NULL)을 호출하므로 자식이 먼저 실행되어 종료된 후 부모가 실행됩니다."
+            },
+            {
+                  "id": 2,
+                  "type": "essay",
+                  "score": 7,
+                  "origin": "실습 03: fork() 후 전역 변수 Copy-on-Write",
+                  "text": "전역 변수 <code>int value = 12;</code>가 선언된 상태에서 자식 프로세스가 <code>value += 8;</code>을 수행하고 종료되었을 때, 부모 프로세스의 <code>printf(\"PARENT: value = %d\\n\", value);</code>에서 출력되는 값을 적고, 왜 그 값이 출력되는지 프로세스의 메모리 주소 공간 관점에서 구체적으로 서술하시오.",
+                  "placeholder": "출력값과 프로세스 메모리 독립성 이유 서술",
+                  "rubric": [
+                        {
+                              "criteria": "출력값 12 정확히 명시",
+                              "points": "3점"
+                        },
+                        {
+                              "criteria": "fork 시 부모와 자식은 독립된 가상 주소 공간을 가짐(Copy-on-Write) 명시",
+                              "points": "2점"
+                        },
+                        {
+                              "criteria": "자식의 수정은 자식 데이터 영역에만 적용되어 부모의 value는 불변임을 명시",
+                              "points": "2점"
+                        }
+                  ],
+                  "sampleAnswer": "출력값: PARENT: value = 12\n[이유] fork() 시스템 콜은 부모의 주소 공간을 복제하여 자식에게 완전히 독립된 별도의 메모리 공간을 할당한다. 자식이 value를 20으로 수정한 것은 자식 전용 메모리에만 반영되므로, 부모의 메모리 영역에 있는 value는 원본 값인 12를 그대로 유지한다.",
+                  "explanation": "교수님 강조: 자식 프로세스에서 전역 변수를 아무리 수정해도 부모 프로세스의 전역 변수는 절대로 변경되지 않습니다."
+            },
+            {
+                  "id": 3,
+                  "type": "short",
+                  "score": 6,
+                  "origin": "실습 04: 배열 메모리 연산 추적",
+                  "text": "크기 4인 배열 <code>int nums[4] = {1, 2, 3, 4};</code>에 대해, 자식 프로세스가 <code>nums[i] *= 2</code>를 수행하여 <code>C:2 C:4 C:6 C:8 </code>을 출력한 뒤 종료되었다. 이후 부모 프로세스가 <code>wait(NULL)</code>을 마치고 <code>P:%d </code>로 자신의 배열을 출력할 때 출력되는 문자열을 쓰시오.",
+                  "placeholder": "예: P:1 P:2 P:3 P:4",
+                  "answers": [
+                        "P:1 P:2 P:3 P:4",
+                        "P:1 P:2 P:3 P:4 ",
+                        "1 2 3 4",
+                        "1, 2, 3, 4"
+                  ],
+                  "explanation": "프로세스 간 메모리는 독립되어 있으므로 자식의 배열 수정은 부모에게 반영되지 않아 부모는 원본 {1, 2, 3, 4}를 출력합니다."
+            },
+            {
+                  "id": 4,
+                  "type": "essay",
+                  "score": 7,
+                  "origin": "실습 06: execlp() 시스템 콜",
+                  "text": "자식 프로세스에서 <code>execlp(\"/bin/echo\", \"echo\", \"Hello\", NULL);</code>을 호출한 뒤 바로 다음 줄에 <code>printf(\"STEP 2\\n\");</code>를 작성하였다. 이 프로그램 실행 시 \"STEP 2\"가 절대로 출력되지 않는 이유를 운영체제의 <code>exec</code> 계열 시스템 콜 동작 메커니즘 관점에서 서술하시오.",
+                  "placeholder": "exec 시스템 콜의 메모리 대체 메커니즘 서술",
+                  "rubric": [
+                        {
+                              "criteria": "exec 계열 시스템 콜이 현재 프로세스의 메모리 공간 전체를 새 프로그램으로 대체(덮어쓰기)함을 명시",
+                              "points": "4점"
+                        },
+                        {
+                              "criteria": "호출 성공 시 기존 코드가 소멸되어 다음 라인이 실행되지 않음을 명시",
+                              "points": "3점"
+                        }
+                  ],
+                  "sampleAnswer": "execlp()를 비롯한 exec 계열 시스템 콜은 현재 프로세스의 주소 공간(텍스트, 데이터, 힙, 스택)을 새로운 실행 파일(/bin/echo)의 이미지로 완전히 대체(덮어쓰기)한다. 호출이 성공하면 기존 프로그램의 코드는 메모리에서 소멸되므로 뒤이어 작성된 STEP 2는 절대로 실행될 수 없다.",
+                  "explanation": "오직 execlp 호출이 실패했을 때만 에러 코드를 반환하며 다음 줄이 실행됩니다."
+            },
+            {
+                  "id": 5,
+                  "type": "short",
+                  "score": 6,
+                  "origin": "실습 05: 연쇄 fork() 루프",
+                  "text": "루프 <code>for (int i = 0; i < 3; i++) fork();</code> 실행 후 <code>printf(\"Alive\\n\");</code>를 수행할 때, (1) 새로 생성된 자식 프로세스의 개수와, (2) Alive 문자열이 출력되는 총 횟수를 순서대로 쓰시오. (예: 7, 8)",
+                  "placeholder": "예: 7, 8",
+                  "answers": [
+                        "7, 8",
+                        "7개, 8번",
+                        "7,8",
+                        "7개, 8회",
+                        "7개, 8개"
+                  ],
+                  "explanation": "총 프로세스 수는 2^3 = 8개이며, 초기 부모 1개를 제외하면 새로 생성된 자식은 7개입니다. 8개의 모든 프로세스가 1번씩 출력하므로 8회 출력됩니다."
+            },
+            {
+                  "id": 6,
+                  "type": "calc",
+                  "score": 6,
+                  "origin": "실습 05: 조건부 fork() 분기",
+                  "text": "다음 C 코드 실행 시 \"Antigravity\" 문자열이 출력되는 총 횟수를 구하시오. (숫자만 입력)<br><pre><code>fork();\nif (fork() == 0) {\n    fork();\n}\nprintf(\"Antigravity\\n\");</code></pre>",
+                  "placeholder": "출력 횟수 숫자 입력 (예: 6)",
+                  "answers": [
+                        "6",
+                        "6번",
+                        "6회",
+                        "6개"
+                  ],
+                  "explanation": "첫 fork로 2개 -> if(fork()==0)에서 2개 자식만 if 진입 -> 진입한 2개가 각각 fork하여 2개 추가 -> 최종 2 + 2 + 2 = 6개의 프로세스가 살아남아 각각 1회씩 출력합니다."
+            },
+            {
+                  "id": 7,
+                  "type": "essay",
+                  "score": 7,
+                  "origin": "실습 09: 일반 파이프 close()와 EOF",
+                  "text": "UNIX 일반 파이프(Ordinary Pipe) 통신에서, 부모가 자식에게 데이터를 전송할 때 사용하지 않는 파이프 끝단을 <code>close()</code> 함수로 닫아주는 이유를 수신 측의 <code>read()</code> 동기화(EOF 감지) 관점에서 서술하시오.",
+                  "placeholder": "쓰기 끝단 close 미수행 시 read의 무한 대기 문제 서술",
+                  "rubric": [
+                        {
+                              "criteria": "쓰기 끝단이 열려 있으면 read()는 데이터가 더 올 수 있다고 판단하여 무한 대기(블록)함을 명시",
+                              "points": "4점"
+                        },
+                        {
+                              "criteria": "모든 쓰기 포트가 close되어야 read()가 EOF(반환값 0)를 감지하고 정상 종료함을 명시",
+                              "points": "3점"
+                        }
+                  ],
+                  "sampleAnswer": "파이프의 쓰기 끝단(fd[1])이 열려 있는 프로세스가 하나라도 남아 있으면, 수신 프로세스의 read()는 추가 데이터가 들어올 수 있다고 판단하여 무한정 블록(대기) 상태에 빠진다. 모든 쓰기 끝단이 close()되어야만 read()가 파일의 끝(EOF, 0)을 감지하고 대기에서 빠져나올 수 있기 때문이다.",
+                  "explanation": "Ordinary pipe에서 fd[0]은 읽기 끝단, fd[1]은 쓰기 끝단입니다."
+            },
+            {
+                  "id": 8,
+                  "type": "short",
+                  "score": 6,
+                  "origin": "실습 10: 환형 버퍼 판별 수식",
+                  "text": "크기가 N인 환형 버퍼에서 생산자가 버퍼가 가득 찼는지(Full) 검사하는 C 언어 while 조건식을 쓰시오. (포인터: in, out)",
+                  "placeholder": "while문 조건식 (예: ((in + 1) % N) == out)",
+                  "answers": [
+                        "((in + 1) % N) == out",
+                        "((in+1)%N)==out",
+                        "(in + 1) % N == out",
+                        "((in + 1) % BUFFER_SIZE) == out",
+                        "((in+1)%BUFFER_SIZE)==out"
+                  ],
+                  "explanation": "버퍼가 가득 찬 조건은 ((in + 1) % N) == out 이며, 버퍼가 빈 조건은 in == out 입니다."
+            },
+            {
+                  "id": 9,
+                  "type": "short",
+                  "score": 6,
+                  "origin": "실습 07 & 08: POSIX 공유 메모리 ftruncate & 삭제",
+                  "text": "POSIX 공유 메모리에서 shm_open()으로 생성된 객체의 크기를 실제 바이트 단위로 확정 및 할당하기 위해 호출하는 시스템 콜 함수명과, 사용 완료 후 객체를 삭제하는 함수명을 쉼표로 구분하여 쓰시오. (예: ftruncate, shm_unlink)",
+                  "placeholder": "크기 확정 함수명, 삭제 함수명",
+                  "answers": [
+                        "ftruncate, shm_unlink",
+                        "ftruncate,shm_unlink",
+                        "ftruncate / shm_unlink",
+                        "ftruncate(), shm_unlink()"
+                  ],
+                  "explanation": "초기 생성된 객체는 0바이트이므로 ftruncate()로 물리적 크기를 확정해야 하며, 사용 후에는 shm_unlink()로 객체를 삭제합니다."
+            },
+            {
+                  "id": 10,
+                  "type": "essay",
+                  "score": 7,
+                  "origin": "실습 11: Pthreads 전역 변수 공유",
+                  "text": "Pthreads 멀티스레드 프로그램에서 자식 스레드가 계산하여 전역 변수 <code>total</code>에 저장한 값을 메인(부모) 스레드가 IPC 없이 직접 읽을 수 있는 이유를 스레드의 메모리 구조 관점에서 서술하시오.",
+                  "placeholder": "스레드 간 메모리 공유(Data/Heap) 서술",
+                  "rubric": [
+                        {
+                              "criteria": "동일 프로세스 내 스레드들은 프로세스의 Data 영역(전역 변수), Code, Heap을 공유함을 명시",
+                              "points": "4점"
+                        },
+                        {
+                              "criteria": "독립된 주소 공간을 갖는 프로세스와 달리 동일 메모리 주소를 직접 읽을 수 있음을 명시",
+                              "points": "3점"
+                        }
+                  ],
+                  "sampleAnswer": "동일 프로세스 내에서 생성된 모든 스레드는 부모 프로세스의 코드(Code), 데이터(Data, 전역/정적 변수), 힙(Heap) 세그먼트를 완전히 공유한다. total은 데이터 영역에 선언된 전역 변수이므로 자식 스레드가 수정한 메모리를 메인 스레드가 동일한 주소를 통해 즉시 직접 읽을 수 있다.",
+                  "explanation": "스레드가 개별 독립적으로 소유하는 것은 Stack, Register Set, Program Counter(PC), Thread ID뿐입니다."
+            },
+            {
+                  "id": 11,
+                  "type": "essay",
+                  "score": 7,
+                  "origin": "실습 12: fork() + pthread 결합 전역변수",
+                  "text": "전역 변수 <code>int value = 10;</code> 상태에서 fork()된 자식 프로세스가 스레드를 생성하여 <code>value += 20;</code>을 수행하고 종료하였다. 이때 자식 프로세스에서 출력되는 <code>CHILD: value</code>와 부모 프로세스에서 출력되는 <code>PARENT: value</code>의 값을 각각 적고 그 차이의 원인을 서술하시오.",
+                  "placeholder": "CHILD 값, PARENT 값 및 프로세스 vs 스레드 자원 공유 차이 서술",
+                  "rubric": [
+                        {
+                              "criteria": "CHILD: value = 30, PARENT: value = 10 정확히 명시",
+                              "points": "3점"
+                        },
+                        {
+                              "criteria": "자식 내부에서는 스레드가 전역 변수를 공유하므로 30이 됨을 명시",
+                              "points": "2점"
+                        },
+                        {
+                              "criteria": "부모와 자식은 독립된 주소 공간을 가지므로 부모의 value는 10 유지됨을 명시",
+                              "points": "2점"
+                        }
+                  ],
+                  "sampleAnswer": "CHILD: value = 30, PARENT: value = 10\n[원인] 자식 프로세스 내부에서는 메인 스레드와 runner 스레드가 동일 프로세스의 전역 변수 value를 공유하므로 30이 된다. 반면 부모와 자식 프로세스는 fork()에 의해 서로 완전히 독립된 메모리 주소 공간을 가지므로, 자식 내부 스레드의 수정이 부모의 메모리에는 전혀 영향을 주지 않아 부모는 초기값 10을 그대로 출력한다.",
+                  "explanation": "교수님 6주차 실습 2번 특급 문제: 프로세스는 메모리 독립, 스레드는 메모리 공유!"
+            },
+            {
+                  "id": 12,
+                  "type": "short",
+                  "score": 6,
+                  "origin": "실습 13: 복합 프로세스 및 스레드 생성 개수",
+                  "text": "다음 코드 실행 시 (1) 초기 프로세스를 제외하고 새로 생성된 고유 프로세스 수와, (2) 새로 생성된 고유 스레드 수를 쉼표로 구분하여 쓰시오. (예: 5, 2)<br><pre><code>pid = fork();\nif (pid == 0) {\n    fork();\n    pthread_create(&tid, NULL, runner, NULL);\n}\nfork();</code></pre>",
+                  "placeholder": "프로세스 수, 스레드 수 (예: 5, 2)",
+                  "answers": [
+                        "5, 2",
+                        "5개, 2개",
+                        "5,2",
+                        "5개, 2"
+                  ],
+                  "explanation": "첫 fork로 P1 생성(1개) -> if문 안에서 P1이 P2 생성(1개) -> P1, P2가 각각 스레드 생성(스레드 2개) -> if문 밖에서 P0, P1, P2가 각각 fork하여 P3, P4, P5 생성(3개). 새로 생성된 프로세스는 총 5개, 스레드는 2개입니다."
+            },
+            {
+                  "id": 13,
+                  "type": "short",
+                  "score": 6,
+                  "origin": "실습 14 & 15: OpenMP 컴파일 옵션",
+                  "text": "GCC 컴파일러에서 OpenMP 병렬 지시어(<code>#pragma omp parallel</code>)를 활성화하기 위해 반드시 추가해야 하는 컴파일러 플래그를 쓰시오. (예: -fopenmp)",
+                  "placeholder": "-fopenmp",
+                  "answers": [
+                        "-fopenmp",
+                        "fopenmp"
+                  ],
+                  "explanation": "OpenMP 라이브러리 및 pragma 지시어를 처리하기 위해 gcc에 -fopenmp 옵션을 반드시 지정해야 합니다."
+            },
+            {
+                  "id": 14,
+                  "type": "calc",
+                  "score": 8,
+                  "origin": "7주차 스케줄링: SRTF (선점형 SJF) AWT 계산",
+                  "text": "P1(도착 0ms, 버스트 7ms), P2(도착 2ms, 버스트 4ms), P3(도착 4ms, 버스트 1ms), P4(도착 5ms, 버스트 4ms)에 대해 <b>SRTF (선점형 SJF)</b> 알고리즘을 적용할 때, 시스템의 <b>평균 대기 시간(AWT)</b>을 소수점 첫째 자리까지 구하시오. (간트차트: P1[0-2], P2[2-4], P3[4-5], P2[5-7], P4[7-11], P1[11-16])",
+                  "placeholder": "평균 대기 시간 숫자 입력 (예: 3.0)",
+                  "answers": [
+                        "3",
+                        "3.0",
+                        "3ms",
+                        "3.0ms"
+                  ],
+                  "explanation": "P1 대기시간 = (0-0) + (11-2) = 9ms\nP2 대기시간 = (2-2) + (5-4) = 1ms\nP3 대기시간 = 4-4 = 0ms\nP4 대기시간 = 7-5 = 2ms\n평균 대기 시간 = (9 + 1 + 0 + 2) / 4 = 12 / 4 = 3.0ms 입니다."
+            },
+            {
+                  "id": 15,
+                  "type": "calc",
+                  "score": 8,
+                  "origin": "7주차 스케줄링: Round Robin (q=4) AWT 계산",
+                  "text": "동시에 0ms에 도착한 P1(버스트 20ms), P2(버스트 4ms), P3(버스트 2ms)에 대해 타임 퀀텀 <b>q = 4ms</b>인 <b>Round Robin</b> 스케줄링을 적용할 때, 시스템의 <b>평균 대기 시간(AWT)</b>을 구하시오. (간트차트: P1[0-4], P2[4-8], P3[8-10], P1[10-26])",
+                  "placeholder": "평균 대기 시간 숫자 입력 (예: 6.0)",
+                  "answers": [
+                        "6",
+                        "6.0",
+                        "6ms",
+                        "6.0ms"
+                  ],
+                  "explanation": "P1 대기시간 = 0 + (10 - 4) = 6ms\nP2 대기시간 = 4 - 0 = 4ms\nP3 대기시간 = 8 - 0 = 8ms\n평균 대기 시간 = (6 + 4 + 8) / 3 = 18 / 3 = 6.0ms 입니다."
+            }
+      ]
+}
   ]
 };
