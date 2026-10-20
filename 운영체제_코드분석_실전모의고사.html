@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운영체제 중간고사 [코드 분석 전문] 실전 모의고사</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-card: #1e293b;
+            --bg-code: #0b1120;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-cyan: #38bdf8;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-yellow: #f59e0b;
+            --accent-purple: #a855f7;
+            --accent-red: #ef4444;
+            --border-color: #334155;
+            --border-highlight: #475569;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* Header & Sticky Bar */
+        header {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .exam-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .header-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 12px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Sticky Control Bar */
+        .control-bar {
+            position: sticky;
+            top: 16px;
+            z-index: 100;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-highlight);
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        .timer-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-yellow);
+        }
+
+        .btn {
+            background: var(--accent-blue);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        /* Question Cards */
+        .q-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: border-color 0.2s;
+        }
+
+        .q-card:hover {
+            border-color: var(--border-highlight);
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .q-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .q-num {
+            background: var(--accent-cyan);
+            color: #0f172a;
+            font-weight: 800;
+            font-size: 0.9rem;
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        .q-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .q-tag {
+            background: rgba(168, 85, 247, 0.15);
+            color: var(--accent-purple);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .q-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--bg-code);
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 16px;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #e2e8f0;
+            margin-bottom: 16px;
+        }
+
+        code .keyword { color: #f43f5e; font-weight: 600; }
+        code .type { color: #38bdf8; font-weight: 600; }
+        code .func { color: #60a5fa; }
+        code .string { color: #34d399; }
+        code .comment { color: #64748b; font-style: italic; }
+        code .number { color: #fbbf24; }
+
+        /* Answer Input Area */
+        .user-answer-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 16px;
+        }
+
+        .user-answer-box label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .user-answer-box textarea, .user-answer-box input[type="text"] {
+            width: 100%;
+            background: var(--bg-code);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 10px;
+            color: #fff;
+            font-family: 'Fira Code', 'Pretendard', sans-serif;
+            font-size: 0.95rem;
+            resize: vertical;
+        }
+
+        .user-answer-box textarea:focus, .user-answer-box input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+        }
+
+        /* Solution Box (Accordion) */
+        .solution-toggle {
+            width: 100%;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px dashed rgba(56, 189, 248, 0.3);
+            color: var(--accent-cyan);
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .solution-toggle:hover {
+            background: rgba(56, 189, 248, 0.16);
+        }
+
+        .solution-content {
+            display: none;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 12px;
+            color: var(--text-primary);
+        }
+
+        .solution-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .sol-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .sol-body {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+
+        .sol-body strong {
+            color: #f1f5f9;
+        }
+
+        .sol-body pre {
+            background: #020617;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* Gantt Chart Box */
+        .gantt-chart-display {
+            font-family: 'Fira Code', monospace;
+            background: #020617;
+            border: 1px solid #334155;
+            padding: 12px;
+            border-radius: 8px;
+            color: #38bdf8;
+            overflow-x: auto;
+            white-space: pre;
+            margin: 10px 0;
+        }
+
+        /* Table Style */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent-cyan);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 40px;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <header>
+        <span class="exam-badge">🎯 운영체제 중간고사 집중 대비</span>
+        <h1>코드 분석 & 실행 흐름 추적 실전 모의고사</h1>
+        <p style="color: var(--text-secondary); margin-top: 4px;">
+            수업에서 다룬 <code>fork()</code>, <code>execlp()</code>, <code>wait()</code>, <code>pipe()</code>, <code>POSIX Shared Memory</code>, <code>Pthreads</code>, <code>OpenMP</code>, <code>CPU 스케줄링</code> 실습 코드들을 바탕으로 정밀 출제된 모의고사입니다.
+        </p>
+        <div class="header-meta">
+            <div class="meta-item">⏱️ 제한 시간: <strong>50분</strong></div>
+            <div class="meta-item">📝 총 문항: <strong>15문제 (코드 분석 및 간트 차트)</strong></div>
+            <div class="meta-item">💡 채점 기준: <strong>간트 차트 필수, 메모리 독립성 서술</strong></div>
+        </div>
+    </header>
+
+    <!-- Sticky Control Bar -->
+    <div class="control-bar">
+        <div class="timer-box" id="timerDisplay">
+            ⏳ 50:00
+        </div>
+        <div style="display: flex; gap: 8px;">
+            <button class="btn btn-outline" id="timerToggleBtn" onclick="toggleTimer()">타이머 일시정지</button>
+            <button class="btn btn-outline" onclick="toggleAllSolutions()">모든 정답/해설 열기</button>
+            <button class="btn" onclick="window.print()">인쇄 / PDF 저장</button>
+        </div>
+    </div>
+
+    <!-- Question 1 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q1</span>
+                <span class="q-title">fork() 반환값 및 프로세스 고유 PID 추적</span>
+            </div>
+            <span class="q-tag">프로세스 생성</span>
+        </div>
+        <div class="q-desc">
+            다음 C 코드를 보고 질문에 답하시오. (가정: 부모 프로세스의 실제 PID는 <strong>2500</strong>, 새로 생성된 자식 프로세스의 실제 PID는 <strong>2501</strong>이다.)
+        </div>
+        <pre><code><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;unistd.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;sys/types.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;sys/wait.h&gt;</span>
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="type">pid_t</span> pid, pid1;
+    pid = <span class="func">fork</span>();
+
+    <span class="keyword">if</span> (pid == <span class="number">0</span>) { <span class="comment">/* 자식 프로세스 */</span>
+        pid1 = <span class="func">getpid</span>();
+        <span class="func">printf</span>(<span class="string">"child: pid = %d\n"</span>, pid);
+        <span class="func">printf</span>(<span class="string">"child: pid1 = %d\n"</span>, pid1);
+    }
+    <span class="keyword">else</span> { <span class="comment">/* 부모 프로세스 */</span>
+        <span class="func">wait</span>(<span class="number">NULL</span>);
+        pid1 = <span class="func">getpid</span>();
+        <span class="func">printf</span>(<span class="string">"parent: pid = %d\n"</span>, pid);
+        <span class="func">printf</span>(<span class="string">"parent: pid1 = %d\n"</span>, pid1);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+        <div class="user-answer-box">
+            <label>나의 답안 작성 (출력되는 4줄 및 이유 기술):</label>
+            <textarea rows="3" placeholder="예: child: pid = ..."></textarea>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol1')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol1">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>[출력 화면]</strong>
+                <pre>child: pid = 0
+child: pid1 = 2501
+parent: pid = 2501
+parent: pid1 = 2500</pre>
+                <strong>[핵심 원리]</strong>
+                <ul>
+                    <li>부모의 <code>wait(NULL)</code>로 인해 자식 프로세스가 먼저 실행을 마치고 부모가 깨어납니다.</li>
+                    <li><code>pid</code> 변수: <code>fork()</code>의 반환값으로, <strong>자식에게는 숫자 0</strong>이, <strong>부모에게는 생성된 자식의 실제 PID(2501)</strong>가 반환됩니다.</li>
+                    <li><code>pid1</code> 변수: <code>getpid()</code> 시스템 콜 호출 결과이므로 <strong>호출한 자기 자신의 실제 PID</strong>(자식은 2501, 부모는 2500)가 저장됩니다.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q2</span>
+                <span class="q-title">fork() 후 전역 변수 메모리 독립성 (Copy-on-Write)</span>
+            </div>
+            <span class="q-tag">메모리 구조</span>
+        </div>
+        <div class="q-desc">
+            다음 C 코드 실행 시 <code>PARENT: value</code>에 출력되는 값을 적고, 왜 그 값이 출력되는지 프로세스의 메모리 주소 공간 관점에서 구체적으로 서술하시오.
+        </div>
+        <pre><code><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;unistd.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;sys/wait.h&gt;</span>
+
+<span class="type">int</span> value = <span class="number">12</span>; <span class="comment">/* 전역 변수 */</span>
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="type">pid_t</span> pid = <span class="func">fork</span>();
+
+    <span class="keyword">if</span> (pid == <span class="number">0</span>) {
+        value += <span class="number">8</span>;
+        <span class="func">printf</span>(<span class="string">"CHILD: value = %d\n"</span>, value);
+        <span class="keyword">return</span> <span class="number">0</span>;
+    }
+    <span class="keyword">else</span> <span class="keyword">if</span> (pid &gt; <span class="number">0</span>) {
+        <span class="func">wait</span>(<span class="number">NULL</span>);
+        <span class="func">printf</span>(<span class="string">"PARENT: value = %d\n"</span>, value);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+        <div class="user-answer-box">
+            <label>나의 답안 작성:</label>
+            <textarea rows="3" placeholder="출력값과 그 이유를 작성하세요."></textarea>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol2')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol2">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>[출력값]</strong>: <code>PARENT: value = 12</code> (자식은 20 출력)<br><br>
+                <strong>[서술 이유]</strong>:<br>
+                <code>fork()</code> 시스템 콜 호출 시 자식 프로세스는 부모 프로세스의 가상 주소 공간(Code, Data, Heap, Stack)을 복제하여 <strong>완전히 독립된 별도의 메모리 공간</strong>을 할당받습니다(Copy-on-Write). 자식 프로세스에서 <code>value</code>를 20으로 수정한 것은 오직 <strong>자식의 데이터 세그먼트</strong>에만 반영되므로, 부모 프로세스의 메모리 영역에 있는 <code>value</code>는 전혀 영향을 받지 않고 본래 값인 <strong>12를 그대로 유지</strong>합니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q3</span>
+                <span class="q-title">fork() 후 배열 연산 추적 (공룡책 3.1)</span>
+            </div>
+            <span class="q-tag">배열 독립성</span>
+        </div>
+        <div class="q-desc">
+            다음 C 코드를 실행했을 때 화면에 출력되는 문자열 전체를 순서대로 작성하시오.
+        </div>
+        <pre><code><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;unistd.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;sys/wait.h&gt;</span>
+
+<span class="keyword">#define</span> SIZE 4
+<span class="type">int</span> nums[SIZE] = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>};
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="type">int</span> i;
+    <span class="type">pid_t</span> pid = <span class="func">fork</span>();
+
+    <span class="keyword">if</span> (pid == <span class="number">0</span>) {
+        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; SIZE; i++) {
+            nums[i] = nums[i] * <span class="number">2</span>;
+            <span class="func">printf</span>(<span class="string">"C:%d "</span>, nums[i]);
+        }
+    }
+    <span class="keyword">else</span> <span class="keyword">if</span> (pid &gt; <span class="number">0</span>) {
+        <span class="func">wait</span>(<span class="number">NULL</span>);
+        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; SIZE; i++) {
+            <span class="func">printf</span>(<span class="string">"P:%d "</span>, nums[i]);
+        }
+        <span class="func">printf</span>(<span class="string">"\n"</span>);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+        <div class="user-answer-box">
+            <label>나의 답안 작성:</label>
+            <input type="text" placeholder="예: C:2 ... P:1 ...">
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol3')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol3">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>[출력 결과]</strong>:
+                <pre>C:2 C:4 C:6 C:8 P:1 P:2 P:3 P:4</pre>
+                <strong>[해설]</strong>:
+                자식 프로세스가 배열 요소들을 2배로 계산하여 <code>2, 4, 6, 8</code>을 출력하고 종료합니다. 부모 프로세스는 <code>wait(NULL)</code>로 대기한 뒤 자신의 배열을 출력하는데, 주소 공간이 독립되어 있으므로 자식이 배열을 바꾼 것은 부모에게 반영되지 않아 부모의 원본 배열 <code>1, 2, 3, 4</code>가 출력됩니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q4</span>
+                <span class="q-title">execlp() 시스템 콜과 프로세스 덮어쓰기</span>
+            </div>
+            <span class="q-tag">exec 계열</span>
+        </div>
+        <div class="q-desc">
+            다음 C 코드에서 콘솔에 출력되는 전체 내용을 작성하고, <code>STEP 2</code>가 절대로 출력되지 않는 이유를 설명하시오.
+        </div>
+        <pre><code><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;unistd.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;sys/wait.h&gt;</span>
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="type">pid_t</span> pid = <span class="func">fork</span>();
+
+    <span class="keyword">if</span> (pid == <span class="number">0</span>) {
+        <span class="func">printf</span>(<span class="string">"STEP 1\n"</span>);
+        <span class="func">execlp</span>(<span class="string">"/bin/echo"</span>, <span class="string">"echo"</span>, <span class="string">"Hello OS"</span>, <span class="number">NULL</span>);
+        <span class="func">printf</span>(<span class="string">"STEP 2\n"</span>);
+    }
+    <span class="keyword">else</span> {
+        <span class="func">wait</span>(<span class="number">NULL</span>);
+        <span class="func">printf</span>(<span class="string">"STEP 3\n"</span>);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+        <div class="user-answer-box">
+            <label>나의 답안 작성:</label>
+            <textarea rows="3" placeholder="출력 내용과 미출력 이유 서술"></textarea>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol4')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol4">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>[출력 결과]</strong>:
+                <pre>STEP 1
+Hello OS
+STEP 3</pre>
+                <strong>[STEP 2가 출력되지 않는 이유]</strong>:<br>
+                <code>exec</code> 계열 시스템 콜은 호출 시 현재 프로세스의 메모리 공간(코드, 데이터, 스택, 힙)을 <strong>새로운 실행 바이너리(<code>/bin/echo</code>)로 완전히 대체(덮어쓰기)</strong>합니다. 호출 성공 시 기존 코드는 메모리에서 완전히 사라지고 새 프로그램의 시작점부터 실행되므로, 기존 파일의 다음 행인 <code>printf("STEP 2\n")</code>는 영원히 도달할 수 없습니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q5</span>
+                <span class="q-title">연쇄 fork() 루프와 프로세스 생성 수 계산</span>
+            </div>
+            <span class="q-tag">프로세스 트리</span>
+        </div>
+        <div class="q-desc">
+            다음 C 코드에서 (1) 새로 생성된 자식 프로세스의 총 개수와, (2) <code>Process Alive</code>가 화면에 출력되는 총 횟수를 각각 쓰시오.
+        </div>
+        <pre><code><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;unistd.h&gt;</span>
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="type">int</span> i;
+    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) {
+        <span class="func">fork</span>();
+    }
+    <span class="func">printf</span>(<span class="string">"Process Alive\n"</span>);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+        <div class="user-answer-box">
+            <label>나의 답안 작성:</label>
+            <input type="text" placeholder="(1) 자식 프로세스 수: ?개, (2) 출력 횟수: ?번">
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol5')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol5">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>[정답]</strong>: (1) 새로 생성된 자식 프로세스 수: <strong>7개</strong>, (2) 출력 횟수: <strong>8번</strong><br><br>
+                <strong>[공식 및 풀이]</strong>:
+                <ul>
+                    <li>루프 횟수 $n = 3$일 때 생성되는 총 프로세스 수 = $2^n = 2^3 = \mathbf{8\text{개}}$</li>
+                    <li>초기 부모 프로세스 1개를 제외한 신규 자식 프로세스 수 = $2^n - 1 = 8 - 1 = \mathbf{7\text{개}}$</li>
+                    <li>존재하는 모든 8개 프로세스가 각자 1회씩 <code>printf</code>를 실행하므로 총 <strong>8회</strong> 출력됩니다.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q6</span>
+                <span class="q-title">조건부 fork() 호출 시 출력 횟수 분석</span>
+            </div>
+            <span class="q-tag">트리 추적</span>
+        </div>
+        <div class="q-desc">
+            다음 C 코드를 실행했을 때 <code>Antigravity</code> 문자열이 출력되는 총 횟수를 구하시오.
+        </div>
+        <pre><code><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;unistd.h&gt;</span>
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="func">fork</span>();
+    <span class="keyword">if</span> (<span class="func">fork</span>() == <span class="number">0</span>) {
+        <span class="func">fork</span>();
+    }
+    <span class="func">printf</span>(<span class="string">"Antigravity\n"</span>);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+        <div class="user-answer-box">
+            <label>나의 답안 작성:</label>
+            <input type="text" placeholder="출력 횟수 (정수만 입력)">
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol6')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol6">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>[정답]</strong>: <strong>6번</strong><br><br>
+                <strong>[단계별 추적]</strong>:
+                <ol>
+                    <li>첫 번째 <code>fork()</code>: 부모 $P_0$가 자식 $P_1$을 생성 $\rightarrow$ 2개 프로세스 ($P_0, P_1$)</li>
+                    <li>두 번째 <code>if (fork() == 0)</code>:
+                        <ul>
+                            <li>$P_0$가 fork $\rightarrow$ 자식 $P_2$ 생성. $P_0$는 반환값이 양수이므로 if문 통과 안 함. $P_2$는 반환값 0이므로 if문 진입!</li>
+                            <li>$P_1$이 fork $\rightarrow$ 자식 $P_3$ 생성. $P_1$은 통과 안 함. $P_3$는 반환값 0이므로 if문 진입!</li>
+                        </ul>
+                    </li>
+                    <li>if문 내부의 세 번째 <code>fork()</code>:
+                        <ul>
+                            <li>$P_2$가 fork $\rightarrow$ $P_4$ 생성 (+1)</li>
+                            <li>$P_3$가 fork $\rightarrow$ $P_5$ 생성 (+1)</li>
+                        </ul>
+                    </li>
+                    <li>최종 프로세스 집합: $P_0, P_1, P_2, P_3, P_4, P_5$ (총 <strong>6개</strong>)가 각각 <code>printf</code> 실행.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q7</span>
+                <span class="q-title">단방향 파이프(Ordinary Pipe) 파일 디스크립터 및 EOF</span>
+            </div>
+            <span class="q-tag">IPC 파이프</span>
+        </div>
+        <div class="q-desc">
+            다음 UNIX 일반 파이프 코드에서 (1) <code>fd[0]</code>과 <code>fd[1]</code>의 역할을 각각 쓰고, (2) 쓰지 않는 끝단을 <code>close()</code>하지 않을 경우 발생하는 문제(EOF 감지)를 서술하시오.
+        </div>
+        <pre><code><span class="type">int</span> fd[<span class="number">2</span>];
+<span class="func">pipe</span>(fd);
+pid = <span class="func">fork</span>();
+
+<span class="keyword">if</span> (pid &gt; <span class="number">0</span>) { <span class="comment">/* 부모: 송신자 */</span>
+    <span class="func">close</span>(fd[<span class="number">0</span>]);
+    <span class="func">write</span>(fd[<span class="number">1</span>], msg, <span class="func">strlen</span>(msg) + <span class="number">1</span>);
+    <span class="func">close</span>(fd[<span class="number">1</span>]);
+} <span class="keyword">else</span> { <span class="comment">/* 자식: 수신자 */</span>
+    <span class="func">close</span>(fd[<span class="number">1</span>]);
+    <span class="func">read</span>(fd[<span class="number">0</span>], buf, SIZE);
+    <span class="func">close</span>(fd[<span class="number">0</span>]);
+}</code></pre>
+        <div class="user-answer-box">
+            <label>나의 답안 작성:</label>
+            <textarea rows="3" placeholder="답안을 서술하세요."></textarea>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol7')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol7">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>(1) 파일 디스크립터 역할</strong>:
+                <ul>
+                    <li><code>fd[0]</code>: 파이프의 읽기 끝단 (READ_END)</li>
+                    <li><code>fd[1]</code>: 파이프의 쓰기 끝단 (WRITE_END)</li>
+                </ul>
+                <strong>(2) close()의 중요성</strong>:<br>
+                파이프의 쓰기 끝단(<code>fd[1]</code>)이 열려 있는 프로세스가 시스템에 단 하나라도 남아 있으면, 읽기 함수 <code>read()</code>는 데이터가 더 들어올 수 있다고 판단하여 무한정 블록(대기) 상태에 빠집니다. 모든 쓰기 끝단이 <code>close()</code>되어야만 <code>read()</code>가 <strong>파일의 끝(EOF, 반환값 0)</strong>을 감지하고 정상 종료할 수 있습니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 8 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q8</span>
+                <span class="q-title">생산자-소비자 환형 버퍼 판별 조건식</span>
+            </div>
+            <span class="q-tag">동기화 조건식</span>
+        </div>
+        <div class="q-desc">
+            크기가 <code>BUFFER_SIZE</code>인 환형 버퍼에서 생산자와 소비자가 바쁜 대기(busy wait)를 수행하기 위한 조건식을 C 언어 수식으로 작성하시오.
+        </div>
+        <pre><code><span class="keyword">#define</span> BUFFER_SIZE 8
+item buffer[BUFFER_SIZE];
+<span class="type">int</span> in = <span class="number">0</span>, out = <span class="number">0</span>;</code></pre>
+        <div class="user-answer-box">
+            <label>나의 답안 작성:</label>
+            <input type="text" placeholder="(1) Full 조건: while(...) , (2) Empty 조건: while(...)">
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol8')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol8">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>(1) 버퍼 가득 참(Full) 판별식</strong>:
+                <pre>while (((in + 1) % BUFFER_SIZE) == out) ;</pre>
+                <strong>(2) 버퍼 비어 있음(Empty) 판별식</strong>:
+                <pre>while (in == out) ;</pre>
+                <strong>(3) 최대 저장 아이템 수</strong>: <code>BUFFER_SIZE - 1</code> = <strong>7개</strong><br>
+                (이유: 한 칸을 비워두지 않고 8칸을 모두 채우면 <code>in == out</code>이 되어 빈 상태와 꽉 찬 상태를 포인터만으로 구분할 수 없기 때문)
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 9 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q9</span>
+                <span class="q-title">POSIX 공유 메모리 API 분석</span>
+            </div>
+            <span class="q-tag">공유 메모리 IPC</span>
+        </div>
+        <div class="q-desc">
+            공유 메모리 생성 코드에서 <code>ftruncate(shm_fd, 4096);</code> 시스템 콜이 반드시 필요한 이유와, 사용 후 객체를 삭제하는 POSIX 함수명을 쓰시오.
+        </div>
+        <pre><code><span class="type">int</span> shm_fd = <span class="func">shm_open</span>(<span class="string">"OS"</span>, O_CREAT | O_RDWR, <span class="number">0666</span>);
+<span class="func">ftruncate</span>(shm_fd, <span class="number">4096</span>);
+ptr = <span class="func">mmap</span>(<span class="number">0</span>, <span class="number">4096</span>, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, <span class="number">0</span>);</code></pre>
+        <div class="user-answer-box">
+            <label>나의 답안 작성:</label>
+            <textarea rows="2" placeholder="ftruncate의 필요 이유 및 삭제 함수명"></textarea>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol9')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol9">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>[ftruncate 필요 이유]</strong>:<br>
+                <code>shm_open()</code>으로 최초 생성된 공유 메모리 객체는 크기가 0바이트입니다. 따라서 <code>ftruncate()</code>를 호출하여 실제 데이터를 저장할 물리적 크기(4096바이트)를 확정 및 할당해야 합니다.<br><br>
+                <strong>[공유 메모리 삭제 함수]</strong>: <code>shm_unlink("OS");</code>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 10 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q10</span>
+                <span class="q-title">Pthreads 스레드 생성과 전역 변수 공유</span>
+            </div>
+            <span class="q-tag">Pthreads</span>
+        </div>
+        <div class="q-desc">
+            다음 코드 실행 시 출력되는 <code>total</code>의 값과, 메인 스레드가 자식 스레드의 계산 결과를 전역 변수를 통해 읽을 수 있는 이유를 스레드 메모리 구조 관점에서 쓰시오.
+        </div>
+        <pre><code><span class="keyword">#include</span> <span class="string">&lt;pthread.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+
+<span class="type">int</span> total = <span class="number">0</span>;
+
+<span class="type">void</span> *<span class="func">worker</span>(<span class="type">void</span> *param) {
+    <span class="type">int</span> num = <span class="func">atoi</span>((<span class="type">char</span> *)param);
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++) total += i;
+    <span class="func">pthread_exit</span>(<span class="number">0</span>);
+}
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="type">pthread_t</span> tid;
+    <span class="func">pthread_create</span>(&amp;tid, <span class="number">NULL</span>, worker, <span class="string">"5"</span>);
+    <span class="func">pthread_join</span>(tid, <span class="number">NULL</span>);
+    <span class="func">printf</span>(<span class="string">"total = %d\n"</span>, total);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+        <div class="user-answer-box">
+            <label>나의 답안 작성:</label>
+            <input type="text" placeholder="total 값 및 메모리 공유 이유">
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol10')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol10">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>[출력값]</strong>: <code>total = 15</code> ($1+2+3+4+5=15$)<br><br>
+                <strong>[이유]</strong>:<br>
+                같은 프로세스 내에서 생성된 스레드들은 프로세스의 <strong>데이터 세그먼트(Data Segment, 전역/정적 변수)</strong>와 힙 영역을 완전히 공유합니다. 따라서 <code>worker</code> 스레드가 수정한 전역 변수 <code>total</code>은 메인 스레드에서도 동일한 메모리 주소를 통해 즉시 읽을 수 있습니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 11 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q11</span>
+                <span class="q-title">fork()와 pthread_create() 혼합 실행 결과 (적중률 100%)</span>
+            </div>
+            <span class="q-tag">특급 빈출</span>
+        </div>
+        <div class="q-desc">
+            다음 코드 실행 시 <code>CHILD: value</code>와 <code>PARENT: value</code>에 출력되는 값을 각각 적고, 그 차이가 발생하는 원인을 서술하시오.
+        </div>
+        <pre><code><span class="keyword">#include</span> <span class="string">&lt;pthread.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;unistd.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;sys/wait.h&gt;</span>
+
+<span class="type">int</span> value = <span class="number">10</span>;
+
+<span class="type">void</span> *<span class="func">runner</span>(<span class="type">void</span> *param) {
+    value += <span class="number">20</span>;
+    <span class="func">pthread_exit</span>(<span class="number">0</span>);
+}
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="type">pid_t</span> pid = <span class="func">fork</span>();
+    <span class="type">pthread_t</span> tid;
+
+    <span class="keyword">if</span> (pid == <span class="number">0</span>) {
+        <span class="func">pthread_create</span>(&amp;tid, <span class="number">NULL</span>, runner, <span class="number">NULL</span>);
+        <span class="func">pthread_join</span>(tid, <span class="number">NULL</span>);
+        <span class="func">printf</span>(<span class="string">"CHILD: value = %d\n"</span>, value);
+        <span class="keyword">return</span> <span class="number">0</span>;
+    }
+    <span class="keyword">else</span> <span class="keyword">if</span> (pid &gt; <span class="number">0</span>) {
+        <span class="func">wait</span>(<span class="number">NULL</span>);
+        <span class="func">printf</span>(<span class="string">"PARENT: value = %d\n"</span>, value);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+        <div class="user-answer-box">
+            <label>나의 답안 작성:</label>
+            <textarea rows="3" placeholder="CHILD 값, PARENT 값 및 원인 서술"></textarea>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol11')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol11">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>[출력값]</strong>:
+                <pre>CHILD: value = 30
+PARENT: value = 10</pre>
+                <strong>[원인 서술]</strong>:
+                <ul>
+                    <li><strong>자식 프로세스 내부</strong>: 메인 스레드와 <code>runner</code> 스레드가 동일한 자식 프로세스의 전역 변수 <code>value</code>를 공유하므로 10 + 20 = <strong>30</strong>이 출력됩니다.</li>
+                    <li><strong>부모 프로세스</strong>: 부모와 자식은 <code>fork()</code>로 인해 <strong>완전히 독립된 별도의 메모리 주소 공간</strong>을 가집니다. 자식 프로세스 안의 스레드가 <code>value</code>를 수정한 것은 부모의 주소 공간에 전혀 영향을 주지 못하므로 부모는 초기값인 <strong>10</strong>을 그대로 출력합니다.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 12 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q12</span>
+                <span class="q-title">복합 프로세스 & 스레드 생성 개수 계산</span>
+            </div>
+            <span class="q-tag">공룡책 연습문제</span>
+        </div>
+        <div class="q-desc">
+            다음 코드의 실행 과정에서 (1) 새로 생성된 고유 프로세스 수와 (2) 새로 생성된 고유 스레드 수를 구하시오.
+        </div>
+        <pre><code><span class="type">pid_t</span> pid = <span class="func">fork</span>(); <span class="comment">/* Line A */</span>
+
+<span class="keyword">if</span> (pid == <span class="number">0</span>) {
+    <span class="func">fork</span>();                             <span class="comment">/* Line B */</span>
+    <span class="func">pthread_create</span>(&amp;tid, <span class="number">NULL</span>, task, <span class="number">NULL</span>); <span class="comment">/* Line C */</span>
+}
+
+<span class="func">fork</span>(); <span class="comment">/* Line D */</span></code></pre>
+        <div class="user-answer-box">
+            <label>나의 답안 작성:</label>
+            <input type="text" placeholder="(1) 프로세스: ?개, (2) 스레드: ?개">
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol12')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol12">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>[정답]</strong>: (1) 새로 생성된 고유 프로세스: <strong>5개</strong>, (2) 새로 생성된 고유 스레드: <strong>2개</strong><br><br>
+                <strong>[상세 추적]</strong>:
+                <ol>
+                    <li>Line A: 부모 $P_0$가 자식 $P_1$ 생성 $\rightarrow$ 총 2개 ($P_0, P_1$)</li>
+                    <li>Line B: 오직 자식 $P_1$만 진입하여 $P_2$ 생성 $\rightarrow$ 총 3개 ($P_0, P_1, P_2$)</li>
+                    <li>Line C: $P_1$과 $P_2$가 각각 1개씩 스레드 생성 $\rightarrow$ <strong>스레드 2개</strong></li>
+                    <li>Line D: if문 밖이므로 현재 존재하는 $P_0, P_1, P_2$가 각각 fork $\rightarrow$ 신규 $P_3, P_4, P_5$ 생성 (+3)</li>
+                    <li>새로 생성된 고유 프로세스 = $P_1, P_2, P_3, P_4, P_5$ (총 <strong>5개</strong>, 초기 부모 포함 시 6개)</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 13 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q13</span>
+                <span class="q-title">OpenMP 컴파일 플래그 및 비결정적 실행</span>
+            </div>
+            <span class="q-tag">OpenMP</span>
+        </div>
+        <div class="q-desc">
+            OpenMP 프로그램 컴파일 시 필수 옵션과, 스레드 ID 출력 순서가 매 실행마다 달라지는 이유를 쓰시오.
+        </div>
+        <pre><code><span class="keyword">#pragma omp</span> parallel num_threads(3)
+{
+    <span class="type">int</span> tid = <span class="func">omp_get_thread_num</span>();
+    <span class="func">printf</span>(<span class="string">"Thread ID: %d\n"</span>, tid);
+}</code></pre>
+        <div class="user-answer-box">
+            <label>나의 답안 작성:</label>
+            <input type="text" placeholder="GCC 컴파일 옵션 및 순서 변경 이유">
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol13')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol13">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>(1) 컴파일러 옵션</strong>: <code>-fopenmp</code> (예: <code>gcc -fopenmp thread.c</code>)<br><br>
+                <strong>(2) 순서가 달라지는 이유</strong>:<br>
+                생성된 3개의 스레드는 멀티코어 환경에서 운영체제 CPU 스케줄러에 의해 독립적으로 병렬 스케줄링됩니다. 어떤 스레드가 CPU를 먼저 할당받아 실행될지는 시스템 상태에 따라 비결정적(Non-deterministic)이므로 출력 순서는 매번 달라질 수 있습니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 14 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q14</span>
+                <span class="q-title">CPU 스케줄링 SRTF (선점형 SJF) 간트 차트 및 계산</span>
+            </div>
+            <span class="q-tag">스케줄링 계산</span>
+        </div>
+        <div class="q-desc">
+            다음 프로세스 집합에 대해 <strong>SRTF (선점형 SJF)</strong> 스케줄링을 적용할 때, 간트 차트를 그리고 평균 대기 시간을 구하시오. (간트 차트 미작성 시 50% 감점)
+        </div>
+        <table>
+            <tr><th>프로세스</th><th>도착 시간 (Arrival Time)</th><th>버스트 시간 (Burst Time)</th></tr>
+            <tr><td>$P_1$</td><td>0 ms</td><td>7 ms</td></tr>
+            <tr><td>$P_2$</td><td>2 ms</td><td>4 ms</td></tr>
+            <tr><td>$P_3$</td><td>4 ms</td><td>1 ms</td></tr>
+            <tr><td>$P_4$</td><td>5 ms</td><td>4 ms</td></tr>
+        </table>
+        <div class="user-answer-box">
+            <label>나의 간트 차트 및 대기 시간 계산 풀이:</label>
+            <textarea rows="4" placeholder="간트 차트 구간 및 P1~P4 대기 시간 계산"></textarea>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol14')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol14">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>(1) 간트 차트 (Gantt Chart)</strong>:
+                <div class="gantt-chart-display">| P1 | P2 | P3 | P2 | P4 |   P1   |
+0    2    4    5    7    11       16</div>
+                <strong>(2) 각 프로세스별 대기 시간</strong>:
+                <ul>
+                    <li>$P_1$: $16 - 0 - 7 = \mathbf{9\text{ ms}}$ (또는 $(0-0) + (11-2) = 9$)</li>
+                    <li>$P_2$: $7 - 2 - 4 = \mathbf{1\text{ ms}}$ (또는 $(2-2) + (5-4) = 1$)</li>
+                    <li>$P_3$: $5 - 4 - 1 = \mathbf{0\text{ ms}}$</li>
+                    <li>$P_4$: $11 - 5 - 4 = \mathbf{2\text{ ms}}$</li>
+                </ul>
+                <strong>(3) 평균 대기 시간</strong>:
+                $$\frac{9 + 1 + 0 + 2}{4} = \frac{12}{4} = \mathbf{3.0\text{ ms}}$$
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 15 -->
+    <div class="q-card">
+        <div class="q-header">
+            <div class="q-title-wrap">
+                <span class="q-num">Q15</span>
+                <span class="q-title">CPU 스케줄링 Round Robin (RR, q=4) 간트 차트 및 계산</span>
+            </div>
+            <span class="q-tag">스케줄링 계산</span>
+        </div>
+        <div class="q-desc">
+            동시에 $t=0$에 도착한 3개의 프로세스 ($P_1, P_2, P_3$)에 대해 타임 퀀텀 $q = 4\text{ ms}$인 <strong>Round Robin</strong> 스케줄링의 간트 차트를 그리고 평균 대기 시간을 구하시오.
+        </div>
+        <table>
+            <tr><th>프로세스</th><th>도착 시간</th><th>버스트 시간</th></tr>
+            <tr><td>$P_1$</td><td>0 ms</td><td>20 ms</td></tr>
+            <tr><td>$P_2$</td><td>0 ms</td><td>4 ms</td></tr>
+            <tr><td>$P_3$</td><td>0 ms</td><td>2 ms</td></tr>
+        </table>
+        <div class="user-answer-box">
+            <label>나의 간트 차트 및 평균 대기 시간 풀이:</label>
+            <textarea rows="4" placeholder="간트 차트 및 대기 시간 계산"></textarea>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('sol15')">정답 및 해설 확인</button>
+        <div class="solution-content" id="sol15">
+            <div class="sol-header">✅ 모범 답안 및 상세 풀이</div>
+            <div class="sol-body">
+                <strong>(1) 간트 차트 (Gantt Chart)</strong>:
+                <div class="gantt-chart-display">|  P1 (4) |  P2 (4) | P3 (2) |         P1 (16)         |
+0         4         8        10                        26</div>
+                <strong>(2) 각 프로세스별 대기 시간</strong>:
+                <ul>
+                    <li>$P_1$: 첫 실행 후 $10 - 4 = 6\text{ ms}$ 대기 $\rightarrow \mathbf{6\text{ ms}}$</li>
+                    <li>$P_2$: $P_1$ 뒤에서 대기 $\rightarrow \mathbf{4\text{ ms}}$</li>
+                    <li>$P_3$: $P_1, P_2$ 뒤에서 대기 $\rightarrow \mathbf{8\text{ ms}}$</li>
+                </ul>
+                <strong>(3) 평균 대기 시간</strong>:
+                $$\frac{6 + 4 + 8}{3} = \frac{18}{3} = \mathbf{6.0\text{ ms}}$$
+                <strong>(4) $q=25\text{ ms}$일 때</strong>: FCFS 스케줄링과 동일해짐.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Antigravity IDE & AI Study Assistant • 운영체제 중간고사 대비 완성본
+    </footer>
+</div>
+
+<script>
+    // Timer Logic
+    let timeLeft = 50 * 60; // 50 minutes in seconds
+    let timerInterval = null;
+    let isPaused = false;
+
+    function formatTime(sec) {
+        const m = Math.floor(sec / 60);
+        const s = sec % 60;
+        return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function updateTimer() {
+        if (!isPaused && timeLeft > 0) {
+            timeLeft--;
+            document.getElementById('timerDisplay').innerText = '⏳ ' + formatTime(timeLeft);
+            if (timeLeft === 300) {
+                alert('⚠️ 시험 종료 5분 전입니다!');
+            }
+        } else if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            document.getElementById('timerDisplay').innerText = '⏰ 시간 종료!';
+            document.getElementById('timerDisplay').style.color = '#ef4444';
+            alert('시험 시간이 종료되었습니다! 정답과 해설을 확인해보세요.');
+        }
+    }
+
+    timerInterval = setInterval(updateTimer, 1000);
+
+    function toggleTimer() {
+        isPaused = !isPaused;
+        const btn = document.getElementById('timerToggleBtn');
+        if (isPaused) {
+            btn.innerText = '타이머 재개';
+            btn.style.color = '#38bdf8';
+        } else {
+            btn.innerText = '타이머 일시정지';
+            btn.style.color = '';
+        }
+    }
+
+    // Toggle Solution
+    function toggleSolution(id) {
+        const el = document.getElementById(id);
+        el.classList.toggle('active');
+    }
+
+    let allOpen = false;
+    function toggleAllSolutions() {
+        allOpen = !allOpen;
+        const sols = document.querySelectorAll('.solution-content');
+        sols.forEach(s => {
+            if (allOpen) s.classList.add('active');
+            else s.classList.remove('active');
+        });
+    }
+</script>
+
+</body>
+</html>
