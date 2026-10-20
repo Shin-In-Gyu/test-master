@@ -4256,5 +4256,1036 @@ window.EXAM_DATABASE.os = {
             }
       ]
 }
+,
+{
+  "id": "os_exam7",
+  "name": "제7회 [전범위 총망라 A형] 1장~7장 실전 중간고사 (20문항 100점 만점)",
+  "desc": "1장 컴퓨터구조·이중모드부터 7장 CPU 스케줄링(FCFS·SJF·SRTF·RR)까지 전 범위 핵심 개념·수식·코드 전수 반영 (20문항 100점 만점, 각 문항 5점)",
+  "questions": [
+    {
+      "id": 1,
+      "type": "choice",
+      "score": 5,
+      "origin": "1장 이중 모드 연산 (Dual-Mode Operation)",
+      "text": "운영체제와 시스템 자원을 보호하기 위한 이중 모드 연산(Dual-Mode Operation)에 대한 설명으로 가장 옳지 않은 것은?",
+      "options": [
+        "A. 사용자 모드(User Mode)의 모드 비트(Mode bit)는 1이며, 커널 모드(Kernel Mode)의 모드 비트는 0이다.",
+        "B. 입출력(I/O) 장치 제어 및 타이머 설정과 같은 특권 명령(Privileged Instruction)은 커널 모드에서만 실행 가능하다.",
+        "C. 사용자 프로그램이 시스템 콜(System Call)을 호출하면 하드웨어 인터럽트가 발생하여 즉시 사용자 모드로 복귀한다.",
+        "D. CPU가 사용자 모드에서 특권 명령을 실행하려고 시도하면 하드웨어가 이를 트랩(Trap)으로 간주하여 운영체제에 예외 처리를 요청한다."
+      ],
+      "answer": "C",
+      "answers": [
+        "C",
+        "c",
+        "3"
+      ],
+      "explanation": "사용자 프로그램이 시스템 콜을 호출하면 트랩(소프트웨어 인터럽트)이 발생하여 모드 비트가 0(커널 모드)으로 전환되고 커널 루틴이 실행됩니다. 작업이 완료된 후에야 비로소 모드 비트가 1(사용자 모드)로 복원되어 복귀합니다."
+    },
+    {
+      "id": 2,
+      "type": "choice",
+      "score": 5,
+      "origin": "1장 인터럽트(Interrupt) 처리 메커니즘",
+      "text": "인터럽트(Interrupt)에 대한 설명 중 가장 거리가 먼 것은?",
+      "options": [
+        "A. 하드웨어 인터럽트는 I/O 컨트롤러 등이 시스템 버스의 인터럽트 요청 라인(Interrupt Request Line)을 통해 신호를 보낸다.",
+        "B. 트랩(Trap)은 오류(0으로 나누기, 잘못된 메모리 접근)나 시스템 콜 요청에 의해 발생하는 소프트웨어 인터럽트이다.",
+        "C. 인터럽트가 발생하면 CPU는 현재 실행 중이던 프로세스의 프로그램 카운터(PC)와 상태 레지스터를 보존하지 않고 즉시 덮어쓴다.",
+        "D. 각 인터럽트 서비스 루틴(ISR)의 시작 주소들은 인터럽트 벡터(Interrupt Vector) 테이블에 배열 형태로 저장되어 있다."
+      ],
+      "answer": "C",
+      "answers": [
+        "C",
+        "c",
+        "3"
+      ],
+      "explanation": "인터럽트가 발생하면 CPU는 나중에 복귀하여 작업을 이어갈 수 있도록 현재 실행 중이던 프로세스의 PC와 레지스터 상태를 반드시 스택이나 PCB에 안전하게 저장(Save)한 후 ISR로 점프합니다."
+    },
+    {
+      "id": 3,
+      "type": "short",
+      "score": 5,
+      "origin": "1장 타이머(Timer) 하드웨어",
+      "text": "운영체제가 특정 사용자 프로그램에 의한 CPU 무한 독점을 방지하고, 시분할(Time-sharing) 시스템을 안정적으로 구현하기 위해 주기적으로 인터럽트를 발생시키는 하드웨어 장치의 명칭을 쓰시오.",
+      "placeholder": "용어 입력 (한글 또는 영문)",
+      "answers": [
+        "타이머",
+        "timer",
+        "Timer",
+        "하드웨어 타이머"
+      ],
+      "explanation": "타이머(Timer)는 고정된 주기로 클록 틱(Clock Tick) 인터럽트를 발생시켜 운영체제(커널)가 주기적으로 CPU 제어권을 회수하고 스케줄링을 수행할 수 있도록 보장합니다."
+    },
+    {
+      "id": 4,
+      "type": "short",
+      "score": 5,
+      "origin": "2장 프로세스 메모리 구조",
+      "text": "프로세스의 주소 공간(Memory Layout) 중 함수 호출 시 생성되는 지역 변수(Local Variables), 매개변수(Parameters), 복귀 주소(Return Address)가 임시 저장되며, 높은 메모리 주소에서 낮은 주소 방향으로 동적으로 확장되는 영역의 명칭을 쓰시오.",
+      "placeholder": "메모리 영역 명칭 (한글 또는 영문)",
+      "answers": [
+        "스택",
+        "스택 영역",
+        "stack",
+        "Stack",
+        "스택영역"
+      ],
+      "explanation": "스택(Stack) 영역은 함수 호출과 관련된 지역 변수, 파라미터, 복귀 주소 등을 보관하며 높은 주소에서 낮은 주소로 확장됩니다. 반면 동적 할당 메모리를 보관하는 힙(Heap)은 낮은 주소에서 높은 주소로 확장됩니다."
+    },
+    {
+      "id": 5,
+      "type": "short",
+      "score": 5,
+      "origin": "2장 프로세스 5단계 상태 전이",
+      "text": "프로세스가 CPU를 할당받아 실행(Running)되던 중, I/O 작업 요청이나 특정 이벤트의 발생을 기다리기 위해 스스로 CPU를 반납하고 전이되는 상태의 명칭을 쓰시오.",
+      "placeholder": "상태 명칭 (한글 또는 영문)",
+      "answers": [
+        "대기",
+        "대기 상태",
+        "waiting",
+        "Waiting",
+        "blocked",
+        "Blocked",
+        "블록",
+        "블록 상태"
+      ],
+      "explanation": "실행(Running) 중 I/O 요청이나 자원 요청이 발생하면 프로세스는 Waiting(대기/블록) 상태로 전이되며, I/O가 완료되면 대기 큐에서 준비 큐(Ready)로 이동합니다."
+    },
+    {
+      "id": 6,
+      "type": "choice",
+      "score": 5,
+      "origin": "2장 문맥 교환 (Context Switch)",
+      "text": "문맥 교환(Context Switching)에 대한 설명으로 가장 옳지 않은 것은?",
+      "options": [
+        "A. CPU 제어권을 현재 프로세스에서 다른 프로세스로 넘길 때, 이전 프로세스의 상태를 PCB에 저장하고 새 프로세스의 상태를 복구하는 과정이다.",
+        "B. 문맥 교환이 일어나는 동안 CPU는 어떠한 유용한 사용자 작업도 수행하지 못하므로 순수한 시스템 오버헤드(Overhead)이다.",
+        "C. 문맥 교환 속도는 하드웨어 지원(예: 레지스터 세트 다중화) 및 메모리 아키텍처에 크게 좌우된다.",
+        "D. 스레드(Thread) 간의 문맥 교환은 프로세스 간의 문맥 교환보다 가상 메모리 매핑 전환 비용이 커서 더 많은 시간이 소요된다."
+      ],
+      "answer": "D",
+      "answers": [
+        "D",
+        "d",
+        "4"
+      ],
+      "explanation": "스레드 간의 문맥 교환은 동일 프로세스의 가상 주소 공간(Page Table)을 그대로 공유하므로 메모리 매핑 전환(TLB 플러시 등)이 발생하지 않아, 프로세스 간 문맥 교환보다 훨씬 빠르고 가볍습니다."
+    },
+    {
+      "id": 7,
+      "type": "choice",
+      "score": 5,
+      "origin": "3장 fork() 시스템 콜 분기",
+      "text": "다음 C 코드에서 자식 프로세스가 출력하는 콘솔 내용으로 올바른 것은?\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint main() {\n    pid_t pid = fork();\n    if (pid &lt; 0) {\n        return 1;\n    } else if (pid == 0) {\n        printf(\"CHILD: ret=%d\\n\", pid);\n    } else {\n        wait(NULL);\n        printf(\"PARENT: ret=%d\\n\", pid);\n    }\n    return 0;\n}</code></pre>",
+      "options": [
+        "A. CHILD: ret=0",
+        "B. CHILD: ret=-1",
+        "C. CHILD: ret=자식의 실제 PID",
+        "D. CHILD: ret=부모의 실제 PID"
+      ],
+      "answer": "A",
+      "answers": [
+        "A",
+        "a",
+        "1"
+      ],
+      "explanation": "fork() 호출 성공 시, 새로 생성된 자식 프로세스에게는 고유 식별자로서 숫자 0이 반환됩니다. 부모 프로세스에게는 생성된 자식의 실제 PID(>0)가 반환됩니다."
+    },
+    {
+      "id": 8,
+      "type": "short",
+      "score": 5,
+      "origin": "3장 fork() 전역 변수 메모리 독립성",
+      "text": "다음 C 코드를 컴파일하여 실행했을 때, 콘솔 화면의 최종 'RESULT: count = ' 뒤에 출력되는 숫자를 적으시오. (숫자만 입력)\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint count = 100;\n\nint main() {\n    pid_t pid = fork();\n    if (pid == 0) {\n        count += 250;\n        return 0;\n    } else if (pid &gt; 0) {\n        wait(NULL);\n        printf(\"RESULT: count = %d\\n\", count);\n    }\n    return 0;\n}</code></pre>",
+      "placeholder": "출력될 count 숫자 입력 (예: 100)",
+      "answers": [
+        "100"
+      ],
+      "explanation": "fork()로 생성된 자식 프로세스는 부모의 주소 공간을 독립적으로 복사(Copy-on-Write)하여 생성됩니다. 자식이 count 변수를 350으로 변경하더라도 자식 전용 메모리에만 반영되므로 부모의 count는 원래 값인 100 그대로 유지됩니다."
+    },
+    {
+      "id": 9,
+      "type": "short",
+      "score": 5,
+      "origin": "3장 연쇄 fork() 프로세스 개수 계산",
+      "text": "다음 C 코드 실행 시, 최초의 부모 프로세스를 '제외'하고 새로 생성된 순수 자식 프로세스의 총 개수는 몇 개인가? (숫자만 입력)\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n\nint main() {\n    fork();\n    fork();\n    fork();\n    return 0;\n}</code></pre>",
+      "placeholder": "새로 생성된 자식 프로세스 수 입력 (예: 7)",
+      "answers": [
+        "7",
+        "7개"
+      ],
+      "explanation": "fork()가 n번 연속 호출되면 총 2^n개의 프로세스가 존재합니다. 2^3 = 8개이며, 최초의 부모 프로세스 1개를 제외한 신규 생성 자식 프로세스는 8 - 1 = 7개입니다."
+    },
+    {
+      "id": 10,
+      "type": "choice",
+      "score": 5,
+      "origin": "3장 exec 계열 시스템 콜의 메모리 교체",
+      "text": "다음 C 코드의 실행 결과에 대한 설명으로 가장 정확한 것은?\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint main() {\n    pid_t pid = fork();\n    if (pid == 0) {\n        execlp(\"/bin/echo\", \"echo\", \"Antigravity\", NULL);\n        printf(\"EXEC_DONE\\n\");\n    } else {\n        wait(NULL);\n        printf(\"PARENT_DONE\\n\");\n    }\n    return 0;\n}</code></pre>",
+      "options": [
+        "A. 'Antigravity', 'EXEC_DONE', 'PARENT_DONE'이 순서대로 모두 출력된다.",
+        "B. 'Antigravity'와 'PARENT_DONE'만 출력되며, 'EXEC_DONE'은 절대 출력되지 않는다.",
+        "C. 'EXEC_DONE'이 먼저 출력되고 그 다음 'Antigravity'가 출력된다.",
+        "D. execlp() 실패 여부와 무관하게 printf('EXEC_DONE')은 항상 실행된다."
+      ],
+      "answer": "B",
+      "answers": [
+        "B",
+        "b",
+        "2"
+      ],
+      "explanation": "execlp()가 성공하면 호출한 프로세스의 메모리 공간 전체(Code, Data, Stack, Heap)가 새 실행 파일(/bin/echo)로 완전히 덮어써지므로, 기존 코드의 다음 줄인 printf('EXEC_DONE')은 절대로 실행되지 않습니다."
+    },
+    {
+      "id": 11,
+      "type": "short",
+      "score": 5,
+      "origin": "3장 좀비 프로세스 (Zombie Process)",
+      "text": "자식 프로세스가 실행을 마치고 exit()을 호출하여 종료되었으나, 부모 프로세스가 아직 wait() 시스템 콜을 호출하여 자식의 종료 상태(Exit Status)를 회수하지 않아 프로세스 테이블(PCB)에 메타데이터가 계속 남아있는 상태의 프로세스를 무엇이라 부르는가?",
+      "placeholder": "용어 입력 (한글 또는 영문)",
+      "answers": [
+        "좀비",
+        "좀비 프로세스",
+        "좀비프로세스",
+        "zombie",
+        "Zombie",
+        "zombie process"
+      ],
+      "explanation": "종료되었으나 부모가 wait()로 종료 코드를 수거하지 않아 PCB가 프로세스 테이블에 남아있는 프로세스를 좀비 프로세스(Zombie Process, <defunct>)라고 합니다."
+    },
+    {
+      "id": 12,
+      "type": "choice",
+      "score": 5,
+      "origin": "4장 IPC 2대 모델 비교 (Shared Memory vs Message Passing)",
+      "text": "프로세스 간 통신(IPC)의 두 가지 기본 모델인 공유 메모리(Shared Memory)와 메시지 전달(Message Passing)을 비교한 것으로 가장 옳지 않은 것은?",
+      "options": [
+        "A. 공유 메모리는 프로세스 간 공유 메모리 세그먼트를 구축하여 통신하며, 한 번 설정된 후에는 커널의 개입 없이 메모리 속도로 동작한다.",
+        "B. 메시지 전달 방식은 소량의 데이터를 교환하거나 분산 환경(네트워크)에서 구현하기에 적합하다.",
+        "C. 공유 메모리 방식은 여러 프로세스가 동시에 같은 메모리에 쓸 때 발생하는 충돌 및 동기화 문제를 커널이 자동으로 완벽히 해결해 준다.",
+        "D. 메시지 전달 방식은 send()와 receive() 시스템 콜을 통해 통신하므로 매 송수신마다 커널 개입에 따른 문맥 교환 오버헤드가 발생한다."
+      ],
+      "answer": "C",
+      "answers": [
+        "C",
+        "c",
+        "3"
+      ],
+      "explanation": "공유 메모리 방식의 가장 큰 주의점은 '동기화(Synchronization)의 책임이 응용 프로그래머에게 있다'는 점입니다. 커널이 자동으로 충돌을 해결해 주지 않으므로 세마포어나 뮤텍스 등의 동기화 메커니즘을 직접 구현해야 합니다."
+    },
+    {
+      "id": 13,
+      "type": "short",
+      "score": 5,
+      "origin": "4장 환형 버퍼 (Circular Buffer) 동기화",
+      "text": "공유 메모리 환경의 생산자-소비자 문제에서 크기가 8인 환형 버퍼(Circular Buffer)를 사용할 때, 포인터 변수 in과 out의 값이 'in == out'으로 일치하는 경우 버퍼의 상태는 무엇인가?",
+      "placeholder": "버퍼 상태 (한글 또는 영문, 예: 비어있음)",
+      "answers": [
+        "비어있음",
+        "비어 있음",
+        "공백",
+        "empty",
+        "Empty",
+        "빈 상태",
+        "비어있는 상태"
+      ],
+      "explanation": "환형 버퍼에서 in == out은 버퍼가 비어 있는(Empty) 상태를 의미하며, ((in + 1) % BUFFER_SIZE) == out은 버퍼가 가득 찬(Full) 상태를 의미합니다."
+    },
+    {
+      "id": 14,
+      "type": "choice",
+      "score": 5,
+      "origin": "4장 일반 파이프 (Ordinary Pipe)",
+      "text": "UNIX 일반 파이프(Ordinary Pipe) 시스템 콜 `int fd[2]; pipe(fd);`에 대한 설명으로 가장 옳은 것은?",
+      "options": [
+        "A. fd[0]은 파이프의 쓰기 종단(Write End)이고, fd[1]은 읽기 종단(Read End)이다.",
+        "B. fd[0]은 파이프의 읽기 종단(Read End)이고, fd[1]은 쓰기 종단(Write End)이다.",
+        "C. 파이프는 양방향 통신을 기본 지원하므로 양쪽 프로세스가 fd[0], fd[1] 아무 곳에나 자유롭게 읽고 쓸 수 있다.",
+        "D. 일반 파이프는 부모-자식과 같은 프로세스 계층 관계가 전혀 없는 독립된 두 프로세스 간에도 통신이 가능하다."
+      ],
+      "answer": "B",
+      "answers": [
+        "B",
+        "b",
+        "2"
+      ],
+      "explanation": "pipe(fd) 호출 시 fd[0]은 읽기 전용(Read End), fd[1]은 쓰기 전용(Write End) 파일 디스크립터로 생성됩니다. 일반 파이프는 단방향(Half-duplex)이며 부모-자식 등 계층 관계가 있는 프로세스 간에만 유효합니다."
+    },
+    {
+      "id": 15,
+      "type": "choice",
+      "score": 5,
+      "origin": "5장 스레드 자원 구조",
+      "text": "멀티스레드 환경에서 하나의 프로세스에 속한 여러 스레드들이 서로 공유하는 자원들로만 바르게 묶인 것은?",
+      "options": [
+        "A. 스택(Stack), 프로그램 카운터(PC), 레지스터 세트(Register Set)",
+        "B. 코드 영역(Code), 데이터 영역(전역 변수), 힙 영역(Heap), 열린 파일 목록",
+        "C. 스레드 ID(TID), 스택(Stack), 힙 영역(Heap)",
+        "D. 프로그램 카운터(PC), 데이터 영역(Data), 레지스터 세트"
+      ],
+      "answer": "B",
+      "answers": [
+        "B",
+        "b",
+        "2"
+      ],
+      "explanation": "스레드는 프로세스의 코드(Code), 데이터(Data, 전역/정적 변수), 힙(Heap), 열린 파일 등 OS 자원을 모두 공유하며, 독자적인 실행 흐름을 위해 스레드 ID(TID), 프로그램 카운터(PC), 레지스터 집합, 스택(Stack)만을 개별 소유합니다."
+    },
+    {
+      "id": 16,
+      "type": "short",
+      "score": 5,
+      "origin": "5장 암달의 법칙 (Amdahl's Law) 한계 속도 향상 계산",
+      "text": "암달의 법칙에 따르면, 어떤 애플리케이션의 75%가 병렬화 가능하고 나머지 25%가 반드시 순차적으로 실행되어야 하는 순차 실행 부분(S = 0.25)이라고 한다. 프로세서 코어 개수(N)를 무한대(N → ∞)로 늘렸을 때 얻을 수 있는 이론적인 최대 속도 향상(Speedup) 배수는 몇 배인가? (숫자만 입력)",
+      "placeholder": "최대 속도 향상 배수 숫자 입력 (예: 4)",
+      "answers": [
+        "4",
+        "4배"
+      ],
+      "explanation": "암달의 법칙 공식 Speedup = 1 / (S + (1 - S) / N) 에서 N이 무한대로 가면 (1 - S) / N 항은 0으로 수렴합니다. 따라서 최대 속도 향상은 1 / S = 1 / 0.25 = 4배입니다."
+    },
+    {
+      "id": 17,
+      "type": "short",
+      "score": 5,
+      "origin": "6장 디스패처 (Dispatcher)",
+      "text": "CPU 스케줄러가 준비 큐에서 실행할 다음 프로세스를 선택한 후, 그 프로세스에게 실제로 CPU 제어권을 넘겨주어 문맥 교환을 수행하고 사용자 모드로 전환하여 프로그램의 실행을 재개시키는 운영체제 모듈의 명칭을 쓰시오.",
+      "placeholder": "모듈 명칭 (한글 또는 영문)",
+      "answers": [
+        "디스패처",
+        "dispatcher",
+        "Dispatcher"
+      ],
+      "explanation": "디스패처(Dispatcher)는 CPU 스케줄러가 선택한 프로세스에게 CPU 제어권을 넘겨주는 커널 모듈로, 문맥 교환, 사용자 모드 전환, 적절한 명령 위치로의 점프를 담당합니다."
+    },
+    {
+      "id": 18,
+      "type": "short",
+      "score": 5,
+      "origin": "6장 FCFS 스케줄링 간트 차트 및 평균 대기 시간(AWT) 계산",
+      "text": "모두 0ms에 도착한 3개의 프로세스(도착 순서: P1 → P2 → P3)에 대해 FCFS(First-Come, First-Served) 스케줄링을 적용할 때, 시스템의 평균 대기 시간(AWT)은 몇 ms인가? (숫자만 입력)\n<table style=\"width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px;\">\n<tr style=\"background: rgba(255,255,255,0.05);\"><th style=\"border: 1px solid var(--border-color); padding: 6px;\">프로세스</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">도착 시간</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">버스트 시간</th></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P1</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">15 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P2</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">6 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P3</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">3 ms</td></tr>\n</table>\n<b>[간트 차트]</b>: <code>| P1 (15) | P2 (6) | P3 (3) |</code> (0 → 15 → 21 → 24)",
+      "placeholder": "평균 대기 시간 숫자 입력 (예: 12)",
+      "answers": [
+        "12",
+        "12ms",
+        "12.0",
+        "12.0ms"
+      ],
+      "explanation": "간트 차트: P1(0~15), P2(15~21), P3(21~24)\nP1 대기시간 = 0ms\nP2 대기시간 = 15ms\nP3 대기시간 = 21ms\n평균 대기 시간(AWT) = (0 + 15 + 21) / 3 = 36 / 3 = 12ms 입니다."
+    },
+    {
+      "id": 19,
+      "type": "short",
+      "score": 5,
+      "origin": "7장 비선점 SJF 스케줄링 간트 차트 및 평균 대기 시간(AWT) 계산",
+      "text": "도착 시간이 모두 0ms인 4개의 프로세스에 대해 비선점형 SJF(Shortest Job First) 스케줄링을 적용할 때, 시스템의 평균 대기 시간(AWT)은 몇 ms인가? (숫자만 입력)\n<table style=\"width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px;\">\n<tr style=\"background: rgba(255,255,255,0.05);\"><th style=\"border: 1px solid var(--border-color); padding: 6px;\">프로세스</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">도착 시간</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">버스트 시간</th></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P1</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">9 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P2</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">5 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P3</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">2 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P4</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">8 ms</td></tr>\n</table>\n<b>[간트 차트 힌트]</b>: 버스트가 짧은 순서대로 실행됩니다.",
+      "placeholder": "평균 대기 시간 숫자 입력 (예: 6)",
+      "answers": [
+        "6",
+        "6ms",
+        "6.0",
+        "6.0ms"
+      ],
+      "explanation": "실행 순서: P3(2ms) → P2(5ms) → P4(8ms) → P1(9ms)\n간트 차트: | P3 (2) | P2 (5) | P4 (8) | P1 (9) | (0 → 2 → 7 → 15 → 24)\nP3 대기시간 = 0ms\nP2 대기시간 = 2ms\nP4 대기시간 = 7ms\nP1 대기시간 = 15ms\n평균 대기 시간(AWT) = (0 + 2 + 7 + 15) / 4 = 24 / 4 = 6.0ms 입니다."
+    },
+    {
+      "id": 20,
+      "type": "short",
+      "score": 5,
+      "origin": "7장 기아 현상 (Starvation) & 에이징 (Aging)",
+      "text": "SJF나 우선순위 스케줄링에서 실행 시간이 길거나 우선순위가 낮은 프로세스가 준비 큐에 계속 머물러 무한정 실행되지 못하는 기아 현상(Starvation)을 해결하기 위해, 시스템에 머무는 대기 시간이 길어질수록 프로세스의 우선순위를 점진적으로 증가시켜 주는 해결 기법의 명칭을 쓰시오.",
+      "placeholder": "기법 명칭 (한글 또는 영문)",
+      "answers": [
+        "에이징",
+        "aging",
+        "Aging",
+        "에이징 기법"
+      ],
+      "explanation": "에이징(Aging)은 대기 시간이 길어짐에 따라 프로세스의 우선순위를 점진적으로 높여 언젠가는 반드시 CPU를 할당받아 실행되도록 보장하는 기아 현상 해결책입니다."
+    }
+  ]
+},
+{
+  "id": "os_exam8",
+  "name": "제8회 [전범위 총망라 B형] 계산 & 서술형 킬러 마스터 실전 모의고사 (20문항 100점 만점)",
+  "desc": "교수님 강조 포인트 전수 반영: SRTF·RR(q=3) 수치변형 간트차트 및 AWT 계산, 지수 이동평균 버스트 예측, 환형버퍼 Full 조건식, exec 메모리 대체, fork-스레드 복합 트리 (20문항 100점 만점, 각 문항 5점)",
+  "questions": [
+    {
+      "id": 1,
+      "type": "choice",
+      "score": 5,
+      "origin": "1장 특권 명령 및 모드 전환 보호",
+      "text": "사용자 모드(User Mode)에서 실행 중인 프로세스가 디스크의 파일을 직접 읽기 위해 I/O 하드웨어 포트에 접근하는 특권 명령을 직접 수행하려고 시도할 때 일어나는 하드웨어와 운영체제의 동작으로 가장 옳은 것은?",
+      "options": [
+        "A. CPU가 즉시 커널 모드로 전환되어 해당 I/O 명령을 즉시 정상 수행한다.",
+        "B. 하드웨어가 이를 불법적 명령으로 감지하여 트랩(Trap, 예외)을 발생시키고 운영체제가 해당 프로세스를 강제 종료하거나 에러를 반환한다.",
+        "C. 운영체제가 경고 메시지를 콘솔에 출력한 후 명령 실행을 무시하고 다음 사용자 명령으로 건너뛴다.",
+        "D. 컴파일러가 해당 명령을 자동으로 시스템 콜 함수 코드로 치환하여 컴파일한다."
+      ],
+      "answer": "B",
+      "answers": [
+        "B",
+        "b",
+        "2"
+      ],
+      "explanation": "사용자 모드에서 특권 명령을 직접 실행하려 하면 하드웨어 CPU 레벨에서 보호 트랩(예외)이 발생하며, OS 예외 핸들러가 호출되어 권한 위반 프로세스를 비정상 종료(Segmentation fault/Illegal instruction)시킵니다."
+    },
+    {
+      "id": 2,
+      "type": "choice",
+      "score": 5,
+      "origin": "2장 장기/중기/단기 스케줄러 비교",
+      "text": "운영체제의 3대 스케줄러에 대한 설명 중 가장 옳지 않은 것은?",
+      "options": [
+        "A. 단기 스케줄러(CPU 스케줄러)는 준비 큐(Ready Queue)에 있는 프로세스 중 하나를 선택해 CPU를 할당하며 밀리초(ms) 단위로 매우 빈번하게 실행된다.",
+        "B. 장기 스케줄러(작업 스케줄러)는 디스크 풀(Pool)에서 프로세스를 선별하여 메모리로 적재하며 다중 프로그래밍의 정도(Degree of Multiprogramming)를 제어한다.",
+        "C. 중기 스케줄러는 메모리 부족 완화를 위해 스와핑(Swapping) 기법을 사용하여 메모리에 있는 프로세스를 디스크(Swap Space)로 스왑 아웃(Swap-out)한다.",
+        "D. 현대 시분할 운영체제(Linux, Windows)는 단기 스케줄러를 완전히 제거하고 장기 스케줄러만을 활용하여 프로세스를 제어한다."
+      ],
+      "answer": "D",
+      "answers": [
+        "D",
+        "d",
+        "4"
+      ],
+      "explanation": "현대 시분할 OS는 장기 스케줄러를 거의 사용하지 않거나 비활성화하고, 모든 프로세스를 즉시 메모리에 올린 후 '단기 스케줄러'와 가상 메모리 기반의 '중기 스케줄러(페이징/스와핑)'를 핵심으로 운용합니다."
+    },
+    {
+      "id": 3,
+      "type": "choice",
+      "score": 5,
+      "origin": "2장 PCB(Process Control Block) 항목",
+      "text": "운영체제가 프로세스를 관리하기 위해 유지하는 PCB(Process Control Block)에 포함되는 정보로 가장 거리가 먼 것은?",
+      "options": [
+        "A. 프로세스 상태(Process State) 및 프로세스 ID(PID)",
+        "B. 프로그램 카운터(PC) 및 CPU 레지스터 값",
+        "C. CPU 스케줄링 정보(우선순위) 및 메모리 관리 정보(페이지/세그먼트 테이블)",
+        "D. 프로세스가 작성한 C 소스코드 파일의 원본 텍스트 내용"
+      ],
+      "answer": "D",
+      "answers": [
+        "D",
+        "d",
+        "4"
+      ],
+      "explanation": "PCB는 운영체제 커널이 프로세스를 스케줄링하고 상태를 제어하기 위한 제어 블록(PID, 상태, PC, 레지스터, 스케줄링 우선순위, 메모리 주소 매핑 정보, 열린 파일 목록 등)을 담고 있으며, 사용자의 C 원본 소스코드는 포함하지 않습니다."
+    },
+    {
+      "id": 4,
+      "type": "choice",
+      "score": 5,
+      "origin": "3장 fork() & wait() 순서 추적",
+      "text": "다음 C 코드를 실행했을 때, 콘솔 화면에 출력되는 문자열의 순서로 올바른 것은? (fork 성공 가정)\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint main() {\n    pid_t pid = fork();\n    if (pid == 0) {\n        printf(\"APPLE\\n\");\n    } else {\n        wait(NULL);\n        printf(\"BANANA\\n\");\n    }\n    return 0;\n}</code></pre>",
+      "options": [
+        "A. 항상 BANANA가 출력된 후 APPLE이 출력된다.",
+        "B. wait(NULL)로 인해 항상 APPLE이 먼저 출력된 후 BANANA가 출력된다.",
+        "C. APPLE과 BANANA가 매번 무작위 순서로 출력된다.",
+        "D. APPLE만 출력되고 BANANA는 영원히 출력되지 않는다."
+      ],
+      "answer": "B",
+      "answers": [
+        "B",
+        "b",
+        "2"
+      ],
+      "explanation": "부모 프로세스는 else 블록에서 wait(NULL)을 만나 자식 프로세스가 종료될 때까지 대기 큐(Wait Queue)로 빠져 실행을 멈춥니다. 따라서 자식 프로세스가 APPLE을 출력하고 종료한 후에야 부모가 깨어나 BANANA를 출력하므로 반드시 APPLE → BANANA 순서입니다."
+    },
+    {
+      "id": 5,
+      "type": "short",
+      "score": 5,
+      "origin": "3장 fork() 배열 메모리 독립성",
+      "text": "다음 C 코드를 실행했을 때 부모 프로세스에 의해 최종 출력되는 'PARENT: nums[0] = ' 뒤의 값은 무엇인가? (숫자만 입력)\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;sys/wait.h&gt;\n\nint nums[3] = {10, 20, 30};\n\nint main() {\n    pid_t pid = fork();\n    if (pid == 0) {\n        nums[0] = 999;\n        return 0;\n    } else {\n        wait(NULL);\n        printf(\"PARENT: nums[0] = %d\\n\", nums[0]);\n    }\n    return 0;\n}</code></pre>",
+      "placeholder": "출력될 숫자 입력 (예: 10)",
+      "answers": [
+        "10"
+      ],
+      "explanation": "fork() 이후 부모와 자식은 별개의 독립된 메모리 공간을 소유합니다. 자식이 배열 nums[0]의 값을 999로 변경하더라도 자식의 메모리 공간에만 적용되며, 부모 프로세스의 nums[0]은 원래 값인 10을 그대로 유지합니다."
+    },
+    {
+      "id": 6,
+      "type": "short",
+      "score": 5,
+      "origin": "3장 루프 내 fork() 총 프로세스 수 계산",
+      "text": "다음 C 코드가 완전히 종료되었을 때, 생성된 모든 프로세스(최초의 부모 프로세스 포함)의 총 개수는 몇 개인가? (숫자만 입력)\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n\nint main() {\n    for (int i = 0; i &lt; 5; i++) {\n        fork();\n    }\n    return 0;\n}</code></pre>",
+      "placeholder": "총 프로세스 개수 숫자 입력 (예: 32)",
+      "answers": [
+        "32",
+        "32개"
+      ],
+      "explanation": "fork()가 반복문 안에서 5회 연속 호출되므로, 생성되는 전체 프로세스의 총 개수는 2^5 = 32개입니다."
+    },
+    {
+      "id": 7,
+      "type": "choice",
+      "score": 5,
+      "origin": "4장 POSIX 공유 메모리 API",
+      "text": "POSIX 공유 메모리(Shared Memory)를 생성하고 사용할 때 호출하는 표준 C 시스템 콜 함수의 순서와 역할로 가장 올바른 것은?",
+      "options": [
+        "A. shm_open()으로 객체 생성/열기 → ftruncate()로 크기 설정 → mmap()으로 주소 공간 매핑",
+        "B. mmap()으로 주소 공간 매핑 → shm_unlink()로 크기 설정 → shm_open()으로 열기",
+        "C. pipe()로 파이프 생성 → fork()로 프로세스 분기 → write()로 공유 메모리 쓰기",
+        "D. shm_open()으로 열기 → pthread_create()로 스레드 생성 → shm_close()로 삭제"
+      ],
+      "answer": "A",
+      "answers": [
+        "A",
+        "a",
+        "1"
+      ],
+      "explanation": "POSIX 공유 메모리는 1) shm_open()으로 파일 디스크립터 생성, 2) ftruncate()로 메모리 객체 크기(예: 4096바이트) 지정, 3) mmap()으로 프로세스 가상 메모리에 매핑하여 포인터를 얻은 후 읽고 씁니다."
+    },
+    {
+      "id": 8,
+      "type": "choice",
+      "score": 5,
+      "origin": "4장 환형 버퍼 포화(Full) 판별 조건식",
+      "text": "공유 메모리 환경의 생산자-소비자 문제에서 크기가 `BUFFER_SIZE`인 환형 버퍼(Circular Buffer)가 가득 차 있는(Full) 상태를 판별하여 대기(busy wait)하기 위한 올바른 C 언어 조건식은?",
+      "options": [
+        "A. `in == out`",
+        "B. `((in + 1) % BUFFER_SIZE) == out`",
+        "C. `((in - 1) % BUFFER_SIZE) == out`",
+        "D. `in + out == BUFFER_SIZE`"
+      ],
+      "answer": "B",
+      "answers": [
+        "B",
+        "b",
+        "2"
+      ],
+      "explanation": "환형 버퍼에서는 버퍼가 가득 찬 상태와 비어 있는 상태를 구분하기 위해 한 슬롯을 비워둡니다. 따라서 '다음 쓰기 위치((in + 1) % BUFFER_SIZE)가 현재 읽기 위치(out)와 같아지는 경우'가 버퍼가 가득 찬(Full) 조건식입니다."
+    },
+    {
+      "id": 9,
+      "type": "short",
+      "score": 5,
+      "origin": "4장 네트워크 프로세스 통신 엔드포인트 소켓",
+      "text": "네트워크로 연결된 서로 다른 컴퓨터 상의 프로세스들이 통신하기 위해, 네트워크 계층의 IP 주소와 전송 계층의 포트(Port) 번호를 결합하여 생성하는 양방향 통신 종단점(Endpoint)의 명칭을 쓰시오.",
+      "placeholder": "통신 종단점 명칭 (한글 또는 영문)",
+      "answers": [
+        "소켓",
+        "socket",
+        "Socket"
+      ],
+      "explanation": "소켓(Socket)은 네트워크 통신의 종단점(Endpoint)으로서, IP 주소와 포트 번호의 결합으로 유일하게 식별되며 클라이언트-서버 간 데이터 송수신에 사용됩니다."
+    },
+    {
+      "id": 10,
+      "type": "short",
+      "score": 5,
+      "origin": "4장 RPC (Remote Procedure Call) 매개변수 마샬링",
+      "text": "원격 프로시저 호출(RPC)에서 클라이언트 측 프로시저 호출을 가로채어, 전달된 매개변수들을 네트워크 패킷 형태로 직렬화(마샬링, Marshaling)하여 서버로 전송하는 대리 루틴(Proxy)의 명칭을 쓰시오.",
+      "placeholder": "루틴 명칭 (한글 또는 영문)",
+      "answers": [
+        "스텁",
+        "클라이언트 스텁",
+        "stub",
+        "Stub",
+        "client stub"
+      ],
+      "explanation": "스텁(Stub)은 RPC 시스템에서 원격 호출을 로컬 호출처럼 보이게 감싸주는 대리자 역할을 수행하며, 클라이언트 스텁은 인자 마샬링(Marshaling), 서버 스텁은 언마샬링(Unmarshaling)을 수행합니다."
+    },
+    {
+      "id": 11,
+      "type": "choice",
+      "score": 5,
+      "origin": "5장 POSIX Pthread 스레드 제어 API",
+      "text": "POSIX Pthreads 라이브러리에서 스레드를 생성하는 함수와, 특정 스레드가 종료될 때까지 호출한 스레드가 대기(동기화)하는 함수의 쌍으로 올바른 것은?",
+      "options": [
+        "A. pthread_create() - pthread_join()",
+        "B. fork() - wait()",
+        "C. pthread_start() - pthread_wait()",
+        "D. pthread_init() - pthread_exit()"
+      ],
+      "answer": "A",
+      "answers": [
+        "A",
+        "a",
+        "1"
+      ],
+      "explanation": "Pthreads에서 스레드를 새로 생성하는 함수는 pthread_create()이며, 대상 스레드의 종료를 기다리고 자원을 회수하는 함수는 pthread_join()입니다. (프로세스의 fork - wait 쌍에 대응)"
+    },
+    {
+      "id": 12,
+      "type": "short",
+      "score": 5,
+      "origin": "5장 OpenMP 컴파일러 지시어 (Pragma)",
+      "text": "C 언어 소스코드에서 OpenMP를 활용하여 병렬 실행 영역(Parallel Region)을 지정할 때 코드 블록 위에 선언하는 전처리기 지시어(Pragma) 구문을 쓰시오. (소문자/띄어쓰기 유의)",
+      "placeholder": "#pragma로 시작하는 지시어 입력",
+      "answers": [
+        "#pragma omp parallel",
+        "#pragma omp parallel\n",
+        "pragma omp parallel"
+      ],
+      "explanation": "OpenMP는 컴파일러 지시어인 '#pragma omp parallel' 구문을 코드 블록 위에 선언함으로써 여러 스레드가 해당 블록을 병렬로 동시에 실행하도록 만듭니다."
+    },
+    {
+      "id": 13,
+      "type": "short",
+      "score": 5,
+      "origin": "5장 스레드 간 전역 변수 공유",
+      "text": "다음 C 코드를 실행했을 때 콘솔의 'MAIN: total = ' 뒤에 최종 출력되는 값은 무엇인가? (숫자만 입력)\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;pthread.h&gt;\n\nint total = 0;\n\nvoid* runner(void* param) {\n    total = 777;\n    pthread_exit(0);\n}\n\nint main() {\n    pthread_t tid;\n    pthread_create(&amp;tid, NULL, runner, NULL);\n    pthread_join(tid, NULL);\n    printf(\"MAIN: total = %d\\n\", total);\n    return 0;\n}</code></pre>",
+      "placeholder": "출력될 total 숫자 입력 (예: 777)",
+      "answers": [
+        "777"
+      ],
+      "explanation": "스레드는 동일 프로세스 내의 데이터 영역(전역 변수)을 완전히 공유합니다. fork() 프로세스와 달리 스레드가 total 값을 777로 수정하면 메인 스레드가 읽는 total 값도 777로 변경되어 출력됩니다."
+    },
+    {
+      "id": 14,
+      "type": "short",
+      "score": 5,
+      "origin": "6장 스케줄링 평가 기준: 대기 시간 (Waiting Time)",
+      "text": "CPU 스케줄링 평가 기준 5가지 중, 프로세스가 실행되기 위해 준비 큐(Ready Queue)에 들어와서 CPU를 할당받기를 기다린 시간들의 총합을 가리키는 용어를 쓰시오.",
+      "placeholder": "용어 입력 (한글 또는 영문)",
+      "answers": [
+        "대기 시간",
+        "대기시간",
+        "waiting time",
+        "Waiting Time",
+        "AWT"
+      ],
+      "explanation": "대기 시간(Waiting Time)은 프로세스가 준비 큐에서 머물며 CPU를 기다린 순수 대기 시간의 총합이며, 스케줄링 알고리즘의 우수성을 평가하는 가장 핵심적인 지표입니다."
+    },
+    {
+      "id": 15,
+      "type": "short",
+      "score": 5,
+      "origin": "6장 콘보이 효과 (Convoy Effect)",
+      "text": "FCFS 스케줄링에서 CPU 버스트 시간이 매우 긴 하나의 프로세스가 CPU를 먼저 독점 점유함으로써, 뒤이어 대기 중인 많은 짧은 프로세스들이 장시간 대기하게 되어 시스템 전체의 평균 대기시간이 극심하게 악화되는 현상을 무엇이라 하는가?",
+      "placeholder": "현상 명칭 (한글 또는 영문)",
+      "answers": [
+        "콘보이 효과",
+        "콘보이효과",
+        "호소 효과",
+        "호소효과",
+        "convoy effect",
+        "Convoy Effect"
+      ],
+      "explanation": "콘보이 효과(Convoy Effect, 호소 효과)는 CPU 버스트가 긴 프로세스가 앞을 막아 짧은 작업들이 대기열에 길게 늘어서는 현상으로, FCFS 스케줄링의 대표적인 단점입니다."
+    },
+    {
+      "id": 16,
+      "type": "short",
+      "score": 5,
+      "origin": "7장 다음 CPU 버스트 시간 예측 (지수 이동평균 계산)",
+      "text": "지수 이동평균 공식 τ_{n+1} = α·t_n + (1 - α)·τ_n 을 사용하여 다음 CPU 버스트 시간을 예측하고자 한다. 가중치 α = 0.5이고, 직전의 예측치 τ_n = 8ms이며, 실제로 측정된 직전 CPU 버스트 시간 t_n = 12ms일 때, 다음으로 예측되는 CPU 버스트 시간 τ_{n+1}은 몇 ms인가? (숫자만 입력)",
+      "placeholder": "예측 버스트 시간 숫자 입력 (예: 10)",
+      "answers": [
+        "10",
+        "10ms"
+      ],
+      "explanation": "τ_{n+1} = α·t_n + (1 - α)·τ_n = (0.5 × 12) + (0.5 × 8) = 6 + 4 = 10ms 입니다."
+    },
+    {
+      "id": 17,
+      "type": "short",
+      "score": 5,
+      "origin": "7장 선점형 SJF (SRTF) 간트 차트 및 평균 대기 시간(AWT) 계산",
+      "text": "다음 4개 프로세스 집합에 대해 선점형 SJF인 SRTF(Shortest Remaining Time First) 스케줄링을 적용할 때, 시스템의 평균 대기 시간(AWT)은 몇 ms인가? (소수점 포함 숫자만 입력)\n<table style=\"width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px;\">\n<tr style=\"background: rgba(255,255,255,0.05);\"><th style=\"border: 1px solid var(--border-color); padding: 6px;\">프로세스</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">도착 시간</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">버스트 시간</th></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P1</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">8 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P2</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">1 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">4 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P3</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">2 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">2 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P4</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">3 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">6 ms</td></tr>\n</table>\n<b>[간트 차트 힌트]</b>: <code>| P1 (1) | P2 (1) | P3 (2) | P2 (3) | P4 (6) | P1 (7) |</code><br>\n(시간: 0 → 1 → 2 → 4 → 7 → 13 → 20)",
+      "placeholder": "평균 대기 시간 숫자 입력 (예: 4.5)",
+      "answers": [
+        "4.5",
+        "4.5ms"
+      ],
+      "explanation": "간트 차트 실행:\n- t=0~1: P1 실행 (남은 7ms)\n- t=1: P2(4ms) 도착 < P1(7ms) → P2 선점! t=1~2 P2 실행 (남은 3ms)\n- t=2: P3(2ms) 도착 < P2(3ms) → P3 선점! t=2~4 P3 완료!\n- t=4: P2(남은 3ms) 실행 → t=4~7 P2 완료!\n- t=7: P4(6ms) 실행 → t=7~13 P4 완료!\n- t=13: P1(남은 7ms) 실행 → t=13~20 P1 완료!\n\n대기 시간:\n- P1 = (0 - 0) + (13 - 1) = 12ms\n- P2 = (1 - 1) + (4 - 2) = 2ms\n- P3 = 2 - 2 = 0ms\n- P4 = 7 - 3 = 4ms\n평균 대기 시간(AWT) = (12 + 2 + 0 + 4) / 4 = 18 / 4 = 4.5ms 입니다."
+    },
+    {
+      "id": 18,
+      "type": "short",
+      "score": 5,
+      "origin": "7장 Round Robin (q=3ms) 간트 차트 및 평균 대기 시간(AWT) 계산",
+      "text": "도착 시간이 모두 0ms인 3개의 프로세스(도착 순서: P1 → P2 → P3)에 대해 시간 할당량 q = 3ms인 Round Robin(RR) 스케줄링을 적용할 때, 시스템의 평균 대기 시간(AWT)은 몇 ms인가? (숫자만 입력)\n<table style=\"width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px;\">\n<tr style=\"background: rgba(255,255,255,0.05);\"><th style=\"border: 1px solid var(--border-color); padding: 6px;\">프로세스</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">도착 시간</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">버스트 시간</th></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P1</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">12 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P2</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">6 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P3</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">3 ms</td></tr>\n</table>\n<b>[간트 차트 힌트]</b>: <code>| P1 (3) | P2 (3) | P3 (3) | P1 (3) | P2 (3) | P1 (3) | P1 (3) |</code><br>\n(시간: 0 → 3 → 6 → 9 → 12 → 15 → 18 → 21)",
+      "placeholder": "평균 대기 시간 숫자 입력 (예: 8)",
+      "answers": [
+        "8",
+        "8ms",
+        "8.0",
+        "8.0ms"
+      ],
+      "explanation": "간트 차트 추적:\n- t=0~3: P1(남은 9)\n- t=3~6: P2(남은 3)\n- t=6~9: P3 완료 (종료 t=9)\n- t=9~12: P1(남은 6)\n- t=12~15: P2 완료 (종료 t=15)\n- t=15~18: P1(남은 3)\n- t=18~21: P1 완료 (종료 t=21)\n\n대기 시간(반환시간 - 버스트시간):\n- P1 = 21 - 12 = 9ms\n- P2 = 15 - 6 = 9ms\n- P3 = 9 - 3 = 6ms\n평균 대기 시간(AWT) = (9 + 9 + 6) / 3 = 24 / 3 = 8.0ms 입니다."
+    },
+    {
+      "id": 19,
+      "type": "short",
+      "score": 5,
+      "origin": "7장 Round Robin 시간 할당량(Time Quantum) 크기의 영향",
+      "text": "Round Robin(RR) 스케줄링에서 시간 할당량(Time Quantum, q)이 극단적으로 매우 커서 모든 프로세스의 실행 시간보다 큰 경우, 이 알고리즘은 사실상 어떤 기본 CPU 스케줄링 알고리즘과 동일하게 동작하는가?",
+      "placeholder": "스케줄링 알고리즘 명칭 (영문 약어 또는 한글)",
+      "answers": [
+        "FCFS",
+        "fcfs",
+        "FIFO",
+        "fifo",
+        "선입선출",
+        "선입선출 스케줄링"
+      ],
+      "explanation": "시간 할당량 q가 무한히 커지면 어떤 프로세스도 시간 초과로 선점(Preemption)되지 않고 도착한 순서대로 끝까지 실행을 완료하므로, FCFS(First-Come, First-Served) 스케줄링과 완전히 동일해집니다."
+    },
+    {
+      "id": 20,
+      "type": "choice",
+      "score": 5,
+      "origin": "7장 우선순위 역전 (Priority Inversion)과 상속",
+      "text": "우선순위 스케줄링에서 높은 우선순위 프로세스(H)가 낮은 우선순위 프로세스(L)가 쥐고 있는 자원을 기다리는 동안, 중간 우선순위 프로세스(M)가 선점하여 H의 실행이 무기한 지연되는 '우선순위 역전(Priority Inversion)' 문제를 해결하기 위한 운영체제의 대표적인 프로토콜은?",
+      "options": [
+        "A. 우선순위 상속(Priority Inheritance) 프로토콜",
+        "B. 라운드 로빈 시분할 프로토콜",
+        "C. 다단계 큐 분리 프로토콜",
+        "D. FCFS 강제 선점 프로토콜"
+      ],
+      "answer": "A",
+      "answers": [
+        "A",
+        "a",
+        "1"
+      ],
+      "explanation": "우선순위 상속(Priority Inheritance)은 높은 우선순위 프로세스가 필요로 하는 자원을 점유한 낮은 우선순위 프로세스에게 일시적으로 높은 우선순위를 부여(상속)하여 자원을 빨리 해제하게 함으로써 우선순위 역전을 해결합니다."
+    }
+  ]
+},
+{
+  "id": "os_exam9",
+  "name": "제9회 [전범위 최종 파이널 C형] 교수님 적중 스포 & 고난도 코드·스케줄링 완전정복 (20문항 100점 만점)",
+  "desc": "7주차 녹음 강의 고난도 킬러 문항 집중: FCFS vs SJF AWT 차이 계산, SRTF 평균 반환시간(ATT), RR ATT, fork 조건트리, Ordinary Pipe fd[0]/fd[1] 닫기, MLFQ (20문항 100점 만점, 각 문항 5점)",
+  "questions": [
+    {
+      "id": 1,
+      "type": "choice",
+      "score": 5,
+      "origin": "1장 인터럽트 처리 절차 순서",
+      "text": "컴퓨터 시스템에서 I/O 장치로부터 하드웨어 인터럽트가 발생했을 때 운영체제와 CPU가 수행하는 처리 절차를 올바른 순서대로 나열한 것은?\n(가) 현재 실행 중인 프로세스의 상태(PC, 레지스터)를 스택이나 PCB에 저장한다.\n(나) 인터럽트 서비스 루틴(ISR)을 실행하여 해당 인터럽트 요청을 처리한다.\n(다) 인터럽트 벡터 테이블에서 해당 인터럽트 번호에 대응하는 ISR 시작 주소를 조회한다.\n(라) 이전에 저장해 두었던 프로세스 상태를 복원하고 원래 실행 지점으로 복귀한다.",
+      "options": [
+        "A. (가) → (다) → (나) → (라)",
+        "B. (다) → (가) → (라) → (나)",
+        "C. (나) → (가) → (다) → (라)",
+        "D. (가) → (나) → (다) → (라)"
+      ],
+      "answer": "A",
+      "answers": [
+        "A",
+        "a",
+        "1"
+      ],
+      "explanation": "인터럽트 처리 순서는: 1) 현재 프로세스 상태(PC, 레지스터) 저장(가) → 2) 인터럽트 벡터 테이블 조회(다) → 3) 인터럽트 서비스 루틴(ISR) 실행(나) → 4) 프로세스 상태 복원 후 복귀(라) 순으로 진행됩니다."
+    },
+    {
+      "id": 2,
+      "type": "short",
+      "score": 5,
+      "origin": "2장 문맥 교환 순수 시간 손실 용어",
+      "text": "문맥 교환(Context Switching)이 일어나는 동안 CPU는 사용자 프로그램을 실행하지 못하고 순수하게 레지스터/PCB 저장 및 복원 작업만을 수행하게 된다. 이처럼 시스템의 본래 유용한 작업 이외에 추가적으로 소모되는 간접적인 시간 및 메모리 자원 낭비를 지칭하는 컴퓨터 공학 용어를 쓰시오.",
+      "placeholder": "용어 입력 (한글 또는 영문)",
+      "answers": [
+        "오버헤드",
+        "오버 헤드",
+        "overhead",
+        "Overhead"
+      ],
+      "explanation": "문맥 교환 시간은 유용한 프로그램 작업을 하지 못하는 순수 시스템 손실이므로 오버헤드(Overhead)라고 부릅니다."
+    },
+    {
+      "id": 3,
+      "type": "short",
+      "score": 5,
+      "origin": "2장 프로세스 상태 전이 디스패치",
+      "text": "프로세스 상태 전이도에서 준비(Ready) 상태에 있는 여러 프로세스 중 스케줄러가 하나를 선택하여 실행(Running) 상태로 전환시키는 행위의 명칭을 쓰시오.",
+      "placeholder": "행위 명칭 (한글 또는 영문)",
+      "answers": [
+        "디스패치",
+        "디스패칭",
+        "dispatch",
+        "Dispatch",
+        "dispatching"
+      ],
+      "explanation": "Ready 큐의 프로세스가 CPU를 할당받아 Running 상태로 전이되는 동작을 '디스패치(Dispatch)'라고 부릅니다."
+    },
+    {
+      "id": 4,
+      "type": "short",
+      "score": 5,
+      "origin": "3장 fork() 복합 조건문 프로세스 트리 분석",
+      "text": "다음 C 코드를 실행했을 때, 콘솔 화면에 문자열 'ANTIGRAVITY'가 출력되는 총 횟수는 몇 회인가? (숫자만 입력)\n<pre><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;unistd.h&gt;\n\nint main() {\n    fork();\n    if (fork() == 0) {\n        fork();\n    }\n    printf(\"ANTIGRAVITY\\n\");\n    return 0;\n}</code></pre>",
+      "placeholder": "출력 횟수 숫자 입력 (예: 6)",
+      "answers": [
+        "6",
+        "6회",
+        "6번"
+      ],
+      "explanation": "1) 첫 번째 fork(): 프로세스 2개(P0, P1) 생성.\n2) if(fork() == 0): P0가 자식 P2 생성, P1이 자식 P3 생성 (총 4개 프로세스 존재).\n- 부모(P0, P1)는 조건문 진입 안 함 (각 1회씩 출력, 누적 2개).\n- 자식(P2, P3)은 if 블록에 진입하여 안에서 fork()를 각각 실행 → P2가 P4 생성, P3가 P5 생성 (자식 쪽에서 총 4개 프로세스 됨).\n3) 결과적으로 존재하는 모든 프로세스(부모 2개 + 자식 파생 4개) = 총 6개 프로세스가 각각 printf를 실행하므로 6회 출력됩니다."
+    },
+    {
+      "id": 5,
+      "type": "short",
+      "score": 5,
+      "origin": "3장 exec()의 메모리 대체 메커니즘",
+      "text": "UNIX에서 exec 계열 시스템 콜이 성공적으로 호출되면, 기존 프로세스의 코드(Text), 데이터, 힙, 스택 메모리 영역 전체가 새로운 바이너리 프로그램으로 완전히 이것( )되기 때문에, exec 함수 호출문 바로 아래에 작성된 기존 코드는 결코 실행되지 않는다. 괄호에 들어갈 알맞은 표현을 쓰시오.",
+      "placeholder": "단어 입력 (예: 대체, 덮어쓰기, 교체)",
+      "answers": [
+        "대체",
+        "덮어쓰기",
+        "교체",
+        "대체되기",
+        "덮어써지기",
+        "교체되기",
+        "replace",
+        "overwrite"
+      ],
+      "explanation": "exec 계열 시스템 콜은 현재 프로세스의 주소 공간 전체를 새 프로그램으로 완전히 대체(덮어쓰기)합니다."
+    },
+    {
+      "id": 6,
+      "type": "short",
+      "score": 5,
+      "origin": "3장 고아 프로세스 (Orphan Process)의 입양 부모",
+      "text": "부모 프로세스가 자식보다 먼저 종료되어 버린 경우, 홀로 남겨진 고아 프로세스(Orphan Process)를 자신의 자식으로 입양(Adopt)하여 추후 자식이 종료되었을 때 wait()를 통해 좀비가 되지 않도록 수거해 주는 전통적인 UNIX 최상위 루트 프로세스의 명칭을 쓰시오.",
+      "placeholder": "프로세스 명칭 (영문 소문자)",
+      "answers": [
+        "init",
+        "systemd",
+        "init 프로세스"
+      ],
+      "explanation": "고아 프로세스는 시스템의 최상위 부모인 init(또는 현대 Linux의 systemd) 프로세스가 입양하여 자식의 종료 상태를 주기적으로 wait() 해 줍니다."
+    },
+    {
+      "id": 7,
+      "type": "short",
+      "score": 5,
+      "origin": "4장 POSIX 공유 메모리 가상 주소 공간 매핑 함수",
+      "text": "POSIX 공유 메모리 프로그래밍에서 shm_open()으로 획득한 공유 메모리 파일 디스크립터를 프로세스의 가상 주소 공간에 매핑하여 실제 읽고 쓸 수 있는 메모리 포인터(void*)를 반환받는 핵심 시스템 콜 함수명을 쓰시오.",
+      "placeholder": "함수명 입력 (예: mmap)",
+      "answers": [
+        "mmap",
+        "mmap()"
+      ],
+      "explanation": "mmap() 시스템 콜은 공유 메모리 객체나 파일을 프로세스의 가상 주소 공간에 매핑하여 포인터 형태로 접근할 수 있게 해 줍니다."
+    },
+    {
+      "id": 8,
+      "type": "choice",
+      "score": 5,
+      "origin": "4장 Ordinary Pipe 파일 디스크립터 닫기(close) 규약",
+      "text": "UNIX 단방향 파이프(pipe(fd))를 생성한 후, '부모 프로세스가 데이터를 쓰고(Write), 자식 프로세스가 데이터를 읽는(Read)' 통신을 구성하고자 한다. 통신 시작 전 부모와 자식이 각각 close()로 닫아야 하는 파일 디스크립터(fd)의 올바른 조합은?",
+      "options": [
+        "A. 부모는 fd[0](읽기)을 닫고, 자식은 fd[1](쓰기)을 닫는다.",
+        "B. 부모는 fd[1](쓰기)을 닫고, 자식은 fd[0](읽기)을 닫는다.",
+        "C. 부모와 자식 모두 fd[0]을 닫는다.",
+        "D. 부모와 자식 모두 fd[1]을 닫는다."
+      ],
+      "answer": "A",
+      "answers": [
+        "A",
+        "a",
+        "1"
+      ],
+      "explanation": "부모가 쓰고 자식이 읽으므로, 부모는 사용하지 않는 읽기 종단인 fd[0]을 닫아야 하고, 자식은 사용하지 않는 쓰기 종단인 fd[1]을 닫아야 EOF 감지 및 파이프 통신이 정상 동작합니다."
+    },
+    {
+      "id": 9,
+      "type": "choice",
+      "score": 5,
+      "origin": "4장 메시지 전달(Message Passing) 동기화 유형",
+      "text": "메시지 전달(IPC) 시스템의 동기화 방식 중 '블로킹 송신(Blocking Send)'과 '논블로킹 수신(Non-blocking Receive)'의 결합에 대한 설명으로 가장 옳은 것은?",
+      "options": [
+        "A. 송신 프로세스는 수신자(또는 메일박스)가 메시지를 받을 때까지 블록되며, 수신 프로세스는 유효한 메시지가 있든 없든 기다리지 않고 즉시 반환한다.",
+        "B. 송신 프로세스와 수신 프로세스가 모두 만날 때까지 양쪽 다 영구히 블록된다 (Rendezvous).",
+        "C. 송신자는 메시지를 보내고 즉시 다음 코드로 진행하며, 수신자는 메시지가 도착할 때까지 무한정 기다린다.",
+        "D. 송신자와 수신자 모두 어떤 상황에서도 결코 블록되지 않는다."
+      ],
+      "answer": "A",
+      "answers": [
+        "A",
+        "a",
+        "1"
+      ],
+      "explanation": "Blocking Send는 수신자가 메시지를 수신할 때까지 송신자를 대기(블록)시키며, Non-blocking Receive는 수신할 메시지가 있으면 가져오고 없으면 null/에러를 리턴하며 즉시 다음 작업을 진행합니다."
+    },
+    {
+      "id": 10,
+      "type": "choice",
+      "score": 5,
+      "origin": "5장 일대일(One-to-One) 스레딩 모델 채택 이유",
+      "text": "현대의 Linux, Windows 등 주요 운영체제들이 사용자 스레드와 커널 스레드의 관계로 '다대일(Many-to-One)' 모델을 버리고 '일대일(One-to-One)' 모델을 기본 채택한 가장 결정적인 이유는?",
+      "options": [
+        "A. 다대일 모델은 한 스레드가 I/O 작업 등으로 블록되면 프로세스 전체의 다른 모든 스레드까지 함께 블록되는 치명적인 결함이 있기 때문이다.",
+        "B. 다대일 모델이 일대일 모델보다 커널 스레드 생성 오버헤드가 훨씬 더 크기 때문이다.",
+        "C. 일대일 모델은 사용자 공간 라이브러리만으로 스레드를 생성할 수 있어 커널 개입이 전혀 없기 때문이다.",
+        "D. 일대일 모델에서는 스레드 간의 전역 변수 공유가 원천적으로 금지되기 때문이다."
+      ],
+      "answer": "A",
+      "answers": [
+        "A",
+        "a",
+        "1"
+      ],
+      "explanation": "다대일 모델은 하나의 사용자 스레드가 시스템 콜 등으로 블록되면 프로세스 전체가 블록되고 멀티코어의 병렬성을 활용할 수 없다는 치명적 한계가 있어, 현대 OS는 스레드 1개당 커널 스레드 1개를 매핑하는 일대일 모델을 채택합니다."
+    },
+    {
+      "id": 11,
+      "type": "choice",
+      "score": 5,
+      "origin": "5장 fork()와 pthread_create() 혼합 생성 개수 (수업 6주차 심화)",
+      "text": "다음 C 코드 실행 시 생성되는 총 '신규 자식 프로세스'의 개수와 '스레드'의 개수로 바르게 짝지어진 것은? (수업 예제)\n<pre><code class=\"language-c\">pid = fork();\nif (pid == 0) {\n    fork();\n    pthread_create(&amp;tid, NULL, runner, NULL);\n}\nfork();</code></pre>",
+      "options": [
+        "A. 생성된 신규 프로세스 5개, 생성된 스레드 2개",
+        "B. 생성된 신규 프로세스 2개, 생성된 스레드 1개",
+        "C. 생성된 신규 프로세스 6개, 생성된 스레드 4개",
+        "D. 생성된 신규 프로세스 8개, 생성된 스레드 8개"
+      ],
+      "answer": "A",
+      "answers": [
+        "A",
+        "a",
+        "1"
+      ],
+      "explanation": "1) 첫 fork(): 부모 P0, 자식 P1 (프로세스 2개)\n2) if(pid == 0): 자식 P1만 진입하여 fork()로 P2 생성(자식 2개: P1, P2). 각각 pthread_create() 실행하여 스레드 총 2개 생성!\n3) if 밖의 fork(): 현재 존재하는 3개 프로세스(P0, P1, P2)가 각각 fork() 실행하여 신규 프로세스 3개(P3, P4, P5) 생성.\n- 최초 P0를 제외한 신규 생성 자식 프로세스는 총 5개(P1~P5), 생성된 스레드는 2개입니다."
+    },
+    {
+      "id": 12,
+      "type": "short",
+      "score": 5,
+      "origin": "5장 GCC OpenMP 컴파일 옵션",
+      "text": "Linux 환경에서 GCC 컴파일러를 사용하여 OpenMP 라이브러리 및 지시어(#pragma omp)가 포함된 C 소스코드를 컴파일할 때 반드시 추가해야 하는 컴파일 옵션 플래그를 쓰시오. (예: gcc [옵션] test.c)",
+      "placeholder": "컴파일 옵션 플래그 입력",
+      "answers": [
+        "-fopenmp",
+        "fopenmp"
+      ],
+      "explanation": "GCC에서 OpenMP 지원을 활성화하려면 컴파일 옵션으로 '-fopenmp'를 반드시 지정해야 합니다 (예: gcc -fopenmp test.c -o test)."
+    },
+    {
+      "id": 13,
+      "type": "choice",
+      "score": 5,
+      "origin": "6장 비선점(Non-preemptive) 스케줄링 시점",
+      "text": "CPU 스케줄링이 발생하는 다음 4가지 프로세스 상태 변화 시점 중, '비선점(Non-preemptive)' 스케줄링 방식에서도 불가피하게 스케줄링이 발생하는 2가지 상황으로 짝지어진 것은?\n1) 프로세스가 실행(Running) 상태에서 대기(Waiting) 상태로 전환될 때 (예: I/O 요청)\n2) 프로세스가 실행(Running) 상태에서 준비(Ready) 상태로 전환될 때 (예: 타임아웃 인터럽트)\n3) 프로세스가 대기(Waiting) 상태에서 준비(Ready) 상태로 전환될 때 (예: I/O 완료)\n4) 프로세스가 종료(Terminated)될 때",
+      "options": [
+        "A. 1)과 4)",
+        "B. 2)와 3)",
+        "C. 1)과 2)",
+        "D. 3)과 4)"
+      ],
+      "answer": "A",
+      "answers": [
+        "A",
+        "a",
+        "1"
+      ],
+      "explanation": "비선점 스케줄링은 프로세스가 스스로 CPU를 놓아줄 때만 스케줄링이 발생합니다. 이는 1) I/O 요청 등으로 Waiting 상태로 전환될 때와 4) 프로세스가 완전히 Terminated(종료)될 때뿐입니다."
+    },
+    {
+      "id": 14,
+      "type": "short",
+      "score": 5,
+      "origin": "6장 디스패치 지연 (Dispatch Latency)",
+      "text": "디스패처가 현재 실행 중인 프로세스를 중단시키고, 다음으로 실행할 다른 프로세스를 준비하여 CPU에서 실제로 실행을 시작하기까지 소요되는 지연 시간(문맥 교환 오버헤드 포함)의 명칭을 쓰시오.",
+      "placeholder": "지연 시간 명칭 (한글 또는 영문)",
+      "answers": [
+        "디스패치 지연",
+        "디스패치지연",
+        "dispatch latency",
+        "Dispatch Latency",
+        "디스패치 레이턴시"
+      ],
+      "explanation": "디스패치 지연(Dispatch Latency)은 한 프로세스를 멈추고 다른 프로세스를 시작시키기까지 걸리는 시간으로, 문맥 교환 시간과 직결됩니다."
+    },
+    {
+      "id": 15,
+      "type": "short",
+      "score": 5,
+      "origin": "6장 프로세스 특성 분류 (I/O-bound process)",
+      "text": "컴퓨터 시스템의 프로세스 중 많은 계산보다는 사용자 입력이나 디스크/네트워크 입출력 대기 시간의 비중이 훨씬 크고, CPU 버스트 시간이 매우 짧은 빈번한 형태로 나타나는 프로세스를 가리키는 용어를 쓰시오.",
+      "placeholder": "프로세스 유형 명칭 (한글 또는 영문)",
+      "answers": [
+        "I/O 바운드 프로세스",
+        "I/O 바운드",
+        "IO 바운드",
+        "입출력 중심 프로세스",
+        "I/O-bound process",
+        "IO-bound process",
+        "입출력 바운드 프로세스"
+      ],
+      "explanation": "I/O 바운드 프로세스는 연산(CPU 버스트) 시간보다 I/O 대기(I/O 버스트) 시간이 지배적인 프로세스로, 대화형 프로그램이 대표적입니다."
+    },
+    {
+      "id": 16,
+      "type": "short",
+      "score": 5,
+      "origin": "7장 FCFS vs SJF 평균 대기 시간(AWT) 차이 계산 킬러",
+      "text": "모두 0ms에 도착한 3개의 프로세스(도착 순서: P1 → P2 → P3, 버스트 시간: P1=12ms, P2=6ms, P3=3ms)에 대해, FCFS를 적용했을 때의 평균 대기 시간(AWT)과 비선점 SJF를 적용했을 때의 평균 대기 시간(AWT)의 '차이값'은 몇 ms인가? (숫자만 입력)\n<b>[힌트]</b>: FCFS 간트차트: <code>| P1 (12) | P2 (6) | P3 (3) |</code><br>\nSJF 간트차트: <code>| P3 (3) | P2 (6) | P1 (12) |</code>",
+      "placeholder": "AWT 차이값 숫자 입력 (예: 6)",
+      "answers": [
+        "6",
+        "6ms",
+        "6.0",
+        "6.0ms"
+      ],
+      "explanation": "1) FCFS 스케줄링:\n- 대기시간: P1=0, P2=12, P3=18\n- FCFS AWT = (0 + 12 + 18) / 3 = 30 / 3 = 10.0ms\n2) 비선점 SJF 스케줄링:\n- 대기시간: P3=0, P2=3, P1=9\n- SJF AWT = (0 + 3 + 9) / 3 = 12 / 3 = 4.0ms\n따라서 두 방식의 평균 대기 시간 차이는 10.0 - 4.0 = 6.0ms 입니다."
+    },
+    {
+      "id": 17,
+      "type": "short",
+      "score": 5,
+      "origin": "7장 선점형 SRTF 간트 차트 및 평균 반환 시간(ATT) 계산",
+      "text": "다음 4개의 프로세스에 대해 선점형 SJF인 SRTF(Shortest Remaining Time First) 스케줄링을 적용할 때, 시스템의 평균 반환 시간(ATT, Average Turnaround Time)은 몇 ms인가? (숫자만 입력)\n<table style=\"width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px;\">\n<tr style=\"background: rgba(255,255,255,0.05);\"><th style=\"border: 1px solid var(--border-color); padding: 6px;\">프로세스</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">도착 시간</th><th style=\"border: 1px solid var(--border-color); padding: 6px;\">버스트 시간</th></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P1</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">0 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">7 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P2</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">2 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">4 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P3</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">4 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">1 ms</td></tr>\n<tr><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">P4</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">5 ms</td><td style=\"border: 1px solid var(--border-color); padding: 6px; text-align: center;\">4 ms</td></tr>\n</table>\n<b>[간트 차트]</b>: <code>| P1 (2) | P2 (2) | P3 (1) | P2 (2) | P4 (4) | P1 (5) |</code><br>\n(시간: 0 → 2 → 4 → 5 → 7 → 11 → 16)",
+      "placeholder": "평균 반환 시간 숫자 입력 (예: 7)",
+      "answers": [
+        "7",
+        "7ms",
+        "7.0",
+        "7.0ms"
+      ],
+      "explanation": "반환 시간(Turnaround Time = 종료 시각 - 도착 시각):\n- P1: 종료 16 - 도착 0 = 16ms\n- P2: 종료 7 - 도착 2 = 5ms\n- P3: 종료 5 - 도착 4 = 1ms\n- P4: 종료 11 - 도착 5 = 6ms\n평균 반환 시간(ATT) = (16 + 5 + 1 + 6) / 4 = 28 / 4 = 7.0ms 입니다."
+    },
+    {
+      "id": 18,
+      "type": "short",
+      "score": 5,
+      "origin": "7장 Round Robin (q=3ms) 간트 차트 및 평균 반환 시간(ATT) 계산",
+      "text": "도착 시간이 모두 0ms인 3개의 프로세스(버스트 시간: P1=12ms, P2=6ms, P3=3ms)에 대해 시간 할당량 q = 3ms인 Round Robin(RR) 스케줄링을 적용할 때, 시스템의 평균 반환 시간(ATT, Average Turnaround Time)은 몇 ms인가? (숫자만 입력)\n<b>[간트 차트 힌트]</b>: <code>| P1 (3) | P2 (3) | P3 (3) | P1 (3) | P2 (3) | P1 (3) | P1 (3) |</code><br>\n(시간: 0 → 3 → 6 → 9 → 12 → 15 → 18 → 21)",
+      "placeholder": "평균 반환 시간 숫자 입력 (예: 15)",
+      "answers": [
+        "15",
+        "15ms",
+        "15.0",
+        "15.0ms"
+      ],
+      "explanation": "종료 시각 (도착 시간이 모두 0ms이므로 종료 시각 = 반환 시간):\n- P1: 21ms에 완료 → 반환시간 = 21ms\n- P2: 15ms에 완료 → 반환시간 = 15ms\n- P3: 9ms에 완료 → 반환시간 = 9ms\n평균 반환 시간(ATT) = (21 + 15 + 9) / 3 = 45 / 3 = 15.0ms 입니다."
+    },
+    {
+      "id": 19,
+      "type": "short",
+      "score": 5,
+      "origin": "7장 다단계 피드백 큐 (MLFQ, Multilevel Feedback Queue)",
+      "text": "프로세스가 너무 많은 CPU 버스트 시간을 소비하면 낮은 우선순위 큐로 강등시키고, 입출력(I/O) 중심이거나 대기 큐에서 오랫동안 기다린 프로세스는 높은 우선순위 큐로 승급(에이징)시키는 등 프로세스의 CPU 사용 패턴에 따라 동적으로 큐를 이동시키는 적응형 스케줄링 알고리즘의 명칭을 쓰시오.",
+      "placeholder": "알고리즘 명칭 (한글 또는 영문 약어)",
+      "answers": [
+        "다단계 피드백 큐",
+        "다단계 피드백 큐 스케줄링",
+        "다단계피드백큐",
+        "MLFQ",
+        "mlfq",
+        "Multilevel Feedback Queue"
+      ],
+      "explanation": "다단계 피드백 큐(MLFQ, Multilevel Feedback Queue)는 프로세스의 동작 특성에 따라 여러 우선순위 큐 사이를 유연하게 이동(승급/강등)시키는 대표적인 현대적 스케줄링 기법입니다."
+    },
+    {
+      "id": 20,
+      "type": "short",
+      "score": 5,
+      "origin": "7장 우선순위 스케줄링 숫자 규약",
+      "text": "일반적인 UNIX 및 표준 운영체제 이론에서 우선순위 스케줄링을 적용할 때, 정수 숫자가 작을수록(예: 0 vs 100) 우선순위는 ( )으로 취급된다. 괄호에 들어갈 알맞은 단어(높음/낮음)를 쓰시오.",
+      "placeholder": "높음 또는 낮음 입력",
+      "answers": [
+        "높음",
+        "높다",
+        "높은 우선순위",
+        "high"
+      ],
+      "explanation": "대다수 운영체제(UNIX, POSIX 등)와 교과서에서는 일반적으로 숫자가 작을수록(0에 가까울수록) 더 높은 우선순위(Higher Priority)를 의미합니다."
+    }
+  ]
+}
   ]
 };
