@@ -34,7 +34,7 @@
       <div class="nav-controls">
         <!-- Subject Dropdown -->
         <select id="subjectSelect" class="subject-select" onchange="changeSubject(this.value)">
-          <option value="crossplatform" selected>크로스플랫폼 프로그래밍 (정종수 교수 / 실전 1~4회 &amp; 올코드 빈칸 마스터 5회)</option>
+          <option value="crossplatform" selected>크로스플랫폼 프로그래밍 (정종수 교수 / 전수 53문항 올마스터 &amp; 주차별 실전 지필고사)</option>
           <option value="gameprog">게임프로그래밍 (김영호 교수 / 실전 모의고사 1~4회)</option>
           <option value="security">정보보호개론 (박정수 교수 / 실전 모의고사 1~12회)</option>
           <option value="os">운영체제 (시험직전 10분 최종족보 · 실습코드 15선 · 코드분석 전문 &amp; 실전 모의고사 1~9회)</option>
@@ -87,7 +87,7 @@
         <div class="progress-score-label">Current Score</div>
         <div class="score-display">
           <span class="score-num" id="currentScoreDisplay">0</span>
-          <span class="score-max">/ 100점</span>
+          <span class="score-max" id="maxScoreDisplay">/ 100점</span>
         </div>
       </div>
       <div style="flex: 1; max-width: 440px;">
@@ -176,9 +176,17 @@ window.EXAM_DATABASE.db = {
 <script src="data/gameprog.js?v=20261020_1"></script>
 <script src="data/security.js?v=20261020_1"></script>
 <script src="data/os.js?v=20261020_2"></script>
+<!-- CrossPlatform Split Modules (Week 3~7 & All 53) -->
+<script src="data/crossplatform/week3.js?v=20261021_1"></script>
+<script src="data/crossplatform/week4.js?v=20261021_1"></script>
+<script src="data/crossplatform/week5.js?v=20261021_1"></script>
+<script src="data/crossplatform/week6.js?v=20261021_1"></script>
+<script src="data/crossplatform/week7.js?v=20261021_1"></script>
+<script src="data/crossplatform/all53.js?v=20261021_1"></script>
 <script src="data/crossplatform.js?v=20261020_1"></script>
+<script src="data/crossplatform/index.js?v=20261021_1"></script>
 
 <!-- Integrated Application Engine -->
-<script src="js/app.js?v=20261020_1"></script>
+<script src="js/app.js?v=20261021_1"></script>
 </body>
 </html>

@@ -337,6 +337,17 @@ function toggleWrongNotesView() {
   }
 }
 
+// 코드 에디터 Tab 키 들여쓰기 헬퍼
+function handleCodeTextareaTab(e, el) {
+  if (e.key === "Tab") {
+    e.preventDefault();
+    const start = el.selectionStart;
+    const end = el.selectionEnd;
+    el.value = el.value.substring(0, start) + "  " + el.value.substring(end);
+    el.selectionStart = el.selectionEnd = start + 2;
+  }
+}
+
 function renderExamTabs() {
   renderExamFilterBar();
 
@@ -354,7 +365,27 @@ function renderExamTabs() {
     return;
   }
 
+  // 상단 주차별 / 회차별 퀵 탭 바 (Pill Bar)
+  let pillsHtml = "";
+  if (subjectData.exams.length > 1) {
+    pillsHtml = `<div class="exam-pills-bar">`;
+    subjectData.exams.forEach((ex, idx) => {
+      const isActive = (!isWrongNotesMode && idx === currentExamIndex) ? "active" : "";
+      let label = ex.category || ex.name;
+      if (ex.id === "cp_all53") label = "🔥 전범위 53제 올마스터";
+      else if (ex.id === "cp_week3") label = "3주: 스타일링";
+      else if (ex.id === "cp_week4") label = "4주: 컴포넌트 기초";
+      else if (ex.id === "cp_week5") label = "5주: 컴포넌트";
+      else if (ex.id === "cp_week6") label = "6주: 컴포넌트 응용";
+      else if (ex.id === "cp_week7") label = "7주: Hook";
+      else if (ex.id.startsWith("cp_exam")) label = `실전 모의 ${ex.id.replace('cp_exam', '')}회`;
+      pillsHtml += `<button class="exam-pill-btn ${isActive}" onclick="switchExam(${idx})">${label}</button>`;
+    });
+    pillsHtml += `</div>`;
+  }
+
   container.innerHTML = `
+    ${pillsHtml}
     <div class="exam-active-header">
       <div class="exam-active-info">
         <span class="exam-active-title">${isWrongNotesMode ? '[오답 집중] 틀린 문제 모아보기' : cleanTasteString(exam.name)}</span>
@@ -405,6 +436,7 @@ function renderCurrentExam() {
     if (q.type === "choice") typeBadge = "객관식";
     else if (q.type === "calc") typeBadge = "계산형";
     else if (q.type === "essay") typeBadge = "서술형";
+    else if (q.type === "code") typeBadge = "코드작성";
 
     html += `
       <div class="q-card" id="card_${qKey}">
@@ -451,9 +483,29 @@ function renderCurrentExam() {
     else if (q.type === "essay") {
       html += `
         <div class="essay-group">
-          <textarea id="input_${qKey}" class="essay-textarea" placeholder="핵심 키워드를 포함하여 서술 답안을 작성해보세요." oninput="userAnswers['${qKey}']=this.value">${savedAns}</textarea>
+          <textarea id="input_${qKey}" class="essay-textarea" placeholder="핵심 키워드를 포함하여 서술 답안을 작성해보세요." oninput="userAnswers['${qKey}']=this.value; updateProgressAndScore();">${savedAns}</textarea>
           <div class="self-score-row">
             <span style="font-weight: 700; font-size: 14px; color: var(--text-secondary);">채점 기준표 확인 후 자가 점수 부여:</span>
+            <div style="display:flex; gap: 6px;">
+              <button class="score-chip ${essayScores[qKey]===0 ? 'active':''}" onclick="setEssayScore('${exam.id}', ${q.id}, 0)">0점</button>
+              <button class="score-chip ${essayScores[qKey]===Math.round(q.score/2) ? 'active':''}" onclick="setEssayScore('${exam.id}', ${q.id}, ${Math.round(q.score/2)})">부분점수 (${Math.round(q.score/2)}점)</button>
+              <button class="score-chip ${essayScores[qKey]===q.score ? 'active':''}" onclick="setEssayScore('${exam.id}', ${q.id}, ${q.score})">만점 (${q.score}점)</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 4) 코드 작성형 (Code)
+    else if (q.type === "code") {
+      html += `
+        <div class="code-editor-group">
+          <div class="code-editor-header">
+            <span>💻 코드 직접 작성 (Tab 키 2칸 들여쓰기 지원)</span>
+          </div>
+          <textarea id="input_${qKey}" class="code-textarea" placeholder="// 교안 조건에 맞게 코드를 직접 작성해보세요." onkeydown="handleCodeTextareaTab(event, this)" oninput="userAnswers['${qKey}']=this.value; updateProgressAndScore();">${savedAns}</textarea>
+          <div class="self-score-row">
+            <span style="font-weight: 700; font-size: 14px; color: var(--text-secondary);">모범 코드 확인 후 자가 점수 부여:</span>
             <div style="display:flex; gap: 6px;">
               <button class="score-chip ${essayScores[qKey]===0 ? 'active':''}" onclick="setEssayScore('${exam.id}', ${q.id}, 0)">0점</button>
               <button class="score-chip ${essayScores[qKey]===Math.round(q.score/2) ? 'active':''}" onclick="setEssayScore('${exam.id}', ${q.id}, ${Math.round(q.score/2)})">부분점수 (${Math.round(q.score/2)}점)</button>
@@ -479,10 +531,11 @@ function renderCurrentExam() {
     `;
 
     if (q.sampleAnswer) {
+      const isCode = q.type === "code";
       html += `
         <div style="margin-top: 10px; padding: 12px; background: var(--bg-surface-elevated); border-radius: 6px;">
-          <div style="font-weight: 800; color: var(--accent); margin-bottom: 4px;">모범 답안 예시:</div>
-          <div style="font-size: 15px; line-height: 1.6; white-space: pre-wrap;">${q.sampleAnswer}</div>
+          <div style="font-weight: 800; color: var(--accent); margin-bottom: 6px;">${isCode ? '교안 원본 모범 코드:' : '모범 답안 예시:'}</div>
+          ${isCode ? `<pre class="code-block" style="margin: 0; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.55; white-space: pre-wrap; color: var(--ink);"><code>${q.sampleAnswer.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>` : `<div style="font-size: 15px; line-height: 1.6; white-space: pre-wrap;">${q.sampleAnswer}</div>`}
         </div>
       `;
     }
@@ -516,9 +569,9 @@ function renderCurrentExam() {
 
   container.innerHTML = html;
 
-  // 서술형 기본 점수 세팅
+  // 서술형 & 코드작성형 기본 점수 세팅
   exam.questions.forEach((q) => {
-    if (q.type === "essay") {
+    if (q.type === "essay" || q.type === "code") {
       const qKey = `${exam.id}_${q.id}`;
       if (essayScores[qKey] === undefined) {
         essayScores[qKey] = q.score;
@@ -603,7 +656,7 @@ function setEssayScore(examId, qId, scoreVal) {
   event.target.classList.add("active");
 
   updateProgressAndScore();
-  showToast(`[서술형 ${qId}번] ${scoreVal}점 반영되었습니다.`);
+  showToast(`[${qId}번] 자가점수 ${scoreVal}점 반영되었습니다.`);
 }
 
 // 실시간 진행도 및 점수 계산
@@ -617,20 +670,30 @@ function updateProgressAndScore() {
 
   exam.questions.forEach((q) => {
     const qKey = `${exam.id}_${q.id}`;
-    if (q.type === "essay") {
+    if (q.type === "essay" || q.type === "code") {
       if (essayScores[qKey] !== undefined) {
         totalScore += essayScores[qKey];
-        if (userAnswers[qKey]) answeredCount++;
+      }
+      if (userAnswers[qKey] && userAnswers[qKey].trim().length > 0) {
+        answeredCount++;
       }
     } else {
       if (shortScores[qKey] !== undefined) {
         totalScore += shortScores[qKey];
+      }
+      if (userAnswers[qKey] && userAnswers[qKey].trim().length > 0) {
         answeredCount++;
       }
     }
   });
 
   const totalQuestions = exam.questions.length;
+  const maxScore = exam.questions.reduce((acc, q) => acc + (q.score || 10), 0);
+  const maxScoreEl = document.getElementById("maxScoreDisplay");
+  if (maxScoreEl) {
+    maxScoreEl.textContent = `/ ${maxScore}점`;
+  }
+
   document.getElementById("currentScoreDisplay").textContent = totalScore;
   document.getElementById("answeredCountDisplay").textContent = answeredCount;
 
