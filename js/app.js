@@ -26,6 +26,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeBtn = document.getElementById("themeBtn");
   if (themeBtn) themeBtn.textContent = savedTheme === "dark" ? "DARK" : "LIGHT";
 
+  // Marked Markdown 파서 글로벌 옵션 구성
+  if (typeof marked !== "undefined" && marked.setOptions) {
+    marked.setOptions({
+      breaks: true,
+      gfm: true
+    });
+  }
+
+  // 동적 과목 탐지 및 드롭다운 자동 동기화
+  syncSubjectDropdown();
+
   const sel = document.getElementById("subjectSelect");
   if (sel && sel.value && sel.value !== "__add__") {
     currentSubject = sel.value;
@@ -33,6 +44,34 @@ document.addEventListener("DOMContentLoaded", () => {
   loadBookmarks();
   switchMainMode("concept");
 });
+
+// 동적으로 로드된 과목 데이터 자동 감지 및 셀렉트 박스 동기화
+function syncSubjectDropdown() {
+  const sel = document.getElementById("subjectSelect");
+  if (!sel) return;
+
+  const existingValues = new Set(Array.from(sel.options).map(opt => opt.value));
+  const addOption = sel.querySelector('option[value="__add__"]');
+
+  const allSubjectKeys = new Set([
+    ...Object.keys(window.CONCEPT_DATABASE || {}),
+    ...Object.keys(window.EXAM_DATABASE || {})
+  ]);
+
+  allSubjectKeys.forEach(subKey => {
+    if (subKey && !existingValues.has(subKey) && subKey !== "__add__") {
+      const title = window.CONCEPT_DATABASE[subKey]?.title || window.EXAM_DATABASE[subKey]?.title || subKey;
+      const opt = document.createElement("option");
+      opt.value = subKey;
+      opt.textContent = title;
+      if (addOption) {
+        sel.insertBefore(opt, addOption);
+      } else {
+        sel.appendChild(opt);
+      }
+    }
+  });
+}
 
 // 과목 변경
 function changeSubject(subKey) {
@@ -176,11 +215,59 @@ function renderConceptFilterBar() {
 function renderConceptContent() {
   const container = document.getElementById("conceptContainer");
   const data = window.CONCEPT_DATABASE[currentSubject];
-  if (!data || !data.html) {
+  if (!data || (!data.html && !data.markdown)) {
     container.innerHTML = `<div style="text-align:center; padding: 40px; color: var(--ink-muted);">해당 과목의 개념 총정리가 준비 중입니다.</div>`;
     return;
   }
-  container.innerHTML = cleanTasteHtml(data.html);
+
+  // 1. 교수님 출제 프로파일링 배너 (정의된 경우)
+  let profHtml = "";
+  const prof = data.professorProfile || window.EXAM_DATABASE[currentSubject]?.professorProfile;
+  if (prof) {
+    const rules = (prof.killerRules || prof.rules || []).map(r => `<li>${r}</li>`).join("");
+    profHtml = `
+      <div class="professor-profile-banner" style="background: var(--bg-surface); border: 2px solid var(--accent); border-radius: 12px; padding: 18px 22px; margin-bottom: 24px; box-shadow: 0 4px 14px rgba(0,0,0,0.06);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <div style="font-weight: 800; font-size: 16px; color: var(--accent); display: flex; align-items: center; gap: 8px;">
+            <span>👨‍🏫</span>
+            <span>[출제 공략] ${prof.name || '담당 교수님'} 출제 성향 &amp; 감점 방지 십계명</span>
+          </div>
+          ${prof.timeMinutes ? `<span style="font-size: 12.5px; background: rgba(90, 155, 252, 0.15); color: var(--accent); padding: 3px 8px; border-radius: 6px; font-weight: 600;">⏱️ ${prof.timeMinutes}분</span>` : ''}
+        </div>
+        ${prof.notice ? `<p style="font-size: 14px; margin: 0 0 10px 0; color: var(--ink-secondary); line-height: 1.5;">${prof.notice}</p>` : ''}
+        ${rules ? `<ul style="margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.8; color: var(--ink);">${rules}</ul>` : ''}
+      </div>
+    `;
+  }
+
+  // 2. 본문 렌더링 (마크다운 우선 지원 & 레거시 HTML 100% 하위 호환)
+  let bodyHtml = "";
+  if (data.markdown) {
+    if (typeof marked !== "undefined" && marked.parse) {
+      bodyHtml = `<div class="markdown-content">${marked.parse(data.markdown)}</div>`;
+    } else {
+      bodyHtml = `<div class="markdown-content" style="white-space: pre-wrap; font-family: inherit;">${data.markdown}</div>`;
+    }
+  } else if (data.html) {
+    bodyHtml = cleanTasteHtml(data.html);
+  }
+
+  container.innerHTML = profHtml + bodyHtml;
+
+  // 3. LaTeX 수식 자동 렌더링 (KaTeX)
+  if (window.renderMathInElement) {
+    try {
+      renderMathInElement(container, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    } catch(e) {
+      console.warn("KaTeX render error:", e);
+    }
+  }
 }
 
 function filterConceptSection(sectionId) {
@@ -190,19 +277,29 @@ function filterConceptSection(sectionId) {
   }
 
   const sections = document.querySelectorAll(".concept-section");
-  if (sectionId === "all") {
-    sections.forEach(s => s.style.display = "block");
-  } else {
-    sections.forEach(s => {
-      if (s.id === sectionId) {
-        s.style.display = "block";
-      } else {
-        s.style.display = "none";
+  if (sections.length > 0) {
+    if (sectionId === "all") {
+      sections.forEach(s => s.style.display = "block");
+    } else {
+      sections.forEach(s => {
+        if (s.id === sectionId) {
+          s.style.display = "block";
+        } else {
+          s.style.display = "none";
+        }
+      });
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    });
-    const target = document.getElementById(sectionId);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  } else {
+    // 마크다운 등으로 섹션 구분이 없는 경우 스무스 스크롤 지원
+    if (sectionId !== "all") {
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   }
 }
@@ -371,14 +468,17 @@ function renderExamTabs() {
     pillsHtml = `<div class="exam-pills-bar">`;
     subjectData.exams.forEach((ex, idx) => {
       const isActive = (!isWrongNotesMode && idx === currentExamIndex) ? "active" : "";
-      let label = ex.category || ex.name;
-      if (ex.id === "cp_all53") label = "🔥 전범위 53제 올마스터";
-      else if (ex.id === "cp_week3") label = "3주: 스타일링";
-      else if (ex.id === "cp_week4") label = "4주: 컴포넌트 기초";
-      else if (ex.id === "cp_week5") label = "5주: 컴포넌트";
-      else if (ex.id === "cp_week6") label = "6주: 컴포넌트 응용";
-      else if (ex.id === "cp_week7") label = "7주: Hook";
-      else if (ex.id.startsWith("cp_exam")) label = `실전 모의 ${ex.id.replace('cp_exam', '')}회`;
+      let label = ex.pillLabel || ex.shortName || ex.category || ex.name;
+      // 레거시 crossplatform 과목 하위 호환 유지 (pillLabel / shortName 미지정 시만 동작)
+      if (!ex.pillLabel && !ex.shortName) {
+        if (ex.id === "cp_all53") label = "🔥 전범위 53제 올마스터";
+        else if (ex.id === "cp_week3") label = "3주: 스타일링";
+        else if (ex.id === "cp_week4") label = "4주: 컴포넌트 기초";
+        else if (ex.id === "cp_week5") label = "5주: 컴포넌트";
+        else if (ex.id === "cp_week6") label = "6주: 컴포넌트 응용";
+        else if (ex.id === "cp_week7") label = "7주: Hook";
+        else if (ex.id && ex.id.startsWith("cp_exam")) label = `실전 모의 ${ex.id.replace('cp_exam', '')}회`;
+      }
       pillsHtml += `<button class="exam-pill-btn ${isActive}" onclick="switchExam(${idx})">${label}</button>`;
     });
     pillsHtml += `</div>`;

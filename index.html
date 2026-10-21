@@ -10,6 +10,11 @@
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <!-- Core Design System Stylesheet -->
 <link rel="stylesheet" href="css/style.css">
+<!-- Markdown & Math Rendering Engines (Zero-build CDN) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.1/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 </head>
 <body>
 
@@ -125,30 +130,35 @@
   <div class="modal-card" onclick="event.stopPropagation()">
     <h3 class="modal-title">+ 새 과목 추가 및 확장 가이드</h3>
     <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
-      이 시스템은 다른 과목(자료구조, 알고리즘, 데이터베이스 등)을 무제한 확장할 수 있도록 <b>모듈형 데이터베이스 아키텍처</b>로 설계되어 있습니다.<br>
-      <code>data/</code> 폴더에 새 과목 자바스크립트 파일(예: <code>data/database.js</code>)을 생성하고 <code>index.html</code> 하단에 <code>&lt;script src="data/database.js"&gt;&lt;/script&gt;</code>만 추가하면 드롭다운과 탭이 자동 생성됩니다.
+      이 시스템은 다른 과목(자료구조, 알고리즘, 네트워크 등)을 무제한 확장할 수 있도록 <b>모듈형 데이터베이스 아키텍처</b>로 설계되어 있습니다.<br>
+      <code>data/_template.js</code> 파일을 복사하여 새 파일(예: <code>data/database.js</code>)을 생성하고, <code>index.html</code> 하단에 <code>&lt;script src="data/database.js"&gt;&lt;/script&gt;</code>만 추가하면 상단 드롭다운과 탭이 자동 생성됩니다.<br>
+      <b>💡 HTML 태그 대신 마크다운(markdown) 문법과 교수님 출제 프로필(professorProfile)을 그대로 지원합니다.</b>
     </p>
 
-    <div style="font-weight: 700; font-size: 14px; color: var(--accent); margin-bottom: 8px;">1. 새 과목 데이터 작성 규격 (data/database.js):</div>
+    <div style="font-weight: 700; font-size: 14px; color: var(--accent); margin-bottom: 8px;">1. 새 과목 데이터 작성 규격 (data/_template.js 참조):</div>
     <div class="code-block">
 window.CONCEPT_DATABASE = window.CONCEPT_DATABASE || {};
 window.EXAM_DATABASE = window.EXAM_DATABASE || {};
 
-// 개념 총정리 데이터
+// 개념 총정리 (마크다운 지원 & 교수님 프로필 배너)
 window.CONCEPT_DATABASE.db = {
   id: "db",
-  title: "데이터베이스",
-  filterChips: [{ id: "all", label: "전체보기" }, { id: "rel", label: "관계대수" }],
-  html: `&lt;section id="rel" class="concept-section"&gt;...&lt;/section&gt;`
+  title: "데이터베이스 (중간고사 전범위)",
+  professorProfile: {
+    name: "김교수",
+    killerRules: ["⚠️ 관계대수 기호 오작성 시 감점", "⚠️ 정규화 증명 서술형 필수"]
+  },
+  markdown: `# 🚨 핵심 요약 치트시트\n\n| 개념 | 설명 |\n| --- | --- |\n| 원자성 | All or Nothing |`
 };
 
-// 모의고사 데이터 (객관식, 단답형, 계산형, 서술형 지원)
+// 실전 모의고사 (객관식, 단답형, 계산형, 서술형 지원)
 window.EXAM_DATABASE.db = {
   title: "데이터베이스",
   maxScore: 100,
   exams: [{
     id: "exam1",
     name: "제1회 데이터베이스 모의고사",
+    pillLabel: "1회 모의",
     tag: "객관식 + 단답 + 서술",
     questions: [
       { id: 1, type: "short", score: 5, origin: "1장 ACID", text: "트랜잭션의 4대 특성 중 ...", answers: ["원자성", "Atomicity"] }
