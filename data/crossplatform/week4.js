@@ -115,7 +115,7 @@ window.CROSSPLATFORM_WEEKS.week4 = {
       "origin": "4주차 p.13: Alert.alert 취소/확인 다중 버튼 배열 옵션",
       "category": "4주차 컴포넌트 기초",
       "title": "Alert.alert 취소/확인 다중 버튼 배열 구현",
-      "text": "버튼 클릭 시 '취소'와 '확인' 버튼을 가진 팝업 다이얼로그를 호출하는 예제이다. 조건에 맞게 Alert.alert의 버튼 배열 객체를 완성하시오.<br><br>• <b>취소 버튼:</b> text: \"취소\", style: \"cancel\", 클릭 시 console.log(\"취소 버튼 클릭\")<br>• <b>확인 버튼:</b> text: \"확인\", 클릭 시 console.log(\"확인 버튼 클릭\")",
+      "text": "버튼 클릭 시 '취소'와 '확인' 버튼을 가진 팝업 다이얼로그를 호출하는 예제이다. 조건에 맞게 Alert.alert의 버튼 배열 객체를 완성하시오.<br><br>• <b>취소 버튼:</b> 버튼 라벨 '취소', 취소 전용 스타일('cancel') 부여, 클릭 시 콘솔에 '취소 버튼 클릭' 출력<br>• <b>확인 버튼:</b> 버튼 라벨 '확인', 클릭 시 콘솔에 '확인 버튼 클릭' 출력",
       "placeholder": "취소와 확인 버튼 배열 객체를 작성하세요.",
       "rubric": "1. 취소 버튼 객체(text, onPress, style: 'cancel') 정확성 (5점)\n2. 확인 버튼 객체(text, onPress) 정확성 (5점)",
       "sampleAnswer": "[\n  {\n    text: \"취소\",\n    onPress: () => console.log(\"취소 버튼 클릭\"),\n    style: \"cancel\",\n  },\n  { \n    text: \"확인\", \n    onPress: () => console.log(\"확인 버튼 클릭\") \n  },\n]",
