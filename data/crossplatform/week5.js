@@ -26,12 +26,13 @@ window.CROSSPLATFORM_WEEKS.week5 = {
       "category": "5주차 컴포넌트",
       "title": "JSX 내 자바스크립트 변수 바인딩 문법 빈칸",
       "text": "JSX 내부에서 자바스크립트 변수(<code>const name = 'Beomjun';</code>)에 저장된 값을 텍스트로 바인딩하기 위한 빈칸 <b>( ㉠ )</b>을 작성하시오.<br><br><pre class='code-block'>export default function App() {\n  const name = 'Beomjun'; // 변수\n  return (\n    &lt;View style={styles.container}&gt;\n      &lt;Text style={styles.text}&gt;My name is <span class='blank-chip'>( ㉠ )</span>&lt;/Text&gt;\n      &lt;StatusBar style=\"auto\" /&gt;\n    &lt;/View&gt;\n  );\n}</pre>",
-      "placeholder": "바인딩 표현식 입력 (예: {name})",
+      "placeholder": "JSX 내부 변수 바인딩 문법을 작성하세요...",
       "answers": [
         "{name}",
         "{ name }"
       ],
-      "explanation": "<b>정답: {name}</b><br>JSX 내부에서 자바스크립트 변수나 표현식을 평가하여 렌더링하려면 중괄호 <code>{ }</code>로 감싸야 합니다. (5주차 p.5~6)"
+      "explanation": "<b>정답:</b> <code>{name}</code><br>JSX 내부에서 자바스크립트 변수나 표현식을 참조할 때는 중괄호 <code>{}</code>를 사용합니다.",
+      "sampleAnswer": "{name}"
     },
     {
       "id": 25,
@@ -41,13 +42,14 @@ window.CROSSPLATFORM_WEEKS.week5 = {
       "category": "5주차 컴포넌트",
       "title": "if-else 조건문 실행에 따른 최종 출력 텍스트",
       "text": "아래 코드가 실행되었을 때, <code>&lt;Text style={styles.text}&gt;{message}&lt;/Text&gt;</code>에 최종 출력되는 문자열을 정확히 적으시오. (공백 주의)<br><br><pre class='code-block'>const name = 'Beomjun';\nlet message = '';\nif (name === 'Beomjun') {\n  message = 'My name is' + name;\n} else {\n  message = \"I'm not Beomjun\";\n}</pre>",
-      "placeholder": "최종 출력 문자열 입력",
+      "placeholder": "화면에 최종 출력되는 텍스트를 작성하세요...",
       "answers": [
         "My name isBeomjun",
         "'My name isBeomjun'",
         "\"My name isBeomjun\""
       ],
-      "explanation": "<b>정답: My name isBeomjun</b><br>교안 원본 코드에서 <code>'My name is' + name</code>과 같이 'is' 뒤에 공백이 없으므로 결합 결과는 정확히 <code>My name isBeomjun</code>이 됩니다. (5주차 p.7)"
+      "explanation": "<b>정답:</b> <code>기말고사 시험 범위입니다.</code><br>finalExam 값이 true이므로 if 블록 내부의 '기말고사 시험 범위입니다.'가 화면에 렌더링됩니다.",
+      "sampleAnswer": "기말고사 시험 범위입니다."
     },
     {
       "id": 26,
@@ -57,13 +59,14 @@ window.CROSSPLATFORM_WEEKS.week5 = {
       "category": "5주차 컴포넌트",
       "title": "삼항 연산자 조건부 렌더링 기호 빈칸",
       "text": "JSX 내부에서 삼항 연산자를 활용해 조건부 렌더링을 수행하고자 한다. 빈칸 <b>( ㉠ )</b>과 <b>( ㉡ )</b>에 들어갈 기호를 순서대로 쓰시오.<br><br><pre class='code-block'>&lt;Text style={styles.text}&gt;\n  {name === 'Beomjun' <span class='blank-chip'>( ㉠ )</span> \"My name is Beomjun\" <span class='blank-chip'>( ㉡ )</span> \"I'm not Beomjun\"}\n&lt;/Text&gt;</pre>",
-      "placeholder": "순서대로 기호 입력 (예: ?, :)",
+      "placeholder": "( ㉠ ), ( ㉡ ) 연산자 기호를 순서대로 작성하세요...",
       "answers": [
         "?, :",
         "?,:",
         "? / :"
       ],
-      "explanation": "<b>정답: ( ㉠ ) ?, ( ㉡ ) :</b><br>삼항 연산자의 기본 문법은 <code>조건식 ? 참일 때 실행 : 거짓일 때 실행</code>입니다. (5주차 p.8)"
+      "explanation": "<b>정답:</b><br>• ( ㉠ ) <code>?</code><br>• ( ㉡ ) <code>:</code><br>삼항 연산자 문법은 <code>조건 ? 참일때 : 거짓일때</code> 입니다.",
+      "sampleAnswer": "( ㉠ ) ?, ( ㉡ ) :"
     },
     {
       "id": 27,
@@ -73,13 +76,14 @@ window.CROSSPLATFORM_WEEKS.week5 = {
       "category": "5주차 컴포넌트",
       "title": "단축 평가 논리 연산자에 따른 화면 출력 4줄",
       "text": "<code>name1 = 'Beomjun'</code>, <code>name2 = 'JongSoo'</code>일 때, 아래 4개 Text 컴포넌트가 화면에 각각 출력하는 결과를 순서대로 쓰시오.<br><br><pre class='code-block'>&lt;Text&gt;{name1 === 'Beomjun' &amp;&amp; 'My name is Beomjun'}&lt;/Text&gt;\n&lt;Text&gt;{name1 !== 'Beomjun' &amp;&amp; 'My name is not Beomjun'}&lt;/Text&gt;\n&lt;Text&gt;{name2 === 'JongSoo' || \"I'm not Beomjun's friend\"}&lt;/Text&gt;\n&lt;Text&gt;{name2 !== 'JongSoo' || \"I'm Beomjun's friend\"}&lt;/Text&gt;</pre>",
-      "placeholder": "1번줄, 2번줄(미출력), 3번줄, 4번줄 결과",
+      "placeholder": "1줄부터 4줄까지의 화면 출력 결과를 작성하세요...",
       "answers": [
         "My name is Beomjun, (미출력), true, I'm Beomjun's friend",
         "My name is Beomjun, 미출력, true, I'm Beomjun's friend",
         "My name is Beomjun, false, true, I'm Beomjun's friend"
       ],
-      "explanation": "<b>정답:</b><br>1번: My name is Beomjun (true && 우항)<br>2번: (미출력 - false로 평가되어 렌더링 안 됨)<br>3번: true (좌항이 true이므로 좌항 불리언 true 반환)<br>4번: I'm Beomjun's friend (false || 우항) (5주차 p.9)"
+      "explanation": "<b>정답:</b><br>• 1줄: 없음 (false && ...이므로 렌더링 안 됨)<br>• 2줄: '참입니다'<br>• 3줄: '참입니다'<br>• 4줄: '거짓입니다'",
+      "sampleAnswer": "1줄: 없음 (빈 화면, 미출력)\n2줄: 참입니다\n3줄: 참입니다\n4줄: 거짓입니다"
     },
     {
       "id": 28,
@@ -89,12 +93,13 @@ window.CROSSPLATFORM_WEEKS.week5 = {
       "category": "5주차 컴포넌트",
       "title": "로컬 이미지 로딩 source 및 require 빈칸",
       "text": "프로젝트 로컬 이미지 파일(./kangnam.png)을 화면에 표시하기 위한 빈칸 <b>( ㉠ )</b>과 <b>( ㉡ )</b>을 채우시오.<br><br><pre class='code-block'>&lt;Image\n  <span class='blank-chip'>( ㉠ )</span>={<span class='blank-chip'>( ㉡ )</span>('./kangnam.png')} // 로컬 이미지\n  style={styles.image}\n/&gt;</pre>",
-      "placeholder": "순서대로 입력 (예: source, require)",
+      "placeholder": "( ㉠ ), ( ㉡ ) 키워드를 순서대로 작성하세요...",
       "answers": [
         "source, require",
         "source,require"
       ],
-      "explanation": "<b>정답: ( ㉠ ) source, ( ㉡ ) require</b><br>로컬 정적 이미지는 Image 컴포넌트의 <code>source</code> prop에 <code>require('파일경로')</code>를 전달하여 불러옵니다. (5주차 p.10)"
+      "explanation": "<b>정답:</b><br>• ( ㉠ ) <code>source</code> : 이미지 경로 속성<br>• ( ㉡ ) <code>require</code> : 로컬 이미지 모듈 로더 함수",
+      "sampleAnswer": "( ㉠ ) source, ( ㉡ ) require"
     },
     {
       "id": 29,
@@ -103,11 +108,11 @@ window.CROSSPLATFORM_WEEKS.week5 = {
       "origin": "5주차 p.11: Switch 토글 컴포넌트 및 trackColor/thumbColor",
       "category": "5주차 컴포넌트",
       "title": "Switch 다크 모드 토글 컴포넌트 속성 완성",
-      "text": "다크 모드 토글 스위치 컴포넌트의 속성 설정을 완성하시오.<br><br>• <b>값 바인딩:</b> darkMode<br>• <b>변경 함수:</b> setDarkMode<br>• <b>트랙 배경 색상:</b> false일 때 '#767577', true일 때 '#81b0ff' 객체 지정<br>• <b>원형 썸(손잡이) 색상:</b> darkMode가 true이면 '#f5dd4b', false이면 '#f4f3f4' 삼항 조건 지정",
-      "placeholder": "Switch의 props를 완성하여 작성하세요.",
+      "text": "Switch 컴포넌트를 사용하여 다크 모드와 라이트 모드를 토글하는 예제이다. 전체 코드를 확인하고 <b>[빈칸 (A)]</b> 위치에 들어갈 Switch 컴포넌트를 작성하시오.<br><br>• <b>value:</b> darkMode 상태 연결<br>• <b>onValueChange:</b> setDarkMode 함수 연결<br>• <b>trackColor:</b> false일 때 '#767577', true일 때 '#81b0ff'<br>• <b>thumbColor:</b> darkMode가 참이면 '#f5dd4b', 거짓이면 '#f4f3f4'<br><br><pre class='code-block'>import React, { useState } from 'react';\nimport { StyleSheet, Text, View, Switch } from 'react-native';\n\nexport default function App() {\n  const [darkMode, setDarkMode] = useState(false);\n\n  return (\n    &lt;View style={[styles.container, darkMode ? styles.darkContainer : styles.lightContainer]}&gt;\n      &lt;Text style={darkMode ? styles.darkText : styles.lightText}&gt;\n        {darkMode ? 'Dark Mode ON' : 'Dark Mode OFF'}\n      &lt;/Text&gt;\n// ==========================================\n// [빈칸 (A)] 아래 Switch 컴포넌트를 작성하시오.\n// ==========================================\n<span class='todo-chip'>/* [빈칸 (A)] 여기에 코드를 작성하시오 */</span>\n    &lt;/View&gt;\n  );\n}\n\nconst styles = StyleSheet.create({\n  container: { flex: 1, alignItems: 'center', justifyContent: 'center' },\n  lightContainer: { backgroundColor: '#fff' },\n  darkContainer: { backgroundColor: '#1e272e' },\n  lightText: { color: '#000', fontSize: 20 },\n  darkText: { color: '#fff', fontSize: 20 },\n});</pre>",
+      "placeholder": "[빈칸 (A)]에 들어갈 Switch 컴포넌트 JSX를 작성하세요...",
       "rubric": "1. value 및 onValueChange 바인딩 정확성 (5점)\n2. trackColor 및 thumbColor 동적 색상 설정 정확성 (5점)",
       "sampleAnswer": "<Switch\n  value={darkMode}\n  onValueChange={setDarkMode}\n  trackColor={{ false: '#767577', true: '#81b0ff' }}\n  thumbColor={darkMode ? '#f5dd4b' : '#f4f3f4'}\n/>",
-      "explanation": "교안 11페이지 원본 코드. trackColor는 객체 형태로 불리언별 색상을 지정하며 thumbColor는 삼항식으로 동적 지정합니다."
+      "explanation": "<b>정답 코드:</b><br><pre class='code-block'>&lt;Switch\n  value={darkMode}\n  onValueChange={setDarkMode}\n  trackColor={{ false: '#767577', true: '#81b0ff' }}\n  thumbColor={darkMode ? '#f5dd4b' : '#f4f3f4'}\n/&gt;</pre>"
     },
     {
       "id": 30,
@@ -116,11 +121,11 @@ window.CROSSPLATFORM_WEEKS.week5 = {
       "origin": "5주차 p.12: FlatList의 3대 필수 속성(data, keyExtractor, renderItem)",
       "category": "5주차 컴포넌트",
       "title": "FlatList의 3대 필수 속성(Props) 구현",
-      "text": "배열 데이터를 렌더링하는 FlatList의 3대 필수 속성을 완성하시오.<br><br>• <b>데이터 원본:</b> data 배열 전달<br>• <b>고유 키 추출:</b> 각 항목의 item.id 추출 콜백 지정<br>• <b>항목 렌더링:</b> 구조분해 ({ item })를 매개변수로 받아 &lt;Text style={styles.item}&gt;{item.id} : {item.name}&lt;/Text&gt; 렌더링",
-      "placeholder": "FlatList 태그의 3대 속성을 작성하세요.",
+      "text": "리액트 네이티브의 대용량 목록 렌더링 최적화 컴포넌트인 FlatList를 구현하는 예제이다. 전체 코드를 확인하고 <b>[빈칸 (A)]</b> 위치에 data, keyExtractor, renderItem 3대 필수 속성을 적용한 FlatList 컴포넌트를 작성하시오.<br><br><pre class='code-block'>import React from 'react';\nimport { StyleSheet, Text, View, FlatList } from 'react-native';\n\nconst data = [\n  { id: '1', title: 'First Item' },\n  { id: '2', title: 'Second Item' },\n  { id: '3', title: 'Third Item' },\n];\n\nexport default function App() {\n  return (\n    &lt;View style={styles.container}&gt;\n// ==========================================\n// [빈칸 (A)] 아래 FlatList 컴포넌트를 작성하시오.\n// ==========================================\n<span class='todo-chip'>/* [빈칸 (A)] 여기에 코드를 작성하시오 */</span>\n    &lt;/View&gt;\n  );\n}\n\nconst styles = StyleSheet.create({\n  container: { flex: 1, marginTop: 50 },\n  item: { backgroundColor: '#f9c2ff', padding: 20, marginVertical: 8, marginHorizontal: 16 },\n  title: { fontSize: 32 },\n});</pre>",
+      "placeholder": "[빈칸 (A)]에 들어갈 FlatList 컴포넌트 JSX를 작성하세요...",
       "rubric": "1. data 및 keyExtractor={(item) => item.id} 정확성 (5점)\n2. renderItem={({ item }) => (...)} 구조분해 할당 및 JSX 정확성 (5점)",
-      "sampleAnswer": "<FlatList\n  data={data}\n  keyExtractor={(item) => item.id}\n  renderItem={({ item }) => (\n    <Text style={styles.item}>{item.id} : {item.name}</Text>\n  )}\n/>",
-      "explanation": "FlatList는 1) data, 2) keyExtractor, 3) renderItem의 3대 필수 props로 구성됩니다. (5주차 p.12)"
+      "sampleAnswer": "<FlatList\n  data={data}\n  keyExtractor={(item) => item.id}\n  renderItem={({ item }) => (\n    <View style={styles.item}>\n      <Text style={styles.title}>{item.title}</Text>\n    </View>\n  )}\n/>",
+      "explanation": "<b>정답 코드:</b><br><pre class='code-block'>&lt;FlatList\n  data={data}\n  keyExtractor={(item) =&gt; item.id}\n  renderItem={({ item }) =&gt; (\n    &lt;View style={styles.item}&gt;\n      &lt;Text style={styles.title}&gt;{item.title}&lt;/Text&gt;\n    &lt;/View&gt;\n  )}\n/&gt;</pre>"
     },
     {
       "id": 31,
@@ -129,11 +134,11 @@ window.CROSSPLATFORM_WEEKS.week5 = {
       "origin": "5주차 p.13: SectionList의 4대 속성 (sections, renderSectionHeader 등)",
       "category": "5주차 컴포넌트",
       "title": "SectionList의 4대 속성 구현 (그룹별 리스트)",
-      "text": "알파벳 그룹별 데이터를 보여주는 SectionList의 4대 속성을 완성하시오.<br><br>• <b>섹션 데이터:</b> DATA 배열 전달<br>• <b>고유 키 추출:</b> item + index 결합 콜백 지정<br>• <b>항목 렌더링:</b> { item } 매개변수를 받아 &lt;Text style={styles.item}&gt; ▣ {item}&lt;/Text&gt; 렌더링<br>• <b>섹션 헤더 렌더링:</b> ({ section: { title } }) 매개변수를 받아 &lt;Text style={styles.header}&gt;섹션: {title}&lt;/Text&gt; 렌더링",
-      "placeholder": "SectionList의 4대 속성을 작성하세요.",
+      "text": "섹션별 그룹화된 목록을 표시하는 SectionList 예제이다. 전체 코드를 확인하고 <b>[빈칸 (A)]</b> 위치에 sections, keyExtractor, renderItem, renderSectionHeader 속성을 적용한 SectionList 컴포넌트를 작성하시오.<br><br><pre class='code-block'>import React from 'react';\nimport { StyleSheet, Text, View, SectionList } from 'react-native';\n\nconst DATA = [\n  { title: 'Main dishes', data: ['Pizza', 'Burger', 'Risotto'] },\n  { title: 'Sides', data: ['French Fries', 'Onion Rings', 'Fried Shrimps'] },\n];\n\nexport default function App() {\n  return (\n    &lt;View style={styles.container}&gt;\n// ==========================================\n// [빈칸 (A)] 아래 SectionList 컴포넌트를 작성하시오.\n// ==========================================\n<span class='todo-chip'>/* [빈칸 (A)] 여기에 코드를 작성하시오 */</span>\n    &lt;/View&gt;\n  );\n}\n\nconst styles = StyleSheet.create({\n  container: { flex: 1, marginTop: 50 },\n  item: { backgroundColor: '#f9c2ff', padding: 15, marginVertical: 5, marginHorizontal: 16 },\n  header: { fontSize: 24, backgroundColor: '#fff', padding: 10, fontWeight: 'bold' },\n  title: { fontSize: 18 },\n});</pre>",
+      "placeholder": "[빈칸 (A)]에 들어갈 SectionList 컴포넌트 JSX를 작성하세요...",
       "rubric": "1. sections 및 keyExtractor 정확성 (4점)\n2. renderItem 및 renderSectionHeader 구조분해와 렌더링 정확성 (6점)",
-      "sampleAnswer": "<SectionList\n  sections={DATA}\n  keyExtractor={(item, index) => item + index}\n  renderItem={({ item }) => (\n    <Text style={styles.item}> ▣ {item}</Text>\n  )}\n  renderSectionHeader={({ section: { title } }) => (\n    <Text style={styles.header}>섹션: {title}</Text>\n  )}\n/>",
-      "explanation": "SectionList는 FlatList와 달리 <code>sections</code>로 그룹 데이터를 받고, 섹션 헤더를 그리는 <code>renderSectionHeader</code>가 필수적으로 사용됩니다. (5주차 p.13)"
+      "sampleAnswer": "<SectionList\n  sections={DATA}\n  keyExtractor={(item, index) => item + index}\n  renderItem={({ item }) => (\n    <View style={styles.item}>\n      <Text style={styles.title}>{item}</Text>\n    </View>\n  )}\n  renderSectionHeader={({ section: { title } }) => (\n    <Text style={styles.header}>{title}</Text>\n  )}\n/>",
+      "explanation": "<b>정답 코드:</b><br><pre class='code-block'>&lt;SectionList\n  sections={DATA}\n  keyExtractor={(item, index) =&gt; item + index}\n  renderItem={({ item }) =&gt; (\n    &lt;View style={styles.item}&gt;\n      &lt;Text style={styles.title}&gt;{item}&lt;/Text&gt;\n    &lt;/View&gt;\n  )}\n  renderSectionHeader={({ section: { title } }) =&gt; (\n    &lt;Text style={styles.header}&gt;{title}&lt;/Text&gt;\n  )}\n/&gt;</pre>"
     }
   ]
 };

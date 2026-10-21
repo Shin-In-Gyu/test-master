@@ -13,13 +13,14 @@ window.CROSSPLATFORM_WEEKS.week3 = {
       "category": "3주차 스타일링 기초",
       "title": "JSX 기본 구조 및 StyleSheet 정렬 속성 빈칸",
       "text": "아래 코드는 Expo 프로젝트 초기 생성 시 기본 제공되는 App.js 화면 레이아웃 코드이다.<br>화면 전체를 채우고 컴포넌트들을 가로/세로 중앙에 배치하기 위해 빈칸 <b>( ㉠ )</b>, <b>( ㉡ )</b>, <b>( ㉢ )</b>, <b>( ㉣ )</b>에 들어갈 코드를 순서대로 쉼표로 구분하여 작성하시오.<br><br><pre class='code-block'>import { StatusBar } from 'expo-status-bar';\nimport { <span class='blank-chip'>( ㉠ )</span>, Text, View } from 'react-native';\n\nexport default function App() {\n  return (\n    &lt;View style={styles.container}&gt;\n      &lt;Text&gt;Open up App.js to start working on your app!&lt;/Text&gt;\n      &lt;StatusBar style=\"auto\" /&gt;\n    &lt;/View&gt;\n  );\n}\n\nconst styles = <span class='blank-chip'>( ㉠ )</span>.create({\n  container: {\n    <span class='blank-chip'>( ㉡ )</span>: 1,\n    backgroundColor: '#fff',\n    <span class='blank-chip'>( ㉢ )</span>: 'center',\n    <span class='blank-chip'>( ㉣ )</span>: 'center',\n  },\n});</pre>",
-      "placeholder": "순서대로 입력 (예: StyleSheet, flex, alignItems, justifyContent)",
+      "placeholder": "( ㉠ ), ( ㉡ ), ( ㉢ ), ( ㉣ ) 답안을 순서대로 작성하세요...",
       "answers": [
         "StyleSheet, flex, alignItems, justifyContent",
         "StyleSheet,flex,alignItems,justifyContent",
         "StyleSheet, flex, justifyContent, alignItems"
       ],
-      "explanation": "<b>정답: ( ㉠ ) StyleSheet, ( ㉡ ) flex, ( ㉢ ) alignItems, ( ㉣ ) justifyContent</b><br>• 리액트 네이티브 스타일 객체 생성 API: StyleSheet.create<br>• 전체 화면 비율 할당: flex: 1<br>• 가로(교차축) 중앙 정렬: alignItems: 'center'<br>• 세로(주축) 중앙 정렬: justifyContent: 'center' (3주차 p.4)"
+      "explanation": "<b>정답:</b><br>• ( ㉠ ) StyleSheet : React Native 스타일 생성 모듈<br>• ( ㉡ ) flex: 1 : 화면 전체 비율 차지<br>• ( ㉢ ) alignItems: 'center' : 가로축(교차축) 중앙 정렬<br>• ( ㉣ ) justifyContent: 'center' : 세로축(메인축) 중앙 정렬",
+      "sampleAnswer": "( ㉠ ) StyleSheet, ( ㉡ ) flex, ( ㉢ ) alignItems, ( ㉣ ) justifyContent"
     },
     {
       "id": 2,
@@ -42,14 +43,15 @@ window.CROSSPLATFORM_WEEKS.week3 = {
       "category": "3주차 스타일링 기초",
       "title": "텍스트 줄바꿈 표현식 및 화면 출력 결과",
       "text": "아래의 App 컴포넌트가 화면에 렌더링되었을 때, &lt;Text&gt; 태그 내부에서 출력되는 텍스트의 <b>실제 표시 줄 수(행 수)</b>와 <b>출력 내용</b>을 교안 예시와 동일하게 적으시오.<br><br><pre class='code-block'>export default function App() {\n  return (\n    &lt;View style={styles.container}&gt;\n      &lt;Text&gt;처음 시작하는 리액트 네이티브 프로그래밍 !{\"\\n\"} 학과: \n소프트웨어공학 {\"\\n\"}학번: 123456{\"\\n\"}이름: 홍길동&lt;/Text&gt;\n      &lt;StatusBar style=\"auto\" /&gt;\n    &lt;/View&gt;\n  );\n}</pre>",
-      "placeholder": "표시 줄 수 또는 줄바꿈된 텍스트 입력 (예: 4줄)",
+      "placeholder": "출력 줄 수(행 수)와 출력 내용을 작성하세요...",
       "answers": [
         "4",
         "4줄",
         "총 4줄",
         "처음 시작하는 리액트 네이티브 프로그래밍 !\n학과: 소프트웨어공학\n학번: 123456\n이름: 홍길동"
       ],
-      "explanation": "<b>정답: 총 4줄</b><br>JSX 내부에서는 자바스크립트 표현식 <code>{\"\\n\"}</code>을 통해 줄바꿈을 강제합니다. 코드 내에 3개의 개행식이 포함되어 있으므로 총 4개 행으로 출력됩니다.<br><br>1행: 처음 시작하는 리액트 네이티브 프로그래밍 !<br>2행: 학과: 소프트웨어공학<br>3행: 학번: 123456<br>4행: 이름: 홍길동 (3주차 p.9)"
+      "explanation": "<b>정답:</b><br>총 <b>4줄</b>로 화면에 출력됩니다.<br><br><b>출력 내용:</b><pre class='code-block'>처음 시작하는 리액트 네이티브 프로그래밍 !\n 학과: 소프트웨어공학 \n학번: 123456\n이름: 홍길동</pre>",
+      "sampleAnswer": "4줄 (4행)\n처음 시작하는 리액트 네이티브 프로그래밍 !\n 학과: 소프트웨어공학 \n학번: 123456\n이름: 홍길동"
     },
     {
       "id": 4,
@@ -59,14 +61,15 @@ window.CROSSPLATFORM_WEEKS.week3 = {
       "category": "3주차 스타일링 기초",
       "title": "리액트 네이티브 주석 처리 기호 빈칸",
       "text": "리액트 네이티브에서는 JSX 태그 내부와 자바스크립트 영역의 주석 처리 방식이 다르다. 아래 코드의 <b>( ㉠ )</b>과 <b>( ㉡ )</b>, <b>( ㉢ )</b>에 알맞은 주석 기호를 순서대로 쓰시오.<br><br><pre class='code-block'>export default function App() {\n  return (\n    &lt;View style={styles.container}&gt;\n      &lt;Text&gt;처음 시작하는 리액트 네이티브 프로그래밍 !&lt;/Text&gt;\n      <span class='blank-chip'>( ㉠ )</span> &lt;Text&gt;처음 시작하는 리액트 네이티브 프로그래밍 !&lt;/Text&gt; <span class='blank-chip'>( ㉡ )</span>\n      &lt;StatusBar style=\"auto\" /&gt;\n    &lt;/View&gt;\n  );\n}\n<span class='blank-chip'>( ㉢ )</span> 과목명: 리액트 네이티브 프로그래밍\n/* 이름: 홍길동 */</pre>",
-      "placeholder": "순서대로 기호 입력 (예: { /*, */ }, //)",
+      "placeholder": "( ㉠ ), ( ㉡ ), ( ㉢ ) 주석 기호를 순서대로 작성하세요...",
       "answers": [
         "{ /*, */ }, //",
         "{/*, */}, //",
         "{/*,*/},//",
         "{ /*, */ }, //"
       ],
-      "explanation": "<b>정답: ( ㉠ ) { /*, ( ㉡ ) */ }, ( ㉢ ) //</b><br>JSX 태그 내부에서는 자바스크립트 블록 기호 <code>{ }</code> 내에 다중행 주석 기호 <code>/* */</code>를 감싼 <code>{ /* ... */ }</code> 형태를 사용해야 텍스트로 노출되지 않고 정상 주석 처리됩니다. (3주차 p.10)"
+      "explanation": "<b>정답:</b><br>• JSX 내부 태그 주석: ( ㉠ ) <code>{/*</code>, ( ㉡ ) <code>*/}</code><br>• 자바스크립트 영역 주석: ( ㉢ ) <code>//</code> 또는 <code>/* ... */</code>",
+      "sampleAnswer": "( ㉠ ) {/*, ( ㉡ ) */}, ( ㉢ ) //"
     },
     {
       "id": 5,
@@ -88,11 +91,11 @@ window.CROSSPLATFORM_WEEKS.week3 = {
       "origin": "3주차 p.12: 클래스 스타일링 (StyleSheet.create)",
       "category": "3주차 스타일링 기초",
       "title": "클래스 스타일링 StyleSheet 객체 정의 및 바인딩",
-      "text": "인라인 스타일을 클래스 스타일링 방식(StyleSheet.create)으로 분리하는 예제이다. 조건에 맞추어 <b>text</b>와 <b>error</b> 스타일 객체를 선언하고 &lt;Text&gt; 컴포넌트에 바인딩하시오.<br><br>• <b>text 스타일 조건:</b> 안쪽 여백 10, 글자 크기 26, 글자 두께 '600', 색상 'black'<br>• <b>error 스타일 조건:</b> 안쪽 여백 10, 글자 크기 26, 글자 두께 '400', 색상 'red'<br><br><pre class='code-block'>export default function App() {\n  return (\n    &lt;View style={styles.container}&gt;\n      &lt;Text style={styles.text}&gt;Inline Styling - Text&lt;/Text&gt;\n      &lt;Text style={styles.error}&gt;Inline Styling - Error&lt;/Text&gt;\n    &lt;/View&gt;\n  );\n}\n\nconst styles = StyleSheet.create({\n  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },\n  <span class='todo-chip'>// TODO: text 및 error 스타일 객체 작성</span>\n});</pre>",
-      "placeholder": "text 및 error 스타일 객체 코드를 작성하세요.",
+      "text": "인라인 스타일을 클래스 스타일링 방식(StyleSheet.create)으로 분리하는 예제이다. 아래 전체 코드를 확인하고, <b>[빈칸 (A)]</b> 위치에 들어갈 styles 객체 정의 코드를 작성하시오.<br><br>• <b>container:</b> 화면 전체 flex 1, 배경색 '#fff', 가로/세로 중앙 정렬<br>• <b>text 스타일 조건:</b> 안쪽 여백 10, 글자 크기 26, 글자 두께 '600', 색상 'black'<br>• <b>error 스타일 조건:</b> 안쪽 여백 10, 글자 크기 26, 글자 두께 '400', 색상 'red'<br><br><pre class='code-block'>import React from 'react';\nimport { StyleSheet, Text, View } from 'react-native';\n\nexport default function App() {\n  return (\n    &lt;View style={styles.container}&gt;\n      &lt;Text style={styles.text}&gt;Inline Styling - Text&lt;/Text&gt;\n      &lt;Text style={styles.error}&gt;Inline Styling - Error&lt;/Text&gt;\n    &lt;/View&gt;\n  );\n}\n\n// ==========================================\n// [빈칸 (A)] 아래 styles 객체 정의 부분을 완성하시오.\n// ==========================================\n<span class='todo-chip'>/* [빈칸 (A)] 여기에 코드를 작성하시오 */</span>\n</pre>",
+      "placeholder": "[빈칸 (A)]에 들어갈 styles 객체 정의 코드를 작성하세요...",
       "rubric": "1. text 스타일 객체 정확성 (padding, fontSize, fontWeight: '600', color) (5점)\n2. error 스타일 객체 정확성 (padding, fontSize, fontWeight: '400', color) (5점)",
-      "sampleAnswer": "text: {\n  padding: 10,\n  fontSize: 26,\n  fontWeight: '600',\n  color: 'black',\n},\nerror: {\n  padding: 10,\n  fontSize: 26,\n  fontWeight: '400',\n  color: 'red',\n}",
-      "explanation": "<b>정답 코드:</b><br><pre class='code-block'>text: {\n  padding: 10,\n  fontSize: 26,\n  fontWeight: '600',\n  color: 'black',\n},\nerror: {\n  padding: 10,\n  fontSize: 26,\n  fontWeight: '400',\n  color: 'red',\n}</pre>"
+      "sampleAnswer": "const styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    backgroundColor: '#fff',\n    alignItems: 'center',\n    justifyContent: 'center',\n  },\n  text: {\n    padding: 10,\n    fontSize: 26,\n    fontWeight: '600',\n    color: 'black',\n  },\n  error: {\n    padding: 10,\n    fontSize: 26,\n    fontWeight: '400',\n    color: 'red',\n  },\n});",
+      "explanation": "<b>정답 코드:</b><br><pre class='code-block'>const styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    backgroundColor: '#fff',\n    alignItems: 'center',\n    justifyContent: 'center',\n  },\n  text: {\n    padding: 10,\n    fontSize: 26,\n    fontWeight: '600',\n    color: 'black',\n  },\n  error: {\n    padding: 10,\n    fontSize: 26,\n    fontWeight: '400',\n    color: 'red',\n  },\n});</pre>"
     },
     {
       "id": 7,
@@ -102,14 +105,15 @@ window.CROSSPLATFORM_WEEKS.week3 = {
       "category": "3주차 스타일링 기초",
       "title": "배열 스타일링 적용 시 덮어쓰기(오버라이드) 결과",
       "text": "아래 코드에서 두 번째 &lt;Text&gt; 컴포넌트에는 <code>style={[styles.text, styles.error]}</code>와 같이 배열로 스타일이 적용되어 있다.<br>최종 적용되는 <b>글자 두께(fontWeight)</b>와 <b>글자 색상(color)</b>을 순서대로 쓰시오.<br><br><pre class='code-block'>const styles = StyleSheet.create({\n  text: {\n    padding: 10,\n    fontSize: 26,\n    fontWeight: '600',\n    color: 'black',\n  },\n  error: {\n    fontWeight: '400',\n    color: 'red',\n  },\n});</pre>",
-      "placeholder": "순서대로 입력 (예: '400', 'red')",
+      "placeholder": "글자 두께와 글자 색상을 작성하세요...",
       "answers": [
         "'400', 'red'",
         "400, red",
         "'400', red",
         "\"400\", \"red\""
       ],
-      "explanation": "<b>정답: fontWeight: '400', color: 'red'</b><br>배열 표기법 <code>[styles.text, styles.error]</code>을 사용하면 배열의 뒤에 위치한 객체(styles.error)가 앞의 객체(styles.text)의 중복 속성을 덮어씁니다(Override). 중복되지 않은 padding(10)과 fontSize(26)는 그대로 유지됩니다. (3주차 p.13)"
+      "explanation": "<b>정답:</b><br>• fontWeight: <b>'400'</b><br>• color: <b>'red'</b><br><br>배열 스타일 <code>[styles.text, styles.error]</code> 적용 시 뒤에 위치한 error 스타일이 이전 text 스타일의 동일 속성을 오버라이드(덮어쓰기)합니다.",
+      "sampleAnswer": "글자 두께(fontWeight): '400' (또는 400), 글자 색상(color): red (또는 빨간색)"
     },
     {
       "id": 8,
@@ -118,11 +122,11 @@ window.CROSSPLATFORM_WEEKS.week3 = {
       "origin": "3주차 p.14~15: 외부 파일 스타일 분리 및 Named Export/Import",
       "category": "3주차 스타일링 기초",
       "title": "외부 스타일 모듈(styles.js) 생성 및 App.js 가져오기",
-      "text": "외부 파일(./src/styles.js)에 스타일을 분리 작성하고 App.js에서 사용하는 예제이다. 조건에 맞게 App.js의 import문과 styles.js의 export 코드를 완성하시오.<br><br>• <b>[App.js]:</b> './src/styles' 파일로부터 viewStyles와 textStyles 두 스타일 객체를 Named Import 방식으로 가져오기<br>• <b>[src/styles.js]:</b> StyleSheet.create를 사용하여 viewStyles(container 포함)와 textStyles(text, error 포함)를 각각 Named Export 방식으로 내보내기",
-      "placeholder": "App.js의 import문과 src/styles.js의 export 선언 구문을 작성하세요.",
+      "text": "외부 파일(./src/styles.js)에 스타일을 분리 작성하고 App.js에서 사용하는 예제이다. 아래 전체 코드를 확인하고 <b>[빈칸 (A)]</b>의 import 구문과 <b>[빈칸 (B)]</b>의 export 구문을 각각 작성하시오.<br><br>• <b>[App.js]:</b> './src/styles' 파일로부터 viewStyles와 textStyles 두 스타일 객체를 Named Import 방식으로 가져오기<br>• <b>[src/styles.js]:</b> StyleSheet.create를 사용하여 viewStyles(container 포함)와 textStyles(text, error 포함)를 각각 Named Export 방식으로 내보내기<br><br><pre class='code-block'>// [App.js]\nimport React from 'react';\nimport { View, Text } from 'react-native';\n// ==========================================\n// [빈칸 (A)] 외부 styles.js로부터 두 스타일 객체를 import 하시오.\n// ==========================================\n<span class='todo-chip'>/* [빈칸 (A)] import 문 작성 */</span>\n\nexport default function App() {\n  return (\n    &lt;View style={viewStyles.container}&gt;\n      &lt;Text style={textStyles.text}&gt;First My Project !&lt;/Text&gt;\n      &lt;Text style={textStyles.error}&gt;First My Project !&lt;/Text&gt;\n    &lt;/View&gt;\n  );\n}\n\n// [src/styles.js]\nimport { StyleSheet } from 'react-native';\n// ==========================================\n// [빈칸 (B)] viewStyles와 textStyles 객체를 export 하시오.\n// ==========================================\n<span class='todo-chip'>/* [빈칸 (B)] export 구문 작성 */</span></pre>",
+      "placeholder": "[빈칸 (A)]와 [빈칸 (B)]의 코드를 작성하세요...",
       "rubric": "1. App.js에서 viewStyles, textStyles named import 구문 정확성 (5점)\n2. src/styles.js에서 export const viewStyles / textStyles 선언 정확성 (5점)",
-      "sampleAnswer": "// App.js\nimport { viewStyles, textStyles } from \"./src/styles\";\n\n// src/styles.js\nexport const viewStyles = StyleSheet.create({ container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' } });\nexport const textStyles = StyleSheet.create({ text: { padding: 10, fontSize: 26, fontWeight: '600', color: 'black' }, error: { fontWeight: '400', color: 'red' } });",
-      "explanation": "스타일을 별도 모듈로 분리할 때는 명명된 내보내기(named export: <code>export const ...</code>)와 명명된 가져오기(named import: <code>import { ... } from '...'</code>)를 사용합니다."
+      "sampleAnswer": "// App.js\nimport { viewStyles, textStyles } from './src/styles';\n\n// src/styles.js\nexport const viewStyles = StyleSheet.create({\n  container: {\n    flex: 1,\n    backgroundColor: '#fff',\n    alignItems: 'center',\n    justifyContent: 'center',\n  },\n});\n\nexport const textStyles = StyleSheet.create({\n  text: {\n    padding: 10,\n    fontSize: 26,\n    fontWeight: '600',\n    color: 'black',\n  },\n  error: {\n    fontWeight: '400',\n    color: 'red',\n  },\n});",
+      "explanation": "<b>정답 코드:</b><br><pre class='code-block'>// App.js\nimport { viewStyles, textStyles } from './src/styles';\n\n// src/styles.js\nexport const viewStyles = StyleSheet.create({\n  container: {\n    flex: 1,\n    backgroundColor: '#fff',\n    alignItems: 'center',\n    justifyContent: 'center',\n  },\n});\n\nexport const textStyles = StyleSheet.create({\n  text: {\n    padding: 10,\n    fontSize: 26,\n    fontWeight: '600',\n    color: 'black',\n  },\n  error: {\n    fontWeight: '400',\n    color: 'red',\n  },\n});</pre>"
     },
     {
       "id": 9,
@@ -132,13 +136,14 @@ window.CROSSPLATFORM_WEEKS.week3 = {
       "category": "3주차 스타일링 기초",
       "title": "flex 속성에 따른 Header / Contents / Footer 화면 비율",
       "text": "부모 container 아래에 <b>header (flex: 1)</b>, <b>contents (flex: 3)</b>, <b>footer (flex: 1)</b>가 수직으로 배치되어 있다.<br>화면 전체 높이를 100%라고 할 때, <b>contents</b> 영역이 차지하는 높이 비율(%)을 숫자로만 적으시오.",
-      "placeholder": "퍼센트 숫자 입력 (예: 60)",
+      "placeholder": "contents 영역의 화면 비율(%)을 숫자로 작성하세요...",
       "answers": [
         "60",
         "60%",
         "60 %"
       ],
-      "explanation": "<b>정답: 60%</b><br>총 flex 비율의 합은 1 + 3 + 1 = 5입니다. contents 영역은 5개 중 3개를 차지하므로 (3 / 5) × 100 = 60%를 차지합니다. (3주차 p.16)"
+      "explanation": "<b>정답:</b><br>총 flex 합 = 1 + 3 + 1 = 5.<br>contents 영역의 비율 = 3 / 5 = <b>60%</b>",
+      "sampleAnswer": "60% (또는 60)"
     },
     {
       "id": 10,
@@ -147,11 +152,11 @@ window.CROSSPLATFORM_WEEKS.week3 = {
       "origin": "3주차 p.17: flexDirection: \"row\" 가로 분할 레이아웃",
       "category": "3주차 스타일링 기초",
       "title": "가로 분할 레이아웃 스타일 객체 완성",
-      "text": "3주차 교안 17페이지의 contents 내부 가로 2분할 레이아웃 스타일을 완성하시오.<br><br>• <b>contents:</b> 화면 비율 2, 자식 컴포넌트들을 가로 방향(행)으로 나란히 배치<br>• <b>contentsLeft:</b> 화면 비율 1, 배경색 \"#16a085\", 가로/세로 중앙 정렬<br>• <b>contentsRight:</b> 화면 비율 1, 배경색 \"#27ae60\", 가로/세로 중앙 정렬",
-      "placeholder": "contents, contentsLeft, contentsRight 스타일 객체를 작성하세요.",
+      "text": "3주차 교안 17페이지의 contents 내부 가로 2분할 레이아웃 예제이다. 전체 코드를 확인하고 <b>[빈칸 (A)]</b> 위치에 들어갈 contents, contentsLeft, contentsRight 스타일 객체를 작성하시오.<br><br>• <b>contents:</b> 화면 비율 2, 자식 컴포넌트들을 가로 방향(row)으로 나란히 배치<br>• <b>contentsLeft:</b> 화면 비율 1, 배경색 '#16a085', 가로/세로 중앙 정렬<br>• <b>contentsRight:</b> 화면 비율 1, 배경색 '#27ae60', 가로/세로 중앙 정렬<br><br><pre class='code-block'>import React from 'react';\nimport { StyleSheet, Text, View } from 'react-native';\n\nexport default function App() {\n  return (\n    &lt;View style={styles.container}&gt;\n      &lt;View style={styles.header}&gt;&lt;Text style={styles.text}&gt;Header&lt;/Text&gt;&lt;/View&gt;\n      &lt;View style={styles.contents}&gt;\n        &lt;View style={styles.contentsLeft}&gt;&lt;Text style={styles.text}&gt;Contents Left&lt;/Text&gt;&lt;/View&gt;\n        &lt;View style={styles.contentsRight}&gt;&lt;Text style={styles.text}&gt;Contents Right&lt;/Text&gt;&lt;/View&gt;\n      &lt;/View&gt;\n      &lt;View style={styles.footer}&gt;&lt;Text style={styles.text}&gt;Footer&lt;/Text&gt;&lt;/View&gt;\n    &lt;/View&gt;\n  );\n}\n\nconst styles = StyleSheet.create({\n  container: { flex: 1, backgroundColor: '#fff' },\n  header: { flex: 1, backgroundColor: '#3498db', alignItems: 'center', justifyContent: 'center' },\n// ==========================================\n// [빈칸 (A)] contents, contentsLeft, contentsRight 스타일을 작성하시오.\n// ==========================================\n<span class='todo-chip'>/* [빈칸 (A)] 여기에 코드를 작성하시오 */</span>\n  footer: { flex: 1, backgroundColor: '#e74c3c', alignItems: 'center', justifyContent: 'center' },\n  text: { fontSize: 26, color: '#000' },\n});</pre>",
+      "placeholder": "[빈칸 (A)]에 들어갈 스타일 객체 코드를 작성하세요...",
       "rubric": "1. contents에 flex: 2, flexDirection: 'row' 지정 (4점)\n2. contentsLeft에 flex: 1, backgroundColor: '#16a085', 중앙 정렬 지정 (3점)\n3. contentsRight에 flex: 1, backgroundColor: '#27ae60', 중앙 정렬 지정 (3점)",
-      "sampleAnswer": "contents: {\n  flex: 2,\n  flexDirection: \"row\",\n},\ncontentsLeft: {\n  flex: 1,\n  backgroundColor: \"#16a085\",\n  alignItems: \"center\",\n  justifyContent: \"center\",\n},\ncontentsRight: {\n  flex: 1,\n  backgroundColor: \"#27ae60\",\n  alignItems: \"center\",\n  justifyContent: \"center\",\n},",
-      "explanation": "가로 방향 배치를 위해서는 부모 요소에 <code>flexDirection: \"row\"</code>를 부여하고 자식들에게 <code>flex: 1</code>을 할당합니다."
+      "sampleAnswer": "  contents: {\n    flex: 2,\n    flexDirection: 'row',\n  },\n  contentsLeft: {\n    flex: 1,\n    backgroundColor: '#16a085',\n    alignItems: 'center',\n    justifyContent: 'center',\n  },\n  contentsRight: {\n    flex: 1,\n    backgroundColor: '#27ae60',\n    alignItems: 'center',\n    justifyContent: 'center',\n  },",
+      "explanation": "<b>정답 코드:</b><br><pre class='code-block'>  contents: {\n    flex: 2,\n    flexDirection: 'row',\n  },\n  contentsLeft: {\n    flex: 1,\n    backgroundColor: '#16a085',\n    alignItems: 'center',\n    justifyContent: 'center',\n  },\n  contentsRight: {\n    flex: 1,\n    backgroundColor: '#27ae60',\n    alignItems: 'center',\n    justifyContent: 'center',\n  },</pre>"
     }
   ]
 };

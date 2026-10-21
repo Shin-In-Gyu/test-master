@@ -1211,26 +1211,23 @@ export default function App() {
     </section>
   
 
-    <!-- SECTION: 실전 시험대비 빈칸 문제집 (통합본 / Active Recall) -->
     
-
-
     <!-- SECTION: 실전 시험대비 빈칸 문제집 (통합본 / Active Recall) -->
     <section id="cp-workbook" class="concept-section">
       <div class="section-banner success-banner">
         <div class="section-banner-title">
-          <span>📝 3주차~7주차 실전 시험대비 빈칸 문제집 (총 49제 Active Recall 테스트)</span>
+          <span>📝 3주차~7주차 실전 시험대비 타겟 빈칸 문제집 (총 49제 Active Recall 테스트)</span>
         </div>
-        <span style="font-size: 13.5px; opacity: 0.95;">화면 캡처와 구현 조건을 보고 핵심 코드를 백지 복원한 뒤 정답을 클릭하여 자가 채점하세요!</span>
+        <span style="font-size: 13.5px; opacity: 0.95;">앞뒤 코드를 모두 제공하며, 핵심 타겟 코드만 [빈칸 (A)]으로 출제하여 실전 시험과 동일하게 훈련합니다!</span>
       </div>
 
       <div class="concept-card">
         <div style="background: rgba(34, 197, 94, 0.1); border-left: 4px solid var(--success); padding: 12px 16px; border-radius: 4px; margin-bottom: 24px;">
-          <b style="color: var(--success);">🎯 시험 직전 자가 진단 방법</b>: 문제를 읽고 보일러플레이트 내부의 <code>[TODO]</code> 영역을 머릿속이나 메모장에 직접 작성해본 뒤, <b>[💡 정답 및 교수님 채점 기준 확인하기]</b> 토글을 열어 감점 요인을 점검하세요.
+          <b style="color: var(--success);">🎯 실전 시험 출제 방식</b>: 앞뒤 보일러플레이트 코드를 모두 확인하고, <b>[빈칸 (A)]</b> 위치에 들어갈 핵심 코드만 머릿속으로 떠올리거나 메모장에 작성한 뒤 <b>[💡 정답 및 교수님 채점 기준 확인하기]</b>를 열어 확인하세요.
         </div>
 
         <div class="summary-box" style="margin-top: 32px; margin-bottom: 16px;">
-          <h3 style="margin: 0; color: var(--success); font-size: 18px;">📌 3주차 빈칸 실전 문제</h3>
+          <h3 style="margin: 0; color: var(--success); font-size: 18px;">📌 3주차 타겟 빈칸 실전 문제</h3>
         </div>
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
@@ -1253,25 +1250,21 @@ export default function App() {
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 컴포넌트가 화면 전체(<code>flex: 1</code>)를 차지하고 배경색을 흰색(<code>#fff</code>)으로 설정할 것</li>
-              <li>2. 화면 내부 요소를 가로/세로 중앙 정렬(<code>alignItems: 'center'</code>, <code>justifyContent: 'center'</code>)할 것</li>
-              <li>3. 'Open up App.js to start working on your app!' 텍스트를 출력할 것</li>
-              <li>4. Expo 상태 표시줄 <code><StatusBar style="auto" /></code>을 포함할 것</li>
+              <li>화면 전체(flex: 1, #fff) 및 중앙 정렬 컨테이너 내부에 안내 텍스트와 StatusBar를 렌더링할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
             <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  // [TODO] 조건 1~4를 만족하는 화면 렌더링 코드를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
+// ==========================================
+// [빈칸 (A)] 아래 return 구문을 완성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
 }
 
@@ -1287,39 +1280,20 @@ const styles = StyleSheet.create({
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    return (
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  return (
     &lt;View style={styles.container}&gt;
       &lt;Text&gt;Open up App.js to start working on your app!&lt;/Text&gt;
       &lt;StatusBar style="auto" /&gt;
     &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});</code></pre>
+  );</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>View</code>의 스타일로 <code>styles.container</code> 연결 여부</b></li>
-                  <li><b><code>Text</code> 태그로 안내 문구 정상 감싸기</b></li>
-                  <li><b><code>StatusBar</code> 컴포넌트 포함 여부</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>View 스타일 연결 및 Text, StatusBar 포함 여부</b></div>
               </div>
             </div>
           </details>
@@ -1345,25 +1319,27 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 기본 중앙 정렬 컨테이너(<code>styles.container</code>) 내부에 2개의 Text 컴포넌트를 배치할 것</li>
-              <li>2. 첫 번째 줄에 'Open up App.js to start working on your app!' 출력</li>
-              <li>3. 두 번째 줄에 'First My Project !' 출력</li>
+              <li>컨테이너 내부에 'Open up App.js to start working on your app!'와 'First My Project !' 2개의 Text 컴포넌트를 배치할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
             <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  // [TODO] 2개의 Text 컴포넌트를 렌더링하도록 작성하시오.
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] 두 줄의 Text 컴포넌트를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
+      &lt;StatusBar style="auto" /&gt;
+    &lt;/View&gt;
+  );
 }
 
 const styles = StyleSheet.create({
@@ -1378,38 +1354,16 @@ const styles = StyleSheet.create({
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    return (
-    &lt;View style={styles.container}&gt;
-      &lt;Text&gt;Open up App.js to start working on your app!&lt;/Text&gt;
-      &lt;Text&gt;First My Project !&lt;/Text&gt;
-      &lt;StatusBar style="auto" /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});</code></pre>
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;Text&gt;Open up App.js to start working on your app!&lt;/Text&gt;
+      &lt;Text&gt;First My Project !&lt;/Text&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>두 개의 <code>Text</code> 컴포넌트가 하나의 부모 <code>View</code> 안에 순서대로 나열되었는지 확인</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>두 개의 Text 컴포넌트 순서대로 작성 여부</b></div>
               </div>
             </div>
           </details>
@@ -1435,28 +1389,27 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 리액트 네이티브 JSX 내부에서 개행(줄바꿈)을 처리하기 위해 {\"\\n\"} 표현식을 사용할 것</li>
-              <li>2. 다음 문구가 한 Text 컴포넌트 내에서 4줄로 출력되도록 작성할 것:</li>
-              <li>   - 처음 시작하는 리액트 네이티브 프로그래밍 !</li>
-              <li>   - 학과: 소프트웨어공학</li>
-              <li>   - 학번: 123456</li>
-              <li>   - 이름: 홍길동</li>
+              <li>JSX 내부에서 {"\n"} 개행 표현식을 사용하여 학적 정보를 4줄로 출력할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
             <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  // [TODO] JSX 줄바꿈 문법을 사용하여 학적 정보를 4줄로 출력하시오.
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] 개행 표현식({"\n"})을 포함한 Text 컴포넌트를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
+      &lt;StatusBar style="auto" /&gt;
+    &lt;/View&gt;
+  );
 }
 
 const styles = StyleSheet.create({
@@ -1471,42 +1424,20 @@ const styles = StyleSheet.create({
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    return (
-    &lt;View style={styles.container}&gt;
-      &lt;Text&gt;
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;Text&gt;
         처음 시작하는 리액트 네이티브 프로그래밍 !{"\n"}
         학과: 소프트웨어공학 {"\n"}
         학번: 123456{"\n"}
         이름: 홍길동
-      &lt;/Text&gt;
-      &lt;StatusBar style="auto" /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});</code></pre>
+      &lt;/Text&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>단순 엔터가 아닌 {"\n"}을 사용하여 JSX 내 명시적 줄바꿈을 구현했는지 여부 (교수님 빈출 포인트)</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>JSX 내 명시적 개행 표현식 {"\n"} 정확한 사용</b></div>
               </div>
             </div>
           </details>
@@ -1532,27 +1463,30 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 함수 외부에 JS 한 줄 주석(<code>//</code>)으로 '과목명: 리액트 네이티브 프로그래밍' 작성</li>
-              <li>2. 함수 외부에 JS 여러 줄 주석(<code>/* */</code>)으로 '이름: 홍길동' 작성</li>
-              <li>3. JSX return 내부에서 '<Text>처음 시작하는 리액트 네이티브 프로그래밍 !</Text>'를 주석 처리할 것 (반드시 <code>{/* */}</code> 형태 사용)</li>
+              <li>JSX 내부에서 유효한 주석 문법({/* */})을 사용하여 두 번째 Text 컴포넌트를 주석 처리할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
             <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-// [TODO 1] 여기에 JS 한 줄 주석과 여러 줄 주석을 작성하시오.
-
+// 과목명: 리액트 네이티브 프로그래밍
+/* 이름: 홍길동 */
 export default function App() {
-  // [TODO 2] JSX 내부에서 유효한 주석 문법을 사용하여 Text를 주석 처리하시오.
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;Text&gt;처음 시작하는 리액트 네이티브 프로그래밍 !&lt;/Text&gt;
+// ==========================================
+// [빈칸 (A)] 아래 위치에 Text 컴포넌트를 주석 처리하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
+      &lt;StatusBar style="auto" /&gt;
+    &lt;/View&gt;
+  );
 }
 
 const styles = StyleSheet.create({
@@ -1567,40 +1501,15 @@ const styles = StyleSheet.create({
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-// 과목명: 리액트 네이티브 프로그래밍
-/* 이름: 홍길동 */
-export default function App() {
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;Text&gt;처음 시작하는 리액트 네이티브 프로그래밍 !&lt;/Text&gt;
-      {/* &lt;Text&gt;처음 시작하는 리액트 네이티브 프로그래밍 !&lt;/Text&gt; */}
-      &lt;StatusBar style="auto" /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});</code></pre>
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      {/* &lt;Text&gt;처음 시작하는 리액트 네이티브 프로그래밍 !&lt;/Text&gt; */}</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>JSX 태그 사이에서 <code>//</code>나 <code>/* */</code>를 그냥 쓰면 화면에 문자로 렌더링되므로, 반드시 중괄호 <code>{/* 주석 내용 */}</code>으로 감싸야 함</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>JSX 태그 내부에서 중괄호 블록 주석 {/* */} 사용</b></div>
               </div>
             </div>
           </details>
@@ -1626,52 +1535,39 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 별도의 StyleSheet 없이 컴포넌트의 <code>style={{ ... }}</code> 속성에 직접 스타일 객체를 전달할 것</li>
-              <li>2. 컨테이너: flex 1, 배경 흰색, 중앙 정렬</li>
-              <li>3. 첫 번째 Text: padding 10, fontSize 26, fontWeight '600'(문자열 주의), 검정 글씨 ('Inline Styling - Text')</li>
-              <li>4. 두 번째 Text: padding 10, fontSize 26, fontWeight '400'(문자열 주의), 빨간 글씨 ('Inline Styling - Error')</li>
+              <li>style 속성에 직접 객체 리터럴을 전달하여 fontWeight: '600' (검정)과 fontWeight: '400' (빨강) 인라인 스타일을 적용할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
             <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
 import { View, Text } from 'react-native';
 
 export default function App() {
-  // [TODO] StyleSheet를 쓰지 않고 오직 인라인 스타일링만으로 화면을 구현하시오.
+  return (
+    &lt;View style={{ flex: 1, backgroundColor: "#fff", alignItems: "center", justifyContent: "center" }}&gt;
+// ==========================================
+// [빈칸 (A)] 인라인 스타일을 적용한 2개의 Text 컴포넌트를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-</code></pre>
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { View, Text } from 'react-native';
-
-export default function App() {
-    return (
-    &lt;View
-      style={{
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-      }}&gt;
-      &lt;Text
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;Text
         style={{
           padding: 10,
           fontSize: 26,
-          fontWeight: "600", // 숫자가 아닌 문자열로 지정
+          fontWeight: "600", // 숫자가 아닌 문자열
           color: "black",
         }}&gt;
         Inline Styling - Text
@@ -1680,22 +1576,15 @@ export default function App() {
         style={{
           padding: 10,
           fontSize: 26,
-          fontWeight: "400", // 숫자가 아닌 문자열로 지정
+          fontWeight: "400", // 숫자가 아닌 문자열
           color: "red",
         }}&gt;
         Inline Styling - Error
-      &lt;/Text&gt;
-    &lt;/View&gt;
-  );
-}
-</code></pre>
+      &lt;/Text&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>style={{ }}</code> 이중 중괄호 문법 (바깥은 JSX 표현식, 안쪽은 자바스크립트 객체)</b></li>
-                  <li><b><code>fontWeight</code> 값은 숫자가 아닌 반드시 따옴표로 감싼 문자열 (<code>'600'</code>, <code>'400'</code>)이어야 함</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>style={{ }} 이중 중괄호 및 fontWeight 값 문자열('600', '400') 처리</b></div>
               </div>
             </div>
           </details>
@@ -1721,44 +1610,17 @@ export default function App() {
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>StyleSheet.create</code>를 사용하여 <code>container</code>, <code>text</code>, <code>error</code> 3가지 스타일 객체를 정의할 것</li>
-              <li>2. <code>text</code>: padding 10, fontSize 26, fontWeight '600', color 'black'</li>
-              <li>3. <code>error</code>: padding 10, fontSize 26, fontWeight '400', color 'red'</li>
-              <li>4. 컴포넌트에 <code>styles.text</code>, <code>styles.error</code>로 바인딩할 것</li>
+              <li>StyleSheet.create를 사용하여 container, text(fontSize 26, fontWeight '600', black), error(fontSize 26, fontWeight '400', red) 3가지 스타일 객체를 정의할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
             <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  // [TODO 1] styles 객체를 참조하여 View와 2개의 Text를 렌더링하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-// [TODO 2] StyleSheet.create를 사용하여 container, text, error 스타일을 정의하시오.
-const styles = StyleSheet.create({
-
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    return (
+  return (
     &lt;View style={styles.container}&gt;
       &lt;Text style={styles.text}&gt;Inline Styling - Text&lt;/Text&gt;
       &lt;Text style={styles.error}&gt;Inline Styling - Error&lt;/Text&gt;
@@ -1766,7 +1628,19 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
+// ==========================================
+// [빈칸 (A)] 아래 styles 객체 정의 부분을 완성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */</code></pre>
+          </div>
+
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -1785,17 +1659,11 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: 'red',
   },
-});
-}
-
-</code></pre>
+});</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>StyleSheet.create</code> 기본 문법 구조</b></li>
-                  <li><b><code>style={styles.text}</code>와 <code>style={styles.error}</code>로 클래스 스타일 매핑</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>StyleSheet.create 구문 및 container, text, error 3개 객체 속성 명확성</b></div>
               </div>
             </div>
           </details>
@@ -1821,89 +1689,46 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>styles.text</code>에는 공통 속성(padding: 10, fontSize: 26, fontWeight: '600', color: 'black')을 정의할 것</li>
-              <li>2. <code>styles.error</code>에는 변경할 속성(fontWeight: '400', color: 'red')만 정의할 것</li>
-              <li>3. 두 번째 Text 컴포넌트에 **배열**을 사용하여 두 스타일을 병합 적용할 것 (<code>style={[styles.text, styles.error]}</code>)</li>
+              <li>배열 표기법을 사용하여 styles.text의 속성을 기본으로 하고 styles.error의 속성으로 덮어쓰는 다중 스타일을 적용할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
             <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  // [TODO] 배열을 사용하여 다중 스타일을 적용하는 JSX를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    padding: 10,
-    fontSize: 26,
-    fontWeight: '600',
-    color: 'black',
-  },
-  error: {
-    fontWeight: '400',
-    color: 'red',
-  },
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    return (
+  return (
     &lt;View style={styles.container}&gt;
       &lt;Text style={styles.text}&gt;Inline Styling - Text&lt;/Text&gt;
-      &lt;Text style={[styles.text, styles.error]}&gt;Inline Styling - Error&lt;/Text&gt;
+// ==========================================
+// [빈칸 (A)] 배열을 사용하여 styles.text와 styles.error를 결합 적용하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
+
     &lt;/View&gt;
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    padding: 10,
-    fontSize: 26,
-    fontWeight: '600',
-    color: 'black',
-  },
-  error: {
-    fontWeight: '400',
-    color: 'red',
-  },
+  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
+  text: { padding: 10, fontSize: 26, fontWeight: '600', color: 'black' },
+  error: { fontWeight: '400', color: 'red' },
 });</code></pre>
+          </div>
+
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;Text style={[styles.text, styles.error]}&gt;Inline Styling - Error&lt;/Text&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>배열 구문 <code>style={[styles.text, styles.error]}</code> 작성 여부</b></li>
-                  <li><b>배열의 뒤쪽에 위치한 스타일(<code>styles.error</code>)이 앞선 스타일의 동일 속성을 덮어씌운다는 원리 이해</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>style={[styles.text, styles.error]} 배열 표기법 정확성</b></div>
               </div>
             </div>
           </details>
@@ -1911,7 +1736,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 08] 외부 스타일 이용하기 (App.js & styles.js 모듈 분리)</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 08] 외부 스타일 이용하기 (styles.js 모듈 분리)</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">3주 P.14~15</span>
           </div>
 
@@ -1929,69 +1754,27 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>src/styles.js</code> 파일에서 <code>viewStyles</code>와 <code>textStyles</code>를 named export(<code>export const</code>)할 것</li>
-              <li>2. <code>App.js</code> 파일에서 <code>./src/styles</code>로부터 두 스타일 객체를 import하여 적용할 것</li>
+              <li>./src/styles 파일로부터 viewStyles와 textStyles를 import하여 App 컴포넌트에 연결할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>// [파일 1: src/styles.js]
-import { StyleSheet } from "react-native";
-// [TODO 1] viewStyles와 textStyles를 export 하시오.
-
-
-// [파일 2: App.js]
-import React from "react";
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from "react";
 import { View, Text } from "react-native";
-// [TODO 2] 외부 스타일 파일을 import하고 컴포넌트에 연결하시오.
-
-export default function App() {
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}</code></pre>
+// ==========================================
+// [빈칸 (A)] 외부 스타일 모듈 import 구문 및 JSX 적용 코드를 완성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>// [파일 1: src/styles.js]
-import { StyleSheet } from "react-native";
-// [파일 1: src/styles.js]
-import { StyleSheet } from "react-native";
-
-export const viewStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-export const textStyles = StyleSheet.create({
-  text: {
-    padding: 10,
-    fontSize: 26,
-    fontWeight: '600',
-    color: 'black',
-  },
-  error: {
-    fontWeight: '400',
-    color: 'red',
-  },
-});
-
-// [파일 2: App.js]
-import React from "react";
-import { View, Text } from "react-native";
-import { viewStyles, textStyles } from "./src/styles";
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import { viewStyles, textStyles } from "./src/styles";
 
 export default function App() {
   return (
@@ -2000,15 +1783,11 @@ export default function App() {
       &lt;Text style={textStyles.error}&gt;Inline Styling - Error&lt;/Text&gt;
     &lt;/View&gt;
   );
-}
 }</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>외부 모듈 분리 시 <code>export const</code>와 <code>import { ... } from './src/styles'</code> 문법 매칭</b></li>
-                  <li><b><code>style={viewStyles.container}</code>, <code>style={textStyles.text}</code> 정확한 객체 참조</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>named import { viewStyles, textStyles } 및 style={viewStyles.container} 참조</b></div>
               </div>
             </div>
           </details>
@@ -2034,59 +1813,38 @@ export default function App() {
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. Header 영역: flex 1, 노란색 배경 (<code>#f1c40f</code>), 중앙 정렬</li>
-              <li>2. Contents 영역: flex 3, 청록색 배경 (<code>#1abc9c</code>), 중앙 정렬</li>
-              <li>3. Footer 영역: flex 1, 파란색 배경 (<code>#3498db</code>), 중앙 정렬</li>
-              <li>4. 총 5의 비율 중 1:3:1로 화면 전체(<code>container: { flex: 1 }</code>)를 분할할 것</li>
+              <li>Header(flex: 1, #f1c40f), Contents(flex: 3, #1abc9c), Footer(flex: 1, #3498db) 3단 레이아웃 스타일을 작성할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
             <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  // [TODO 1] Header, Contents, Footer 3단 분할 JSX를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-// [TODO 2] flex 1:3:1 비율 및 배경색 styles를 정의하시오.
-const styles = StyleSheet.create({
-
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    return (
+  return (
     &lt;View style={styles.container}&gt;
-      &lt;View style={styles.header}&gt;
-        &lt;Text style={styles.text}&gt;Header&lt;/Text&gt;
-      &lt;/View&gt;
-      &lt;View style={styles.contents}&gt;
-        &lt;Text style={styles.text}&gt;Contents&lt;/Text&gt;
-      &lt;/View&gt;
-      &lt;View style={styles.footer}&gt;
-        &lt;Text style={styles.text}&gt;Footer&lt;/Text&gt;
-      &lt;/View&gt;
+      &lt;View style={styles.header}&gt;&lt;Text style={styles.text}&gt;Header&lt;/Text&gt;&lt;/View&gt;
+      &lt;View style={styles.contents}&gt;&lt;Text style={styles.text}&gt;Contents&lt;/Text&gt;&lt;/View&gt;
+      &lt;View style={styles.footer}&gt;&lt;Text style={styles.text}&gt;Footer&lt;/Text&gt;&lt;/View&gt;
     &lt;/View&gt;
   );
 }
 
-const styles = StyleSheet.create({
+// ==========================================
+// [빈칸 (A)] flex 1:3:1 비율 및 배경색 styles 객체를 완성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */</code></pre>
+          </div>
+
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -2111,17 +1869,11 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 26,
   },
-});
-}
-
-</code></pre>
+});</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>최상위 <code>container</code>의 <code>flex: 1</code> 설정 여부</b></li>
-                  <li><b>자식 요소들의 <code>flex: 1</code>, <code>flex: 3</code>, <code>flex: 1</code> 합산 비율 레이아웃 구조</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>header flex: 1, contents flex: 3, footer flex: 1 비율 및 스타일 정의</b></div>
               </div>
             </div>
           </details>
@@ -2147,92 +1899,47 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. Contents 영역에 <code>flexDirection: 'row'</code>를 지정하여 내부 요소를 가로로 나란히 배치할 것</li>
-              <li>2. Contents 내부에 Contents Left(flex: 1, <code>#16a085</code>)와 Contents Right(flex: 1, <code>#27ae60</code>) 2개 영역을 1:1로 가로 분할할 것</li>
+              <li>Contents 영역에 flexDirection: 'row'를 적용하고, Left(flex: 1, #16a085)와 Right(flex: 1, #27ae60)를 가로 1:1로 분할할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  // [TODO 1] Contents 내부를 Left와 Right로 가로 분할하는 JSX를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    flex: 1,
-    backgroundColor: '#f1c40f',
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  // [TODO 2] contents의 가로 분할 및 contentsLeft, contentsRight 스타일을 정의하시오.
-  contents: {
-
-  },
-  footer: {
-    flex: 1,
-    backgroundColor: '#3498db',
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 26,
-  },
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    return (
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  return (
     &lt;View style={styles.container}&gt;
-      &lt;View style={styles.header}&gt;
-        &lt;Text style={styles.text}&gt;Header&lt;/Text&gt;
-      &lt;/View&gt;
+      &lt;View style={styles.header}&gt;&lt;Text style={styles.text}&gt;Header&lt;/Text&gt;&lt;/View&gt;
       &lt;View style={styles.contents}&gt;
-        &lt;View style={styles.contentsLeft}&gt;
-          &lt;Text style={styles.text}&gt;Contents Left&lt;/Text&gt;
-        &lt;/View&gt;
-        &lt;View style={styles.contentsRight}&gt;
-          &lt;Text style={styles.text}&gt;Contents Right&lt;/Text&gt;
-        &lt;/View&gt;
+        &lt;View style={styles.contentsLeft}&gt;&lt;Text style={styles.text}&gt;Contents Left&lt;/Text&gt;&lt;/View&gt;
+        &lt;View style={styles.contentsRight}&gt;&lt;Text style={styles.text}&gt;Contents Right&lt;/Text&gt;&lt;/View&gt;
       &lt;/View&gt;
-      &lt;View style={styles.footer}&gt;
-        &lt;Text style={styles.text}&gt;Footer&lt;/Text&gt;
-      &lt;/View&gt;
+      &lt;View style={styles.footer}&gt;&lt;Text style={styles.text}&gt;Footer&lt;/Text&gt;&lt;/View&gt;
     &lt;/View&gt;
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  header: {
-    flex: 1,
-    backgroundColor: '#f1c40f',
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  contents: {
+  header: { flex: 1, backgroundColor: '#f1c40f', alignItems: "center", justifyContent: "center" },
+// ==========================================
+// [빈칸 (A)] contents 가로 분할 및 contentsLeft, contentsRight 스타일을 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
+
+  footer: { flex: 1, backgroundColor: '#3498db', alignItems: "center", justifyContent: "center" },
+  text: { fontSize: 26 },
+});</code></pre>
+          </div>
+
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  contents: {
     flex: 2,
-    flexDirection: "row", // 가로 분할의 핵심
+    flexDirection: "row", // 가로 분할 핵심 속성
   },
   contentsLeft: {
     flex: 1,
@@ -2245,42 +1952,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#27ae60",
     alignItems: "center",
     justifyContent: "center",
-  },
-  footer: {
-    flex: 1,
-    backgroundColor: '#3498db',
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: { fontSize: 26 },
-});
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    flex: 1,
-    backgroundColor: '#f1c40f',
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  </code></pre>
+  },</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>부모 컨테이너에 <code>flexDirection: 'row'</code> 적용 여부</b></li>
-                  <li><b>가로로 배치된 자식들에 <code>flex: 1</code>을 부여하여 가로 공간 균등 분할 구현 여부</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>flexDirection: 'row' 및 좌우 flex: 1 분할 정의</b></div>
               </div>
             </div>
           </details>
         </div>
 
         <div class="summary-box" style="margin-top: 32px; margin-bottom: 16px;">
-          <h3 style="margin: 0; color: var(--success); font-size: 18px;">📌 4주차 빈칸 실전 문제</h3>
+          <h3 style="margin: 0; color: var(--success); font-size: 18px;">📌 4주차 타겟 빈칸 실전 문제</h3>
         </div>
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
@@ -2303,96 +1986,47 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. Header와 Footer 사이에 Contents 영역(<code>flex: 3, flexDirection: 'row'</code>)을 둘 것</li>
-              <li>2. Contents 좌측(Left)과 우측(Right)을 각각 상/하(Top, Bottom)로 2등분하여 총 4개 칸을 구성할 것</li>
-              <li>3. 각 칸에 'Contents Left Top', 'Contents Left Bottom', 'Contents Right Top', 'ContentsRightBottom' 텍스트를 중앙 배치할 것</li>
+              <li>Contents 영역 내부를 Left/Right로 가로 분할하고, 각각을 Top/Bottom으로 세로 2등분하는 4분할 JSX를 작성할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;View style={styles.header} /&gt;
+// ==========================================
+// [빈칸 (A)] Left Top/Bottom 및 Right Top/Bottom 4분할 JSX를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-export default function App() {
-  // [TODO] 4분할 중첩 View 레이아웃 JSX를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  header: { flex: 1, backgroundColor: '#f1c40f' },
-  contents: { flex: 3, flexDirection: 'row' },
-  contentsLeft: { flex: 1 },
-  contentsLeftTop: { flex: 1, backgroundColor: '#16a085', alignItems: 'center', justifyContent: 'center' },
-  contentsLeftBottom: { flex: 1, backgroundColor: '#1abc9c', alignItems: 'center', justifyContent: 'center' },
-  contentsRight: { flex: 1 },
-  contentsRightTop: { flex: 1, backgroundColor: '#27ae60', alignItems: 'center', justifyContent: 'center' },
-  contentsRightBottom: { flex: 1, backgroundColor: '#2ecc71', alignItems: 'center', justifyContent: 'center' },
-  footer: { flex: 1, backgroundColor: '#3498db' },
-  text: { fontSize: 16, color: '#fff', fontWeight: 'bold' },
-});</code></pre>
+      &lt;View style={styles.footer} /&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    return (
-    &lt;View style={styles.container}&gt;
-      &lt;View style={styles.header} /&gt;
-      &lt;View style={styles.contents}&gt;
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;View style={styles.contents}&gt;
         &lt;View style={styles.contentsLeft}&gt;
-          &lt;View style={styles.contentsLeftTop}&gt;
-            &lt;Text style={styles.text}&gt;Contents Left Top&lt;/Text&gt;
-          &lt;/View&gt;
-          &lt;View style={styles.contentsLeftBottom}&gt;
-            &lt;Text style={styles.text}&gt;Contents Left Bottom&lt;/Text&gt;
-          &lt;/View&gt;
+          &lt;View style={styles.contentsLeftTop}&gt;&lt;Text style={styles.text}&gt;Contents Left Top&lt;/Text&gt;&lt;/View&gt;
+          &lt;View style={styles.contentsLeftBottom}&gt;&lt;Text style={styles.text}&gt;Contents Left Bottom&lt;/Text&gt;&lt;/View&gt;
         &lt;/View&gt;
         &lt;View style={styles.contentsRight}&gt;
-          &lt;View style={styles.contentsRightTop}&gt;
-            &lt;Text style={styles.text}&gt;Contents Right Top&lt;/Text&gt;
-          &lt;/View&gt;
-          &lt;View style={styles.contentsRightBottom}&gt;
-            &lt;Text style={styles.text}&gt;ContentsRightBottom&lt;/Text&gt;
-          &lt;/View&gt;
+          &lt;View style={styles.contentsRightTop}&gt;&lt;Text style={styles.text}&gt;Contents Right Top&lt;/Text&gt;&lt;/View&gt;
+          &lt;View style={styles.contentsRightBottom}&gt;&lt;Text style={styles.text}&gt;ContentsRightBottom&lt;/Text&gt;&lt;/View&gt;
         &lt;/View&gt;
-      &lt;/View&gt;
-      &lt;View style={styles.footer} /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  header: { flex: 1, backgroundColor: '#f1c40f' },
-  contents: { flex: 3, flexDirection: 'row' },
-  contentsLeft: { flex: 1 },
-  contentsLeftTop: { flex: 1, backgroundColor: '#16a085', alignItems: 'center', justifyContent: 'center' },
-  contentsLeftBottom: { flex: 1, backgroundColor: '#1abc9c', alignItems: 'center', justifyContent: 'center' },
-  contentsRight: { flex: 1 },
-  contentsRightTop: { flex: 1, backgroundColor: '#27ae60', alignItems: 'center', justifyContent: 'center' },
-  contentsRightBottom: { flex: 1, backgroundColor: '#2ecc71', alignItems: 'center', justifyContent: 'center' },
-  footer: { flex: 1, backgroundColor: '#3498db' },
-  text: { fontSize: 16, color: '#fff', fontWeight: 'bold' },
-});</code></pre>
+      &lt;/View&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>contents</code>의 row 방향 분할 아래에 컬럼 방향의 Left/Right를 두고, 그 안에서 다시 Top/Bottom 분할을 계층적으로 완성했는지 여부</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>중첩 View 계층 구조 및 각 텍스트 정상 배치</b></div>
               </div>
             </div>
           </details>
@@ -2418,83 +2052,45 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>Text</code> 컴포넌트 내부에 다른 <code>Text</code> 컴포넌트를 중첩(Nesting)할 것</li>
-              <li>2. 전체 텍스트: '나는 강남대학교 학생 이다.' (크기 30, 볼드체)</li>
-              <li>3. ' 학생 이다.' 부분에만 빨간색 글자색(<code>innerText: { color: 'red' }</code>)을 적용할 것</li>
+              <li>Text 컴포넌트 내부에 Text를 중첩하여 ' 학생 이다.' 부분에만 빨간색(styles.innerText)을 적용할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  // [TODO] Text 중첩 문법을 사용하여 특정 단어만 빨간색으로 변경하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  baseText: {
-    fontWeight: 'bold',
-    fontSize: 30,
-  },
-  innerText: {
-    color: 'red',
-  },
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    return (
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  return (
     &lt;View style={styles.container}&gt;
-      &lt;Text style={styles.baseText}&gt;
-        나는 강남대학교
-        &lt;Text style={styles.innerText}&gt; 학생 이다.&lt;/Text&gt;
-      &lt;/Text&gt;
+// ==========================================
+// [빈칸 (A)] 중첩 Text 컴포넌트를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
+
     &lt;/View&gt;
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  baseText: {
-    fontWeight: 'bold',
-    fontSize: 30,
-  },
-  innerText: {
-    color: 'red',
-  },
+  container: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  baseText: { fontWeight: 'bold', fontSize: 30 },
+  innerText: { color: 'red' },
 });</code></pre>
+          </div>
+
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;Text style={styles.baseText}&gt;
+        나는 강남대학교
+        &lt;Text style={styles.innerText}&gt; 학생 이다.&lt;/Text&gt;
+      &lt;/Text&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>Text</code> 태그 안에 <code>Text</code>를 자식으로 배치할 수 있는 리액트 네이티브 특유의 중첩 문법 이해</b></li>
-                  <li><b>부모 <code>Text</code>의 <code>fontSize: 30</code>과 <code>fontWeight: 'bold'</code>를 자식 <code>Text</code>가 상속받는 원리 파악</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>Text 태그 내 자식 Text 태그 중첩 문법</b></div>
               </div>
             </div>
           </details>
@@ -2520,68 +2116,39 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. StyleSheet 대신 인라인 스타일(<code>style={{ ... }}</code>)을 사용하여 Text 중첩을 구현할 것</li>
-              <li>2. 부모 Text: <code>fontSize: 30</code>, 텍스트 '나는 강남대학교'</li>
-              <li>3. 자식 Text: <code>fontSize: 30, color: 'green'</code>, 텍스트 ' 학생 이다.'</li>
+              <li>인라인 스타일을 사용하여 '나는 강남대학교'에 fontSize: 30, ' 학생 이다.'에 color: 'green'을 적용할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] 인라인 스타일이 적용된 중첩 Text를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-export default function App() {
-  // [TODO] 인라인 스타일로 중첩 Text에 초록색을 적용하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});</code></pre>
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    return (
-    &lt;View style={styles.container}&gt;
-      &lt;Text style={{ fontSize: 30 }}&gt;
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;Text style={{ fontSize: 30 }}&gt;
         나는 강남대학교
         &lt;Text style={{ fontSize: 30, color: "green" }}&gt; 학생 이다.&lt;/Text&gt;
-      &lt;/Text&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});</code></pre>
+      &lt;/Text&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>인라인 스타일 <code>style={{ fontSize: 30, color: 'green' }}</code> 구문 작성 정확도</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>인라인 style={{ fontSize: 30, color: 'green' }} 작성</b></div>
               </div>
             </div>
           </details>
@@ -2589,7 +2156,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 14] 텍스트 ScrollView (긴 본문 스크롤 지원)</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 14] 텍스트 ScrollView (긴 글 스크롤)</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">4주 P.07</span>
           </div>
 
@@ -2607,76 +2174,43 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 화면을 벗어나는 긴 텍스트를 상하로 스크롤할 수 있도록 <code><ScrollView></code> 컴포넌트로 감쌀 것</li>
-              <li>2. ScrollView 내부에 긴 설명 텍스트를 <code>styles.baseText</code>로 스타일링하여 표시할 것</li>
+              <li>화면을 초과하는 긴 텍스트를 상하 스크롤이 가능하도록 ScrollView 컴포넌트로 감쌀 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
             <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 export default function App() {
-  // [TODO] ScrollView 컴포넌트를 사용하여 긴 본문을 렌더링하시오.
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] ScrollView 컴포넌트로 텍스트를 감싸시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    marginTop: 40,
-  },
-  baseText: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
-});</code></pre>
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-
-export default function App() {
-    return (
-    &lt;View style={styles.container}&gt;
-      &lt;ScrollView&gt;
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;ScrollView&gt;
         &lt;Text style={styles.baseText}&gt;
           React의 문법으로 안드로이드, iOS 앱을 개발할 수 있는 프레임워크이다...
         &lt;/Text&gt;
-      &lt;/ScrollView&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    marginTop: 40,
-  },
-  baseText: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
-});</code></pre>
+      &lt;/ScrollView&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>View</code> 대신 스크롤 컨테이너로 <code>ScrollView</code>를 정확히 사용했는지 여부</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>ScrollView 태그 감싸기</b></div>
               </div>
             </div>
           </details>
@@ -2684,7 +2218,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 15] 텍스트 onPress 이벤트 (상태 변경 및 인터랙션)</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 15] 텍스트: onPress 이벤트 (상태 변경)</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">4주 P.10</span>
           </div>
 
@@ -2702,61 +2236,20 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>useState</code>로 <code>titleText</code> 상태를 정의하고 초기값을 <code>'지금, 무슨 과목:[클릭 ㅋㅋ]'</code>으로 둘 것</li>
-              <li>2. 제목 텍스트 클릭 시 호출할 <code>onPressTitle</code> 함수를 정의하여 상태를 <code>'크로스 플랫폼 과목 !!!'</code>으로 변경할 것</li>
-              <li>3. 중첩된 자식 Text 컴포넌트에 <code>onPress={onPressTitle}</code> 핸들러를 연결할 것</li>
-              <li>4. 본문 텍스트에 <code>numberOfLines={5}</code> 속성을 지정할 것</li>
+              <li>useState로 titleText를 선언하고, Text 클릭 시 setTitleText('크로스 플랫폼 과목 !!!')를 실행하도록 구현할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
             <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  // [TODO] useState 선언, onPress 이벤트 함수 및 JSX를 완성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  baseText: {
-    fontFamily: 'Cochin',
-    fontSize: 16,
-  },
-  titleText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'red',
-  },
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    const [titleText, setTitleText] = useState("지금, 무슨 과목:[클릭 ㅋㅋ]");
-  const bodyText = '미래를 준비하는 젊은 지성인의 새로운 세계';
-
-  const onPressTitle = () =&gt; {
-    setTitleText("크로스 플랫폼 과목 !!!");
-  };
+// ==========================================
+// [빈칸 (A)] useState 선언 및 onPressTitle 핸들러 함수를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
   return (
     &lt;View style={styles.container}&gt;
@@ -2770,32 +2263,25 @@ export default function App() {
       &lt;/Text&gt;
     &lt;/View&gt;
   );
-}
+}</code></pre>
+          </div>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  baseText: {
-    fontFamily: 'Cochin',
-    fontSize: 16,
-  },
-  titleText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'red',
-  },
-});</code></pre>
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const [titleText, setTitleText] = useState("지금, 무슨 과목:[클릭 ㅋㅋ]");
+  const bodyText = '미래를 준비하는 젊은 지성인의 새로운 세계';
+
+  const onPressTitle = () =&gt; {
+    setTitleText("크로스 플랫폼 과목 !!!");
+  };</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>const [titleText, setTitleText] = useState(...)</code> 상태 훅 사용</b></li>
-                  <li><b><code>Text</code> 태그에도 <code>onPress</code> 속성을 연결할 수 있다는 점 파악</b></li>
-                  <li><b><code>numberOfLines</code> 속성 활용</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>useState 훅 선언 및 상태 갱신 함수 작성</b></div>
               </div>
             </div>
           </details>
@@ -2803,7 +2289,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 16] 버튼 기본 컴포넌트 (Button)</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 16] 버튼 기본 (Button 컴포넌트)</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">4주 P.11</span>
           </div>
 
@@ -2821,66 +2307,36 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 리액트 네이티브의 기본 <code><Button /></code> 컴포넌트를 중앙에 렌더링할 것</li>
-              <li>2. 버튼 제목(<code>title</code>) 속성에 '버튼 만들기'를 지정할 것</li>
+              <li>기본 Button 컴포넌트에 title='버튼 만들기'를 지정하여 렌더링할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] Button 컴포넌트를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-export default function App() {
-  // [TODO] 기본 Button 컴포넌트를 렌더링하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});</code></pre>
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, View, Button } from 'react-native';
-
-export default function App() {
-    return (
-    &lt;View style={styles.container}&gt;
-      &lt;Button title="버튼 만들기" /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});</code></pre>
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;Button title="버튼 만들기" /&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>Button</code> 컴포넌트의 필수 속성인 <code>title</code> 속성 지정 여부 (<code>children</code> 텍스트 방식이 아님에 주의)</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b><Button title='버튼 만들기' /> 구문 정확성</b></div>
               </div>
             </div>
           </details>
@@ -2888,7 +2344,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 17] 버튼 팝업 메시지 (단일 Alert.alert)</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 17] 버튼: 팝업 메시지 (단일 Alert.alert)</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">4주 P.12</span>
           </div>
 
@@ -2906,73 +2362,40 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 버튼의 배경 색상을 핑크색(<code>color="#f194ff"</code>)으로 지정할 것</li>
-              <li>2. 버튼을 누르면(<code>onPress</code>) <code>Alert.alert('핑크 버튼 누름')</code> 팝업을 띄울 것</li>
+              <li>버튼 색상을 핑크(#f194ff)로 지정하고 onPress에서 Alert.alert('핑크 버튼 누름')을 호출할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, View, Button, Alert } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] color와 onPress에 Alert를 연결한 Button을 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-export default function App() {
-  // [TODO] 색상 지정 및 onPress에서 Alert을 띄우는 버튼을 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'center',
-    padding: 20,
-  },
-});</code></pre>
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, View, Button, Alert } from 'react-native';
-
-export default function App() {
-    return (
-    &lt;View style={styles.container}&gt;
-      &lt;Button 
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;Button 
         title="버튼 만들기"
         color="#f194ff"
         onPress={() =&gt; Alert.alert('핑크 버튼 누름')}
-      /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'center',
-    padding: 20,
-  },
-});</code></pre>
+      /&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>color</code> 속성으로 버튼 색상 변경</b></li>
-                  <li><b><code>Alert.alert(...)</code> 호출 문법</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>color='#f194ff' 및 onPress={() => Alert.alert(...)}</b></div>
               </div>
             </div>
           </details>
@@ -2980,7 +2403,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 18] 버튼 팝업 취소/확인 (2버튼 Alert.alert)</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 18] 버튼: 팝업 취소/확인 (2버튼 Alert.alert)</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">4주 P.13</span>
           </div>
 
@@ -2998,54 +2421,36 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 버튼 클릭 시 제목 '핑크버튼', 메시지 '핑크 버튼 누름'의 Alert를 띄울 것</li>
-              <li>2. Alert에 2개의 버튼 배열을 넘길 것:</li>
-              <li>   - 버튼 1: text: '취소', style: 'cancel', 콘솔에 '취소 버튼 클릭' 출력</li>
-              <li>   - 버튼 2: text: '확인', 콘솔에 '확인 버튼 클릭' 출력</li>
+              <li>Alert.alert의 3번째 인자로 취소(style: 'cancel')와 확인 2개의 버튼 객체 배열을 넘길 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, View, Button, Alert } from 'react-native';
-
-export default function App() {
-  // [TODO] 취소와 확인 2개의 버튼을 갖는 Alert.alert를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'center',
-    padding: 20,
-  },
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, View, Button, Alert } from 'react-native';
-
-export default function App() {
-    return (
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  return (
     &lt;View style={styles.container}&gt;
       &lt;Button 
         title="버튼 만들기"
         color="#f194ff"
-        onPress={() =&gt; Alert.alert(
+// ==========================================
+// [빈칸 (A)] 취소와 확인 2개 버튼이 있는 Alert.alert onPress 핸들러를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
+
+      /&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
+          </div>
+
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>        onPress={() =&gt; Alert.alert(
           '핑크버튼',
           '핑크 버튼 누름',
           [
@@ -3059,28 +2464,11 @@ export default function App() {
               onPress: () =&gt; console.log("확인 버튼 클릭") 
             },
           ]
-        )}
-      /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'center',
-    padding: 20,
-  },
-});</code></pre>
+        )}</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>Alert.alert(title, message, buttonsArray)</code>의 3번째 인자 배열 구조</b></li>
-                  <li><b><code>style: 'cancel'</code> 속성 지정</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>Alert.alert 3번째 인자 배열 내 text, onPress, style: 'cancel'</b></div>
               </div>
             </div>
           </details>
@@ -3088,7 +2476,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 19] 텍스트 입력: 기본 TextInput (실시간 상태 반영)</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 19] 텍스트 입력: 기본 TextInput 양방향 바인딩</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">4주 P.14</span>
           </div>
 
@@ -3106,73 +2494,45 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>useState("")</code>로 <code>text</code> 상태를 선언할 것</li>
-              <li>2. TextInput에 <code>placeholder="여기에 입력"</code>, <code>value={text}</code>, <code>onChangeText={(value) => setText(value)}</code>를 연결할 것</li>
-              <li>3. 입력창 아래에 <code><Text>입력값: {text}</Text></code>를 실시간으로 출력할 것</li>
+              <li>TextInput에 value={text}와 onChangeText={(val) => setText(val)}를 바인딩할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { StyleSheet, TextInput, View, Text } from 'react-native';
-
-export default function App() {
-  // [TODO] useState 및 TextInput과 Text 바인딩 코드를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", padding: 20 },
-  label: { fontSize: 18, marginBottom: 10 },
-  input: { height: 40, borderColor: "gray", borderWidth: 1, paddingHorizontal: 10, borderRadius: 5, marginBottom: 20 },
-  output: { fontSize: 16, color: "blue" },
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { StyleSheet, TextInput, View, Text } from 'react-native';
-
-export default function App() {
-    const [text, setText] = useState("");
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const [text, setText] = useState("");
 
   return (
     &lt;View style={styles.container}&gt;
       &lt;Text style={styles.label}&gt;이름을 입력하세요:&lt;/Text&gt;
-      &lt;TextInput
+// ==========================================
+// [빈칸 (A)] TextInput 컴포넌트 속성 바인딩을 완성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
+
+      &lt;Text style={styles.output}&gt;입력값: {text}&lt;/Text&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
+          </div>
+
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;TextInput
         style={styles.input}
         placeholder="여기에 입력"
         value={text}
         onChangeText={(value) =&gt; setText(value)}
-      /&gt;
-      &lt;Text style={styles.output}&gt;입력값: {text}&lt;/Text&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", padding: 20 },
-  label: { fontSize: 18, marginBottom: 10 },
-  input: { height: 40, borderColor: "gray", borderWidth: 1, paddingHorizontal: 10, borderRadius: 5, marginBottom: 20 },
-  output: { fontSize: 16, color: "blue" },
-});</code></pre>
+      /&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>onChange</code>가 아니라 <code>onChangeText</code>를 사용한다는 점 (React Native 전용)</b></li>
-                  <li><b><code>value</code>와 <code>onChangeText</code>의 양방향 바인딩</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>value={text} 및 onChangeText 속성 바인딩</b></div>
               </div>
             </div>
           </details>
@@ -3180,7 +2540,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 20] 텍스트 입력: 텍스트 vs 숫자 (비밀번호 정규식 필터링)</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 20] 텍스트 입력: 숫자 전용 정규식 필터링</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">4주 P.15</span>
           </div>
 
@@ -3198,83 +2558,49 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 숫자만 입력받는 비밀번호 입력창에 <code>keyboardType="numeric"</code>을 지정할 것</li>
-              <li>2. <code>onChangeText</code>에서 정규식 <code>value.replace(/[^0-9]/g, "")</code>을 적용하여 숫자가 아닌 모든 문자를 제거한 후 상태에 저장할 것</li>
-              <li>3. 아래에 '입 력 값: {text}'와 '비밀번호: {number}'를 각각 출력할 것</li>
+              <li>keyboardType='numeric'을 지정하고 onChangeText에서 value.replace(/[^0-9]/g, '')로 숫자만 필터링할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { StyleSheet, TextInput, View, Text } from 'react-native';
-
-export default function App() {
-  // [TODO] text와 number 2개의 상태 및 숫자 전용 필터링 로직을 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", padding: 20 },
-  label: { fontSize: 18, marginBottom: 10 },
-  input: { height: 40, borderColor: "gray", borderWidth: 1, paddingHorizontal: 10, borderRadius: 5, marginBottom: 20 },
-  output: { fontSize: 16, color: "blue" },
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { StyleSheet, TextInput, View, Text } from 'react-native';
-
-export default function App() {
-    const [text, setText] = useState("");
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const [text, setText] = useState("");
   const [number, onNumber] = useState("");
 
   return (
     &lt;View style={styles.container}&gt;
-      &lt;Text style={styles.label}&gt;이름을 입력하세요:&lt;/Text&gt;
-      &lt;TextInput
-        style={styles.input}
-        placeholder="여기에 입력"
-        value={text}
-        onChangeText={(value) =&gt; setText(value)}
-      /&gt;
-      &lt;TextInput
+      &lt;TextInput style={styles.input} placeholder="여기에 입력" value={text} onChangeText={setText} /&gt;
+// ==========================================
+// [빈칸 (A)] 숫자 전용 비밀번호 TextInput 컴포넌트를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
+
+      &lt;Text style={styles.output}&gt;입 력 값: {text}&lt;/Text&gt;
+      &lt;Text style={styles.output}&gt;비밀번호: {number}&lt;/Text&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
+          </div>
+
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;TextInput
         style={styles.input}
         placeholder="비밀번호"
         keyboardType="numeric"
         secureTextEntry={false}
         value={number}
         onChangeText={(value) =&gt; onNumber(value.replace(/[^0-9]/g, ""))}
-      /&gt;
-      &lt;Text style={styles.output}&gt;입 력 값: {text}&lt;/Text&gt;
-      &lt;Text style={styles.output}&gt;비밀번호: {number}&lt;/Text&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", padding: 20 },
-  label: { fontSize: 18, marginBottom: 10 },
-  input: { height: 40, borderColor: "gray", borderWidth: 1, paddingHorizontal: 10, borderRadius: 5, marginBottom: 20 },
-  output: { fontSize: 16, color: "blue" },
-});</code></pre>
+      /&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>keyboardType='numeric'</code> 지정</b></li>
-                  <li><b>정규식 <code>replace(/[^0-9]/g, "")</code>을 통한 숫자 외 문자 입력 차단</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>keyboardType='numeric' 및 replace(/[^0-9]/g, '') 정규식</b></div>
               </div>
             </div>
           </details>
@@ -3282,7 +2608,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 21] 텍스트 입력: 여러 줄 입력 (multiline 속성)</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 21] 텍스트 입력: 여러 줄 multiline 속성</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">4주 P.16</span>
           </div>
 
@@ -3300,46 +2626,34 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. TextInput에 편집 가능(<code>editable</code>), 여러 줄 입력 가능(<code>multiline</code>) 속성을 부여할 것</li>
-              <li>2. 최대 표시 줄 수 <code>numberOfLines={4}</code>와 최대 글자 수 <code>maxLength={40}</code>을 지정할 것</li>
+              <li>editable, multiline, numberOfLines={4}, maxLength={40} 속성을 적용한 TextInput을 작성할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from "react";
-import { StyleSheet, View, TextInput } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const [value, onChangeText] = useState('Useless Multiline Placeholder');
 
-export default function App() {
-  // [TODO] multiline, numberOfLines, maxLength 속성을 적용한 TextInput을 작성하시오.
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] multiline, numberOfLines, maxLength 속성이 적용된 TextInput을 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 30, alignItems: 'stretch', justifyContent: 'center' },
-  textInput: { padding: 10, borderColor: '#000', borderWidth: 1, margin: 12 },
-});</code></pre>
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from "react";
-import { StyleSheet, View, TextInput } from 'react-native';
-
-export default function App() {
-    const [value, onChangeText] = useState('Useless Multiline Placeholder');
-
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;TextInput
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;TextInput
         editable
         multiline
         numberOfLines={4}
@@ -3347,22 +2661,11 @@ export default function App() {
         onChangeText={text =&gt; onChangeText(text)}
         value={value}
         style={styles.textInput}
-      /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 30, alignItems: 'stretch', justifyContent: 'center' },
-  textInput: { padding: 10, borderColor: '#000', borderWidth: 1, margin: 12 },
-});</code></pre>
+      /&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>multiline</code> 불리언 속성 적용</b></li>
-                  <li><b><code>numberOfLines={4}</code>, <code>maxLength={40}</code> 수치 속성 지정</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>multiline, numberOfLines={4}, maxLength={40} 속성</b></div>
               </div>
             </div>
           </details>
@@ -3370,7 +2673,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 22] 텍스트 입력: 여러 줄 입력 Alert 연동 및 초기화</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 22] 텍스트 입력: Alert 연동 및 초기화 콜백</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">4주 P.17</span>
           </div>
 
@@ -3388,45 +2691,36 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 'Press me' 버튼 클릭 시 호출되는 <code>handlePress</code> 함수를 작성할 것</li>
-              <li>2. Alert 창으로 제목 'Input Data', 내용에 현재 입력된 <code>value || "(Empty)"</code>를 띄울 것</li>
-              <li>3. Alert 확인 버튼을 누르면 입력창 내용이 빈 문자열(<code>setValue("")</code>)로 초기화되도록 콜백을 지정할 것</li>
+              <li>handlePress 함수에서 Alert.alert('Input Data', value || '(Empty)')를 띄우고 확인 누르면 setValue('')로 비울 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from "react";
-import { StyleSheet, View, TextInput, Button, Alert } from "react-native";
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const [value, setValue] = useState("");
 
-export default function App() {
-  // [TODO] Alert 연동 및 확인 시 초기화 콜백 로직을 작성하시오.
+// ==========================================
+// [빈칸 (A)] handlePress 함수를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, alignItems: 'stretch', justifyContent: 'center' },
-  textInput: { padding: 10, borderColor: '#000', borderWidth: 1, marginVertical: 10 },
-});</code></pre>
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;TextInput editable multiline numberOfLines={4} maxLength={40} onChangeText={setValue} value={value} placeholder="여기에 입력하세요" style={styles.textInput} /&gt;
+      &lt;Button title="Press me" onPress={handlePress} /&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from "react";
-import { StyleSheet, View, TextInput, Button, Alert } from "react-native";
-
-export default function App() {
-    const [value, setValue] = useState("");
-
-  const handlePress = () =&gt; {
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const handlePress = () =&gt; {
     Alert.alert(
       "Input Data",
       value || "(Empty)",
@@ -3437,42 +2731,18 @@ export default function App() {
         },
       ]
     );
-  };
-
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;TextInput
-        editable
-        multiline
-        numberOfLines={4}
-        maxLength={40}
-        onChangeText={(text) =&gt; setValue(text)}
-        value={value}
-        placeholder="여기에 입력하세요"
-        style={styles.textInput}
-      /&gt;
-      &lt;Button title="Press me" onPress={handlePress} /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, alignItems: 'stretch', justifyContent: 'center' },
-  textInput: { padding: 10, borderColor: '#000', borderWidth: 1, marginVertical: 10 },
-});</code></pre>
+  };</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>Alert 버튼 콜백 <code>onPress: () => setValue("")</code>을 통한 상태 초기화 구현 여부</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>Alert 확인 버튼 콜백 onPress: () => setValue('')</b></div>
               </div>
             </div>
           </details>
         </div>
 
         <div class="summary-box" style="margin-top: 32px; margin-bottom: 16px;">
-          <h3 style="margin: 0; color: var(--success); font-size: 18px;">📌 5주차 빈칸 실전 문제</h3>
+          <h3 style="margin: 0; color: var(--success); font-size: 18px;">📌 5주차 타겟 빈칸 실전 문제</h3>
         </div>
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
@@ -3495,63 +2765,39 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 변수 <code>const name = 'Beomjun'</code>을 선언할 것</li>
-              <li>2. JSX 내부에서 중괄호 <code>{name}</code> 바인딩을 사용하여 'My name is Beomjun' 텍스트를 출력할 것</li>
+              <li>변수 const name = 'Beomjun'을 선언하고 Text 컴포넌트에서 {name}으로 바인딩할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+// ==========================================
+// [빈칸 (A)] 변수 선언 및 {name} 바인딩 텍스트를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-export default function App() {
-  // [TODO] 자바스크립트 변수를 선언하고 JSX에서 보간 출력하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  text: { fontSize: 30 },
-});</code></pre>
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    const name = 'Beomjun';
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const name = 'Beomjun';
 
   return (
     &lt;View style={styles.container}&gt;
       &lt;Text style={styles.text}&gt;My name is {name}&lt;/Text&gt;
       &lt;StatusBar style="auto" /&gt;
     &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  text: { fontSize: 30 },
-});</code></pre>
+  );</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>JSX 내부에서 자바스크립트 표현식을 쓸 때 중괄호 <code>{name}</code>을 사용한다는 기본 문법</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>JSX 내 중괄호 {name} 변수 보간</b></div>
               </div>
             </div>
           </details>
@@ -3559,7 +2805,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 24] 조건문: if 조건문 분기</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 24] 조건문: if-else 조건문 분기</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">5주 P.07</span>
           </div>
 
@@ -3577,53 +2823,20 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>const name = 'Beomjun'</code> 변수 선언</li>
-              <li>2. <code>if (name === 'Beomjun')</code>이면 <code>message = 'My name is ' + name</code> 할당</li>
-              <li>3. 그렇지 않으면 <code>message = "I'm not Beomjun"</code> 할당</li>
-              <li>4. JSX 내부에서 <code><Text style={styles.text}>{message}</Text></code> 출력</li>
+              <li>name === 'Beomjun'이면 'My name is ' + name, 아니면 "I'm not Beomjun"을 message 변수에 할당할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  // [TODO] if-else 조건문으로 message를 결정하여 렌더링하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  text: { fontSize: 30 },
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    const name = 'Beomjun';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const name = 'Beomjun';
   let message = '';
 
-  if (name === 'Beomjun') {
-    message = 'My name is ' + name;
-  } else {
-    message = "I'm not Beomjun";
-  }
+// ==========================================
+// [빈칸 (A)] if-else 조건문 분기 코드를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
   return (
     &lt;View style={styles.container}&gt;
@@ -3631,18 +2844,24 @@ export default function App() {
       &lt;StatusBar style="auto" /&gt;
     &lt;/View&gt;
   );
-}
+}</code></pre>
+          </div>
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  text: { fontSize: 30 },
-});</code></pre>
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  if (name === 'Beomjun') {
+    message = 'My name is ' + name;
+  } else {
+    message = "I'm not Beomjun";
+  }</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>JSX 외부에서 if문으로 연산 후 결과를 JSX 내부에 삽입하는 패턴</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>if-else 조건 분기 및 message 변수 할당</b></div>
               </div>
             </div>
           </details>
@@ -3650,7 +2869,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 25] 조건문: 삼항연산자 (Ternary Operator)</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 25] 조건문: 삼항연산자 (? :) 인라인 렌더링</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">5주 P.08</span>
           </div>
 
@@ -3668,67 +2887,41 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. JSX 내부에서 삼항연산자(<code>? :</code>)를 직접 사용할 것</li>
-              <li>2. <code>name === 'Beomjun'</code>이 참이면 "My name is Beomjun", 거짓이면 "I'm not Beomjun"을 표시할 것</li>
+              <li>JSX 내부에서 삼항연산자를 사용하여 name === 'Beomjun' ? 'My name is Beomjun' : "I'm not Beomjun"을 렌더링할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
   const name = 'Beomjun';
 
-  // [TODO] 삼항연산자를 사용하여 인라인 조건부 렌더링을 구현하시오.
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] 삼항연산자를 사용한 Text 컴포넌트를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  text: { fontSize: 30 },
-});</code></pre>
+      &lt;StatusBar style="auto" /&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  const name = 'Beomjun';
-
-    return (
-    &lt;View style={styles.container}&gt;
-      &lt;Text style={styles.text}&gt;
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;Text style={styles.text}&gt;
         {name === 'Beomjun' ? "My name is Beomjun" : "I'm not Beomjun"}
-      &lt;/Text&gt;
-      &lt;StatusBar style="auto" /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  text: { fontSize: 30 },
-});</code></pre>
+      &lt;/Text&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>JSX 표현식 안에서 if문은 사용 불가하지만 삼항연산자 <code>{조건 ? 참 : 거짓}</code>은 바로 쓸 수 있다는 핵심 원리</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>{조건 ? 참 : 거짓} 삼항연산자 인라인 작성</b></div>
               </div>
             </div>
           </details>
@@ -3754,83 +2947,46 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>name1 === 'Beomjun'</code>일 때 AND(<code>&&</code>) 연산자로 'My name is Beomjun' 출력</li>
-              <li>2. <code>name1 !== 'Beomjun'</code>일 때 AND(<code>&&</code>) 연산자로 'My name is not Beomjun' 출력</li>
-              <li>3. <code>name2 === 'JongSoo'</code>일 때 OR(<code>||</code>) 연산자로 "I'm not Beomjun's friend" 대체 출력</li>
-              <li>4. <code>name2 !== 'JongSoo'</code>일 때 OR(<code>||</code>) 연산자로 "I'm Beomjun's friend" 대체 출력</li>
+              <li>&& 연산자와 || 연산자를 활용한 조건부 텍스트 4줄을 작성할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
   const name1 = 'Beomjun';
   const name2 = 'JongSoo';
 
-  // [TODO] &amp;&amp;와 || 연산자를 활용한 조건부 텍스트 렌더링을 작성하시오.
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] &amp;&amp; 및 || 단축 평가를 사용한 Text 4줄을 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  text: { fontSize: 24, marginVertical: 5 },
-});</code></pre>
+      &lt;StatusBar style="auto" /&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  const name1 = 'Beomjun';
-  const name2 = 'JongSoo';
-
-    return (
-    &lt;View style={styles.container}&gt;
-      {/* AND 조건 */}
-      &lt;Text style={styles.text}&gt;
-        {name1 === 'Beomjun' &amp;&amp; 'My name is Beomjun'}
-      &lt;/Text&gt;
-      &lt;Text style={styles.text}&gt;
-        {name1 !== 'Beomjun' &amp;&amp; 'My name is not Beomjun'}
-      &lt;/Text&gt;
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      {/* AND 조건 */}
+      &lt;Text style={styles.text}&gt;{name1 === 'Beomjun' &amp;&amp; 'My name is Beomjun'}&lt;/Text&gt;
+      &lt;Text style={styles.text}&gt;{name1 !== 'Beomjun' &amp;&amp; 'My name is not Beomjun'}&lt;/Text&gt;
 
       {/* OR 조건 */}
-      &lt;Text style={styles.text}&gt;
-        {name2 === 'JongSoo' || "I'm not Beomjun's friend"}
-      &lt;/Text&gt;
-      &lt;Text style={styles.text}&gt;
-        {name2 !== 'JongSoo' || "I'm Beomjun's friend"}
-      &lt;/Text&gt;
-      &lt;StatusBar style="auto" /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  text: { fontSize: 24, marginVertical: 5 },
-});</code></pre>
+      &lt;Text style={styles.text}&gt;{name2 === 'JongSoo' || "I'm not Beomjun's friend"}&lt;/Text&gt;
+      &lt;Text style={styles.text}&gt;{name2 !== 'JongSoo' || "I'm Beomjun's friend"}&lt;/Text&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>자바스크립트 논리 연산자 단축 평가(Short-circuit evaluation)의 JSX 렌더링 동작 이해</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>&& 조건부 렌더링 및 || 기본값 대체 문법</b></div>
               </div>
             </div>
           </details>
@@ -3838,7 +2994,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 27] Image 컴포넌트: 로컬 이미지 불러오기</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 27] Image 컴포넌트: 로컬 이미지 require</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">5주 P.10</span>
           </div>
 
@@ -3856,24 +3012,25 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 리액트 네이티브의 <code><Image /></code> 컴포넌트를 사용할 것</li>
-              <li>2. 로컬 이미지 파일 <code>./kangnam.png</code>를 <code>source={require('./kangnam.png')}</code>로 불러올 것</li>
-              <li>3. 이미지 크기를 가로 200, 세로 200으로 지정할 것</li>
+              <li>Image 컴포넌트의 source 속성에 require('./kangnam.png')를 전달하여 200x200 크기로 표시할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
             <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 
 export default function App() {
-  // [TODO] Image 컴포넌트로 로컬 이미지를 표시하시오.
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] 로컬 이미지를 불러오는 Image 컴포넌트를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
+    &lt;/View&gt;
+  );
 }
 
 const styles = StyleSheet.create({
@@ -3884,34 +3041,18 @@ const styles = StyleSheet.create({
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
-
-export default function App() {
-    return (
-    &lt;View style={styles.container}&gt;
-      &lt;Image
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;Image
         source={require('./kangnam.png')}
         style={styles.image}
-      /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  image: { width: 200, height: 200 },
-});</code></pre>
+      /&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>웹 HTML의 <code>src="..."</code>와 달리 리액트 네이티브에서는 <code>source={require('경로')}</code>를 사용한다는 점 (교수님 단골 문제)</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>source={require('./kangnam.png')} 문법 정확성</b></div>
               </div>
             </div>
           </details>
@@ -3919,7 +3060,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 28] Switch 컴포넌트: 다크 모드 토글</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 28] Switch 컴포넌트: 다크모드 토글</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">5주 P.11</span>
           </div>
 
@@ -3937,75 +3078,46 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>useState(false)</code>로 <code>darkMode</code> 불리언 상태를 선언할 것</li>
-              <li>2. <code>Switch</code> 컴포넌트에 <code>value={darkMode}</code>, <code>onValueChange={setDarkMode}</code>를 연결할 것</li>
-              <li>3. <code>darkMode</code> 상태에 따라 화면 배경색(<code>black</code> / <code>white</code>)과 텍스트 색상(<code>white</code> / <code>black</code>)을 삼항연산자로 반전시킬 것</li>
-              <li>4. 텍스트로 '스위치: ON' 또는 '스위치: OFF'를 표시할 것</li>
+              <li>Switch 컴포넌트에 value={darkMode}, onValueChange={setDarkMode}, trackColor, thumbColor를 연결할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { View, Text, Switch, StyleSheet } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const [darkMode, setDarkMode] = useState(false);
 
-export default function App() {
-  // [TODO] Switch 컴포넌트와 darkMode 상태를 연동한 다크모드 화면을 작성하시오.
+  return (
+    &lt;View style={[styles.container, { backgroundColor: darkMode ? 'black' : 'white' }]}&gt;
+      &lt;Text style={[styles.text, { color: darkMode ? 'white' : 'black' }]}&gt;
+        {darkMode ? '스위치: ON' : '스위치: OFF'}
+      &lt;/Text&gt;
+// ==========================================
+// [빈칸 (A)] Switch 컴포넌트를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  text: { marginBottom: 20, fontSize: 20 },
-});</code></pre>
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { View, Text, Switch, StyleSheet } from 'react-native';
-
-export default function App() {
-    const [darkMode, setDarkMode] = useState(false);
-
-  return (
-    &lt;View
-      style={[
-        styles.container,
-        { backgroundColor: darkMode ? 'black' : 'white' },
-      ]}&gt;
-      &lt;Text style={[styles.text, { color: darkMode ? 'white' : 'black' }]}&gt;
-        {darkMode ? '스위치: ON' : '스위치: OFF'}
-      &lt;/Text&gt;
-      &lt;Switch
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;Switch
         value={darkMode}
         onValueChange={setDarkMode}
         trackColor={{ false: '#767577', true: '#81b0ff' }}
         thumbColor={darkMode ? '#f5dd4b' : '#f4f3f4'}
-      /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  text: { marginBottom: 20, fontSize: 20 },
-});</code></pre>
+      /&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>Switch</code>의 <code>value</code>와 <code>onValueChange</code> 속성</b></li>
-                  <li><b>배열 스타일링 <code>style={[styles.container, { backgroundColor: ... }]}</code>을 통한 동적 테마 적용</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>Switch의 value={darkMode} 및 onValueChange={setDarkMode}</b></div>
               </div>
             </div>
           </details>
@@ -4013,7 +3125,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 29] FlatList 컴포넌트: 대용량 목록 렌더링</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 29] FlatList 컴포넌트 3대 Props</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">5주 P.12</span>
           </div>
 
@@ -4031,18 +3143,13 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 주어진 <code>data</code> 배열을 <code><FlatList /></code> 컴포넌트로 화면에 출력할 것</li>
-              <li>2. <code>keyExtractor</code> 속성으로 <code>item.id</code>를 고유 키로 추출할 것</li>
-              <li>3. <code>renderItem</code> 속성에서 <code>({ item }) => <Text style={styles.item}>{item.id} : {item.name}</Text></code> 형태로 각 행을 렌더링할 것</li>
+              <li>FlatList의 3대 속성(data, keyExtractor, renderItem)을 지정하여 목록을 렌더링할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-
-export default function App() {
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
   const data = [
     { id: '1', name: 'Beomjun' },
     { id: '2', name: 'Jongsoo' },
@@ -4051,41 +3158,25 @@ export default function App() {
     { id: '5', name: 'Hana' },
   ];
 
-  // [TODO] FlatList의 3대 필수 속성(data, keyExtractor, renderItem)을 작성하시오.
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] FlatList 컴포넌트 3대 속성을 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 50 },
-  item: { fontSize: 24, padding: 10 },
-});</code></pre>
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-
-export default function App() {
-  const data = [
-    { id: '1', name: 'Beomjun' },
-    { id: '2', name: 'Jongsoo' },
-    { id: '3', name: 'Yuna' },
-    { id: '4', name: 'Minho' },
-    { id: '5', name: 'Hana' },
-  ];
-
-    return (
-    &lt;View style={styles.container}&gt;
-      &lt;FlatList
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;FlatList
         data={data}
         keyExtractor={(item) =&gt; item.id}
         renderItem={({ item }) =&gt; (
@@ -4093,22 +3184,11 @@ export default function App() {
             {item.id} : {item.name}
           &lt;/Text&gt;
         )}
-      /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 50 },
-  item: { fontSize: 24, padding: 10 },
-});</code></pre>
+      /&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>FlatList</code>의 3대 필수 속성인 <code>data</code>, <code>keyExtractor</code>, <code>renderItem</code> 완벽 암기 여부 (시험 출제 1순위)</b></li>
-                  <li><b><code>renderItem</code>의 인자가 <code>({ item })</code> 구조분해할당 객체라는 점</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>data, keyExtractor={(item) => item.id}, renderItem={({ item }) => ...}</b></div>
               </div>
             </div>
           </details>
@@ -4116,7 +3196,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 30] SectionList 컴포넌트: 그룹별 목록 렌더링</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 30] SectionList 컴포넌트: 섹션 헤더 및 데이터</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">5주 P.13</span>
           </div>
 
@@ -4134,59 +3214,38 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 섹션 데이터 <code>DATA</code>를 <code><SectionList /></code>로 출력할 것</li>
-              <li>2. <code>sections</code> 속성에 <code>DATA</code>를 전달할 것</li>
-              <li>3. <code>renderItem</code>에서 개별 항목 <code>▣ {item}</code>을 출력할 것</li>
-              <li>4. <code>renderSectionHeader</code>에서 섹션 헤더 <code>섹션: {title}</code>을 출력할 것</li>
+              <li>SectionList의 sections, keyExtractor, renderItem, renderSectionHeader 속성을 작성할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { View, Text, SectionList, StyleSheet } from 'react-native';
-
-export default function App() {
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
   const DATA = [
     { title: 'A', data: ['Alex', 'Amy', 'Andrew'] },
     { title: 'B', data: ['Beomjun', 'Bella', 'Brian'] },
     { title: 'C', data: ['Chris', 'Cindy', 'Clara'] },
   ];
 
-  // [TODO] SectionList의 sections, renderItem, renderSectionHeader 속성을 작성하시오.
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] SectionList 컴포넌트를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, marginTop: 50, paddingHorizontal: 20 },
-  header: { fontSize: 24, fontWeight: 'bold', backgroundColor: '#eee', paddingVertical: 5 },
-  item: { fontSize: 20, paddingVertical: 4, paddingLeft: 10 },
-});</code></pre>
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { View, Text, SectionList, StyleSheet } from 'react-native';
-
-export default function App() {
-  const DATA = [
-    { title: 'A', data: ['Alex', 'Amy', 'Andrew'] },
-    { title: 'B', data: ['Beomjun', 'Bella', 'Brian'] },
-    { title: 'C', data: ['Chris', 'Cindy', 'Clara'] },
-  ];
-
-    return (
-    &lt;View style={styles.container}&gt;
-      &lt;SectionList
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;SectionList
         sections={DATA}
         keyExtractor={(item, index) =&gt; item + index}
         renderItem={({ item }) =&gt; (
@@ -4195,30 +3254,18 @@ export default function App() {
         renderSectionHeader={({ section: { title } }) =&gt; (
           &lt;Text style={styles.header}&gt;섹션: {title}&lt;/Text&gt;
         )}
-      /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, marginTop: 50, paddingHorizontal: 20 },
-  header: { fontSize: 24, fontWeight: 'bold', backgroundColor: '#eee', paddingVertical: 5 },
-  item: { fontSize: 20, paddingVertical: 4, paddingLeft: 10 },
-});</code></pre>
+      /&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>FlatList의 <code>data</code> 대신 SectionList는 <code>sections</code> 속성을 사용한다는 차이점</b></li>
-                  <li><b><code>renderSectionHeader={({ section: { title } }) => ...}</code> 속성 사용</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>sections={DATA} 및 renderSectionHeader 속성</b></div>
               </div>
             </div>
           </details>
         </div>
 
         <div class="summary-box" style="margin-top: 32px; margin-bottom: 16px;">
-          <h3 style="margin: 0; color: var(--success); font-size: 18px;">📌 6주차 빈칸 실전 문제</h3>
+          <h3 style="margin: 0; color: var(--success); font-size: 18px;">📌 6주차 타겟 빈칸 실전 문제</h3>
         </div>
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
@@ -4241,46 +3288,38 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 컴포넌트 마운트 시 <code>BackHandler.addEventListener('hardwareBackPress', backAction)</code> 등록</li>
-              <li>2. Alert 팝업('잠깐!', '정말로 뒤로 가기를 원하십니까?')에서 'YES: 예' 클릭 시 <code>BackHandler.exitApp()</code> 호출</li>
-              <li>3. 기본 뒤로가기 동작을 방지하기 위해 핸들러가 <code>return true;</code>를 반환할 것</li>
-              <li>4. <code>useEffect</code> 클린업 함수에서 <code>backHandler.remove()</code>로 리스너를 해제할 것</li>
+              <li>useEffect 내부에서 hardwareBackPress 리스너 등록, BackHandler.exitApp(), return true 반환, 클린업에서 remove() 호출을 구현할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
             <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, BackHandler, Alert } from 'react-native';
 
 export default function App() {
-  // [TODO] 조건 1~4를 만족하는 BackHandler 등록 및 해제 코드를 작성하시오.
+// ==========================================
+// [빈칸 (A)] BackHandler 등록 및 클린업 useEffect 코드를 완성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  text: { fontSize: 20, fontWeight: 'bold' },
-});</code></pre>
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;Text style={styles.text}&gt;뒤로가기 버튼를 눌러주세요 !&lt;/Text&gt;
+      &lt;StatusBar style="auto" /&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, BackHandler, Alert } from 'react-native';
-
-export default function App() {
-    useEffect(() =&gt; {
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  useEffect(() =&gt; {
     const backAction = () =&gt; {
       Alert.alert('잠깐!', '정말로 뒤로 가기를 원하십니까?', [
         {
@@ -4290,7 +3329,7 @@ export default function App() {
         },
         { text: 'YES: 예', onPress: () =&gt; BackHandler.exitApp() },
       ]);
-      return true;
+      return true; // 기본 뒤로가기 동작 방지
     };
 
     const backHandler = BackHandler.addEventListener(
@@ -4299,29 +3338,11 @@ export default function App() {
     );
 
     return () =&gt; backHandler.remove();
-  }, []);
-
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;Text style={styles.text}&gt;뒤로가기 버튼를 눌러주세요 !&lt;/Text&gt;
-      &lt;StatusBar style="auto" /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  text: { fontSize: 20, fontWeight: 'bold' },
-});</code></pre>
+  }, []);</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>이벤트명 <code>'hardwareBackPress'</code> 정확성</b></li>
-                  <li><b><code>BackHandler.exitApp()</code> 호출</b></li>
-                  <li><b><code>return true;</code>를 통한 기본 뒤로가기 이벤트 소비/차단</b></li>
-                  <li><b>클린업에서 <code>backHandler.remove()</code> 해제</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>hardwareBackPress 리스너, exitApp(), return true, remove() 해제</b></div>
               </div>
             </div>
           </details>
@@ -4329,7 +3350,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 32] DrawerLayoutAndroid: 서랍 메뉴 네비게이션</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 32] DrawerLayoutAndroid: 서랍 메뉴 제어</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">6주 P.05~06</span>
           </div>
 
@@ -4347,56 +3368,40 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>drawer = useRef(null)</code> 참조를 선언하고 <code><DrawerLayoutAndroid ref={drawer}></code>에 연결할 것</li>
-              <li>2. 서랍 위치(<code>drawerPosition</code>)를 상태로 관리하고 버튼 클릭 시 'left'와 'right'를 상호 전환할 것</li>
-              <li>3. 서랍 내부에 보여줄 <code>renderNavigationView</code> 함수를 정의하고 'Close drawer' 버튼 클릭 시 <code>drawer.current?.closeDrawer()</code>를 호출할 것</li>
-              <li>4. 화면 중앙의 'Open drawer' 버튼 클릭 시 <code>drawer.current?.openDrawer()</code>로 서랍을 열 것</li>
+              <li>useRef로 drawer를 참조하고, closeDrawer()와 openDrawer()를 연결할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useRef, useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, DrawerLayoutAndroid, Button } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+// ==========================================
+// [빈칸 (A)] drawer useRef 선언 및 navigationView 닫기 함수를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-export default function App() {
-  // [TODO] DrawerLayoutAndroid의 useRef, 상태, navigationView 및 JSX를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 16 },
-  navigationContainer: { backgroundColor: '#ecf0f1' },
-  paragraph: { padding: 16, fontSize: 15, textAlign: 'center' },
-});</code></pre>
+  return (
+    &lt;DrawerLayoutAndroid
+      ref={drawer}
+      drawerWidth={300}
+      drawerPosition={drawerPosition}
+      renderNavigationView={navigationView}&gt;
+      &lt;View style={styles.container}&gt;
+        &lt;Button title="Open drawer" onPress={() =&gt; drawer.current?.openDrawer()} /&gt;
+      &lt;/View&gt;
+    &lt;/DrawerLayoutAndroid&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useRef, useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, DrawerLayoutAndroid, Button } from 'react-native';
-
-export default function App() {
-    const drawer = useRef(null);
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const drawer = useRef(null);
   const [drawerPosition, setDrawerPosition] = useState('left');
-
-  const changeDrawerPosition = () =&gt; {
-    if (drawerPosition === 'left') {
-      setDrawerPosition('right');
-    } else {
-      setDrawerPosition('left');
-    }
-  };
 
   const navigationView = () =&gt; (
     &lt;View style={[styles.container, styles.navigationContainer]}&gt;
@@ -4406,44 +3411,11 @@ export default function App() {
         onPress={() =&gt; drawer.current?.closeDrawer()}
       /&gt;
     &lt;/View&gt;
-  );
-
-  return (
-    &lt;DrawerLayoutAndroid
-      ref={drawer}
-      drawerWidth={300}
-      drawerPosition={drawerPosition}
-      renderNavigationView={navigationView}&gt;
-      &lt;View style={styles.container}&gt;
-        &lt;Text style={styles.paragraph}&gt;Drawer on the {drawerPosition}!&lt;/Text&gt;
-        &lt;Button
-          title="Change Drawer Position"
-          onPress={() =&gt; changeDrawerPosition()}
-        /&gt;
-        &lt;Text style={styles.paragraph}&gt;
-          Swipe from the side or press button below to see it!
-        &lt;/Text&gt;
-        &lt;Button
-          title="Open drawer"
-          onPress={() =&gt; drawer.current?.openDrawer()}
-        /&gt;
-      &lt;/View&gt;
-    &lt;/DrawerLayoutAndroid&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 16 },
-  navigationContainer: { backgroundColor: '#ecf0f1' },
-  paragraph: { padding: 16, fontSize: 15, textAlign: 'center' },
-});</code></pre>
+  );</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>useRef</code>를 통한 <code>openDrawer()</code> 및 <code>closeDrawer()</code> 메서드 호출</b></li>
-                  <li><b><code>drawerWidth</code>, <code>drawerPosition</code>, <code>renderNavigationView</code> 필수 속성 매핑</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>drawer.current?.closeDrawer() 및 openDrawer() 호출</b></div>
               </div>
             </div>
           </details>
@@ -4451,7 +3423,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 33] ToastAndroid: 토스트 알림 및 위치 오프셋 제어</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 33] ToastAndroid: 토스트 알림 및 오프셋</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">6주 P.07</span>
           </div>
 
@@ -4469,42 +3441,34 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 'Toggle Toast' 버튼 누르면 <code>ToastAndroid.show('기본 토스트 메세지 !', ToastAndroid.SHORT)</code> 호출</li>
-              <li>2. 핑크 버튼 누르면 <code>ToastAndroid.showWithGravityAndOffset(...)</code>을 사용하여 지속시간 <code>ToastAndroid.LONG</code>, 위치 <code>ToastAndroid.CENTER</code>, x오프셋 <code>25</code>, y오프셋 <code>50</code>으로 토스트를 띄울 것</li>
+              <li>show 메서드(ToastAndroid.SHORT)와 showWithGravityAndOffset(ToastAndroid.LONG, CENTER, 25, 50)을 작성할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, ToastAndroid, View, Button } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+// ==========================================
+// [빈칸 (A)] showToast와 showToastWithGravityAndOffset 함수를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-export default function App() {
-  // [TODO] ToastAndroid의 2가지 메서드(show, showWithGravityAndOffset) 호출 코드를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'stretch', justifyContent: 'center', paddingTop: 20, paddingHorizontal: 20, backgroundColor: '#fff', padding: 8 },
-  buttonWrap: { marginBottom: 2, height: 5 },
-});</code></pre>
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;Button title="Toggle Toast" onPress={showToast} /&gt;
+      &lt;Button title="Toggle Toast With Gravity &amp; Offset" onPress={showToastWithGravityAndOffset} /&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, ToastAndroid, View, Button } from 'react-native';
-
-export default function App() {
-    const showToast = () =&gt; {
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const showToast = () =&gt; {
     ToastAndroid.show('기본 토스트 메세지 !', ToastAndroid.SHORT);
   };
 
@@ -4516,32 +3480,11 @@ export default function App() {
       25,
       50,
     );
-  };
-
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;Button title="Toggle Toast" onPress={showToast} /&gt;
-      &lt;View style={styles.buttonWrap} /&gt;
-      &lt;Button
-        title="Toggle Toast With Gravity &amp; Offset"
-        color="#f194ff"
-        onPress={showToastWithGravityAndOffset}
-      /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'stretch', justifyContent: 'center', paddingTop: 20, paddingHorizontal: 20, backgroundColor: '#fff', padding: 8 },
-  buttonWrap: { marginBottom: 2, height: 5 },
-});</code></pre>
+  };</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>ToastAndroid.SHORT</code> / <code>ToastAndroid.LONG</code> 상수 활용</b></li>
-                  <li><b><code>showWithGravityAndOffset(message, duration, gravity, xOffset, yOffset)</code> 인자 순서 암기</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>ToastAndroid.show 및 showWithGravityAndOffset 인자 전달</b></div>
               </div>
             </div>
           </details>
@@ -4549,7 +3492,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 34] Animated: 페이드 인/아웃 타이밍 애니메이션</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 34] Animated: 타이밍 페이드 인/아웃</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">6주 P.09~10</span>
           </div>
 
@@ -4567,48 +3510,37 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>fadeAnim = useRef(new Animated.Value(0)).current</code> 애니메이션 값 선언</li>
-              <li>2. <code>fadeIn</code>: <code>Animated.timing</code>을 이용해 5초(5000ms) 동안 <code>toValue: 1</code>, <code>useNativeDriver: true</code>로 실행</li>
-              <li>3. <code>fadeOut</code>: <code>Animated.timing</code>을 이용해 3초(3000ms) 동안 <code>toValue: 0</code>, <code>useNativeDriver: true</code>로 실행</li>
-              <li>4. <code><Animated.View></code>의 <code>style</code> 속성에 <code>{ opacity: fadeAnim }</code>을 바인딩할 것</li>
+              <li>Animated.Value(0)을 선언하고 Animated.timing으로 5초 동안 1로 페이드인, 3초 동안 0으로 페이드아웃하는 로직을 작성할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useRef } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Animated, Button } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+// ==========================================
+// [빈칸 (A)] fadeAnim 선언 및 fadeIn, fadeOut 애니메이션 함수를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-export default function App() {
-  // [TODO] fadeAnim 선언, fadeIn/fadeOut 함수 및 Animated.View 렌더링 코드를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  fadingContainer: { padding: 20, backgroundColor: 'powderblue' },
-  fadingText: { fontSize: 28 },
-  buttonRow: { flexBasis: 100, justifyContent: 'space-evenly', marginVertical: 10 },
-});</code></pre>
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;Animated.View style={[styles.fadingContainer, { opacity: fadeAnim }]}&gt;
+        &lt;Text style={styles.fadingText}&gt;Fading View!&lt;/Text&gt;
+      &lt;/Animated.View&gt;
+      &lt;Button title="Fade In View" onPress={fadeIn} /&gt;
+      &lt;Button title="Fade Out View" onPress={fadeOut} /&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useRef } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Animated, Button } from 'react-native';
-
-export default function App() {
-    const fadeAnim = useRef(new Animated.Value(0)).current;
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const fadeIn = () =&gt; {
     Animated.timing(fadeAnim, {
@@ -4624,40 +3556,11 @@ export default function App() {
       duration: 3000,
       useNativeDriver: true,
     }).start();
-  };
-
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;Animated.View
-        style={[
-          styles.fadingContainer,
-          { opacity: fadeAnim },
-        ]}&gt;
-        &lt;Text style={styles.fadingText}&gt;Fading View!&lt;/Text&gt;
-      &lt;/Animated.View&gt;
-      &lt;View style={styles.buttonRow}&gt;
-        &lt;Button title="Fade In View" onPress={fadeIn} /&gt;
-        &lt;Button title="Fade Out View" onPress={fadeOut} /&gt;
-      &lt;/View&gt;
-      &lt;StatusBar style="auto" /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  fadingContainer: { padding: 20, backgroundColor: 'powderblue' },
-  fadingText: { fontSize: 28 },
-  buttonRow: { flexBasis: 100, justifyContent: 'space-evenly', marginVertical: 10 },
-});</code></pre>
+  };</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>useRef(new Animated.Value(0)).current</code> 패턴</b></li>
-                  <li><b><code>Animated.timing(anim, { toValue, duration, useNativeDriver }).start()</code></b></li>
-                  <li><b>일반 <code>View</code>가 아닌 <code><Animated.View></code> 사용 및 <code>opacity</code> 바인딩</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>Animated.timing(fadeAnim, { toValue, duration, useNativeDriver }).start()</b></div>
               </div>
             </div>
           </details>
@@ -4665,7 +3568,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 35] Dimensions: 기기 화면 해상도 측정 및 회전 감지</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 35] Dimensions: 화면 해상도 측정 및 회전 감지</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">6주 P.11~12</span>
           </div>
 
@@ -4683,46 +3586,34 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>Dimensions.get('window')</code>와 <code>Dimensions.get('screen')</code>으로 초기 해상도 정보 가져오기</li>
-              <li>2. <code>useEffect</code>에서 <code>Dimensions.addEventListener('change', ({ window, screen }) => { ... })</code>로 화면 회전 감지 리스너 등록</li>
-              <li>3. 클린업에서 <code>subscription?.remove()</code> 호출</li>
-              <li>4. <code>Object.entries</code>와 <code>.map()</code>을 사용하여 window와 screen의 각 키와 값(<code>.toFixed(2)</code>)을 화면에 출력할 것</li>
+              <li>Dimensions.get('window')/('screen')으로 해상도를 가져오고, Dimensions.addEventListener('change', ...)로 회전을 감지할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState, useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+// ==========================================
+// [빈칸 (A)] Dimensions 초기값 및 addEventListener 등록/해제 useEffect를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-export default function App() {
-  // [TODO] Dimensions 상태, 이벤트 리스너 등록 및 해상도 출력 JSX를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  header: { fontSize: 20, marginVertical: 10 },
-});</code></pre>
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;Text style={styles.header}&gt;Window Dimensions&lt;/Text&gt;
+      {Object.entries(dimensions.window).map(([k, v]) =&gt; &lt;Text key={k}&gt;{k} - {v.toFixed(2)}&lt;/Text&gt;)}
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState, useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
-
-export default function App() {
-    const windowDimensions = Dimensions.get('window');
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const windowDimensions = Dimensions.get('window');
   const screenDimensions = Dimensions.get('screen');
 
   const [dimensions, setDimensions] = useState({
@@ -4738,38 +3629,11 @@ export default function App() {
       },
     );
     return () =&gt; subscription?.remove();
-  }, []);
-
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;Text style={styles.header}&gt;Window Dimensions&lt;/Text&gt;
-      {Object.entries(dimensions.window).map(([key, value]) =&gt; (
-        &lt;Text key={key}&gt;
-          {key} - {value.toFixed(2)}
-        &lt;/Text&gt;
-      ))}
-      &lt;Text style={styles.header}&gt;Screen Dimensions&lt;/Text&gt;
-      {Object.entries(dimensions.screen).map(([key, value]) =&gt; (
-        &lt;Text key={key}&gt;
-          {key} - {value.toFixed(2)}
-        &lt;/Text&gt;
-      ))}
-      &lt;StatusBar style='auto' /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-  header: { fontSize: 20, marginVertical: 10 },
-});</code></pre>
+  }, []);</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>Dimensions.get('window')</code> vs <code>Dimensions.get('screen')</code> 차이점 (window는 상태표시줄 등 제외 실제 앱 가용영역)</b></li>
-                  <li><b><code>Dimensions.addEventListener('change', ...)</code> 및 <code>subscription?.remove()</code></b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>Dimensions.get('window') 및 Dimensions.addEventListener('change')</b></div>
               </div>
             </div>
           </details>
@@ -4777,7 +3641,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 36] KeyboardAvoidingView: 키보드 회피 및 바깥 터치 닫기</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 36] KeyboardAvoidingView & Keyboard.dismiss</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">6주 P.13~14</span>
           </div>
 
@@ -4795,112 +3659,44 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 입력창 바깥 배경 터치 시 키보드가 내려가도록 <code><TouchableWithoutFeedback onPress={Keyboard.dismiss}></code>로 감쌀 것</li>
-              <li>2. TextInput에 Username을 입력받고 Submit 버튼 클릭 시 Alert 팝업을 띄우며 확인 시 입력창 비우기</li>
+              <li>TouchableWithoutFeedback의 onPress에 Keyboard.dismiss를 연결하여 바깥 터치 시 키보드가 닫히도록 할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import {
-  View,
-  KeyboardAvoidingView,
-  TextInput,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  Button,
-  Keyboard,
-  Alert,
-} from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const [value, setValue] = useState("");
 
-export default function App() {
-  // [TODO] TouchableWithoutFeedback 및 Keyboard.dismiss를 활용한 화면을 작성하시오.
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] TouchableWithoutFeedback과 Keyboard.dismiss 연결 뷰를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  inner: { padding: 24, flex: 1, justifyContent: 'space-around' },
-  header: { fontSize: 36, marginBottom: 48 },
-  textInput: { height: 40, borderColor: '#000000', borderBottomWidth: 1, marginBottom: 36 },
-  btnContainer: { backgroundColor: 'white', marginTop: 12 },
-});</code></pre>
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import {
-  View,
-  KeyboardAvoidingView,
-  TextInput,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  Button,
-  Keyboard,
-  Alert,
-} from 'react-native';
-
-export default function App() {
-    const [value, setValue] = useState("");
-
-  const handlePress = () =&gt; {
-    Alert.alert(
-      "Input Data",
-      value || "(Empty)",
-      [
-        {
-          text: "확인",
-          onPress: () =&gt; setValue(""),
-        },
-      ]
-    );
-  };
-
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;TouchableWithoutFeedback onPress={Keyboard.dismiss}&gt;
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;TouchableWithoutFeedback onPress={Keyboard.dismiss}&gt;
         &lt;View style={styles.inner}&gt;
           &lt;Text style={styles.header}&gt;Header&lt;/Text&gt;
-          &lt;TextInput
-            placeholder="Username"
-            style={styles.textInput}
-            onChangeText={(text) =&gt; setValue(text)}
-            value={value}
-          /&gt;
-          &lt;View style={styles.btnContainer}&gt;
-            &lt;Button title="Submit" onPress={handlePress} /&gt;
-          &lt;/View&gt;
+          &lt;TextInput placeholder="Username" style={styles.textInput} onChangeText={setValue} value={value} /&gt;
+          &lt;Button title="Submit" onPress={() =&gt; Alert.alert("Input Data", value)} /&gt;
         &lt;/View&gt;
-      &lt;/TouchableWithoutFeedback&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  inner: { padding: 24, flex: 1, justifyContent: 'space-around' },
-  header: { fontSize: 36, marginBottom: 48 },
-  textInput: { height: 40, borderColor: '#000000', borderBottomWidth: 1, marginBottom: 36 },
-  btnContainer: { backgroundColor: 'white', marginTop: 12 },
-});</code></pre>
+      &lt;/TouchableWithoutFeedback&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>Keyboard.dismiss</code> 메서드를 <code>TouchableWithoutFeedback</code>의 <code>onPress</code>에 전달하는 필수 패턴</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b><TouchableWithoutFeedback onPress={Keyboard.dismiss}> 구문</b></div>
               </div>
             </div>
           </details>
@@ -4908,7 +3704,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 37] Linking: 외부 웹 브라우저 URL 열기</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 37] Linking: 외부 URL 링크 열기</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">6주 P.15</span>
           </div>
 
@@ -4926,44 +3722,17 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. '정종수 블로그' 텍스트와 '확 인' 버튼을 배치할 것</li>
-              <li>2. '확 인' 버튼 클릭 시 <code>Linking.openURL('https://blog.naver.com/jongsoo67')</code>을 호출하여 외부 웹 브라우저를 열 것</li>
+              <li>Linking.openURL('https://blog.naver.com/jongsoo67')을 호출하여 브라우저를 열 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View, Button, Linking } from 'react-native';
-
-export default function App() {
-  // [TODO] Linking.openURL을 호출하는 버튼 핸들러 및 화면을 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, alignItems: 'stretch', justifyContent: 'center' },
-  text: { fontSize: 30, marginVertical: 30, textAlign: 'center' },
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StyleSheet, Text, View, Button, Linking } from 'react-native';
-
-export default function App() {
-    const handlePress = () =&gt; {
-    Linking.openURL('https://blog.naver.com/jongsoo67');
-  };
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+// ==========================================
+// [빈칸 (A)] Linking.openURL을 호출하는 handlePress 함수를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
   return (
     &lt;View style={styles.container}&gt;
@@ -4971,18 +3740,22 @@ export default function App() {
       &lt;Button title="확 인" onPress={handlePress} /&gt;
     &lt;/View&gt;
   );
-}
+}</code></pre>
+          </div>
 
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, alignItems: 'stretch', justifyContent: 'center' },
-  text: { fontSize: 30, marginVertical: 30, textAlign: 'center' },
-});</code></pre>
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const handlePress = () =&gt; {
+    Linking.openURL('https://blog.naver.com/jongsoo67');
+  };</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>Linking.openURL('URL')</code> API의 사용법</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>Linking.openURL(url) 메서드 호출</b></div>
               </div>
             </div>
           </details>
@@ -5008,54 +3781,37 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>modalVisible</code> 불리언 상태 선언 (<code>useState(false)</code>)</li>
-              <li>2. <code><Modal></code> 속성: <code>animationType="slide"</code>, <code>transparent={true}</code>, <code>visible={modalVisible}</code></li>
-              <li>3. 모달 내부 'Hide Modal' 버튼 클릭 시 <code>setModalVisible(false)</code>로 모달 닫기</li>
-              <li>4. 화면의 'Show Modal' 버튼 클릭 시 <code>setModalVisible(true)</code>로 모달 열기</li>
+              <li>Modal 컴포넌트에 animationType='slide', transparent={true}, visible={modalVisible}을 지정할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const [modalVisible, setModalVisible] = useState(false);
 
-export default function App() {
-  // [TODO] Modal 컴포넌트와 modalVisible 상태 연동 코드를 작성하시오.
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] Modal 컴포넌트 선언 및 속성을 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'stretch', justifyContent: 'center', padding: 30 },
-  centeredView: { flex: 1, justifyContent: 'flex-start', alignItems: 'center' },
-  modalView: { width: '90%', margin: 20, backgroundColor: 'white', borderRadius: 10, padding: 35, alignItems: 'center', elevation: 5 },
-  button: { borderRadius: 20, padding: 10, elevation: 2 },
-  buttonOpen: { backgroundColor: '#F194FF' },
-  buttonClose: { backgroundColor: '#2196F3' },
-  textStyle: { color: 'white', fontWeight: 'bold', textAlign: 'center' },
-  modalText: { marginBottom: 15, textAlign: 'center' },
-});</code></pre>
+      &lt;Pressable style={[styles.button, styles.buttonOpen]} onPress={() =&gt; setModalVisible(true)}&gt;
+        &lt;Text style={styles.textStyle}&gt;Show Modal&lt;/Text&gt;
+      &lt;/Pressable&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native';
-
-export default function App() {
-    const [modalVisible, setModalVisible] = useState(false);
-
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;Modal
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
@@ -5066,41 +3822,16 @@ export default function App() {
         &lt;View style={styles.centeredView}&gt;
           &lt;View style={styles.modalView}&gt;
             &lt;Text style={styles.modalText}&gt;Hello World!&lt;/Text&gt;
-            &lt;Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() =&gt; setModalVisible(false)}&gt;
+            &lt;Pressable style={[styles.button, styles.buttonClose]} onPress={() =&gt; setModalVisible(false)}&gt;
               &lt;Text style={styles.textStyle}&gt;Hide Modal&lt;/Text&gt;
             &lt;/Pressable&gt;
           &lt;/View&gt;
         &lt;/View&gt;
-      &lt;/Modal&gt;
-
-      &lt;Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() =&gt; setModalVisible(true)}&gt;
-        &lt;Text style={styles.textStyle}&gt;Show Modal&lt;/Text&gt;
-      &lt;/Pressable&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'stretch', justifyContent: 'center', padding: 30 },
-  centeredView: { flex: 1, justifyContent: 'flex-start', alignItems: 'center' },
-  modalView: { width: '90%', margin: 20, backgroundColor: 'white', borderRadius: 10, padding: 35, alignItems: 'center', elevation: 5 },
-  button: { borderRadius: 20, padding: 10, elevation: 2 },
-  buttonOpen: { backgroundColor: '#F194FF' },
-  buttonClose: { backgroundColor: '#2196F3' },
-  textStyle: { color: 'white', fontWeight: 'bold', textAlign: 'center' },
-  modalText: { marginBottom: 15, textAlign: 'center' },
-});</code></pre>
+      &lt;/Modal&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>Modal</code>의 필수 속성 <code>visible={modalVisible}</code></b></li>
-                  <li><b><code>animationType="slide"</code>, <code>transparent={true}</code> 속성</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>visible={modalVisible}, animationType='slide', transparent={true}</b></div>
               </div>
             </div>
           </details>
@@ -5126,97 +3857,40 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 기기 픽셀 비율 출력: <code>PixelRatio.get()</code></li>
-              <li>2. 폰트 스케일 출력: <code>PixelRatio.getFontScale()</code></li>
-              <li>3. 레이아웃 크기 <code>size(50)</code>에 대응하는 실제 물리 픽셀 크기 변환: <code>PixelRatio.getPixelSizeForLayoutSize(size)</code></li>
+              <li>PixelRatio.get(), getFontScale(), getPixelSizeForLayoutSize(size) 3가지 메서드를 호출할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { Image, PixelRatio, ScrollView, StyleSheet, Text, View } from 'react-native';
-
-const size = 50;
-const cat = { uri: 'https://reactnative.dev/docs/assets/p_cat1.png', width: size, height: size };
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>const size = 50;
 
 export default function App() {
-  // [TODO] PixelRatio의 3대 메서드를 호출하여 정보를 출력하시오.
+  return (
+    &lt;View style={styles.container}&gt;
+// ==========================================
+// [빈칸 (A)] PixelRatio의 3대 메서드 호출 구문을 완성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center', marginTop: 50 },
-  value: { fontSize: 24, marginBottom: 12, marginTop: 4 },
-});</code></pre>
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { Image, PixelRatio, ScrollView, StyleSheet, Text, View } from 'react-native';
-
-const size = 50;
-const cat = { uri: 'https://reactnative.dev/docs/assets/p_cat1.png', width: size, height: size };
-
-export default function App() {
-    return (
-    &lt;View style={styles.container}&gt;
-      &lt;ScrollView&gt;
-        &lt;View style={styles.container}&gt;
-          &lt;Text&gt;Current Pixel Ratio is:&lt;/Text&gt;
-          &lt;Text style={styles.value}&gt;{PixelRatio.get()}&lt;/Text&gt;
-        &lt;/View&gt;
-        &lt;View style={styles.container}&gt;
-          &lt;Text&gt;Current Font Scale is:&lt;/Text&gt;
-          &lt;Text style={styles.value}&gt;{PixelRatio.getFontScale()}&lt;/Text&gt;
-        &lt;/View&gt;
-        &lt;View style={styles.container}&gt;
-          &lt;Text&gt;On this device images with a layout width of&lt;/Text&gt;
-          &lt;Text style={styles.value}&gt;{size} px&lt;/Text&gt;
-          &lt;Image source={cat} /&gt;
-        &lt;/View&gt;
-        &lt;View style={styles.container}&gt;
-          &lt;Text&gt;require images with a pixel width of&lt;/Text&gt;
-          &lt;Text style={styles.value}&gt;
-            {PixelRatio.getPixelSizeForLayoutSize(size)} px
-          &lt;/Text&gt;
-          &lt;Image
-            source={cat}
-            style={{
-              width: PixelRatio.getPixelSizeForLayoutSize(size),
-              height: PixelRatio.getPixelSizeForLayoutSize(size),
-            }}
-          /&gt;
-        &lt;/View&gt;
-      &lt;/ScrollView&gt;
-      &lt;StatusBar style="auto" /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center', marginTop: 50 },
-  value: { fontSize: 24, marginBottom: 12, marginTop: 4 },
-});</code></pre>
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;Text&gt;Current Pixel Ratio is: {PixelRatio.get()}&lt;/Text&gt;
+      &lt;Text&gt;Current Font Scale is: {PixelRatio.getFontScale()}&lt;/Text&gt;
+      &lt;Text&gt;Pixel Size for Layout: {PixelRatio.getPixelSizeForLayoutSize(size)} px&lt;/Text&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>PixelRatio.get()</code></b></li>
-                  <li><b><code>PixelRatio.getFontScale()</code></b></li>
-                  <li><b><code>PixelRatio.getPixelSizeForLayoutSize(size)</code> 메서드명 암기</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>PixelRatio.get(), getFontScale(), getPixelSizeForLayoutSize(size)</b></div>
               </div>
             </div>
           </details>
@@ -5242,68 +3916,38 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>refreshing</code> 상태와 <code>timerRef = useRef(null)</code>를 선언할 것</li>
-              <li>2. <code>onRefresh = useCallback(...)</code>에서 중복 새로고침 방지 후 <code>setTimeout</code>으로 2초 뒤 <code>setRefreshing(false)</code>로 변경할 것</li>
-              <li>3. ScrollView의 <code>refreshControl</code> 속성에 <code><RefreshControl refreshing={refreshing} onRefresh={onRefresh} /></code>를 연결할 것</li>
+              <li>ScrollView의 refreshControl 속성에 <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />를 연결할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  // [TODO] RefreshControl 상태, onRefresh 콜백 및 ScrollView 연결을 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  scroll: { flex: 1, backgroundColor: 'pink' },
-  scrollContent: { flexGrow: 1, alignItems: 'center', justifyContent: 'center', padding: 24 },
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-    const [refreshing, setRefreshing] = useState(false);
-  const timerRef = useRef(null);
-
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const [refreshing, setRefreshing] = useState(false);
   const onRefresh = useCallback(() =&gt; {
-    if (timerRef.current !== null) return;
     setRefreshing(true);
-    timerRef.current = setTimeout(() =&gt; {
-      setRefreshing(false);
-      timerRef.current = null;
-    }, 2000);
-  }, []);
-
-  useEffect(() =&gt; {
-    return () =&gt; {
-      if (timerRef.current !== null) {
-        clearTimeout(timerRef.current);
-      }
-    };
+    setTimeout(() =&gt; setRefreshing(false), 2000);
   }, []);
 
   return (
     &lt;View style={styles.container}&gt;
-      &lt;ScrollView
+// ==========================================
+// [빈칸 (A)] refreshControl 속성을 연결한 ScrollView를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
+
+    &lt;/View&gt;
+  );
+}</code></pre>
+          </div>
+
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>      &lt;ScrollView
         style={styles.scroll}
         contentContainerStyle={styles.scrollContent}
         alwaysBounceVertical={true}
@@ -5311,31 +3955,18 @@ export default function App() {
           &lt;RefreshControl refreshing={refreshing} onRefresh={onRefresh} /&gt;
         }&gt;
         &lt;Text&gt;아래로 당기면 새로고침됩니다.&lt;/Text&gt;
-      &lt;/ScrollView&gt;
-      &lt;StatusBar style="auto" /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  scroll: { flex: 1, backgroundColor: 'pink' },
-  scrollContent: { flexGrow: 1, alignItems: 'center', justifyContent: 'center', padding: 24 },
-});</code></pre>
+      &lt;/ScrollView&gt;</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>ScrollView</code>의 <code>refreshControl={<RefreshControl ... />}</code> 속성</b></li>
-                  <li><b><code>useCallback</code>과 타이머를 이용한 비동기 새로고침 완료 처리</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}</b></div>
               </div>
             </div>
           </details>
         </div>
 
         <div class="summary-box" style="margin-top: 32px; margin-bottom: 16px;">
-          <h3 style="margin: 0; color: var(--success); font-size: 18px;">📌 7주차 빈칸 실전 문제</h3>
+          <h3 style="margin: 0; color: var(--success); font-size: 18px;">📌 7주차 타겟 빈칸 실전 문제</h3>
         </div>
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
@@ -5358,52 +3989,32 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>const [count, setCount] = useState(0)</code> 상태 선언</li>
-              <li>2. '+1 증가' Pressable 버튼 클릭 시 <code>setCount(count + 1)</code></li>
-              <li>3. '-1 감소' Pressable 버튼 클릭 시 <code>setCount(count - 1)</code></li>
-              <li>4. 중앙에 '현재 카운트: {count}' 출력</li>
+              <li>useState(0)을 선언하고 Pressable 클릭 시 setCount(count + 1)과 setCount(count - 1)을 호출할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+// ==========================================
+// [빈칸 (A)] count 상태 선언 및 +1, -1 Pressable 버튼 로직을 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-export default function App() {
-  // [TODO] count 상태 및 +1, -1 Pressable 버튼 로직을 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 30 },
-  text: { fontSize: 30, marginBottom: 20 },
-  button: { backgroundColor: '#4ab1ec', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 6, alignItems: 'center', marginBottom: 10 },
-  buttonText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
-});</code></pre>
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { StyleSheet, Text, View, Pressable } from 'react-native';
-
-export default function App() {
-    const [count, setCount] = useState(0);
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const [count, setCount] = useState(0);
 
   return (
     &lt;View style={styles.container}&gt;
-      &lt;View style={{ alignItems: 'center' }}&gt;
-        &lt;Text style={styles.text}&gt;현재 카운트: {count}&lt;/Text&gt;
-      &lt;/View&gt;
+      &lt;Text style={styles.text}&gt;현재 카운트: {count}&lt;/Text&gt;
       &lt;Pressable style={styles.button} onPress={() =&gt; setCount(count + 1)}&gt;
         &lt;Text style={styles.buttonText}&gt;+1 증가&lt;/Text&gt;
       &lt;/Pressable&gt;
@@ -5411,22 +4022,11 @@ export default function App() {
         &lt;Text style={styles.buttonText}&gt;-1 감소&lt;/Text&gt;
       &lt;/Pressable&gt;
     &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 30 },
-  text: { fontSize: 30, marginBottom: 20 },
-  button: { backgroundColor: '#4ab1ec', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 6, alignItems: 'center', marginBottom: 10 },
-  buttonText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
-});</code></pre>
+  );</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>useState</code> 기본 사용법</b></li>
-                  <li><b><code>Pressable</code>의 <code>onPress</code>에서 상태 변경 함수 호출</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>useState(0) 및 setCount(count + 1), setCount(count - 1)</b></div>
               </div>
             </div>
           </details>
@@ -5452,48 +4052,40 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 상태: <code>a</code>(''), <code>b</code>(''), <code>result</code>(null)</li>
-              <li>2. <code>multiply</code> 함수: <code>parseFloat(a)</code>, <code>parseFloat(b)</code>를 수행하고 하나라도 <code>isNaN</code>이면 '숫자를 입력하세요!', 정상 숫자면 곱셈 결과(<code>numA * numB</code>)를 <code>setResult</code>에 저장</li>
-              <li>3. 'A × B 계산' Button 누르면 <code>multiply</code> 호출</li>
-              <li>4. <code>result !== null</code>일 때만 결과 텍스트 '결과: {result}' 출력</li>
+              <li>multiply 함수에서 parseFloat(a)와 parseFloat(b)를 수행하고 isNaN 예외 처리 후 setResult(numA * numB)를 실행할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const [a, setA] = useState('');
+  const [b, setB] = useState('');
+  const [result, setResult] = useState(null);
 
-export default function App() {
-  // [TODO] 3개의 useState, multiply 계산 함수 및 JSX를 작성하시오.
+// ==========================================
+// [빈칸 (A)] multiply 계산 함수를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  input: { borderWidth: 1, borderColor: 'gray', width: 200, marginBottom: 10, textAlign: 'center', fontSize: 18, borderRadius: 5 },
-});</code></pre>
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;TextInput style={styles.input} keyboardType="numeric" placeholder="A 입력" value={a} onChangeText={setA} /&gt;
+      &lt;TextInput style={styles.input} keyboardType="numeric" placeholder="B 입력" value={b} onChangeText={setB} /&gt;
+      &lt;Button title="A × B 계산" onPress={multiply} /&gt;
+      {result !== null &amp;&amp; &lt;Text style={{ fontSize: 22, marginTop: 20 }}&gt;결과: {result}&lt;/Text&gt;}
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-
-export default function App() {
-    const [a, setA] = useState('');
-  const [b, setB] = useState('');
-  const [result, setResult] = useState(null);
-
-  const multiply = () =&gt; {
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const multiply = () =&gt; {
     const numA = parseFloat(a);
     const numB = parseFloat(b);
     if (isNaN(numA) || isNaN(numB)) {
@@ -5501,44 +4093,11 @@ export default function App() {
     } else {
       setResult(numA * numB);
     }
-  };
-
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;Text style={{ fontSize: 20, marginBottom: 10 }}&gt;A × B 계산기&lt;/Text&gt;
-      &lt;TextInput
-        style={styles.input}
-        keyboardType="numeric"
-        placeholder="A 입력"
-        value={a}
-        onChangeText={setA}
-      /&gt;
-      &lt;TextInput
-        style={styles.input}
-        keyboardType="numeric"
-        placeholder="B 입력"
-        value={b}
-        onChangeText={setB}
-      /&gt;
-      &lt;Button title="A × B 계산" onPress={multiply} /&gt;
-      {result !== null &amp;&amp; (
-        &lt;Text style={{ fontSize: 22, marginTop: 20 }}&gt;결과: {result}&lt;/Text&gt;
-      )}
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  input: { borderWidth: 1, borderColor: 'gray', width: 200, marginBottom: 10, textAlign: 'center', fontSize: 18, borderRadius: 5 },
-});</code></pre>
+  };</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>TextInput</code>의 문자열 입력을 <code>parseFloat</code>로 수치 변환</b></li>
-                  <li><b><code>isNaN</code> 예외 처리 및 조건부 렌더링 <code>{result !== null && ...}</code></b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>parseFloat, isNaN 검사, setResult(numA * numB)</b></div>
               </div>
             </div>
           </details>
@@ -5546,7 +4105,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 43] useRef vs 일반 변수 vs useState 리렌더링 비교 (시험 출제 1순위!)</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 43] useRef vs 일반 변수 vs useState 리렌더링 차이 (시험 출제 1순위!)</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">7주 P.09</span>
           </div>
 
@@ -5564,40 +4123,36 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>render</code> 상태(<code>useState(false)</code>), <code>countRef</code> 참조(<code>useRef(0)</code>), 일반 변수 <code>let countVar = 5</code> 선언</li>
-              <li>2. '클릭' 버튼: <code>countRef.current += 1</code>, <code>countVar += 1</code> 실행 (화면 리렌더링 안 일어남)</li>
-              <li>3. '리랜더' 버튼: <code>setRender(!render)</code> 실행 (컴포넌트 리렌더링 유발 -> countRef의 누적값은 유지되어 화면에 반영되고, countVar는 다시 5로 리셋됨)</li>
+              <li>countRef = useRef(0)와 let countVar = 5를 선언하고, 클릭 시 1씩 증가시키되 리렌더는 setRender(!render)로 유발할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useRef, useState } from 'react';
-import { View, Button, Text } from 'react-native';
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function Example() {
+  const [render, setRender] = useState(false);
+// ==========================================
+// [빈칸 (A)] countRef 선언 및 handleClick, doRender 함수를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-export default function Example() {
-  // [TODO] useRef, countVar, useState 및 2개 버튼의 렌더링 차이 로직을 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-</code></pre>
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;Text style={{ fontSize: 30 }}&gt;결과값 CountRef: {countRef.current}, {"\n"}결과값 CountVar: {countVar}&lt;/Text&gt;
+      &lt;Button title="클릭" onPress={handleClick} /&gt;
+      &lt;Button title="리랜더" onPress={doRender} /&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useRef, useState } from 'react';
-import { View, Button, Text } from 'react-native';
-
-export default function Example() {
-    const [render, setRender] = useState(false);
-  const countRef = useRef(0);
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const countRef = useRef(0);
   let countVar = 5;
 
   const handleClick = () =&gt; {
@@ -5608,36 +4163,11 @@ export default function Example() {
 
   const doRender = () =&gt; {
     setRender(!render);
-  };
-
-  return (
-    &lt;View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        padding: 30,
-      }}&gt;
-      &lt;Text style={{ fontSize: 30, marginTop: 10, marginBottom: 30 }}&gt;
-        결과값 CountRef: {countRef.current}, {"\n"}
-        결과값 CountVar: {countVar}
-      &lt;/Text&gt;
-      &lt;View style={{ marginBottom: 12 }}&gt;
-        &lt;Button title="클릭" onPress={handleClick} /&gt;
-      &lt;/View&gt;
-      &lt;View&gt;
-        &lt;Button title="리랜더" onPress={doRender} /&gt;
-      &lt;/View&gt;
-    &lt;/View&gt;
-  );
-}
-</code></pre>
+  };</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>**교수님 주관식/단답형 단골 질문**: <code>useRef</code>의 값은 바뀌어도 리렌더링되지 않으며, 컴포넌트가 다시 렌더링되어도 값이 유지된다. 반면 일반 변수 <code>countVar</code>는 리렌더링 시 함수가 재실행되므로 초기화된다.</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>useRef(0), countRef.current += 1, setRender(!render)</b></div>
               </div>
             </div>
           </details>
@@ -5663,70 +4193,42 @@ export default function Example() {
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>inputRef = useRef(null)</code>을 선언하고 <code><TextInput ref={inputRef}></code>에 연결할 것</li>
-              <li>2. '포커스 이동' 버튼 클릭 시 <code>inputRef.current?.focus()</code>를 호출하여 TextInput으로 커서를 이동시킬 것</li>
+              <li>inputRef = useRef(null)을 선언하고 inputRef.current?.focus()로 포커스를 이동시킬 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useRef } from "react";
-import { StyleSheet, View, TextInput, Button } from "react-native";
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+// ==========================================
+// [빈칸 (A)] inputRef 선언 및 focusInput 함수를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-export default function App() {
-  // [TODO] useRef로 DOM 참조를 잡고 focus()를 호출하는 코드를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'stretch', justifyContent: 'center', padding: 30 },
-  text: { fontSize: 30, borderBottomWidth: 1, borderColor: '#ccc', marginBottom: 20 },
-});</code></pre>
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;TextInput style={styles.text} ref={inputRef} placeholder="이름을 입력하세요" /&gt;
+      &lt;Button title="포커스 이동" onPress={focusInput} /&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useRef } from "react";
-import { StyleSheet, View, TextInput, Button } from "react-native";
-
-export default function App() {
-    const inputRef = useRef(null);
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const inputRef = useRef(null);
 
   const focusInput = () =&gt; {
-    inputRef.current?.focus();
-  };
-
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;TextInput
-        style={styles.text}
-        ref={inputRef}
-        placeholder="이름을 입력하세요"
-      /&gt;
-      &lt;Button title="포커스 이동" onPress={focusInput} /&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'stretch', justifyContent: 'center', padding: 30 },
-  text: { fontSize: 30, borderBottomWidth: 1, borderColor: '#ccc', marginBottom: 20 },
-});</code></pre>
+    inputRef.current?.focus(); // TextInput에 포커스 부여
+  };</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>컴포넌트의 <code>ref</code> 속성에 <code>useRef</code> 변수 전달</b></li>
-                  <li><b><code>inputRef.current?.focus()</code> 메서드 호출</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>useRef(null) 및 inputRef.current?.focus()</b></div>
               </div>
             </div>
           </details>
@@ -5752,103 +4254,49 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. A 입력창에 <code>ref={inputRef}</code>를 지정할 것</li>
-              <li>2. 버튼 클릭 시 <code>handlePress</code> 함수에서 <code>multiply()</code>를 실행한 직후 <code>focusInput()</code>을 호출하여 다시 A 입력창으로 포커스를 복귀시킬 것</li>
+              <li>계산 버튼 클릭 시 multiply() 실행 후 focusInput()을 호출하여 A 입력창으로 커서를 복귀시킬 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState, useRef } from "react";
-import { StyleSheet, View, Text, TextInput, Button } from "react-native";
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const inputRef = useRef(null);
+  const focusInput = () =&gt; inputRef.current?.focus();
+  const [a, setA] = useState('');
+  const [b, setB] = useState('');
+  const [result, setResult] = useState(null);
+  const multiply = () =&gt; setResult(parseFloat(a) * parseFloat(b));
 
-export default function App() {
-  // [TODO] 계산 실행 후 자동으로 A 입력창으로 포커스 이동시키는 코드를 작성하시오.
+// ==========================================
+// [빈칸 (A)] multiply와 focusInput을 연속 호출하는 handlePress를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 },
-  input: { borderWidth: 1, borderColor: 'gray', width: 200, marginBottom: 10, textAlign: 'center', fontSize: 18, borderRadius: 5 },
-});</code></pre>
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;TextInput ref={inputRef} style={styles.input} keyboardType="numeric" placeholder="A 입력" value={a} onChangeText={setA} /&gt;
+      &lt;TextInput style={styles.input} keyboardType="numeric" placeholder="B 입력" value={b} onChangeText={setB} /&gt;
+      &lt;Button title="A × B 계산" onPress={handlePress} /&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState, useRef } from "react";
-import { StyleSheet, View, Text, TextInput, Button } from "react-native";
-
-export default function App() {
-    const inputRef = useRef(null);
-
-  const focusInput = () =&gt; {
-    inputRef.current?.focus();
-  };
-
-  const [a, setA] = useState('');
-  const [b, setB] = useState('');
-  const [result, setResult] = useState(null);
-
-  const multiply = () =&gt; {
-    const numA = parseFloat(a);
-    const numB = parseFloat(b);
-    if (isNaN(numA) || isNaN(numB)) {
-      setResult('숫자를 입력하세요!');
-    } else {
-      setResult(numA * numB);
-    }
-  };
-
-  const handlePress = () =&gt; {
-    multiply();
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const handlePress = () =&gt; {
+    multiply(); // 계산 수행
     focusInput(); // A 입력창으로 자동 포커스 복귀
-  };
-
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;Text style={{ fontSize: 20, marginBottom: 10 }}&gt;A × B 계산기&lt;/Text&gt;
-      &lt;TextInput
-        ref={inputRef}
-        style={styles.input}
-        keyboardType="numeric"
-        placeholder="A 입력"
-        value={a}
-        onChangeText={setA}
-        returnKeyType="next"
-      /&gt;
-      &lt;TextInput
-        style={styles.input}
-        keyboardType="numeric"
-        placeholder="B 입력"
-        value={b}
-        onChangeText={setB}
-      /&gt;
-      &lt;Button title="A × B 계산" onPress={handlePress} /&gt;
-      {result !== null &amp;&amp; (
-        &lt;Text style={{ fontSize: 22, marginTop: 20 }}&gt;결과: {result}&lt;/Text&gt;
-      )}
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 },
-  input: { borderWidth: 1, borderColor: 'gray', width: 200, marginBottom: 10, textAlign: 'center', fontSize: 18, borderRadius: 5 },
-});</code></pre>
+  };</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>useState</code> 계산 로직과 <code>useRef</code>의 DOM 포커스 제어 결합</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>multiply() 직후 focusInput() 연쇄 호출</b></div>
               </div>
             </div>
           </details>
@@ -5874,63 +4322,39 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 컴포넌트가 처음 화면에 렌더링될 때(마운트 시) 딱 한 번만 실행되도록 <code>useEffect</code>를 작성할 것</li>
-              <li>2. 의존성 배열로 빈 배열(<code>[]</code>)을 전달할 것</li>
-              <li>3. 콘솔에 '앱이 실행되었습니다! (처음 한 번만)'을 출력할 것</li>
+              <li>의존성 배열로 빈 배열([])을 전달하여 마운트 시 최초 1회만 콘솔 로그를 출력할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useEffect } from "react";
-import { StyleSheet, View, Text } from "react-native";
-
-export default function App() {
-  // [TODO] 최초 1회만 실행되는 useEffect 코드를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 30 },
-  text: { fontSize: 30 },
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useEffect } from "react";
-import { StyleSheet, View, Text } from "react-native";
-
-export default function App() {
-    useEffect(() =&gt; {
-    console.log("앱이 실행되었습니다! (처음 한 번만)");
-  }, []); // 빈 배열 [] 지정이 핵심
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+// ==========================================
+// [빈칸 (A)] 최초 1회만 실행되는 useEffect 코드를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
   return (
     &lt;View style={styles.container}&gt;
       &lt;Text style={styles.text}&gt;useEffect 예제&lt;/Text&gt;
     &lt;/View&gt;
   );
-}
+}</code></pre>
+          </div>
 
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 30 },
-  text: { fontSize: 30 },
-});</code></pre>
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  useEffect(() =&gt; {
+    console.log("앱이 실행되었습니다! (처음 한 번만)");
+  }, []); // 빈 배열 [] 지정이 핵심</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>의존성 배열 <code>[]</code>을 비워두어야 마운트 시 1회만 실행된다는 규칙 (배열 생략 시 매 렌더링마다 실행됨)</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>useEffect(..., []) 빈 의존성 배열</b></div>
               </div>
             </div>
           </details>
@@ -5938,7 +4362,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 47] useEffect: 특정 상태 변경 감지</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 47] useEffect: 특정 상태(count) 변경 감지</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">7주 P.15</span>
           </div>
 
@@ -5956,46 +4380,19 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>count</code> 상태를 선언하고, 버튼 누르면 <code>setCount(count + 1)</code> 할 것</li>
-              <li>2. <code>useEffect</code>의 의존성 배열에 <code>[count]</code>를 지정하여 <code>count</code> 값이 변경될 때마다 콘솔에 'count 값이 바뀌었습니다: {count}'를 출력할 것</li>
+              <li>의존성 배열에 [count]를 전달하여 count 값이 변경될 때마다 실행되도록 할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const [count, setCount] = useState(0);
 
-export default function App() {
-  // [TODO] count 상태 변경을 감지하는 useEffect 코드를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 30 },
-  text: { fontSize: 30, paddingBottom: 10 },
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
-
-export default function App() {
-    const [count, setCount] = useState(0);
-
-  useEffect(() =&gt; {
-    console.log("count 값이 바뀌었습니다:", count);
-  }, [count]); // 의존성 배열에 count 지정
+// ==========================================
+// [빈칸 (A)] count 변경을 감지하는 useEffect 코드를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
   return (
     &lt;View style={styles.container}&gt;
@@ -6003,18 +4400,22 @@ export default function App() {
       &lt;Button title="+1 증가" onPress={() =&gt; setCount(count + 1)} /&gt;
     &lt;/View&gt;
   );
-}
+}</code></pre>
+          </div>
 
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 30 },
-  text: { fontSize: 30, paddingBottom: 10 },
-});</code></pre>
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  useEffect(() =&gt; {
+    console.log("count 값이 바뀌었습니다:", count);
+  }, [count]); // 의존성 배열에 count 지정</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>의존성 배열 <code>[count]</code>를 통해 특정 상태 변경 시에만 이펙트 함수가 재실행되도록 제어</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>useEffect(..., [count]) 의존성 배열</b></div>
               </div>
             </div>
           </details>
@@ -6022,7 +4423,7 @@ const styles = StyleSheet.create({
 
         <div class="qa-card" style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--border); border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 48] useMemo: 연산 캐싱 최적화 (시험 단골!)</span>
+            <span style="font-weight: 800; font-size: 16px; color: var(--ink);">[문제 48] useMemo: 연산 캐싱 최적화 (시험 출제 1순위!)</span>
             <span class="badge" style="background: var(--surface-2); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">7주 P.17~18</span>
           </div>
 
@@ -6040,75 +4441,46 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. <code>const [count, setCount] = useState(0)</code> 및 <code>const [text, setText] = useState("")</code> 선언</li>
-              <li>2. <code>useMemo</code>를 사용하여 <code>count</code>가 변경될 때만 <code>double = count * 2</code> 계산을 실행하고 콘솔에 'double 계산 실행!' 출력</li>
-              <li>3. '텍스트 변경' 버튼 클릭으로 <code>text</code>가 바뀌어도 <code>double</code> 연산은 재실행되지 않도록 의존성 배열을 <code>[count]</code>로 지정할 것</li>
+              <li>useMemo를 사용하여 count가 변경될 때만 count * 2를 계산하고 text 변경 시에는 재계산되지 않도록 의존성을 [count]로 지정할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState, useMemo } from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
-
-export default function App() {
-  // [TODO] useMemo를 활용한 연산 최적화 코드를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'stretch', justifyContent: 'center', padding: 30 },
-  text: { fontSize: 30, paddingBottom: 10 },
-});</code></pre>
-          </div>
-
-          <!-- 접기 토글 -->
-          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
-            
-            <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState, useMemo } from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
-
-export default function App() {
-    const [count, setCount] = useState(0);
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const [count, setCount] = useState(0);
   const [text, setText] = useState("");
 
-  const double = useMemo(() =&gt; {
-    console.log("double 계산 실행!");
-    return count * 2;
-  }, [count]); // count가 변경될 때만 재계산
+// ==========================================
+// [빈칸 (A)] useMemo를 사용한 double 캐싱 연산 코드를 작성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */
 
   return (
     &lt;View style={styles.container}&gt;
       &lt;Text style={styles.text}&gt;Count: {count}&lt;/Text&gt;
       &lt;Text style={styles.text}&gt;Double: {double}&lt;/Text&gt;
-      &lt;Text style={{ marginBottom: 1 }} /&gt;
       &lt;Button title="카운트 +1" onPress={() =&gt; setCount(count + 1)} /&gt;
-      &lt;Text style={{ marginBottom: 1 }} /&gt;
       &lt;Button title="텍스트 변경" onPress={() =&gt; setText(text + '강남대 ')} /&gt;
-      &lt;Text style={{ marginBottom: 1 }} /&gt;
-      &lt;Text style={styles.text}&gt;Character: {text}&lt;/Text&gt;
     &lt;/View&gt;
   );
-}
+}</code></pre>
+          </div>
 
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'stretch', justifyContent: 'center', padding: 30 },
-  text: { fontSize: 30, paddingBottom: 10 },
-});</code></pre>
+          <!-- 접기 토글 -->
+          <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>  const double = useMemo(() =&gt; {
+    console.log("double 계산 실행!");
+    return count * 2;
+  }, [count]); // count가 변경될 때만 재계산</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b><code>const val = useMemo(() => 연산식, [의존성])</code> 문법</b></li>
-                  <li><b>**교수님 주관식 채점 포인트**: '텍스트 변경' 버튼을 누르면 컴포넌트는 리렌더링되지만 <code>count</code>는 변하지 않았으므로 <code>useMemo</code> 콜백은 실행되지 않고 이전 계산값을 재사용한다.</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>useMemo(() => count * 2, [count])</b></div>
               </div>
             </div>
           </details>
@@ -6134,108 +4506,73 @@ const styles = StyleSheet.create({
           <div style="background: var(--surface-2); padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
             <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">🎯 구현 조건 (채점 기준):</div>
             <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
-              <li>1. 배경색: <code>backgroundColor: 'black'</code></li>
-              <li>2. 디스플레이 텍스트: <code>color: 'white'</code>, <code>fontSize: 84</code>, <code>textAlign: 'right'</code></li>
-              <li>3. 버튼 스펙: <code>height: 64</code>, <code>borderRadius: 32</code></li>
-              <li>   - 숫자 버튼: <code>backgroundColor: '#2f2f2f'</code></li>
-              <li>   - 연산자 버튼: <code>backgroundColor: '#F5A623'</code></li>
-              <li>   - 기능(유틸리티) 버튼: <code>backgroundColor: '#555'</code></li>
-              <li>   - 버튼 텍스트: <code>color: 'white'</code>, <code>fontSize: 30</code>, <code>fontWeight: '500'</code></li>
+              <li>배경색 black, displayText fontSize: 84, textAlign: 'right', button height: 64, numberButton #2f2f2f, operatorButton #F5A623 스펙을 정의할 것</li>
             </ol>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (핵심부 통 빈칸):</div>
-            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-
-export default function App() {
-  // [TODO] 조건 1~3의 계산기 스타일링 스펙을 만족하는 UI를 작성하시오.
-
-
-  // [이 영역에 코드를 작성하시오]
-
-
+            <div style="font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">💻 문제 코드 (앞뒤 코드를 확인하고 [빈칸 (A)] 부분만 작성하시오):</div>
+            <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>export default function App() {
+  const [displayValue, setDisplayValue] = useState('0');
+  // ... 버튼 핸들러 및 키패드 JSX ...
 }
 
-// [TODO] styles 객체에 상세 스펙을 정의하시오.
-const styles = StyleSheet.create({
-
-});</code></pre>
+// ==========================================
+// [빈칸 (A)] 계산기 스타일링 명세 스펙을 완성하시오.
+// ==========================================
+  /* [빈칸 (A)] 여기에 코드를 작성하시오 */</code></pre>
           </div>
 
           <!-- 접기 토글 -->
           <details style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 16px;">
-            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
+            <summary style="cursor: pointer; font-weight: 800; color: var(--success); font-size: 14px;">💡 [빈칸 (A) 정답 및 교수님 채점 포인트 확인하기 (클릭)]</summary>
             
             <div style="margin-top: 14px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ 완성 정답 코드:</div>
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-
-export default function App() {
-    const [displayValue, setDisplayValue] = useState('0');
-
-  const handleButtonPress = (val) =&gt; {
-    if (val === 'C') {
-      setDisplayValue('0');
-    } else {
-      setDisplayValue(displayValue === '0' ? String(val) : displayValue + String(val));
-    }
-  };
-
-  return (
-    &lt;View style={styles.container}&gt;
-      &lt;View style={styles.displayContainer}&gt;
-        &lt;Text style={styles.displayText}&gt;{displayValue}&lt;/Text&gt;
-      &lt;/View&gt;
-      &lt;View style={styles.buttonRow}&gt;
-        &lt;TouchableOpacity style={[styles.button, styles.utilityButton]} onPress={() =&gt; handleButtonPress('C')}&gt;
-          &lt;Text style={styles.buttonText}&gt;C&lt;/Text&gt;
-        &lt;/TouchableOpacity&gt;
-        &lt;TouchableOpacity style={[styles.button, styles.operatorButton]} onPress={() =&gt; handleButtonPress('/')}&gt;
-          &lt;Text style={styles.buttonText}&gt;÷&lt;/Text&gt;
-        &lt;/TouchableOpacity&gt;
-      &lt;/View&gt;
-      &lt;View style={styles.buttonRow}&gt;
-        &lt;TouchableOpacity style={[styles.button, styles.numberButton]} onPress={() =&gt; handleButtonPress(7)}&gt;
-          &lt;Text style={styles.buttonText}&gt;7&lt;/Text&gt;
-        &lt;/TouchableOpacity&gt;
-        &lt;TouchableOpacity style={[styles.button, styles.numberButton]} onPress={() =&gt; handleButtonPress(8)}&gt;
-          &lt;Text style={styles.buttonText}&gt;8&lt;/Text&gt;
-        &lt;/TouchableOpacity&gt;
-        &lt;TouchableOpacity style={[styles.button, styles.numberButton]} onPress={() =&gt; handleButtonPress(9)}&gt;
-          &lt;Text style={styles.buttonText}&gt;9&lt;/Text&gt;
-        &lt;/TouchableOpacity&gt;
-        &lt;TouchableOpacity style={[styles.button, styles.operatorButton]} onPress={() =&gt; handleButtonPress('*')}&gt;
-          &lt;Text style={styles.buttonText}&gt;×&lt;/Text&gt;
-        &lt;/TouchableOpacity&gt;
-      &lt;/View&gt;
-    &lt;/View&gt;
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'black', justifyContent: 'flex-end', paddingBottom: 40, paddingHorizontal: 15 },
-  displayContainer: { paddingHorizontal: 20, marginBottom: 20 },
-  displayText: { color: 'white', fontSize: 84, textAlign: 'right' },
-  buttonRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 12 },
-  button: { height: 64, flex: 1, marginHorizontal: 6, borderRadius: 32, alignItems: 'center', justifyContent: 'center' },
-  numberButton: { backgroundColor: '#2f2f2f' },
-  operatorButton: { backgroundColor: '#F5A623' },
-  utilityButton: { backgroundColor: '#555' },
-  buttonText: { color: 'white', fontSize: 30, fontWeight: '500' },
-});
-}
-
-</code></pre>
+              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">✅ [빈칸 (A)] 정답 코드:</div>
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.45; overflow-x: auto;"><code>const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'black',
+    justifyContent: 'flex-end',
+    paddingBottom: 40,
+    paddingHorizontal: 15,
+  },
+  displayContainer: {
+    paddingHorizontal: 20,
+    marginBottom: 20,
+  },
+  displayText: {
+    color: 'white',
+    fontSize: 84,
+    textAlign: 'right',
+  },
+  button: {
+    height: 64,
+    flex: 1,
+    marginHorizontal: 6,
+    borderRadius: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  numberButton: {
+    backgroundColor: '#2f2f2f',
+  },
+  operatorButton: {
+    backgroundColor: '#F5A623',
+  },
+  utilityButton: {
+    backgroundColor: '#555',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 30,
+    fontWeight: '500',
+  },
+});</code></pre>
 
               <div style="margin-top: 12px;">
                 <div style="font-size: 13px; font-weight: 800; color: #b91c1c; margin-bottom: 4px;">⚠️ 감점 방지 채점 기준:</div>
-                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--ink);">
-                  <li><b>주어진 슬라이드 명세(색상코드, 폰트사이즈 등) 정확한 반영</b></li>
-                  <li><b>Flexbox <code>justifyContent: 'flex-end'</code>를 이용한 하단 키패드 배치</b></li>
-                </ul>
+                <div style="font-size: 13.5px; color: var(--ink); padding-left: 10px;">• <b>backgroundColor: 'black', displayText fontSize: 84, button height: 64</b></div>
               </div>
             </div>
           </details>
@@ -6243,7 +4580,6 @@ const styles = StyleSheet.create({
 
       </div>
     </section>
-
 
     <!-- SECTION: 전체 예제 코드 & 결과 화면 1:1 매핑 (전수 복원) -->
     <section id="cp-examples" class="concept-section">
